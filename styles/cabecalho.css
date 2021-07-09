@@ -1,0 +1,17 @@
+.cabecalho{
+    width: 100%;
+    padding: 10px;
+    display: flexbox;
+    flex-direction: row;
+    border-bottom: 1px solid #eaeaea;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cabecalho a:hover,
+  .cabecalho a:focus{
+    text-decoration: underline;
+    color: rgb(10, 44, 153);
+  }
