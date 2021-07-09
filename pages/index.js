@@ -15,6 +15,6 @@ export default function Home() {
     }
     return (
         <div className='conteudo'>
-            <p>Não logado</p>
+            <p>Acesso negado, faça login para ver este conteúdo</p>
         </div>)
 }

@@ -13,7 +13,7 @@ export default function BarraLogin() {
 
     return <div className='barralogin'>
         Não logado <br />
-        <button onClick={() => signIn()}>Entrar</button>
+        <button onClick={() => signIn('google')}>Entrar</button>
     </div>
 
 }
