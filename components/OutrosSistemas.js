@@ -8,6 +8,7 @@ export default function OutrosSistemas() {
     return (
 
         <div className='outros-sistemas'>
+            <hr />
             <h2>Outros sistemas</h2>
             <a href='http://ifeadm.16mb.com/'
                 target='_blank'
