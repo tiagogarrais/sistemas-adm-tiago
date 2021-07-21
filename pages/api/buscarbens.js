@@ -1,4 +1,4 @@
-async function buscarBens(request, response) {
+async function buscarbens(request, response) {
 
     const bensUfca = await fetch("http://dadosabertosapi.ufca.edu.br/service/recurso/bens_moveis.json")
     const bensUfcaJson = await bensUfca.json()
@@ -6,4 +6,4 @@ async function buscarBens(request, response) {
     response.json(bensUfcaJson)
 }
 
-export default buscarBens
+export default buscarbens
