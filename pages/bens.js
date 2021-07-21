@@ -5,31 +5,23 @@ export default function Bens() {
     const [session] = useSession()
 
     async function listarTodosOsBens() {
-        const bensUfca = await fetch('http://localhost:3000/api/buscarBens')
+        const bensUfca = await fetch('/api/buscarBens')
         const bensJson = await bensUfca.json()
         let resultado = ''
         for (let bem of bensJson) {
             resultado += `<li>${bem.tombamento}</li>`
             resultado += `<li>${bem.denominacao}</li>`
             resultado += `<li>${bem.responsavel}</li>`
-            resultado += "<br>"
+            resultado += "<hr/>"
         }
         document.querySelector('h3').innerHTML = "Listagem de todos os bens com tombo - UFCA"
         document.querySelector('main').innerHTML = resultado
     }
 
-    async function listarBensPorServidor() {
-        const bensUfca = await fetch('http://localhost:3000/api/buscarBens')
-        const bensJson = await bensUfca.json()
-        let resultado = ''
-        for (let bem of bensJson) {
-            resultado += `<li>${bem.tombamento}</li>`
-            resultado += `<li>${bem.denominacao}</li>`
-            resultado += `<li>${bem.responsavel}</li>`
-            resultado += "<br>"
-        }
-        document.querySelector('h3').innerHTML = "Listagem de bens por nome de servidor"
-        document.querySelector('main').innerHTML = resultado
+    async function listarBensPorServidor(event) {
+        event.preventDefault()
+        document.querySelector('h3').innerHTML = "Funcionalidade em desenvolvimento"
+        document.querySelector('main').innerHTML = ''
     }
 
 
@@ -39,7 +31,7 @@ export default function Bens() {
                 <button onClick={listarTodosOsBens}>Listar todos os bens</button>
                 <label>
                 Pesquisar por nome do servidor
-                    <form>
+                    <form onSubmit={listarBensPorServidor}>
                         <input type="text" placeholder="Nome do servidor responsável"></input>
                         <button onClick={listarBensPorServidor}>Listar bens por nome do servidor</button>
                     </form>
