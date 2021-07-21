@@ -5,7 +5,7 @@ export default function Bens() {
     const [session] = useSession()
 
     async function listarTodosOsBens() {
-        const bensUfca = await fetch('/api/buscarBens')
+        const bensUfca = await fetch('/api/buscarbens')
         const bensJson = await bensUfca.json()
         let resultado = ''
         for (let bem of bensJson) {
