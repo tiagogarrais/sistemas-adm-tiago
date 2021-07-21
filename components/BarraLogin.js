@@ -8,6 +8,7 @@ export default function BarraLogin() {
         return <div className='barralogin'>
             Logado como {session.user.email} <br />
             <button onClick={() => signOut()}>Sair</button>
+
         </div>
     }
 
