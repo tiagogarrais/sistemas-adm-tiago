@@ -4,9 +4,7 @@ import Link from 'next/link'
 
 
 export default function Home() {
-
     const [session, loading] = useSession()
-
     if (session) {
         return (
             <div className='conteudo'>

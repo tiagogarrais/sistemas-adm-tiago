@@ -1,42 +1,13 @@
-import { MongoClient } from "mongodb";
+import  { MongoClient, Db } from 'mongodb'
 
-const uri = process.env.MONGODB_URI
-const dbName = process.env.MONGODB_DB
+// Create a new MongoClient
+const client = new MongoClient(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
 
-// const cachedDb=null
-// const cachedClient=null
-
-if (!uri) {
-    throw new Error(
-        'Você precisa definir a variável MONGODB_URI dentro do arquivo .env.local', 
-    )
+export default async function connect() {
+    if (!client.isConnected()) await client.connect()
+    const db = client.db('ufca')
+    return {db, client}
 }
-
-if (!dbName) {
-    throw new Error(
-        'Você precisa definir a variável MONGODB_DB dentro do arquivo .env.local', 
-    )
-}
-
-export async function connectToDatabase(){
-    // if (cachedClient && cachedDb){
-    //     return {client: cachedClient, db: cachedDb}
-    // }
-
-    const client = await MongoClient.connect(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-
-    const db = await client.db(dbName)
-
-    // cachedClient = client
-    // cachedDb = db
-
-    return {client, db}
-
-}
-
-export default connectToDatabase
-
-
