@@ -106,14 +106,6 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Reparo ou observação adicional?
-                                <input 
-                                    type="text"
-                                    onChange={event => setObservacao(event.target.value)}
-                                    value={observacao}
-                                />
-                            </label>
-
                             <label>Servidor responsável:
                                 <input
                                     type="text"
@@ -151,6 +143,16 @@ export default function Ambientes() {
                                     type="text"
                                     onChange={event => setTipo(event.target.value)}
                                     value={tipo}
+                                />
+                            </label>
+
+                            <label>Reparo ou observação adicional?
+                                <textarea 
+                                    type="textarea"
+                                    rows="6"
+                                    cols="45"
+                                    onChange={event => setObservacao(event.target.value)}
+                                    value={observacao}
                                 />
                             </label>
 
