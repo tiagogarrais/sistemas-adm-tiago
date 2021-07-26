@@ -19,8 +19,16 @@ export default function Ambientes() {
 
     function handleCadastrarAmbiente(event) {
         event.preventDefault()
-        
-        console.log('Dados podem ser enviados')
+
+        let regex = /@ufca\.edu.br$/
+        let testeEmailUfca = regex.test(session.user.email)
+
+        if (testeEmailUfca === true) {
+            return (
+                console.log("E-mail da UFCA pode fazer envio de informações")
+            )
+        }
+        console.log('Dados não podem ser enviados')
     }
 
     if (session) {
@@ -83,7 +91,7 @@ export default function Ambientes() {
                             </label>
 
                             <label>Largura (leste a oeste):
-                                <input 
+                                <input
                                     type="number"
                                     onChange={event => setLargura(event.target.value)}
                                     value={largura}
@@ -91,7 +99,7 @@ export default function Ambientes() {
                             </label>
 
                             <label>Comprimento (norte a sul):
-                                <input 
+                                <input
                                     type="number"
                                     onChange={event => setComprimento(event.target.value)}
                                     value={comprimento}
@@ -99,7 +107,7 @@ export default function Ambientes() {
                             </label>
 
                             <label>Altura:
-                                <input 
+                                <input
                                     type="number"
                                     onChange={event => setAltura(event.target.value)}
                                     value={altura}
@@ -147,7 +155,7 @@ export default function Ambientes() {
                             </label>
 
                             <label>Reparo ou observação adicional?
-                                <textarea 
+                                <textarea
                                     type="textarea"
                                     rows="6"
                                     cols="45"
