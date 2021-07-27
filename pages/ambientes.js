@@ -37,13 +37,14 @@ export default function Ambientes() {
 
                 <main>
                     <label>
-                        <h3>Campus Brejo Santo - Cadastrar Ambiente</h3>
                         <form
                             className='form'
                             onSubmit={handleCadastrarAmbiente}
                         >
+                            <h3>Campus Brejo Santo - Cadastrar Ambiente</h3>
 
-                            <label>responsável pelo cadastro:
+
+                            <label>responsável pelo cadastro:<br />
                                 <input
                                     type="email"
                                     value={session.user.email}
@@ -51,23 +52,16 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Data da informação:
-                                <input
-                                    type="text"
-                                    value={new Date()}
-                                    size="43"
-                                />
-                            </label>
-
-                            <label>Número de identificação:
+                            <label>Número de identificação:<br />
                                 <input
                                     type="number"
+                                    size="2"
                                     onChange={event => setNumeroIdentificacao(event.target.value)}
                                     value={numeroIdentificacao}
                                 />
                             </label>
 
-                            <label>Nome do ambiente:
+                            <label>Nome do ambiente:<br />
                                 <input
                                     type="text"
                                     onChange={event => setNomeAmbiente(event.target.value)}
@@ -75,7 +69,7 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Tipo de teto:
+                            <label>Tipo de teto:<br />
                                 <select
                                     onChange={event => setTipoTeto(event.target.value)}
                                     value={tipoTeto}
@@ -90,7 +84,7 @@ export default function Ambientes() {
                                 </select>
                             </label>
 
-                            <label>Largura (leste a oeste):
+                            <label>Largura (leste a oeste):<br />
                                 <input
                                     type="number"
                                     onChange={event => setLargura(event.target.value)}
@@ -98,7 +92,7 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Comprimento (norte a sul):
+                            <label>Comprimento (norte a sul):<br />
                                 <input
                                     type="number"
                                     onChange={event => setComprimento(event.target.value)}
@@ -106,7 +100,7 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Altura:
+                            <label>Altura:<br />
                                 <input
                                     type="number"
                                     onChange={event => setAltura(event.target.value)}
@@ -114,7 +108,7 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Servidor responsável:
+                            <label>Servidor responsável:<br />
                                 <input
                                     type="text"
                                     onChange={event => setServidorResponsavel(event.target.value)}
@@ -122,7 +116,7 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Servente de limpeza:
+                            <label>Servente de limpeza:<br />
                                 <input
                                     type="text"
                                     onChange={event => setServenteLimpeza(event.target.value)}
@@ -130,7 +124,7 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Classificação:
+                            <label>Classificação:<br />
                                 <input
                                     type="text"
                                     onChange={event => setClassificacao(event.target.value)}
@@ -138,7 +132,7 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Produtividade recomendada:
+                            <label>Produtividade recomendada:<br />
                                 <input
                                     type="text"
                                     onChange={event => setProdutividadeRecomendada(event.target.value)}
@@ -146,7 +140,7 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Tipo:
+                            <label>Tipo:<br />
                                 <input
                                     type="text"
                                     onChange={event => setTipo(event.target.value)}
@@ -154,7 +148,7 @@ export default function Ambientes() {
                                 />
                             </label>
 
-                            <label>Reparo ou observação adicional?
+                            <label>Reparo ou observação adicional?<br />
                                 <textarea
                                     type="textarea"
                                     rows="6"
@@ -170,8 +164,8 @@ export default function Ambientes() {
                 </main>
             </div>
         )
-
     }
+
     return (
         <div className='conteudo'>
             <p>Acesso negado, faça login para ver este conteúdo</p>
