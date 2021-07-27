@@ -6,7 +6,7 @@ export default function BarraLogin() {
 
     if (session) {
         return <div className='barralogin'>
-            Logado como {session.user.email} <br />
+            Bem vindo(a) {session.user.name} <br />
             <button onClick={() => signOut()}>Sair</button>
 
         </div>

@@ -9,8 +9,14 @@ export default function Home() {
         return (
             <div className='conteudo'>
                 <Link href="/bens">
-                    <a>Clique aqui para acessar o relatório de bens da UFCA</a>
+                    <a>Clique aqui para acessar o sistema Bens Móveis</a>
                 </Link>
+
+                <Link href="/ambientes">
+                    <a>Clique aqui para acessar o sistema Ambientes - Campus Brejo Santo</a>
+                </Link>
+
+
                 <OutrosSistemas />
             </div>
         )
