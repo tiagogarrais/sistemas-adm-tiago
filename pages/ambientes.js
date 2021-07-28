@@ -1,9 +1,10 @@
+import axios from 'axios'
 import { useSession } from 'next-auth/client'
 import { useState } from 'react'
 
 export default function Ambientes() {
     const [session] = useSession()
-
+    
     const [numeroIdentificacao, setNumeroIdentificacao] = useState('')
     const [nomeAmbiente, setNomeAmbiente] = useState('')
     const [tipoTeto, setTipoTeto] = useState('')
@@ -19,15 +20,37 @@ export default function Ambientes() {
 
     function handleCadastrarAmbiente(event) {
         event.preventDefault()
-
         let regex = /@ufca\.edu.br$/
         let testeEmailUfca = regex.test(session.user.email)
 
         if (testeEmailUfca === true) {
-            return (
-                console.log("E-mail da UFCA pode fazer envio de informações")
-            )
+            axios.post(
+                '/api/enviarAmbiente',
+                {
+                    'numeroIdentificacao': numeroIdentificacao,
+                    'nomeAmbiente': nomeAmbiente,
+                    'tipoTeto': tipoTeto,
+                    'largura': largura,
+                    'comprimento': comprimento,
+                    'altura': altura,
+                    'observacao': observacao,
+                    'servidorResponsavel': servidorResponsavel,
+                    'serventeLimpeza': serventeLimpeza,
+                    'classificacao': classificacao,
+                    'produtividadeRecomendada': produtividadeRecomendada,
+                    'tipo': tipo,
+                    'respEnvio': session.user.email,
+                    'dataInformacao': Date()
+                })
+                .then(function (response) {
+                    console.log(response)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+            return
         }
+
         console.log('Dados não podem ser enviados')
     }
 
@@ -42,7 +65,6 @@ export default function Ambientes() {
                             onSubmit={handleCadastrarAmbiente}
                         >
                             <h3>Campus Brejo Santo - Cadastrar Ambiente</h3>
-
 
                             <label>responsável pelo cadastro:<br />
                                 <input
