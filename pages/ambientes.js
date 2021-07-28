@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 export default function Ambientes() {
     const [session] = useSession()
-    
+
     const [numeroIdentificacao, setNumeroIdentificacao] = useState('')
     const [nomeAmbiente, setNomeAmbiente] = useState('')
     const [tipoTeto, setTipoTeto] = useState('')
@@ -43,11 +43,25 @@ export default function Ambientes() {
                     'dataInformacao': Date()
                 })
                 .then(function (response) {
-                    console.log(response)
+                    setNumeroIdentificacao ('')
+                    setNomeAmbiente ('')
+                    setTipoTeto ('')
+                    setLargura ('')
+                    setComprimento ('')
+                    setAltura ('')
+                    setObservacao ('')
+                    setServidorResponsavel ('')
+                    setServenteLimpeza ('')
+                    setClassificacao ('')
+                    setProdutividadeRecomendada ('')
+                    setTipo ('')
+                    window.alert('Dados recebidos')
                 })
                 .catch(function (error) {
                     console.log(error);
                 })
+
+
             return
         }
 
