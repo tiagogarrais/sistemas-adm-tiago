@@ -43,18 +43,18 @@ export default function Ambientes() {
                     'dataInformacao': Date()
                 })
                 .then(function (response) {
-                    setNumeroIdentificacao ('')
-                    setNomeAmbiente ('')
-                    setTipoTeto ('')
-                    setLargura ('')
-                    setComprimento ('')
-                    setAltura ('')
-                    setObservacao ('')
-                    setServidorResponsavel ('')
-                    setServenteLimpeza ('')
-                    setClassificacao ('')
-                    setProdutividadeRecomendada ('')
-                    setTipo ('')
+                    setNumeroIdentificacao('')
+                    setNomeAmbiente('')
+                    setTipoTeto('')
+                    setLargura('')
+                    setComprimento('')
+                    setAltura('')
+                    setObservacao('')
+                    setServidorResponsavel('')
+                    setServenteLimpeza('')
+                    setClassificacao('')
+                    setProdutividadeRecomendada('')
+                    setTipo('')
                     window.alert('Dados recebidos')
                 })
                 .catch(function (error) {
@@ -65,7 +65,7 @@ export default function Ambientes() {
             return
         }
 
-        console.log('Dados não podem ser enviados')
+        window.alert('Você precisa estar logado com um e-mail institucional para enviar dados')
     }
 
     if (session) {
@@ -79,6 +79,8 @@ export default function Ambientes() {
                             onSubmit={handleCadastrarAmbiente}
                         >
                             <h3>Campus Brejo Santo - Cadastrar Ambiente</h3>
+                            <small>Você precisa de um e-mail institucional para enviar dados</small>
+
 
                             <label>responsável pelo cadastro:<br />
                                 <input
