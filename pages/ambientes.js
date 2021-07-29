@@ -8,7 +8,7 @@ export default function Ambientes() {
     const [numeroIdentificacao, setNumeroIdentificacao] = useState('')
     const [nomeAmbiente, setNomeAmbiente] = useState('')
     const [tipoTeto, setTipoTeto] = useState('')
-    const [largura, setLargura] = useState('')
+    const [larguraLesteOeste, setLarguraLesteOeste] = useState('')
     const [comprimento, setComprimento] = useState('')
     const [altura, setAltura] = useState('')
     const [observacao, setObservacao] = useState('')
@@ -18,11 +18,44 @@ export default function Ambientes() {
     const [produtividadeRecomendada, setProdutividadeRecomendada] = useState('')
     const [tipo, setTipo] = useState('')
 
+    function exibirAmbientes(dados) {
+        let output = ''
+        output += '<table>'
+            output += '<tr>'
+                output += '<th>N° Identificação</th>'
+                output += '<th>Nome do Ambiente</th>'
+                output += '<th>Servidor Responsavel</th>'
+                output += '</tr>'
+            
+
+        for (let dado of dados) {
+
+            output += '<tr>'
+            output += `<td>${dado.numeroIdentificacao}</td>`
+            output += `<td>${dado.nomeAmbiente}</td>`
+            output += `<td>${dado.servidorResponsavel}</td>`
+            output += '</tr>'
+        }
+        output += '</table>'
+
+        document.getElementById('tabela-com-dados').innerHTML = output
+    }
+
+    function BuscarAmbientes() {
+        axios.get('/api/buscarAmbientes')
+            .then(function (response) {
+                console.log(response.data)
+                exibirAmbientes(response.data)
+
+            }).catch(function (error) {
+                console.log(error);
+            })
+    }
+
     function handleCadastrarAmbiente(event) {
         event.preventDefault()
         let regex = /@ufca\.edu.br$/
         let testeEmailUfca = regex.test(session.user.email)
-
         if (testeEmailUfca === true) {
             axios.post(
                 '/api/enviarAmbiente',
@@ -30,7 +63,7 @@ export default function Ambientes() {
                     'numeroIdentificacao': numeroIdentificacao,
                     'nomeAmbiente': nomeAmbiente,
                     'tipoTeto': tipoTeto,
-                    'largura': largura,
+                    'larguraLesteOeste': larguraLesteOeste,
                     'comprimento': comprimento,
                     'altura': altura,
                     'observacao': observacao,
@@ -46,7 +79,7 @@ export default function Ambientes() {
                     setNumeroIdentificacao('')
                     setNomeAmbiente('')
                     setTipoTeto('')
-                    setLargura('')
+                    setLarguraLesteOeste('')
                     setComprimento('')
                     setAltura('')
                     setObservacao('')
@@ -60,29 +93,34 @@ export default function Ambientes() {
                 .catch(function (error) {
                     console.log(error);
                 })
-
-
             return
         }
-
-        window.alert('Você precisa estar logado com um e-mail institucional para enviar dados')
+        document
+            .getElementById('aviso')
+            .innerHTML = "Você precisa de um e-mail institucional para enviar dados"
     }
 
     if (session) {
         return (
             <div className='conteudo'>
-
                 <main>
                     <label>
+                        <h2>Página de ambientes do campus Brejo Santo</h2>
+                        {BuscarAmbientes()}
+                        <div id='tabela-com-dados'>
+
+                        </div>
+
+
+
                         <form
                             className='form'
                             onSubmit={handleCadastrarAmbiente}
                         >
-                            <h3>Campus Brejo Santo - Cadastrar Ambiente</h3>
+                            <h2>Campus Brejo Santo - Cadastrar Ambiente</h2>
                             <small>Você precisa de um e-mail institucional para enviar dados</small>
 
-
-                            <label>responsável pelo cadastro:<br />
+                            <label>Responsável pelo cadastro:<br />
                                 <input
                                     type="email"
                                     value={session.user.email}
@@ -125,8 +163,8 @@ export default function Ambientes() {
                             <label>Largura (leste a oeste):<br />
                                 <input
                                     type="number"
-                                    onChange={event => setLargura(event.target.value)}
-                                    value={largura}
+                                    onChange={event => setLarguraLesteOeste(event.target.value)}
+                                    value={larguraLesteOeste}
                                 />
                             </label>
 
@@ -197,6 +235,7 @@ export default function Ambientes() {
                             </label>
 
                             <button type="submit">Enviar</button>
+                            <p id='aviso'></p>
                         </form>
                     </label>
                 </main>
