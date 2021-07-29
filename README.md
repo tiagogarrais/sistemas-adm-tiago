@@ -9,7 +9,13 @@ Etapas de desenvolvimento já concluídas
 [x] Criação de componentes (cabeçalho e rodapé) que se repetem em todas as páginas
 [x] Adição de login utilizando o mecanismo de autenticação do Google para ter acesso ao conteúdo do site
 [x] Conexão ao banco de dados para buscar e gravar informações
+[-] Criação de página com informações sobre os bens permanentes da UFCA - Suspenso temporariamente por limitações de uso de funções servelless na vercel
+[x] Criação de página com informações sobre os ambientes do campus Brejo Santo
+[x] 
 
 Etapa em desenvolvimento
-[-] Criação de página com informações sobre os bens permanentes da UFCA - Suspenso temporariamente por limitações de uso de funções servelless na vercel
-[ ] Criação de página com informações sobre os ambientes do campus Brejo Santo
+
+
+Links de conteúdos que foram úteis na construção deste sistema
+https://youtu.be/Cz55Jmhfw84 - Serverless com ReactJS e Next.js na Vercel | Code/Drops #54
+https://youtu.be/3Eam3ogU-uk - NEXT.JS: CRIANDO E CONSUMINDO APIs [PARTE #06]

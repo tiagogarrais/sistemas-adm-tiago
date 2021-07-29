@@ -21,12 +21,12 @@ export default function Ambientes() {
     function exibirAmbientes(dados) {
         let output = ''
         output += '<table>'
-            output += '<tr>'
-                output += '<th>N° Identificação</th>'
-                output += '<th>Nome do Ambiente</th>'
-                output += '<th>Servidor Responsavel</th>'
-                output += '</tr>'
-            
+        output += '<tr>'
+        output += '<th>N° Identificação</th>'
+        output += '<th>Nome do Ambiente</th>'
+        output += '<th>Servidor Responsavel</th>'
+        output += '</tr>'
+
 
         for (let dado of dados) {
 
@@ -41,12 +41,10 @@ export default function Ambientes() {
         document.getElementById('tabela-com-dados').innerHTML = output
     }
 
-    function BuscarAmbientes() {
+    function buscarAmbientes() {
         axios.get('/api/buscarAmbientes')
             .then(function (response) {
-                console.log(response.data)
                 exibirAmbientes(response.data)
-
             }).catch(function (error) {
                 console.log(error);
             })
@@ -88,7 +86,7 @@ export default function Ambientes() {
                     setClassificacao('')
                     setProdutividadeRecomendada('')
                     setTipo('')
-                    window.alert('Dados recebidos')
+                    window.alert('Recebemos suas informações. Obrigado!')
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -105,13 +103,11 @@ export default function Ambientes() {
             <div className='conteudo'>
                 <main>
                     <label>
-                        <h2>Página de ambientes do campus Brejo Santo</h2>
-                        {BuscarAmbientes()}
+                        <h2>Salas e ambientes do campus Brejo Santo</h2>
+                        {buscarAmbientes()}
                         <div id='tabela-com-dados'>
 
                         </div>
-
-
 
                         <form
                             className='form'

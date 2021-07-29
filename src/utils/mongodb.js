@@ -1,13 +1,20 @@
-import  { MongoClient, Db } from 'mongodb'
+import { MongoClient } from 'mongodb'
 
-// Create a new MongoClient
-const client = new MongoClient(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
+let cachedDb = null
 
 export default async function connect() {
-    if (!client.isConnected()) await client.connect()
+    
+    if (cachedDb) {
+        return cachedDb
+    }
+
+    const client = await MongoClient.connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+
     const db = client.db('ufca')
+    cachedDb = db
+
     return {db, client}
 }
