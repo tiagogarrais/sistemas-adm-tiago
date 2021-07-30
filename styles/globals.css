@@ -1,9 +1,12 @@
 html,
 body {
   padding: 0;
-  margin: 0;
   font-family: Ubuntu, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Cantarell, Fira Sans, Droid Sans,
     Helvetica Neue, sans-serif;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 a {
@@ -35,9 +38,11 @@ h2 {
   text-align: center;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
   border-collapse: collapse;
-  padding: 10px;
+  padding: 5px;
   text-align: center;
 }

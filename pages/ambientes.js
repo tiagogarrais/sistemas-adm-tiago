@@ -103,7 +103,7 @@ export default function Ambientes() {
             <div className='conteudo'>
                 <main>
                     <label>
-                        <h2>Salas e ambientes do campus Brejo Santo</h2>
+                        <h2>Administração de salas e ambientes - Campus Brejo Santo</h2>
                         {buscarAmbientes()}
                         <div id='tabela-com-dados'>
 
@@ -113,7 +113,7 @@ export default function Ambientes() {
                             className='form'
                             onSubmit={handleCadastrarAmbiente}
                         >
-                            <h2>Campus Brejo Santo - Cadastrar Ambiente</h2>
+                            <h2>Cadastrar Ambiente</h2>
                             <small>Você precisa de um e-mail institucional para enviar dados</small>
 
                             <label>Responsável pelo cadastro:<br />
