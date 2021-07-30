@@ -8,7 +8,6 @@ export default function OutrosSistemas() {
     return (
 
         <div className='outros-sistemas'>
-            <hr />
             <h2>Outros sistemas</h2>
             <a href='http://ifeadm.16mb.com/'
                 target='_blank'
@@ -24,8 +23,6 @@ export default function OutrosSistemas() {
                     height={200}
                 />
             </a>
-            <br />
-            <br />
 
             <a href='http://ifeadm.16mb.com/relatoriosadmufca/ifeadm/'
                 target='_blank'
@@ -41,8 +38,6 @@ export default function OutrosSistemas() {
                     height={200}
                 />
             </a>
-            <br />
-            <br />
 
 
             <a href='https://www.conexaofuturo.com.br/'
@@ -59,8 +54,6 @@ export default function OutrosSistemas() {
                     height={200}
                 />
             </a>
-            <br />
-            <br />
 
 
 
@@ -78,8 +71,6 @@ export default function OutrosSistemas() {
                     height={200}
                 />
             </a>
-            <br />
-            <br />
 
         </div>
     )

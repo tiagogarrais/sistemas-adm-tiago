@@ -8,15 +8,15 @@ export default function Home() {
     if (session) {
         return (
             <div className='conteudo'>
-                <Link href="/bens">
-                    <a>Clique aqui para acessar o sistema Bens Móveis</a>
-                </Link>
+                <div className='sistemas'>
+                    <h2>Sistemas administrativos hospedados neste site</h2>
 
-                <Link href="/ambientes">
-                    <a>Clique aqui para acessar o sistema Ambientes - Campus Brejo Santo</a>
-                </Link>
-
-
+                    <button>
+                        <Link href="/ambientes">
+                            <a>Administração de salas e ambientes</a>
+                        </Link>
+                    </button>
+                </div>
                 <OutrosSistemas />
             </div>
         )
