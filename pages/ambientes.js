@@ -5,6 +5,7 @@ import { useState } from 'react'
 export default function Ambientes() {
     const [session] = useSession()
 
+    const [responsavelEnvio, setResponsavelEnvio] = useState('')
     const [numeroIdentificacao, setNumeroIdentificacao] = useState('')
     const [nomeAmbiente, setNomeAmbiente] = useState('')
     const [tipoTeto, setTipoTeto] = useState('')
@@ -18,13 +19,15 @@ export default function Ambientes() {
     const [produtividadeRecomendada, setProdutividadeRecomendada] = useState('')
     const [tipo, setTipo] = useState('')
 
+
     function exibirAmbientes(dados) {
         let output = ''
         output += '<table>'
         output += '<tr>'
         output += '<th>N° Identificação</th>'
         output += '<th>Nome do Ambiente</th>'
-        output += '<th>Servidor Responsavel</th>'
+        output += '<th>Servidor Responsável</th>'
+        output += '<th>Responsável pelo envio</th>'
         output += '</tr>'
 
 
@@ -34,6 +37,7 @@ export default function Ambientes() {
             output += `<td>${dado.numeroIdentificacao}</td>`
             output += `<td>${dado.nomeAmbiente}</td>`
             output += `<td>${dado.servidorResponsavel}</td>`
+            output += `<td>${dado.responsavelEnvio}</td>`
             output += '</tr>'
         }
         output += '</table>'
@@ -70,7 +74,7 @@ export default function Ambientes() {
                     'classificacao': classificacao,
                     'produtividadeRecomendada': produtividadeRecomendada,
                     'tipo': tipo,
-                    'respEnvio': session.user.email,
+                    'responsavelEnvio': session.user.email,
                     'dataInformacao': Date()
                 })
                 .then(function (response) {
@@ -86,6 +90,7 @@ export default function Ambientes() {
                     setClassificacao('')
                     setProdutividadeRecomendada('')
                     setTipo('')
+                    setResponsavelEnvio('')
                     window.alert('Recebemos suas informações. Obrigado!')
                 })
                 .catch(function (error) {
@@ -100,6 +105,7 @@ export default function Ambientes() {
 
     if (session) {
         return (
+
             <div className='conteudo'>
                 <main>
                     <label>
