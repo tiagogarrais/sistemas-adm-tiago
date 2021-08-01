@@ -1,4 +1,4 @@
-import connect from "../../src/utils/mongodb"
+import connect from "../../../src/utils/mongodb"
 
 export default async function enviarAmbiente(req, res) {
     const { db } = await connect()

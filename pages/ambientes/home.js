@@ -99,7 +99,7 @@ export default function Ambientes() {
         let testeEmailUfca = regex.test(session.user.email)
         if (testeEmailUfca === true) {
             axios.post(
-                '/api/enviarAmbiente',
+                '/api/ambientes/enviarAmbiente',
                 {
                     'numeroIdentificacao': numeroIdentificacao,
                     'nomeAmbiente': nomeAmbiente,
