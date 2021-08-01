@@ -24,10 +24,11 @@ export default function Ambientes() {
         let output = ''
         output += '<table>'
         output += '<tr>'
-        output += '<th>N° Identificação</th>'
+        output += '<th>Número</th>'
         output += '<th>Nome do Ambiente</th>'
         output += '<th>Servidor Responsável</th>'
         output += '<th>Responsável pelo envio</th>'
+        output += '<th>Atualizar</th>'
         output += '</tr>'
 
 
@@ -38,6 +39,7 @@ export default function Ambientes() {
             output += `<td>${dado.nomeAmbiente}</td>`
             output += `<td>${dado.servidorResponsavel}</td>`
             output += `<td>${dado.responsavelEnvio}</td>`
+            output += "<td><button>Atualizar</button></td>"
             output += '</tr>'
         }
         output += '</table>'
@@ -46,7 +48,7 @@ export default function Ambientes() {
     }
 
     function buscarAmbientes() {
-        axios.get('/api/buscarAmbientes')
+        axios.get('../../api/buscarAmbientes')
             .then(function (response) {
                 exibirAmbientes(response.data)
             }).catch(function (error) {
