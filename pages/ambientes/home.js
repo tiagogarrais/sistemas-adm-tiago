@@ -19,8 +19,25 @@ export default function Ambientes() {
     const [produtividadeRecomendada, setProdutividadeRecomendada] = useState('')
     const [tipo, setTipo] = useState('')
 
+    function buscarAmbientesConferidos() {
+        axios.get('../../api/ambientes/buscarAmbientesConferidos')
+            .then(function (response) {
+                exibirAmbientesConferidos(response.data)
+            }).catch(function (error) {
+                console.log(error);
+            })
+    }
 
-    function exibirAmbientes(dados) {
+    function buscarAmbientesNaoConferidos() {
+        axios.get('../../api/ambientes/buscarAmbientesNaoConferidos')
+            .then(function (response) {
+                exibirAmbientesNaoConferidos(response.data)
+            }).catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    function exibirAmbientesConferidos(ambientesConferidos) {
         let output = ''
         output += '<table>'
         output += '<tr>'
@@ -32,28 +49,48 @@ export default function Ambientes() {
         output += '</tr>'
 
 
-        for (let dado of dados) {
+        for (let ambientesConferido of ambientesConferidos) {
 
             output += '<tr>'
-            output += `<td>${dado.numeroIdentificacao}</td>`
-            output += `<td>${dado.nomeAmbiente}</td>`
-            output += `<td>${dado.servidorResponsavel}</td>`
-            output += `<td>${dado.responsavelEnvio}</td>`
+            output += `<td>${ambientesConferido.numeroIdentificacao}</td>`
+            output += `<td>${ambientesConferido.nomeAmbiente}</td>`
+            output += `<td>${ambientesConferido.servidorResponsavel}</td>`
+            output += `<td>${ambientesConferido.responsavelEnvio}</td>`
             output += "<td><button>Atualizar</button></td>"
             output += '</tr>'
         }
+
         output += '</table>'
 
         document.getElementById('tabela-com-dados').innerHTML = output
     }
 
-    function buscarAmbientes() {
-        axios.get('../../api/buscarAmbientes')
-            .then(function (response) {
-                exibirAmbientes(response.data)
-            }).catch(function (error) {
-                console.log(error);
-            })
+    function exibirAmbientesNaoConferidos(ambientesNaoConferidos) {
+        let output = '<h3>Ambientes aguardando conferência pela nossa equipe</h3>'
+        output += '<table>'
+        output += '<tr>'
+        output += '<th>Número</th>'
+        output += '<th>Nome do Ambiente</th>'
+        output += '<th>Servidor Responsável</th>'
+        output += '<th>Responsável pelo envio</th>'
+        output += '<th>Atualizar</th>'
+        output += '</tr>'
+
+
+        for (let ambienteNaoConferido of ambientesNaoConferidos) {
+
+            output += '<tr>'
+            output += `<td>${ambienteNaoConferido.numeroIdentificacao}</td>`
+            output += `<td>${ambienteNaoConferido.nomeAmbiente}</td>`
+            output += `<td>${ambienteNaoConferido.servidorResponsavel}</td>`
+            output += `<td>${ambienteNaoConferido.responsavelEnvio}</td>`
+            output += "<td><button>Atualizar</button></td>"
+            output += '</tr>'
+        }
+
+        output += '</table>'
+
+        document.getElementById('tabela-com-dados-adicionais').innerHTML = output
     }
 
     function handleCadastrarAmbiente(event) {
@@ -112,10 +149,11 @@ export default function Ambientes() {
                 <main>
                     <label>
                         <h2>Administração de salas e ambientes - Campus Brejo Santo</h2>
-                        {buscarAmbientes()}
-                        <div id='tabela-com-dados'>
+                        {buscarAmbientesConferidos()}
+                        {buscarAmbientesNaoConferidos()}
+                        <div id='tabela-com-dados'></div>
+                        <div id='tabela-com-dados-adicionais'></div>
 
-                        </div>
 
                         <form
                             className='form'

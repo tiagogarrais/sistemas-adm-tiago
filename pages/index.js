@@ -12,7 +12,7 @@ export default function Home() {
                     <h2>Sistemas administrativos hospedados neste site</h2>
 
                     <button>
-                        <Link href="/ambientes">
+                        <Link href="/ambientes/home">
                             <a>Administração de salas e ambientes</a>
                         </Link>
                     </button>
