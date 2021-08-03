@@ -21,6 +21,16 @@ export default function Ambientes() {
 
     function handleEnviarFormulario(event) {
         event.preventDefault()
+
+        let regex = /@ufca\.edu.br$/
+        let testeEmailUfca = regex.test(session.user.email)
+        if (testeEmailUfca === false) {
+            document.getElementById('aviso').innerHTML = 'Você precisa de um e-mail @ufca.edu.br para enviar dados.'           
+            return
+        }
+
+
+        document.getElementById('aviso').innerHTML = `Aguarde alguns instantes, estamos enviado suas informações.`
         axios.post(
             '/api/ambientes/enviarAmbiente',
             {
@@ -36,12 +46,23 @@ export default function Ambientes() {
                 'classificacao': classificacao,
                 'produtividadeRecomendada': produtividadeRecomendada,
                 'tipo': tipo,
-                'responsavelEnvio': session.user.email,
+                'responsavelEnvio': session.user.email ? session.user.email : '',
                 'dataInformacao': Date()
-
             })
             .then(function (response) {
-                window.alert('Recebemos suas informações. Obrigado!')
+                document.getElementById('aviso').innerHTML = `Recebemos suas informações em ${Date()}. Obrigado!`
+                setNumeroIdentificacao('')
+                setNomeAmbiente('')
+                setTipoTeto('')
+                setLarguraLesteOeste('')
+                setComprimento('')
+                setAltura('')
+                setObservacao('')
+                setServidorResponsavel('')
+                setServenteLimpeza('')
+                setClassificacao('')
+                setProdutividadeRecomendada('')
+                setTipo('')
             })
             .catch(function (error) {
                 console.log(error);
@@ -58,6 +79,7 @@ export default function Ambientes() {
     }
 
     function exibirAmbientesConferidos(ambientesConferidos) {
+        document.getElementById('tabela-ambientes-conferidos').innerHTML = '<p>Aguarde um instante</p>'
         let output = ''
         output += '<table>'
         output += '<tr>'
@@ -65,7 +87,6 @@ export default function Ambientes() {
         output += '<th>Nome do Ambiente</th>'
         output += '<th>Servidor Responsável</th>'
         output += '<th>Responsável pelo envio</th>'
-        output += '<th>Atualizar</th>'
         output += '</tr>'
 
         for (let ambientesConferido of ambientesConferidos) {
@@ -75,7 +96,6 @@ export default function Ambientes() {
             output += `<td>${ambientesConferido.nomeAmbiente}</td>`
             output += `<td>${ambientesConferido.servidorResponsavel}</td>`
             output += `<td>${ambientesConferido.responsavelEnvio}</td>`
-            output += "<td><button>Atualizar</button></td>"
             output += '</tr>'
         }
         output += '</table>'
@@ -99,7 +119,6 @@ export default function Ambientes() {
         output += '<th>Nome do Ambiente</th>'
         output += '<th>Servidor Responsável</th>'
         output += '<th>Responsável pelo envio</th>'
-        output += '<th>Atualizar</th>'
         output += '</tr>'
 
 
@@ -110,12 +129,12 @@ export default function Ambientes() {
             output += `<td>${ambienteNaoConferido.nomeAmbiente}</td>`
             output += `<td>${ambienteNaoConferido.servidorResponsavel}</td>`
             output += `<td>${ambienteNaoConferido.responsavelEnvio}</td>`
-            output += "<td><button>Atualizar</button></td>"
             output += '</tr>'
         }
         output += '</table>'
         document.getElementById('tabela-ambientes-nao-conferidos').innerHTML = output
     }
+
 
     if (session) {
         return (
@@ -124,10 +143,22 @@ export default function Ambientes() {
                     <label>
                         <h2>Administração de salas e ambientes - Campus Brejo Santo</h2>
 
-                        <h3><button onClick={buscarAmbientesConferidos}>Mostrar relatório de ambientes</button></h3>
+                        <h3>
+                            <button
+                                onClick={buscarAmbientesConferidos}
+                                onClickCapture={() => { document.getElementById('tabela-ambientes-conferidos').innerHTML = '<p>Aguarde um instante</p>' }}
+                            >
+                                Mostrar relatório de ambientes
+                            </button>
+                        </h3>
                         <div id='tabela-ambientes-conferidos'></div>
 
-                        <h3><button onClick={buscarAmbientesNaoConferidos}>Mostrar ambientes não conferidos</button></h3>
+                        <h3>
+                            <button
+                                onClick={buscarAmbientesNaoConferidos}
+                                onClickCapture={() => { document.getElementById('tabela-ambientes-nao-conferidos').innerHTML = '<p>Aguarde um instante</p>' }}
+                            >
+                                Mostrar ambientes não conferidos</button></h3>
                         <div id='tabela-ambientes-nao-conferidos'></div>
 
 
@@ -251,9 +282,8 @@ export default function Ambientes() {
                                     value={observacao}
                                 />
                             </label>
-
-                            <button type="submit">Enviar</button>
                             <p id='aviso'></p>
+                            <button type="submit">Enviar</button>
                         </form>
                     </label>
                 </main>
