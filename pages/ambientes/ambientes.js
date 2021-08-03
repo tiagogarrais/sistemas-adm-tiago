@@ -1,11 +1,10 @@
 import axios from 'axios'
 import { useSession } from 'next-auth/client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Ambientes() {
     const [session] = useSession()
 
-    const [responsavelEnvio, setResponsavelEnvio] = useState('')
     const [numeroIdentificacao, setNumeroIdentificacao] = useState('')
     const [nomeAmbiente, setNomeAmbiente] = useState('')
     const [tipoTeto, setTipoTeto] = useState('')
@@ -19,19 +18,40 @@ export default function Ambientes() {
     const [produtividadeRecomendada, setProdutividadeRecomendada] = useState('')
     const [tipo, setTipo] = useState('')
 
-    function buscarAmbientesConferidos() {
-        axios.get('../../api/ambientes/buscarAmbientesConferidos')
+
+    function handleEnviarFormulario(event) {
+        event.preventDefault()
+        axios.post(
+            '/api/ambientes/enviarAmbiente',
+            {
+                'numeroIdentificacao': numeroIdentificacao,
+                'nomeAmbiente': nomeAmbiente,
+                'tipoTeto': tipoTeto,
+                'larguraLesteOeste': larguraLesteOeste,
+                'comprimento': comprimento,
+                'altura': altura,
+                'observacao': observacao,
+                'servidorResponsavel': servidorResponsavel,
+                'serventeLimpeza': serventeLimpeza,
+                'classificacao': classificacao,
+                'produtividadeRecomendada': produtividadeRecomendada,
+                'tipo': tipo,
+                'responsavelEnvio': session.user.email,
+                'dataInformacao': Date()
+
+            })
             .then(function (response) {
-                exibirAmbientesConferidos(response.data)
-            }).catch(function (error) {
+                window.alert('Recebemos suas informações. Obrigado!')
+            })
+            .catch(function (error) {
                 console.log(error);
             })
     }
 
-    function buscarAmbientesNaoConferidos() {
-        axios.get('../../api/ambientes/buscarAmbientesNaoConferidos')
+    function buscarAmbientesConferidos() {
+        axios.get('../../api/ambientes/buscarAmbientesConferidos')
             .then(function (response) {
-                exibirAmbientesNaoConferidos(response.data)
+                exibirAmbientesConferidos(response.data)
             }).catch(function (error) {
                 console.log(error);
             })
@@ -48,7 +68,6 @@ export default function Ambientes() {
         output += '<th>Atualizar</th>'
         output += '</tr>'
 
-
         for (let ambientesConferido of ambientesConferidos) {
 
             output += '<tr>'
@@ -59,10 +78,17 @@ export default function Ambientes() {
             output += "<td><button>Atualizar</button></td>"
             output += '</tr>'
         }
-
         output += '</table>'
+        document.getElementById('tabela-ambientes-conferidos').innerHTML = output
+    }
 
-        document.getElementById('tabela-com-dados').innerHTML = output
+    function buscarAmbientesNaoConferidos() {
+        axios.get('../../api/ambientes/buscarAmbientesNaoConferidos')
+            .then(function (response) {
+                exibirAmbientesNaoConferidos(response.data)
+            }).catch(function (error) {
+                console.log(error);
+            })
     }
 
     function exibirAmbientesNaoConferidos(ambientesNaoConferidos) {
@@ -87,77 +113,27 @@ export default function Ambientes() {
             output += "<td><button>Atualizar</button></td>"
             output += '</tr>'
         }
-
         output += '</table>'
-
-        document.getElementById('tabela-com-dados-adicionais').innerHTML = output
-    }
-
-    function handleCadastrarAmbiente(event) {
-        event.preventDefault()
-        let regex = /@ufca\.edu.br$/
-        let testeEmailUfca = regex.test(session.user.email)
-        if (testeEmailUfca === true) {
-            axios.post(
-                '/api/ambientes/enviarAmbiente',
-                {
-                    'numeroIdentificacao': numeroIdentificacao,
-                    'nomeAmbiente': nomeAmbiente,
-                    'tipoTeto': tipoTeto,
-                    'larguraLesteOeste': larguraLesteOeste,
-                    'comprimento': comprimento,
-                    'altura': altura,
-                    'observacao': observacao,
-                    'servidorResponsavel': servidorResponsavel,
-                    'serventeLimpeza': serventeLimpeza,
-                    'classificacao': classificacao,
-                    'produtividadeRecomendada': produtividadeRecomendada,
-                    'tipo': tipo,
-                    'responsavelEnvio': session.user.email,
-                    'dataInformacao': Date()
-                })
-                .then(function (response) {
-                    setNumeroIdentificacao('')
-                    setNomeAmbiente('')
-                    setTipoTeto('')
-                    setLarguraLesteOeste('')
-                    setComprimento('')
-                    setAltura('')
-                    setObservacao('')
-                    setServidorResponsavel('')
-                    setServenteLimpeza('')
-                    setClassificacao('')
-                    setProdutividadeRecomendada('')
-                    setTipo('')
-                    setResponsavelEnvio('')
-                    window.alert('Recebemos suas informações. Obrigado!')
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-            return
-        }
-        document
-            .getElementById('aviso')
-            .innerHTML = "Você precisa de um e-mail institucional para enviar dados"
+        document.getElementById('tabela-ambientes-nao-conferidos').innerHTML = output
     }
 
     if (session) {
         return (
-
             <div className='conteudo'>
                 <main>
                     <label>
                         <h2>Administração de salas e ambientes - Campus Brejo Santo</h2>
-                        {buscarAmbientesConferidos()}
-                        {buscarAmbientesNaoConferidos()}
-                        <div id='tabela-com-dados'></div>
-                        <div id='tabela-com-dados-adicionais'></div>
+
+                        <h3><button onClick={buscarAmbientesConferidos}>Mostrar relatório de ambientes</button></h3>
+                        <div id='tabela-ambientes-conferidos'></div>
+
+                        <h3><button onClick={buscarAmbientesNaoConferidos}>Mostrar ambientes não conferidos</button></h3>
+                        <div id='tabela-ambientes-nao-conferidos'></div>
 
 
                         <form
                             className='form'
-                            onSubmit={handleCadastrarAmbiente}
+                            onSubmit={handleEnviarFormulario}
                         >
                             <h2>Cadastrar Ambiente</h2>
                             <small>Você precisa de um e-mail institucional para enviar dados</small>
@@ -165,8 +141,8 @@ export default function Ambientes() {
                             <label>Responsável pelo cadastro:<br />
                                 <input
                                     type="email"
-                                    value={session.user.email}
                                     disabled
+                                    value={session.user.email ? session.user.email : ''}
                                 />
                             </label>
 
@@ -281,7 +257,7 @@ export default function Ambientes() {
                         </form>
                     </label>
                 </main>
-            </div>
+            </div >
         )
     }
 

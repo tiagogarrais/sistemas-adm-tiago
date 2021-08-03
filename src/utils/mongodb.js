@@ -1,12 +1,12 @@
 import { MongoClient } from 'mongodb'
 
-let cachedDb = null
+//let cachedDb = null
 
 export default async function connect() {
     
-    if (cachedDb) {
-        return cachedDb
-    }
+    // if (cachedDb) {
+    //     return cachedDb
+    // }
 
     const client = await MongoClient.connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
@@ -14,7 +14,7 @@ export default async function connect() {
     })
 
     const db = client.db('ufca')
-    cachedDb = db
+    //cachedDb = db
 
     return {db, client}
 }
