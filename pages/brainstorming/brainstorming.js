@@ -19,7 +19,7 @@ export default function Brainstorming() {
     function handleEnviarFormulario(event) {
         event.preventDefault()
 
-        let regex = /@ufca\.edu.br$/
+        let regex = /ufca\.edu.br$/
         let testeEmailUfca = regex.test(session.user.email)
         if (testeEmailUfca === false) {
             document.getElementById('aviso').innerHTML = 'Você precisa de um e-mail @ufca.edu.br para enviar dados.'
