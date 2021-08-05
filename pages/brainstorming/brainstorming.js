@@ -2,20 +2,19 @@ import axios from 'axios'
 import { useSession } from "next-auth/client";
 import { useEffect, useState } from "react";
 
-
 export default function Brainstorming() {
     const [session] = useSession()
     const [ideias, setIdeias] = useState([])
     const [ideia, setIdeia] = useState('')
     const [localAplicacao, setLocalAplicacao] = useState('')
     const [grauPrioridade, setGrauPrioridade] = useState('')
+    const [endereco, setEndereco] = useState('')
 
     async function buscarIdeias() {
         const response = await fetch('/api/brainstorming/buscarIdeias')
         const data = await response.json()
         setIdeias(data)
     }
-
 
     function handleEnviarFormulario(event) {
         event.preventDefault()
@@ -49,7 +48,7 @@ export default function Brainstorming() {
     if (session) {
         return (
             <div>
-                <h2>Brainstorming IFE</h2>
+                <h2>Brainstorming IFE - Tema infraestrutura física <br/>(reformas, construções e melhorias)</h2>
                 <h3>Ideias já recebidas</h3>
                 <ol>
                     {ideias.map(ideiasRecebidas => (
@@ -60,17 +59,23 @@ export default function Brainstorming() {
                     ))}
                 </ol>
 
-
-
                 <form
                     className='form'
                     onSubmit={handleEnviarFormulario}
                 >
                     <h2>Enviar ideia</h2>
 
+                    <label>
+                        <textarea
+                            type="textarea"
+                            rows="6"
+                            cols="55"
+                            onChange={event => setIdeia(event.target.value)}
+                            value={ideia}
+                        />
+                    </label>
 
-
-                    <label>Onde essa ideia deve ser aplicada?<br />
+                    <label>Em qual setor essa ideia deve ser aplicada?<br />
                         <select
                             onChange={event => setLocalAplicacao(event.target.value)}
                             value={localAplicacao}
@@ -87,14 +92,15 @@ export default function Brainstorming() {
                         </select>
                     </label>
 
-                    <label>
-                        <textarea
-                            type="textarea"
-                            rows="6"
-                            cols="55"
-                            onChange={event => setIdeia(event.target.value)}
-                            value={ideia}
-                        />
+                    <label>Em qual endereço essa ideia deve ser implementada?<br />
+                        <select
+                            onChange={event => setEndereco(event.target.value)}
+                            value={endereco}
+                        >
+                            <option>Selecione uma opção</option>
+                            <option>Campus Brejo Santo, bairro Centro</option>
+                            <option>Terreno em processo de cessão, bairro Renê Lucena</option>
+                        </select>
                     </label>
 
                     <label>Qual o grau de prioridade a UFCA deveria dar para implementar essa ideia?<br />
@@ -104,9 +110,9 @@ export default function Brainstorming() {
                         >
                             <option>Selecione uma opção</option>
                             <option>Prioridade 1 - Urgente</option>
-                            <option>Prioridade 2 - Importante</option>
-                            <option>Prioridade 3 - Podemos esperar</option>
-                            <option>Prioridade 4 - Seria um sonho</option>
+                            <option>Prioridade 2 - Alta</option>
+                            <option>Prioridade 3 - Média</option>
+                            <option>Prioridade 4 - Baixa</option>
                         </select>
                     </label>
 
@@ -122,5 +128,4 @@ export default function Brainstorming() {
             <p>Acesso negado, faça login para ver este conteúdo</p>
         </div>
     )
-
 }

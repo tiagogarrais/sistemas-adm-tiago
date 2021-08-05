@@ -19,3 +19,4 @@ Etapa em desenvolvimento
 Links de conteúdos que foram úteis na construção deste sistema
 https://youtu.be/Cz55Jmhfw84 - Serverless com ReactJS e Next.js na Vercel | Code/Drops #54
 https://youtu.be/3Eam3ogU-uk - NEXT.JS: CRIANDO E CONSUMINDO APIs [PARTE #06]
+https://youtu.be/6WB16wZS61c - React Hooks na prática | Diego Fernandes

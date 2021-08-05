@@ -16,7 +16,7 @@ export default function Home() {
                             <a>Administração de salas e ambientes</a>
                         </Link>
                     </button>
-
+                    <br/>
                     <button>
                         <Link href="/brainstorming/brainstorming">
                             <a>Brainstorming</a>
