@@ -18,7 +18,6 @@ export default function Ambientes() {
     const [produtividadeRecomendada, setProdutividadeRecomendada] = useState('')
     const [tipo, setTipo] = useState('')
 
-
     function handleEnviarFormulario(event) {
         event.preventDefault()
 
@@ -28,7 +27,6 @@ export default function Ambientes() {
             document.getElementById('aviso').innerHTML = 'Você precisa de um e-mail "ufca.edu.br" para enviar dados.'           
             return
         }
-
 
         document.getElementById('aviso').innerHTML = `Aguarde alguns instantes, estamos enviado suas informações.`
         axios.post(
@@ -84,6 +82,9 @@ export default function Ambientes() {
         output += '<tr>'
         output += '<th>Número</th>'
         output += '<th>Nome do Ambiente</th>'
+        output += '<th>Largura</th>'
+        output += '<th>Comprimento</th>'
+        output += '<th>Metros quadrados</th>'
         output += '<th>Servidor Responsável</th>'
         output += '</tr>'
 
@@ -92,6 +93,9 @@ export default function Ambientes() {
             output += '<tr>'
             output += `<td>${ambientesConferido.numeroIdentificacao}</td>`
             output += `<td>${ambientesConferido.nomeAmbiente}</td>`
+            output += `<td>${ambientesConferido.LarguraLesteOeste}</td>`
+            output += `<td>${ambientesConferido.comprimento}</td>`
+            output += `<td>${ambientesConferido.LarguraLesteOeste * ambientesConferido.comprimento}</td>`
             output += `<td>${ambientesConferido.servidorResponsavel}</td>`
             output += '</tr>'
         }

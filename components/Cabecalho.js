@@ -1,19 +1,24 @@
 import Image from 'next/image'
-import admLogo from '../src/assets/images/adm-logo.svg'
+import admLogo from '../src/assets/images/adm-logo.png'
+import portaoEntradaIfe from '../src/assets/images/portaoEntradaIfe.jpg'
 import Link from 'next/dist/client/link'
 
 export default function Cabecalho() {
-
   return (
-
     <div className='cabecalho'>
       <Link href="/">
         <a>
           <Image
             src={admLogo}
             alt="Logomarca da Administração"
-            width={70}
-            height={70}
+            width={200}
+            height={100}
+          />
+          <Image
+            src={portaoEntradaIfe}
+            alt="Portão de entrada do Instituto de Formação de Educadores"
+            width={200}
+            height={100}
           />
         </a>
       </Link>
