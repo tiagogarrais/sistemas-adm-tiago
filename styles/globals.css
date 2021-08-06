@@ -70,3 +70,19 @@ tr:hover {
 .aviso{
   background-color: #fff;
 }
+
+
+@media (max-width: 600px) { 
+  th {
+    display: none;
+  }
+  tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  td {
+    border: 0;
+  }
+  td:not(:first-child) {
+    display: block;
+  }
+}

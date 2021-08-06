@@ -86,7 +86,6 @@ export default function Ambientes() {
         output += '<th>Número</th>'
         output += '<th>Nome do Ambiente</th>'
         output += '<th>Servidor Responsável</th>'
-        output += '<th>Responsável pelo envio</th>'
         output += '</tr>'
 
         for (let ambientesConferido of ambientesConferidos) {
@@ -95,7 +94,6 @@ export default function Ambientes() {
             output += `<td>${ambientesConferido.numeroIdentificacao}</td>`
             output += `<td>${ambientesConferido.nomeAmbiente}</td>`
             output += `<td>${ambientesConferido.servidorResponsavel}</td>`
-            output += `<td>${ambientesConferido.responsavelEnvio}</td>`
             output += '</tr>'
         }
         output += '</table>'
@@ -118,7 +116,6 @@ export default function Ambientes() {
         output += '<th>Número</th>'
         output += '<th>Nome do Ambiente</th>'
         output += '<th>Servidor Responsável</th>'
-        output += '<th>Responsável pelo envio</th>'
         output += '</tr>'
 
 
@@ -128,7 +125,6 @@ export default function Ambientes() {
             output += `<td>${ambienteNaoConferido.numeroIdentificacao}</td>`
             output += `<td>${ambienteNaoConferido.nomeAmbiente}</td>`
             output += `<td>${ambienteNaoConferido.servidorResponsavel}</td>`
-            output += `<td>${ambienteNaoConferido.responsavelEnvio}</td>`
             output += '</tr>'
         }
         output += '</table>'
