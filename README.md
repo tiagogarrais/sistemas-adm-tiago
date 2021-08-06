@@ -11,7 +11,7 @@ Etapas de desenvolvimento já concluídas
 [x] Conexão ao banco de dados para buscar e gravar informações
 [-] Criação de página com informações sobre os bens permanentes da UFCA - Suspenso temporariamente por limitações de uso de funções servelless na vercel
 [x] Criação de página com informações sobre os ambientes do campus Brejo Santo
-[x] 
+[x] Criação de página para captura de ideias no Brainstorming do IFE
 
 Etapa em desenvolvimento
 

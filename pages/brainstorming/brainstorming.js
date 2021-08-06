@@ -32,12 +32,17 @@ export default function Brainstorming() {
             {
                 'ideia': ideia,
                 'localAplicacao': localAplicacao,
+                'endereco': endereco,
+                'grauPrioridade': grauPrioridade,
                 'responsavelEnvio': session.user.email ? session.user.email : '',
                 'dataInformacao': Date()
             })
             .then(function (response) {
                 document.getElementById('aviso').innerHTML = `Recebemos suas informações em ${Date()}. Obrigado!`
                 setIdeia('')
+                setLocalAplicacao('')
+                setEndereco('')
+                setGrauPrioridade('')
                 buscarIdeias()
             })
             .catch(function (error) {
@@ -53,7 +58,7 @@ export default function Brainstorming() {
                 <ol>
                     {ideias.map(ideiasRecebidas => (
                         <>
-                            <p key={ideiasRecebidas.id}>{`${ideiasRecebidas.localAplicacao} ➜ ${ideiasRecebidas.ideia}`} </p>
+                            <p key={ideiasRecebidas.id}>{`${ideiasRecebidas.localAplicacao} ➜ ${ideiasRecebidas.ideia}➜ ${ideiasRecebidas.endereco}`}  </p>
                             <hr />
                         </>
                     ))}
