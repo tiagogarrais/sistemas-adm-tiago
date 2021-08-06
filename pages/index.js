@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/client'
 import OutrosSistemas from '../components/OutrosSistemas'
 import Link from 'next/link'
+import BotaoPadrao from '../components/BotaoPadrao'
 
 
 export default function Home() {
@@ -11,17 +12,9 @@ export default function Home() {
                 <div className='sistemas'>
                     <h2>Sistemas administrativos hospedados neste site</h2>
 
-                    <button>
-                        <Link href="/ambientes/ambientes">
-                            <a>Salas e ambientes</a>
-                        </Link>
-                    </button>
-                    <br/>
-                    <button>
-                        <Link href="/brainstorming/brainstorming">
-                            <a>Brainstorming</a>
-                        </Link>
-                    </button>
+                    <BotaoPadrao nome='Salas e ambientes' href='/ambientes/ambientes' />
+                    <BotaoPadrao nome='Brainstorming' href='/brainstorming/brainstorming' />
+                    <br />
                 </div>
                 <OutrosSistemas />
             </div>

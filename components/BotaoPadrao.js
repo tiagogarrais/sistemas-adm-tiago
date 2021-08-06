@@ -5,7 +5,12 @@ export default function BotaoPadrao(props) {
         <>
             <button
             className='botao-padrao'
-            style={{width:'200px', height:'50px', borderRadius:'5px'}}
+            style={{
+                width:'200px', 
+                height:'50px', 
+                borderRadius:'5px', 
+                fontSize:'14px'
+                }}
             >
                 <Link href={props.href}>
                     {props.nome}
