@@ -19,8 +19,8 @@ export default function OutrosSistemas() {
                 <Image
                     src={telaIfeAdm}
                     alt="Tela do site IFEADM"
-                    width={400}
-                    height={200}
+                    width={200}
+                    height={100}
                 />
             </a>
 
@@ -34,8 +34,8 @@ export default function OutrosSistemas() {
                 <Image
                     src={relatorios}
                     alt="Tela do site IFEADM"
-                    width={400}
-                    height={200}
+                    width={200}
+                    height={100}
                 />
             </a>
 
@@ -50,13 +50,11 @@ export default function OutrosSistemas() {
                 <Image
                     src={conexaoFuturo}
                     alt="Tela do site IFEADM"
-                    width={400}
-                    height={200}
+                    width={200}
+                    height={100}
                 />
             </a>
-
-
-
+            
             <a href='https://github.com/tiagogarrais/FalaAi'
                 target='_blank'
                 rel='noreferrer'
@@ -67,8 +65,8 @@ export default function OutrosSistemas() {
                 <Image
                     src={falaAi}
                     alt="Tela do site IFEADM"
-                    width={400}
-                    height={200}
+                    width={200}
+                    height={100}
                 />
             </a>
 

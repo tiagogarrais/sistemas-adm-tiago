@@ -13,7 +13,7 @@ export default function Home() {
 
                     <button>
                         <Link href="/ambientes/ambientes">
-                            <a>Administração de salas e ambientes</a>
+                            <a>Salas e ambientes</a>
                         </Link>
                     </button>
                     <br/>

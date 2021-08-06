@@ -139,7 +139,6 @@ export default function Ambientes() {
 
                         <h3>
                             <button
-                                id='botao-ambientes-conferidos'
                                 onClick={buscarAmbientesConferidos}
                                 onClickCapture={() => { document.getElementById('tabela-ambientes-conferidos').innerHTML = '<p>Aguarde um instante</p>' }}
                             >
@@ -150,7 +149,7 @@ export default function Ambientes() {
 
                         <h3>
                             <button
-                                onClickC={buscarAmbientesNaoConferidos}
+                                onClick={buscarAmbientesNaoConferidos}
                                 onClickCapture={() => { document.getElementById('tabela-ambientes-nao-conferidos').innerHTML = '<p>Aguarde um instante</p>' }}
                             >
                                 Mostrar ambientes não conferidos</button></h3>

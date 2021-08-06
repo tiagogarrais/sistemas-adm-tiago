@@ -34,13 +34,10 @@ select, option, textarea{
   width: 95%;
 }
 
-h3 {
+h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-h2 {
-  text-align: center;
-}
 
 table{
   width: 95%;
@@ -64,7 +61,14 @@ tr:hover {
   padding: 10px;
   background-color: #03e2e2;
   text-align: center;
-  flex-direction: row;
+}
+
+.outros-sistemas {
+  border: 1px solid;
+  width: 95%;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.836);
+  text-align: center;
 }
 
 .aviso{
