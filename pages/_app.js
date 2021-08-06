@@ -8,6 +8,7 @@ import BarraLogin from '../components/BarraLogin'
 import Cabecalho from '../components/Cabecalho'
 import Rodape from '../components/Rodape'
 import { Provider } from 'next-auth/client'
+import BotaoPadrao from '../components/BotaoPadrao'
 
 
 function MyApp({ Component, pageProps }) {
@@ -18,6 +19,7 @@ function MyApp({ Component, pageProps }) {
       <Cabecalho />
       <Component {...pageProps} />
       <hr/>
+      <BotaoPadrao nome='Voltar para a página inicial' href='/' />
       <Rodape />
     </Provider>
   </>

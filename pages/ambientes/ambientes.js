@@ -281,7 +281,7 @@ export default function Ambientes() {
                         </form>
                     </label>
                 </main>
-            </div >
+            </div>
         )
     }
 
