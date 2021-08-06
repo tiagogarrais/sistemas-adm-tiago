@@ -25,7 +25,7 @@ export default function Ambientes() {
         let regex = /ufca\.edu.br$/
         let testeEmailUfca = regex.test(session.user.email)
         if (testeEmailUfca === false) {
-            document.getElementById('aviso').innerHTML = 'Você precisa de um e-mail @ufca.edu.br para enviar dados.'           
+            document.getElementById('aviso').innerHTML = 'Você precisa de um e-mail "ufca.edu.br" para enviar dados.'           
             return
         }
 
@@ -50,7 +50,7 @@ export default function Ambientes() {
                 'dataInformacao': Date()
             })
             .then(function (response) {
-                document.getElementById('aviso').innerHTML = `Recebemos suas informações em ${Date()}. Obrigado!`
+                document.getElementById('aviso').innerHTML = `Recebemos suas informações. Obrigado!`
                 setNumeroIdentificacao('')
                 setNomeAmbiente('')
                 setTipoTeto('')
@@ -79,7 +79,6 @@ export default function Ambientes() {
     }
 
     function exibirAmbientesConferidos(ambientesConferidos) {
-        document.getElementById('tabela-ambientes-conferidos').innerHTML = '<p>Aguarde um instante</p>'
         let output = ''
         output += '<table>'
         output += '<tr>'
@@ -131,7 +130,6 @@ export default function Ambientes() {
         document.getElementById('tabela-ambientes-nao-conferidos').innerHTML = output
     }
 
-
     if (session) {
         return (
             <div className='conteudo'>
@@ -141,6 +139,7 @@ export default function Ambientes() {
 
                         <h3>
                             <button
+                                id='botao-ambientes-conferidos'
                                 onClick={buscarAmbientesConferidos}
                                 onClickCapture={() => { document.getElementById('tabela-ambientes-conferidos').innerHTML = '<p>Aguarde um instante</p>' }}
                             >
@@ -151,7 +150,7 @@ export default function Ambientes() {
 
                         <h3>
                             <button
-                                onClick={buscarAmbientesNaoConferidos}
+                                onClickC={buscarAmbientesNaoConferidos}
                                 onClickCapture={() => { document.getElementById('tabela-ambientes-nao-conferidos').innerHTML = '<p>Aguarde um instante</p>' }}
                             >
                                 Mostrar ambientes não conferidos</button></h3>
