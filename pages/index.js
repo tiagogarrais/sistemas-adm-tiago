@@ -9,8 +9,9 @@ export default function Home() {
         return (
             <div className='conteudo'>
                 <div className='sistemas'>
-                    <h2>Sistemas administrativos hospedados neste site</h2>
+                    <h2>Relatórios administrativos</h2>
                     <BotaoPadrao nome='Salas e ambientes' href='/ambientes/ambientes' />
+                    <h2>Sistemas administrativos</h2>
                     <BotaoPadrao nome='Brainstorming' href='/brainstorming/brainstorming' />
                     <br />
                 </div>

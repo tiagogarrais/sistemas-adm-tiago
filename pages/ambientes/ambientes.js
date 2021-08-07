@@ -141,8 +141,8 @@ export default function Ambientes() {
         return (
             <div className='conteudo'>
                 <main>
-                    <label>
                         <h2>Salas e ambientes - Campus Brejo Santo</h2>
+                        <h5>Dica: Estes relatórios possuem melhor visualização com a tela na horizontal.</h5>
                         <div id='tabela-ambientes-conferidos'>
                             {buscarAmbientesConferidos()}
                         </div>
@@ -273,7 +273,6 @@ export default function Ambientes() {
                             <p id='aviso'></p>
                             <button type="submit">Enviar</button>
                         </form>
-                    </label>
                 </main>
             </div>
         )
