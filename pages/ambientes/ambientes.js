@@ -85,7 +85,6 @@ export default function Ambientes() {
         output += '<th>Largura</th>'
         output += '<th>Comprimento</th>'
         output += '<th>Metros quadrados</th>'
-        output += '<th>Servidor Responsável</th>'
         output += '</tr>'
 
         for (let ambientesConferido of ambientesConferidos) {
@@ -95,8 +94,7 @@ export default function Ambientes() {
             output += `<td>${ambientesConferido.nomeAmbiente}</td>`
             output += `<td>${ambientesConferido.LarguraLesteOeste}</td>`
             output += `<td>${ambientesConferido.comprimento}</td>`
-            output += `<td>${ambientesConferido.LarguraLesteOeste * ambientesConferido.comprimento}</td>`
-            output += `<td>${ambientesConferido.servidorResponsavel}</td>`
+            output += `<td>${(ambientesConferido.LarguraLesteOeste * ambientesConferido.comprimento).toFixed(2)}</td>`
             output += '</tr>'
         }
         output += '</table>'
