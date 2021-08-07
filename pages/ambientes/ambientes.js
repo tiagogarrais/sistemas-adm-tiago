@@ -24,7 +24,7 @@ export default function Ambientes() {
         let regex = /ufca\.edu.br$/
         let testeEmailUfca = regex.test(session.user.email)
         if (testeEmailUfca === false) {
-            document.getElementById('aviso').innerHTML = 'Você precisa de um e-mail "ufca.edu.br" para enviar dados.'           
+            document.getElementById('aviso').innerHTML = 'Você precisa de um e-mail "ufca.edu.br" para enviar dados.'
             return
         }
 
@@ -99,6 +99,7 @@ export default function Ambientes() {
         }
         output += '</table>'
         document.getElementById('tabela-ambientes-conferidos').innerHTML = output
+
     }
 
     function buscarAmbientesNaoConferidos() {
@@ -116,7 +117,9 @@ export default function Ambientes() {
         output += '<tr>'
         output += '<th>Número</th>'
         output += '<th>Nome do Ambiente</th>'
-        output += '<th>Servidor Responsável</th>'
+        output += '<th>Largura</th>'
+        output += '<th>Comprimento</th>'
+        output += '<th>Metros quadrados</th>'
         output += '</tr>'
 
 
@@ -125,7 +128,9 @@ export default function Ambientes() {
             output += '<tr>'
             output += `<td>${ambienteNaoConferido.numeroIdentificacao}</td>`
             output += `<td>${ambienteNaoConferido.nomeAmbiente}</td>`
-            output += `<td>${ambienteNaoConferido.servidorResponsavel}</td>`
+            output += `<td>${ambienteNaoConferido.LarguraLesteOeste}</td>`
+            output += `<td>${ambienteNaoConferido.comprimento}</td>`
+            output += `<td>${(ambienteNaoConferido.LarguraLesteOeste * ambienteNaoConferido.comprimento).toFixed(2)}</td>`
             output += '</tr>'
         }
         output += '</table>'
@@ -137,27 +142,14 @@ export default function Ambientes() {
             <div className='conteudo'>
                 <main>
                     <label>
-                        <h2>Administração de salas e ambientes - Campus Brejo Santo</h2>
-
-                        <h3>
-                            <button
-                                onClick={buscarAmbientesConferidos}
-                                onClickCapture={() => { document.getElementById('tabela-ambientes-conferidos').innerHTML = '<p>Aguarde um instante</p>' }}
-                            >
-                                Mostrar relatório de ambientes
-                            </button>
-                        </h3>
-                        <div id='tabela-ambientes-conferidos'></div>
-
-                        <h3>
-                            <button
-                                onClick={buscarAmbientesNaoConferidos}
-                                onClickCapture={() => { document.getElementById('tabela-ambientes-nao-conferidos').innerHTML = '<p>Aguarde um instante</p>' }}
-                            >
-                                Mostrar ambientes não conferidos</button></h3>
-                        <div id='tabela-ambientes-nao-conferidos'></div>
-
-
+                        <h2>Salas e ambientes - Campus Brejo Santo</h2>
+                        <div id='tabela-ambientes-conferidos'>
+                            {buscarAmbientesConferidos()}
+                        </div>
+                        <h2>Salas e ambientes - Dados recebidos porém não conferidos</h2>
+                        <div id='tabela-ambientes-nao-conferidos'>
+                            {buscarAmbientesNaoConferidos()}
+                        </div>
                         <form
                             className='form'
                             onSubmit={handleEnviarFormulario}
@@ -286,7 +278,6 @@ export default function Ambientes() {
             </div>
         )
     }
-
     return (
         <div className='conteudo'>
             <p>Acesso negado, faça login para ver este conteúdo</p>
