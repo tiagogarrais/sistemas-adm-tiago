@@ -75,6 +75,12 @@ tr:hover {
   text-align: center;
 }
 
+#barra-login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .outros-sistemas {
   border: 1px solid;
   width: 95%;

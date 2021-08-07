@@ -1,5 +1,4 @@
 import '../styles/globals.css'
-import '../styles/barra-login.css'
 import '../styles/cabecalho.css'
 import '../styles/conteudo.css'
 import '../styles/rodape.css'

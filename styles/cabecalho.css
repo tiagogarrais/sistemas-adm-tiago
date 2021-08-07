@@ -1,9 +1,9 @@
-.cabecalho{
-    text-align: center;
-  }
+.cabecalho {
+  text-align: center;
+}
 
-  .cabecalho a:hover,
-  .cabecalho a:focus{
-    text-decoration: underline;
-    color: rgb(10, 44, 153);
-  }
+.cabecalho a:hover,
+.cabecalho a:focus {
+  text-decoration: underline;
+  color: rgb(10, 44, 153);
+}
