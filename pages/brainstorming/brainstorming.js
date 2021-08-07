@@ -19,6 +19,11 @@ export default function Brainstorming() {
     function handleEnviarFormulario(event) {
         event.preventDefault()
 
+        if (ideia === '') {
+            document.getElementById('aviso').innerHTML = 'Você precisa escrever alguma coisa no campo ideia.'
+            return
+        }
+
         let regex = /ufca\.edu.br$/
         let testeEmailUfca = regex.test(session.user.email)
         if (testeEmailUfca === false) {
@@ -53,7 +58,7 @@ export default function Brainstorming() {
     if (session) {
         return (
             <div>
-                <h2>Brainstorming IFE - Tema infraestrutura física <br/>(reformas, construções e melhorias)</h2>
+                <h2>Brainstorming IFE - Tema infraestrutura física <br />(reformas, construções e melhorias)</h2>
                 <h3>Ideias já recebidas</h3>
                 <ol>
                     {ideias.map(ideiasRecebidas => (
