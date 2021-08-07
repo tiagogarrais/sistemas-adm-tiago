@@ -9,16 +9,10 @@ export default function Cabecalho() {
       <Link href="/">
         <a>
           <Image
-            src={admLogo}
-            alt="Logomarca da Administração"
-            width={200}
-            height={100}
-          />
-          <Image
             src={portaoEntradaIfe}
             alt="Portão de entrada do Instituto de Formação de Educadores"
-            width={200}
-            height={100}
+            width={1100}
+            height={400}
           />
         </a>
       </Link>
@@ -30,6 +24,6 @@ export default function Cabecalho() {
         </a>
       </Link>
     </div>
-    
+
   )
 }

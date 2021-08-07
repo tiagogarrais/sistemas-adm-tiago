@@ -1,11 +1,4 @@
 .cabecalho{
-    width: 100%;
-    padding: 10px;
-    flex-direction: row;
-    border-bottom: 1px solid #eaeaea;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
     text-align: center;
   }
 

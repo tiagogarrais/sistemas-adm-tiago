@@ -15,11 +15,13 @@ function MyApp({ Component, pageProps }) {
   return (<>
     <Provider session={pageProps.session} >
       <BarraLogin />
-      <hr/>
+      <hr />
       <Cabecalho />
       <Component {...pageProps} />
-      <hr/>
-      <BotaoPadrao nome='Voltar para a página inicial' href='/' />
+      <hr />
+      <div id='menu-inferior'>
+        <BotaoPadrao nome='Voltar para a página inicial' href='/' />
+      </div>
       <Rodape />
     </Provider>
   </>
