@@ -13,6 +13,7 @@ export default function Home() {
                     <BotaoPadrao nome='Salas e ambientes' href='/ambientes/ambientes' />
                     <h2>Sistemas administrativos</h2>
                     <BotaoPadrao nome='Brainstorming' href='/brainstorming/brainstorming' />
+                    <BotaoPadrao nome='Lista de bens por servidor' href='/bens/bens' />
                     <br />
                 </div>
                 <OutrosSistemas />
