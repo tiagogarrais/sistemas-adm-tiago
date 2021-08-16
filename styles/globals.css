@@ -93,9 +93,16 @@ tr:hover {
   background-color: #fff;
 }
 
+.form-requisitar-transporte{
+  display: grid;
+  text-align: justify;
+  gap: 10px;
+}
+
 @media (max-width: 600px) { 
   th {
     display: block;
+    border: 1 solid black;
   }
   
   tr {
