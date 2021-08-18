@@ -59,15 +59,22 @@ export default function Brainstorming() {
         return (
             <div>
                 <h2>Brainstorming IFE - Tema infraestrutura física <br />(reformas, construções e melhorias)</h2>
-                <h3>Ideias já recebidas <button onClick={()=>buscarIdeias()}>Atualizar</button></h3>
-                <ol>
+                <h3>Ideias já recebidas <button onClick={() => buscarIdeias()}>Atualizar</button></h3>
+                <table>
+                    <tr>
+                        <th>Local de Aplicacao</th>
+                        <th>Ideia</th>
+                    </tr>
                     {ideias.map(ideiasRecebidas => (
                         <>
-                            <p key={ideiasRecebidas.id}>{`${ideiasRecebidas.endereco} ➜ ${ideiasRecebidas.localAplicacao} ➜ ${ideiasRecebidas.ideia}`}  </p>
-                            <hr />
+                            <tr>
+                                <td> {`${ideiasRecebidas.endereco}`} </td>
+                                <td> {`${ideiasRecebidas.ideia}`}    </td>
+                            </tr>
+
                         </>
                     ))}
-                </ol>
+                </table>
 
                 <form
                     className='form'
