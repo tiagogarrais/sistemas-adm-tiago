@@ -24,6 +24,22 @@ export default function Brainstorming() {
             return
         }
 
+        if(localAplicacao === ''){
+            document.getElementById('aviso').innerHTML = 'Você precisa escolher uma das opções no campo "Em qual setor essa ideia deve ser aplicada?".'
+            return
+        }
+
+        if(endereco === ''){
+            document.getElementById('aviso').innerHTML = 'Você precisa escolher uma das opções no campo "Em qual endereço essa ideia deve ser implementada?".'
+            return
+        }
+
+        if(grauPrioridade === ''){
+            document.getElementById('aviso').innerHTML = 'Você precisa escolher "Qual o grau de prioridade a UFCA deveria dar para implementar essa ideia".'
+            return
+        }
+
+        
         let regex = /ufca\.edu.br$/
         let testeEmailUfca = regex.test(session.user.email)
         if (testeEmailUfca === false) {
@@ -59,28 +75,7 @@ export default function Brainstorming() {
         return (
             <div>
                 <h2>Brainstorming IFE - Tema infraestrutura física <br />(reformas, construções e melhorias)</h2>
-                <h3>Ideias já recebidas <button onClick={() => buscarIdeias()}>Atualizar</button></h3>
-                <table>
-                    <tr>
-                        <th>Endereço vinculado          </th>
-                        <th>Grau de prioridade          </th>
-                        <th>Setor ou local de aplicação </th>
-                        <th>Ideia                       </th>
-                    </tr>
-                    {ideias.map(ideiasRecebidas => (
-                        <>
-                            <tr>
-                                <td> {`${ideiasRecebidas.endereco}`}            </td>
-                                <td> {`${ideiasRecebidas.grauPrioridade}`}      </td>
-                                <td> {`${ideiasRecebidas.localAplicacao}`}      </td>
-                                <td> {`${ideiasRecebidas.ideia}`}               </td>
-
-                            </tr>
-
-                        </>
-                    ))}
-                </table>
-
+                
                 <form
                     className='form'
                     onSubmit={handleEnviarFormulario}
@@ -140,6 +135,28 @@ export default function Brainstorming() {
                     <p id='aviso'></p>
                     <button type="submit" onClickCapture={buscarIdeias}>Enviar</button>
                 </form>
+
+                <h3>Ideias já recebidas <button onClick={() => buscarIdeias()}>Atualizar</button></h3>
+                <table>
+                    <tr>
+                        <th>Endereço vinculado          </th>
+                        <th>Grau de prioridade          </th>
+                        <th>Setor ou local de aplicação </th>
+                        <th>Ideia                       </th>
+                    </tr>
+                    {ideias.map(ideiasRecebidas => (
+                        <>
+                            <tr>
+                                <td> {`${ideiasRecebidas.endereco}`}            </td>
+                                <td> {`${ideiasRecebidas.grauPrioridade}`}      </td>
+                                <td> {`${ideiasRecebidas.localAplicacao}`}      </td>
+                                <td> {`${ideiasRecebidas.ideia}`}               </td>
+
+                            </tr>
+
+                        </>
+                    ))}
+                </table>
 
             </div>
         )
