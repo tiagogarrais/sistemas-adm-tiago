@@ -62,14 +62,19 @@ export default function Brainstorming() {
                 <h3>Ideias já recebidas <button onClick={() => buscarIdeias()}>Atualizar</button></h3>
                 <table>
                     <tr>
-                        <th>Local de Aplicacao</th>
-                        <th>Ideia</th>
+                        <th>Endereço vinculado          </th>
+                        <th>Grau de prioridade          </th>
+                        <th>Setor ou local de aplicação </th>
+                        <th>Ideia                       </th>
                     </tr>
                     {ideias.map(ideiasRecebidas => (
                         <>
                             <tr>
-                                <td> {`${ideiasRecebidas.endereco}`} </td>
-                                <td> {`${ideiasRecebidas.ideia}`}    </td>
+                                <td> {`${ideiasRecebidas.endereco}`}            </td>
+                                <td> {`${ideiasRecebidas.grauPrioridade}`}      </td>
+                                <td> {`${ideiasRecebidas.localAplicacao}`}      </td>
+                                <td> {`${ideiasRecebidas.ideia}`}               </td>
+
                             </tr>
 
                         </>
@@ -105,7 +110,6 @@ export default function Brainstorming() {
                             <option>Licenciatura em Pedagogia</option>
                             <option>Ambientes Administrativos</option>
                             <option>Áreas comuns</option>
-
                         </select>
                     </label>
 
