@@ -2,11 +2,11 @@ import conexaoFuturo from '../src/assets/images/conexaoFuturo.png'
 import falaAi from '../src/assets/images/falaAi.jpg'
 import relatorios from '../src/assets/images/relatorios.png'
 import telaIfeAdm from '../src/assets/images/telaIfeAdm.png'
+import telaWikiAdm from '../src/assets/images/telaWikiAdm.png'
 import Image from 'next/image'
 
 export default function OutrosSistemas() {
     return (
-
         <div className='outros-sistemas'>
             <h2>Outros sistemas</h2>
             <a href='http://ifeadm.16mb.com/'
@@ -39,6 +39,20 @@ export default function OutrosSistemas() {
                 />
             </a>
 
+            <a href='http://www.raiolaser.16mb.com/'
+                target='_blank'
+                rel='noreferrer'
+            >
+                <button>Sistema WikiAdm</button>
+                <br />
+
+                <Image
+                    src={telaWikiAdm}
+                    alt="Tela do site WikiAdm"
+                    width={200}
+                    height={100}
+                />
+            </a>
 
             <a href='https://www.conexaofuturo.com.br/'
                 target='_blank'
@@ -69,7 +83,6 @@ export default function OutrosSistemas() {
                     height={100}
                 />
             </a>
-
         </div>
     )
 }
