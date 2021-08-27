@@ -137,6 +137,9 @@ export default function Brainstorming() {
                 </form>
 
                 <h3>Ideias já recebidas <button onClick={() => buscarIdeias()}>Atualizar</button></h3>
+                
+                    <p style={{textAlign:'center'}}>Até o momento recebemos {ideias.length} ideias</p>
+                
                 <table>
                     <tr>
                         <th>Endereço vinculado          </th>
