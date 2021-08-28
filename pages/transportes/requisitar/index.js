@@ -52,13 +52,26 @@ export default function Requisitar() {
 
                         <h3>Dados da viagem</h3>
 
-                        <label>
-                            UF destino {' '}
-                            <input
-                                type="text"
-                                required
-                            >
-                            </input>
+                        <p style={{ textAlign: 'center', color: 'blue', textDecoration: 'underline' }}>
+                            <a
+                                href="http://raiolaser.16mb.com/index.php/Uso_dos_ve%C3%ADculos_oficiais_da_UFCA_campus_Brejo_Santo#Atua.C3.A7.C3.A3o:_Raio_de_800_km_.C3.A0_partir_da_sede_-_Juazeiro_do_Norte.3B"
+                                target="_blank"
+                                rel="noreferrer"
+                            >Consultar raio de atuação do serviço de transportes do IFE
+                            </a>
+                        </p>
+                        <label>UF destino<br />
+                            <select id="estado" name="estado">
+                                <option value="CE">Ceará</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="SE">Sergipe</option>
+                            </select>
                         </label>
 
                         <label>
@@ -344,7 +357,7 @@ export default function Requisitar() {
                                     value={true}
                                     required
                                 />Sim
-                                <br/>
+                                <br />
                                 <input
                                     type="radio"
                                     name="solicitante-vai"
@@ -1160,7 +1173,6 @@ export default function Requisitar() {
 
                             </table>
                         </label>
-
 
                         <button type="submit">Enviar dados</button>
 

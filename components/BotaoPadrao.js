@@ -9,7 +9,7 @@ export default function BotaoPadrao(props) {
                 width:'220px', 
                 height:'40px', 
                 borderRadius:'5px', 
-                fontSize:'16px'
+                fontSize:'14px'
                 }}
             >
                 <Link href={props.href}>

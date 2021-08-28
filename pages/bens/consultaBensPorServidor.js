@@ -2,7 +2,7 @@ import listaBrutaUfca from '../../src/assets/json/bens_moveis.json'
 import { useSession } from 'next-auth/client'
 import { useState } from 'react'
 
-export default function Bens() {
+export default function ConsultaBensPorServidor() {
     const [session] = useSession()
     const [servidor, setServidor] = useState('')
 
@@ -24,7 +24,7 @@ export default function Bens() {
                             value={servidor}
                         />
                         Instruções: 
-                        Funciona mais rápido se você colar o nome desejado<br/>
+                        Os dados aparecerão após a digitação do nome completo<br/>
                         Não utilize acentos ou cedilha(ç)<br/>
                     </form>
                 </label>

@@ -10,16 +10,16 @@ export default function Home() {
             <div className='conteudo'>
                 <div className='sistemas'>
                     <h2>Relatórios administrativos</h2>
-                    <BotaoPadrao nome='Salas e ambientes' href='/ambientes/ambientes' />
+                    <BotaoPadrao nome='Salas e ambientes'   href='/ambientes/ambientes' />
                     <h2>Sistemas administrativos</h2>
-                    <BotaoPadrao nome='Brainstorming' href='/brainstorming/brainstorming' />
-                    <BotaoPadrao nome='Lista de bens por servidor' href='/bens/bens' />
+                    <BotaoPadrao nome='Brainstorming'               href='/brainstorming/brainstorming' />
+                    <BotaoPadrao nome='Bens por servidor'           href='/bens/consultaBensPorServidor' />
+                    {/* <BotaoPadrao nome='Ar-condicionado quebrado'    href='/bens/arCondicionados/informarProblema' /> */}
                     <br />
                 </div>
                 <OutrosSistemas />
             </div>
         )
-
     }
     return (
         <div className='conteudo'>
