@@ -78,8 +78,8 @@ export default function Brainstorming() {
 
                 <h3>
                     <iframe
-                        width="560"
-                        height="315"
+                        width="350"
+                        height="270"
                         src="https://www.youtube.com/embed/ShBleATmuqU"
                         title="Brainstorming"
                     />
