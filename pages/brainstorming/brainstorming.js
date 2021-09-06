@@ -110,6 +110,7 @@ export default function Brainstorming() {
                             <option>Licenciatura Interdisciplinar em Ciências Naturais e Matemática</option>
                             <option>Licenciatura em Biologia</option>
                             <option>Licenciatura em Física</option>
+                            <option>Licenciatura em Química</option>
                             <option>Licenciatura em Matemática</option>
                             <option>Licenciatura em Pedagogia</option>
                             <option>Ambientes Administrativos</option>
