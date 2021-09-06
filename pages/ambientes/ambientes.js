@@ -141,138 +141,138 @@ export default function Ambientes() {
         return (
             <div className='conteudo'>
                 <main>
-                        <h2>Salas e ambientes - Campus Brejo Santo</h2>
-                        <h5>Dica: Estes relatórios possuem melhor visualização com a tela na horizontal.</h5>
-                        <div id='tabela-ambientes-conferidos'>
-                            {buscarAmbientesConferidos()}
-                        </div>
-                        <h2>Salas e ambientes - Dados recebidos porém não conferidos</h2>
-                        <div id='tabela-ambientes-nao-conferidos'>
-                            {buscarAmbientesNaoConferidos()}
-                        </div>
-                        <form
-                            className='form'
-                            onSubmit={handleEnviarFormulario}
-                        >
-                            <h2>Cadastrar Ambiente</h2>
-                            <small>Você precisa de um e-mail institucional para enviar dados</small>
+                    <h2>Salas e ambientes - Campus Brejo Santo</h2>
+                    <h5>Dica: Estes relatórios possuem melhor visualização com a tela na horizontal.</h5>
+                    <div id='tabela-ambientes-conferidos'>
+                        {buscarAmbientesConferidos()}
+                    </div>
+                    <h2>Salas e ambientes - Dados recebidos porém não conferidos</h2>
+                    <div id='tabela-ambientes-nao-conferidos'>
+                        {buscarAmbientesNaoConferidos()}
+                    </div>
+                    <form
+                        className='form'
+                        onSubmit={handleEnviarFormulario}
+                    >
+                        <h2>Cadastrar Ambiente</h2>
+                        <small>Você precisa de um e-mail institucional para enviar dados</small>
 
-                            <label>Responsável pelo cadastro:<br />
-                                <input
-                                    type="email"
-                                    disabled
-                                    value={session.user.email ? session.user.email : ''}
-                                />
-                            </label>
+                        <label>Responsável pelo cadastro:<br />
+                            <input
+                                type="email"
+                                disabled
+                                value={session.user.email ? session.user.email : ''}
+                            />
+                        </label>
 
-                            <label>Número de identificação:<br />
-                                <input
-                                    type="number"
-                                    size="2"
-                                    onChange={event => setNumeroIdentificacao(event.target.value)}
-                                    value={numeroIdentificacao}
-                                />
-                            </label>
+                        <label>Número de identificação:<br />
+                            <input
+                                type="number"
+                                size="2"
+                                onChange={event => setNumeroIdentificacao(event.target.value)}
+                                value={numeroIdentificacao}
+                            />
+                        </label>
 
-                            <label>Nome do ambiente:<br />
-                                <input
-                                    type="text"
-                                    onChange={event => setNomeAmbiente(event.target.value)}
-                                    value={nomeAmbiente}
-                                />
-                            </label>
+                        <label>Nome do ambiente:<br />
+                            <input
+                                type="text"
+                                onChange={event => setNomeAmbiente(event.target.value)}
+                                value={nomeAmbiente}
+                            />
+                        </label>
 
-                            <label>Tipo de teto:<br />
-                                <select
-                                    onChange={event => setTipoTeto(event.target.value)}
-                                    value={tipoTeto}
-                                >
-                                    <option>Selecione uma opção</option>
-                                    <option>Área sem telhado</option>
-                                    <option>Laje de concreto</option>
-                                    <option>Telhado com forro de PVC</option>
-                                    <option>Telhado sem forro</option>
-                                    <option>Telha metálica com isolante</option>
-                                    <option>Tela sombrite</option>
-                                </select>
-                            </label>
+                        <label>Tipo de teto:<br />
+                            <select
+                                onChange={event => setTipoTeto(event.target.value)}
+                                value={tipoTeto}
+                            >
+                                <option>Selecione uma opção</option>
+                                <option>Área sem telhado</option>
+                                <option>Laje de concreto</option>
+                                <option>Telhado com forro de PVC</option>
+                                <option>Telhado sem forro</option>
+                                <option>Telha metálica com isolante</option>
+                                <option>Tela sombrite</option>
+                            </select>
+                        </label>
 
-                            <label>Largura (leste a oeste):<br />
-                                <input
-                                    type="number"
-                                    onChange={event => setLarguraLesteOeste(event.target.value)}
-                                    value={larguraLesteOeste}
-                                />
-                            </label>
+                        <label>Largura (leste a oeste):<br />
+                            <input
+                                type="number"
+                                onChange={event => setLarguraLesteOeste(event.target.value)}
+                                value={larguraLesteOeste}
+                            />
+                        </label>
 
-                            <label>Comprimento (norte a sul):<br />
-                                <input
-                                    type="number"
-                                    onChange={event => setComprimento(event.target.value)}
-                                    value={comprimento}
-                                />
-                            </label>
+                        <label>Comprimento (norte a sul):<br />
+                            <input
+                                type="number"
+                                onChange={event => setComprimento(event.target.value)}
+                                value={comprimento}
+                            />
+                        </label>
 
-                            <label>Altura:<br />
-                                <input
-                                    type="number"
-                                    onChange={event => setAltura(event.target.value)}
-                                    value={altura}
-                                />
-                            </label>
+                        <label>Altura:<br />
+                            <input
+                                type="number"
+                                onChange={event => setAltura(event.target.value)}
+                                value={altura}
+                            />
+                        </label>
 
-                            <label>Servidor responsável:<br />
-                                <input
-                                    type="text"
-                                    onChange={event => setServidorResponsavel(event.target.value)}
-                                    value={servidorResponsavel}
-                                />
-                            </label>
+                        <label>Servidor responsável:<br />
+                            <input
+                                type="text"
+                                onChange={event => setServidorResponsavel(event.target.value)}
+                                value={servidorResponsavel}
+                            />
+                        </label>
 
-                            <label>Servente de limpeza:<br />
-                                <input
-                                    type="text"
-                                    onChange={event => setServenteLimpeza(event.target.value)}
-                                    value={serventeLimpeza}
-                                />
-                            </label>
+                        <label>Servente de limpeza:<br />
+                            <input
+                                type="text"
+                                onChange={event => setServenteLimpeza(event.target.value)}
+                                value={serventeLimpeza}
+                            />
+                        </label>
 
-                            <label>Classificação:<br />
-                                <input
-                                    type="text"
-                                    onChange={event => setClassificacao(event.target.value)}
-                                    value={classificacao}
-                                />
-                            </label>
+                        <label>Classificação:<br />
+                            <input
+                                type="text"
+                                onChange={event => setClassificacao(event.target.value)}
+                                value={classificacao}
+                            />
+                        </label>
 
-                            <label>Produtividade recomendada:<br />
-                                <input
-                                    type="text"
-                                    onChange={event => setProdutividadeRecomendada(event.target.value)}
-                                    value={produtividadeRecomendada}
-                                />
-                            </label>
+                        <label>Produtividade recomendada:<br />
+                            <input
+                                type="text"
+                                onChange={event => setProdutividadeRecomendada(event.target.value)}
+                                value={produtividadeRecomendada}
+                            />
+                        </label>
 
-                            <label>Tipo:<br />
-                                <input
-                                    type="text"
-                                    onChange={event => setTipo(event.target.value)}
-                                    value={tipo}
-                                />
-                            </label>
+                        <label>Tipo:<br />
+                            <input
+                                type="text"
+                                onChange={event => setTipo(event.target.value)}
+                                value={tipo}
+                            />
+                        </label>
 
-                            <label>Reparo ou observação adicional?<br />
-                                <textarea
-                                    type="textarea"
-                                    rows="6"
-                                    cols="45"
-                                    onChange={event => setObservacao(event.target.value)}
-                                    value={observacao}
-                                />
-                            </label>
-                            <p id='aviso'></p>
-                            <button type="submit">Enviar</button>
-                        </form>
+                        <label>Reparo ou observação adicional?<br />
+                            <textarea
+                                type="textarea"
+                                rows="6"
+                                cols="45"
+                                onChange={event => setObservacao(event.target.value)}
+                                value={observacao}
+                            />
+                        </label>
+                        <p id='aviso'></p>
+                        <button type="submit">Enviar</button>
+                    </form>
                 </main>
             </div>
         )

@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { useSession } from "next-auth/client";
-import { useEffect, useState } from "react";
+import { useSession } from "next-auth/client"
+import { useState } from "react"
 
 export default function Brainstorming() {
     const [session] = useSession()
@@ -24,22 +24,22 @@ export default function Brainstorming() {
             return
         }
 
-        if(localAplicacao === ''){
+        if (localAplicacao === '') {
             document.getElementById('aviso').innerHTML = 'Você precisa escolher uma das opções no campo "Em qual setor essa ideia deve ser aplicada?".'
             return
         }
 
-        if(endereco === ''){
+        if (endereco === '') {
             document.getElementById('aviso').innerHTML = 'Você precisa escolher uma das opções no campo "Em qual endereço essa ideia deve ser implementada?".'
             return
         }
 
-        if(grauPrioridade === ''){
+        if (grauPrioridade === '') {
             document.getElementById('aviso').innerHTML = 'Você precisa escolher "Qual o grau de prioridade a UFCA deveria dar para implementar essa ideia".'
             return
         }
 
-        
+
         let regex = /ufca\.edu.br$/
         let testeEmailUfca = regex.test(session.user.email)
         if (testeEmailUfca === false) {
@@ -75,7 +75,24 @@ export default function Brainstorming() {
         return (
             <div>
                 <h2>Brainstorming IFE - Tema infraestrutura física <br />(reformas, construções e melhorias)</h2>
-                
+
+                <h3>
+                    <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/ShBleATmuqU"
+                        title="Brainstorming"
+                        frameborder="0"
+                        allow="accelerometer; 
+                        autoplay; 
+                        clipboard-write; 
+                        encrypted-media; 
+                        gyroscope; 
+                        picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </h3>
+
                 <form
                     className='form'
                     onSubmit={handleEnviarFormulario}
@@ -137,9 +154,9 @@ export default function Brainstorming() {
                 </form>
 
                 <h3>Ideias já recebidas <button onClick={() => buscarIdeias()}>Atualizar</button></h3>
-                
-                    <p style={{textAlign:'center'}}>Até o momento recebemos {ideias.length} ideias</p>
-                
+
+                <p style={{ textAlign: 'center' }}>Até o momento recebemos {ideias.length} ideias</p>
+
                 <table>
                     <tr>
                         <th>Endereço vinculado          </th>

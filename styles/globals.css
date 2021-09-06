@@ -80,6 +80,18 @@ tr:hover {
   flex-direction: column;
   align-items: center;
 }
+.cartoes{
+  display: inline-block;
+}
+
+.cartao{
+  padding: 10px;
+  border: 1px solid;
+  width: 350px;
+  max-height: 700px;
+  background-color: rgb(221, 234, 247);
+  margin-bottom: 10px;
+}
 
 .outros-sistemas {
   border: 1px solid;
@@ -98,6 +110,7 @@ tr:hover {
   text-align: justify;
   gap: 10px;
 }
+
 
 @media (max-width: 600px) { 
   th {
