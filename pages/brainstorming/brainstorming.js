@@ -143,7 +143,9 @@ export default function Brainstorming() {
                     </label>
 
                     <p id='aviso'></p>
-                    <button type="submit" onClickCapture={buscarIdeias}>Enviar</button>
+
+                    <p>Finalizamos o recebimentos de ideias neste formulário no dia 15/10/2021.</p>
+                    {/* <button type="submit" onClickCapture={buscarIdeias}>Enviar</button> */}
                 </form>
 
                 <h3>Ideias já recebidas <button onClick={() => buscarIdeias()}>Atualizar</button></h3>
