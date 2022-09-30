@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }) {
       <Component {...pageProps} />
       <hr />
       <div id='menu-inferior'>
-        <BotaoPadrao nome='Voltar para a página inicial' href='/' />
+        <BotaoPadrao nome='Página inicial' href='/' />
       </div>
       <Rodape />
     </Provider>

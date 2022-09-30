@@ -1,35 +1,52 @@
 import { useSession, signIn } from 'next-auth/client'
-
 import BotaoPadrao from '../components/BotaoPadrao'
 
 
 export default function Home() {
-    const [session, loading] = useSession()
+    const [session] = useSession()
     if (session) {
         return (
             <div className='conteudo'>
                 <div className='sistemas'>
                     <h2>Sistemas desenvolvidos para a UFCA</h2>
-                        <BotaoPadrao 
-                            nome='Brainstorming'
-                            href='/brainstorming/brainstorming' />
+                    <BotaoPadrao
+                        nome='Brainstorming'
+                        href='/brainstorming/brainstorming' />
                         
-                        <BotaoPadrao 
-                            nome='Bens por servidor'
-                            href='/bens/consultaBensPorServidor' />
-                    
+                    <BotaoPadrao
+                        nome='Bens por servidor'
+                        href='/bens/consultaBensPorServidor' />
+
                     <h2>Sistemas desenvolvidos para compartilhar conteúdo didático e instrucional</h2>
-                        <BotaoPadrao 
-                            nome='Plataforma de cursos'
-                            href='http://conexaofuturo.com.br'
-                        />
-                    
+                    <BotaoPadrao
+                        nome='Plataforma de cursos'
+                        href='http://conexaofuturo.com.br'
+                    />
+
                     <h2>Loja virtual</h2>
-                        
-                            <BotaoPadrao 
-                                nome='Feira Livre Brejo Santo'
-                                href='http://feiralivrebrejosanto.com.br'
+
+                        <BotaoPadrao
+                            nome='Feira Livre Brejo Santo'
+                            href='https://feiralivrebrejosanto.com.br'
                         />
+
+                    <h2>Redes Sociais Corporativas</h2>
+
+                    <BotaoPadrao
+                        nome='Loja Stella Maris'
+                        href='https://instagram.com/comprestellamaris'
+                    />
+
+                    <BotaoPadrao
+                        nome='Pão da Stella Maris'
+                        href='https://instagram.com/paodastellamaris'
+                    />
+
+                    <BotaoPadrao
+                        nome='Site Feira Livre Brejo Santo'
+                        href='https://facebook.com/feiralivrebrejosanto'
+                    />
+
                 </div>
             </div>
         )

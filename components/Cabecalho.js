@@ -6,7 +6,7 @@ export default function Cabecalho() {
       <Link href="/">
         <a>
           <h1>
-            Portfólio digital do Adm. Tiago Arrais (CRA 11660)
+            Portfólio digital<br/>Adm. Tiago Arrais (CRA 11660)
           </h1>
         </a>
       </Link>
