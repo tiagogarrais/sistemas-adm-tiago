@@ -12,7 +12,8 @@ export default function BotaoPadrao(props) {
                 fontSize:'14px'
                 }}
             >
-                <Link href={props.href}>
+                <Link 
+                    href={props.href}>
                     {props.nome}
                 </Link>
             </button>

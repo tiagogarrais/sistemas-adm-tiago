@@ -1,5 +1,5 @@
-import { useSession } from 'next-auth/client'
-import OutrosSistemas from '../components/OutrosSistemas'
+import { useSession, signIn } from 'next-auth/client'
+
 import BotaoPadrao from '../components/BotaoPadrao'
 
 
@@ -9,20 +9,35 @@ export default function Home() {
         return (
             <div className='conteudo'>
                 <div className='sistemas'>
-                    <h2>Relatórios administrativos</h2>
-                    <BotaoPadrao nome='Salas e ambientes'   href='/ambientes/ambientes' />
-                    <h2>Sistemas administrativos</h2>
-                    <BotaoPadrao nome='Brainstorming'               href='/brainstorming/brainstorming' />
-                    <BotaoPadrao nome='Bens por servidor'           href='/bens/consultaBensPorServidor' />
-                    {/* <BotaoPadrao nome='Ar-condicionado quebrado'    href='/bens/arCondicionados/informarProblema' /> */}
-                    <br />
+                    <h2>Sistemas desenvolvidos para a UFCA</h2>
+                        <BotaoPadrao 
+                            nome='Brainstorming'
+                            href='/brainstorming/brainstorming' />
+                        
+                        <BotaoPadrao 
+                            nome='Bens por servidor'
+                            href='/bens/consultaBensPorServidor' />
+                    
+                    <h2>Sistemas desenvolvidos para compartilhar conteúdo didático e instrucional</h2>
+                        <BotaoPadrao 
+                            nome='Plataforma de cursos'
+                            href='http://conexaofuturo.com.br'
+                        />
+                    
+                    <h2>Loja virtual</h2>
+                        
+                            <BotaoPadrao 
+                                nome='Feira Livre Brejo Santo'
+                                href='http://feiralivrebrejosanto.com.br'
+                        />
                 </div>
-                <OutrosSistemas />
             </div>
         )
     }
     return (
         <div className='conteudo'>
-            <p>Acesso negado, faça login para ver este conteúdo</p>
+            <p>Para acessar este conteúdo é necessário fazer login</p>
+            <button onClick={() => signIn('google')}>Entrar</button>
+
         </div>)
 }
