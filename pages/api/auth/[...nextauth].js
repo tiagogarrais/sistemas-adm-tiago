@@ -1,12 +1,28 @@
 import NextAuth from 'next-auth'
-import Providers from 'next-auth/providers'
+import EmailProvider from "next-auth/providers/email"
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
+import clientPromise from "../../../lib/mongodb"
 
-export default NextAuth({
+export const authOptions = {
+
+  secret: process.env.NEXTAUTH_SECRET,
+
+  adapter: MongoDBAdapter(clientPromise),
+
   providers: [
-       Providers.Google({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
-      authorizationUrl: 'https://accounts.google.com/o/oauth2/v2/auth?prompt=consent&access_type=offline&response_type=code'
+
+    EmailProvider({
+      server: {
+        host: process.env.EMAIL_SERVER_HOST,
+        port: process.env.EMAIL_SERVER_PORT,
+        auth: {
+          user: process.env.EMAIL_SERVER_USER,
+          pass: process.env.EMAIL_SERVER_PASSWORD
+        }
+      },
+      from: process.env.EMAIL_FROM,
     })
   ]
-})
+}
+
+export default NextAuth(authOptions)

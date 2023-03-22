@@ -6,13 +6,19 @@ import '../styles/outros-sistemas.css'
 import BarraLogin from '../components/BarraLogin'
 import Cabecalho from '../components/Cabecalho'
 import Rodape from '../components/Rodape'
-import { Provider } from 'next-auth/client'
+import { SessionProvider } from 'next-auth/react'
 import BotaoPadrao from '../components/BotaoPadrao'
 
 
-function MyApp({ Component, pageProps }) {
+export default function MyApp({
+  Component,
+  pageProps: {session, ...pageProps},
+
+})
+
+{
   return (<>
-    <Provider session={pageProps.session} >
+    <SessionProvider session={session}>
       <BarraLogin />
       <hr />
       <Cabecalho />
@@ -22,9 +28,7 @@ function MyApp({ Component, pageProps }) {
         <BotaoPadrao nome='Página inicial' href='/' />
       </div>
       <Rodape />
-    </Provider>
+    </SessionProvider>
   </>
   )
 }
-
-export default MyApp

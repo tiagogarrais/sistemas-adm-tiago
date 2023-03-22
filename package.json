@@ -9,10 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next-auth/mongodb-adapter": "^1.1.1",
     "axios": "^0.21.1",
-    "mongodb": "^3.6.10",
+    "mongodb": "^5.1.0",
     "next": "11.0.1",
-    "next-auth": "^3.27.3",
+    "next-auth": "^4.20.1",
+    "nodemailer": "^6.9.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },

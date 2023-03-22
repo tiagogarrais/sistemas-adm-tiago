@@ -1,8 +1,8 @@
-import { useSession, signIn, signOut } from 'next-auth/client'
+import { useSession, signIn, signOut } from 'next-auth/react'
 
 export default function BarraLogin() {
 
-    const [session, loading] = useSession()
+    const {data: session} = useSession()
 
     if (session) {
         return <div id='barra-login'>
@@ -14,10 +14,7 @@ export default function BarraLogin() {
 
     return <div id='barra-login'>
         Não logado
-        <button onClick={() => signIn('google')}>Entrar</button>
+        <button onClick={() => signIn()}>Entrar</button>
     </div>
 
 }
-
-
-

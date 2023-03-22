@@ -1,9 +1,11 @@
-import { useSession, signIn } from 'next-auth/client'
+import { useSession, signIn } from 'next-auth/react'
 import BotaoPadrao from '../components/BotaoPadrao'
 
 
 export default function Home() {
-    const [session] = useSession()
+    
+    const {data: session} = useSession()
+    
     if (session) {
         return (
             <div className='conteudo'>
@@ -54,7 +56,7 @@ export default function Home() {
     return (
         <div className='conteudo'>
             <p>Para acessar este conteúdo é necessário fazer login</p>
-            <button onClick={() => signIn('google')}>Entrar</button>
+            <button onClick={() => signIn()}>Entrar</button>
 
         </div>)
 }
