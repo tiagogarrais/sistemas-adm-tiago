@@ -1,9 +1,9 @@
 import listaBrutaUfca from '../../src/assets/json/bens_moveis.json'
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import { useState } from 'react'
 
 export default function ConsultaBensPorServidor() {
-    const [session] = useSession()
+    const {data: session} = useSession()
     const [servidor, setServidor] = useState('')
 
     const bensFiltrados = listaBrutaUfca.map(

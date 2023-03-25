@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { useSession } from "next-auth/client"
+import { useSession } from "next-auth/react"
 import { useState } from "react"
 
 export default function Brainstorming() {
-    const [session] = useSession()
+    const {data: session} = useSession()
     const [ideias, setIdeias] = useState([])
     const [ideia, setIdeia] = useState('')
     const [localAplicacao, setLocalAplicacao] = useState('')

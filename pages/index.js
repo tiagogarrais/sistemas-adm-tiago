@@ -13,11 +13,13 @@ export default function Home() {
                     <h2>Sistemas desenvolvidos para a UFCA</h2>
                     <BotaoPadrao
                         nome='Brainstorming'
-                        href='/brainstorming/brainstorming' />
+                        href='/brainstorming/brainstorming' 
+                    />
                         
                     <BotaoPadrao
                         nome='Bens por servidor'
-                        href='/bens/consultaBensPorServidor' />
+                        href='/bens/consultaBensPorServidor'
+                    />
 
                     <h2>Sistemas desenvolvidos para compartilhar conteúdo didático e instrucional</h2>
                     <BotaoPadrao

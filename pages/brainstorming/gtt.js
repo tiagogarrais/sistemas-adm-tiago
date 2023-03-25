@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 import axios from "axios"
 
 export default function Gtt() {
-    const [session] = useSession()
+    const {data: session} = useSession()
     const [ideias, setIdeias] = useState([])
     const [grauPrioridadeGtt, setGrauPrioridadeGtt] = useState([])
 

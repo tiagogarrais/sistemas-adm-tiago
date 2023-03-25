@@ -1,7 +1,7 @@
-import { useSession } from 'next-auth/client'
+import { useSession } from 'next-auth/react'
 
 export default function Transportes() {
-    const [session, loading] = useSession()
+    const {data: session} = useSession()
     if (session) {
         return (
             <div className='conteudo'>
