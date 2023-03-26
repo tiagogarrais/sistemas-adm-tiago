@@ -19,14 +19,11 @@ export default function MyApp({
 {
   return (<>
     <SessionProvider session={session}>
+      <Cabecalho />
       <BarraLogin />
       <hr />
-      <Cabecalho />
       <Component {...pageProps} />
       <hr />
-      <div id='menu-inferior'>
-        <BotaoPadrao nome='Página inicial' href='/' />
-      </div>
       <Rodape />
     </SessionProvider>
   </>

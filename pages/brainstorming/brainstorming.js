@@ -48,6 +48,7 @@ export default function Brainstorming() {
         }
 
         document.getElementById('aviso').innerHTML = `Aguarde alguns instantes, estamos enviado suas informações.`
+        
         axios.post(
             '/api/brainstorming/enviarIdeia',
             {

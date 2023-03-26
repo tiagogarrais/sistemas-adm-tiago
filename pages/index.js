@@ -59,6 +59,5 @@ export default function Home() {
         <div className='conteudo'>
             <p>Para acessar este conteúdo é necessário fazer login</p>
             <button onClick={() => signIn()}>Entrar</button>
-
         </div>)
 }

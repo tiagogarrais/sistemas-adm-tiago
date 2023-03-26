@@ -3,13 +3,9 @@ import Link from 'next/dist/client/link'
 export default function Cabecalho() {
   return (
     <div className='cabecalho'>
-      <Link href="/">
-        <a>
           <h1>
-            Portfólio digital<br/>Adm. Tiago Arrais (CRA 11660)
+            Portfólio digital - Adm. Tiago Arrais
           </h1>
-        </a>
-      </Link>
     </div>
 
   )
