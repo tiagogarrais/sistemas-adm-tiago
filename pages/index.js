@@ -21,6 +21,12 @@ export default function Home() {
                         href='/bens/consultaBensPorServidor'
                     />
 
+<BotaoPadrao
+                        nome='Ambientes IFE'
+                        href='/ambientes/1'
+                    />
+
+
                     <h2>Sistemas desenvolvidos para compartilhar conteúdo didático e instrucional</h2>
                     <BotaoPadrao
                         nome='Plataforma de cursos'

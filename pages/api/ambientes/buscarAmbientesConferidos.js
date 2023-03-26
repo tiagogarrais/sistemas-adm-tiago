@@ -1,4 +1,4 @@
-import connect from "../../../src/utils/mongodb"
+import connect from "../../../src/utils/mongodb2"
 
 export default async function buscarAmbientesConferidos(require, response) {
     const { db } = await connect()
