@@ -20,13 +20,14 @@ export function BuscarAmbiente() {
       return
     }
 
-    let regex = /ufca\.edu.br$/
-    let testeEmailUfca = regex.test(session.user.email)
-    if (testeEmailUfca === false) {
-      document.getElementById('aviso').innerHTML =
-        'Você precisa fazer login com um e-mail @ufca.edu.br para acessar as informações.'
-      return
-    }
+    //Teste para verificar se o e-mail cadastrado é da UFCA
+    //let regex = /ufca\.edu.br$/
+    //let testeEmailUfca = regex.test(session.user.email)
+    //if (testeEmailUfca === false) {
+    //  document.getElementById('aviso').innerHTML =
+    //    'Você precisa fazer login com um e-mail @ufca.edu.br para acessar as informações.'
+    //  return
+    //}
 
     document.getElementById('aviso').innerHTML =
       'Buscando as informações, aguarde...'
