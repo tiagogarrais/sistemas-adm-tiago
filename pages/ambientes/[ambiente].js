@@ -58,15 +58,17 @@ export default function Ambientes() {
 <ul><Link href={{pathname: '/ambientes/29'}}> 29-L@bmatec</Link></ul>
 <ul><Link href={{pathname: '/ambientes/30'}}> 30-Biblioteca</Link></ul>
 
-31 	Sala de estudo 2 - Biblioteca
-32 	Sala de estudo 1 - Biblioteca
-33 	Sala de processamento técnico - Biblioteca
-34 	Acesso Diretoria e reunião
-35 	Sala de reuniões
-36 	Secretaria
-37 	Diretoria e Vice Diretoria
-38 	Copa
-39 	Coordenações
+<ul><Link href={{pathname: '/ambientes/31'}}> 31-Sala de estudo 2 - Biblioteca</Link></ul>
+<ul><Link href={{pathname: '/ambientes/32'}}> 32-Sala de estudo 1 - Biblioteca</Link></ul>
+<ul><Link href={{pathname: '/ambientes/33'}}> 33-Sala de processamento técnico - Biblioteca</Link></ul>
+<ul><Link href={{pathname: '/ambientes/34'}}> 34-Acesso Diretoria e reunião</Link></ul>
+<ul><Link href={{pathname: '/ambientes/35'}}> 35-Sala de reuniões</Link></ul>
+<ul><Link href={{pathname: '/ambientes/36'}}> 36-Secretaria</Link></ul>
+<ul><Link href={{pathname: '/ambientes/37'}}> 37-Diretoria e Vice Diretoria</Link></ul>
+<ul><Link href={{pathname: '/ambientes/38'}}> 38-Copa</Link></ul>
+<ul><Link href={{pathname: '/ambientes/39'}}> 39-Coordenações</Link></ul>
+
+
 40 	Palco e refeitório
 41 	Praça interna
 100 	Entrada principal - Interna
