@@ -18,7 +18,7 @@ export default function BarraLogin() {
 
                 <BotaoPadrao
                     nome='Meu cadastro'
-                    href='/cadastro/VerCadastro'
+                    href='/cadastro/Cadastro'
                 />
             </div>
         </>
