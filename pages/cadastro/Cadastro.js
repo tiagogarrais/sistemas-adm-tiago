@@ -1,16 +1,24 @@
 import axios from 'axios'
 import { useSession, signIn } from 'next-auth/react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 export default function Cadastro() {
   const { data: session } = useSession()
   const [cadastro, setCadastro] = useState({})
   const [nomeCadastrado, setNomeCadastrado] = useState('')
+  const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
+  const [emailCadastrado, setEmailCadastrado] = useState('')
+
+  React.useEffect(() => {
+    buscarCadastro()
+  }, [])
 
   async function buscarCadastro() {
     const response = await fetch('/api/cadastro/buscarCadastro')
     const data = await response.json()
     setNomeCadastrado(data.nomeCompleto)
+    setTelefoneCadastrado(data.telefone)
+    setEmailCadastrado(data.email)
   }
 
   function onInputChange(evt) {
@@ -25,10 +33,11 @@ export default function Cadastro() {
       .post('/api/cadastro/enviarCadastro', {
         nomeCompleto: cadastro.nome,
         email: cadastro.email,
+        telefone: cadastro.telefone,
         dataInformacao: Date()
       })
       .then(function (response) {
-        console.log('Cadastro atualizado')
+        window.alert('Cadastro atualizado')
       })
       .catch(function (error) {
         console.log(error)
@@ -40,9 +49,10 @@ export default function Cadastro() {
 
     return (
       <div className="conteudo">
-        <button onClick={buscarCadastro}>Mostrar meus dados</button>
+        <h2>Mostrar meus dados</h2>
         <p>Nome: {nomeCadastrado}</p>
-        <p>E-mail: {cadastro.email}</p>
+        <p>Telefone: {telefoneCadastrado}</p>
+        <p>E-mail: {emailCadastrado}</p>
 
         <h2>Atualizar dados</h2>
         <label for="nome">
@@ -56,9 +66,15 @@ export default function Cadastro() {
           />
         </label>
 
-        <label for="email">
-          E-mail
-          <input type="text" id="email" value={cadastro.email} readOnly />
+        <label for="telefone">
+          Telefone
+          <input
+            type="text"
+            placeholder={telefoneCadastrado}
+            id="telefone"
+            value={cadastro.telefone}
+            onChange={onInputChange}
+          />
         </label>
 
         <input type="button" value="Salvar" onClick={btnSaveClick} />
