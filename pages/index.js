@@ -18,11 +18,6 @@ export default function Home() {
                     />
 
                     <BotaoPadrao
-                        nome='Bens por servidor'
-                        href='/bens/consultaBensPorServidor'
-                    />
-
-                    <BotaoPadrao
                         nome='Ambientes IFE'
                         href='/ambientes/0'
                     />
