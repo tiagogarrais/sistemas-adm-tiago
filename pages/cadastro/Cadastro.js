@@ -7,7 +7,6 @@ export default function Cadastro() {
   const [cadastro, setCadastro] = useState({})
   const [nomeCadastrado, setNomeCadastrado] = useState('')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
-  const [emailCadastrado, setEmailCadastrado] = useState('')
 
   React.useEffect(() => {
     buscarCadastro()
@@ -16,9 +15,15 @@ export default function Cadastro() {
   async function buscarCadastro() {
     const response = await fetch('/api/cadastro/buscarCadastro')
     const data = await response.json()
+    
+    if(data===null){
+      setNomeCadastrado('Não cadastrado')
+      setTelefoneCadastrado('Não cadastrado')
+      return
+    }
+
     setNomeCadastrado(data.nomeCompleto)
     setTelefoneCadastrado(data.telefone)
-    setEmailCadastrado(data.email)
   }
 
   function onInputChange(evt) {
@@ -29,18 +34,29 @@ export default function Cadastro() {
   }
 
   function btnSaveClick() {
-    axios
-      .post('/api/cadastro/enviarCadastro', {
+
+    if (cadastro.nome === undefined) {
+      window.alert('Para atualizar o cadastro você precisa digitar seu nome completo')
+      return
+    }
+
+    if (cadastro.telefone === undefined) {
+      window.alert('Para atualizar o cadastro você precisa digitar seu telefone')
+      return
+    }
+
+    axios.post('/api/cadastro/enviarCadastro', {
         nomeCompleto: cadastro.nome,
         email: cadastro.email,
         telefone: cadastro.telefone,
         dataInformacao: Date()
       })
       .then(function (response) {
-        window.alert('Cadastro atualizado')
+        buscarCadastro()
       })
       .catch(function (error) {
         console.log(error)
+        buscarCadastro()
       })
   }
 
@@ -52,7 +68,6 @@ export default function Cadastro() {
         <h2>Mostrar meus dados</h2>
         <p>Nome: {nomeCadastrado}</p>
         <p>Telefone: {telefoneCadastrado}</p>
-        <p>E-mail: {emailCadastrado}</p>
 
         <h2>Atualizar dados</h2>
         <label for="nome">
