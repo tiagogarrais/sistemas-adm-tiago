@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useSession } from "next-auth/react"
-import { useState } from "react"
+import React, { useState } from "react"
 
 export default function Brainstorming() {
     const {data: session} = useSession()
@@ -15,6 +15,11 @@ export default function Brainstorming() {
         const data = await response.json()
         setIdeias(data)
     }
+
+    React.useEffect(() => {
+        buscarIdeias()
+      }, [])
+    
 
     function handleEnviarFormulario(event) {
         event.preventDefault()
@@ -149,7 +154,6 @@ export default function Brainstorming() {
                     {/* <button type="submit" onClickCapture={buscarIdeias}>Enviar</button> */}
                 </form>
 
-                <h3>Ideias já recebidas <button onClick={() => buscarIdeias()}>Atualizar</button></h3>
 
                 <p style={{ textAlign: 'center' }}>Até o momento recebemos {ideias.length} ideias</p>
 
