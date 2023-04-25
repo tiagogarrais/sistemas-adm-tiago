@@ -7,13 +7,14 @@ export default function Cadastro() {
   const [cadastro, setCadastro] = useState({})
   const [nomeCadastrado, setNomeCadastrado] = useState('')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
+  const emailLogado = session.user.email
 
   React.useEffect(() => {
     buscarCadastro()
   }, [])
 
   async function buscarCadastro() {
-    const response = await fetch('/api/cadastro/buscarCadastro')
+    const response = await fetch('/api/cadastro/buscarCadastro?'+'email='+emailLogado)
     const data = await response.json()
     
     if(data===null){
@@ -45,7 +46,7 @@ export default function Cadastro() {
       return
     }
 
-    axios.post('/api/cadastro/enviarCadastro', {
+    axios.post('/api/cadastro/buscarCadastro', {
         nomeCompleto: cadastro.nome,
         email: cadastro.email,
         telefone: cadastro.telefone,
@@ -56,7 +57,6 @@ export default function Cadastro() {
       })
       .catch(function (error) {
         console.log(error)
-        buscarCadastro()
       })
   }
 
