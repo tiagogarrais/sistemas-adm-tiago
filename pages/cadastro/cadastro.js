@@ -7,17 +7,18 @@ export default function Cadastro() {
   const [cadastro, setCadastro] = useState({})
   const [nomeCadastrado, setNomeCadastrado] = useState('')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
-  const emailLogado = session.user.email
 
   React.useEffect(() => {
     buscarCadastro()
   }, [])
 
   async function buscarCadastro() {
-    const response = await fetch('/api/cadastro/cadastro?'+'email='+emailLogado)
+    const response = await fetch(
+      '/api/cadastro/cadastro?' + 'email=' + session.user.email
+    )
     const data = await response.json()
-    
-    if(data===null){
+
+    if (data === null) {
       setNomeCadastrado('Não cadastrado')
       setTelefoneCadastrado('Não cadastrado')
       return
@@ -35,24 +36,28 @@ export default function Cadastro() {
   }
 
   function btnSaveClick() {
-
     if (cadastro.nome === undefined) {
-      window.alert('Para atualizar o cadastro você precisa digitar seu nome completo')
+      window.alert(
+        'Para atualizar o cadastro você precisa digitar seu nome completo'
+      )
       return
     }
 
     if (cadastro.telefone === undefined) {
-      window.alert('Para atualizar o cadastro você precisa digitar seu telefone')
+      window.alert(
+        'Para atualizar o cadastro você precisa digitar seu telefone'
+      )
       return
     }
 
-    axios.post('/api/cadastro/cadastro', {
+    axios
+      .post('/api/cadastro/cadastro', {
         nomeCompleto: cadastro.nome,
         email: cadastro.email,
         telefone: cadastro.telefone,
         dataInformacao: Date()
       })
-      .then(function (response) {
+      .then(function (res) {
         buscarCadastro()
       })
       .catch(function (error) {

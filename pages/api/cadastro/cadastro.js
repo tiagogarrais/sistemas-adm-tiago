@@ -1,6 +1,4 @@
-//import { NextApiRequest, NextApiResponse } from 'next'
 import connect from '../../../src/utils/mongodb'
-
 
 export default async function buscarCadastro(req, res) {
   try {
@@ -9,7 +7,9 @@ export default async function buscarCadastro(req, res) {
 
     switch (method) {
       case 'GET':
-        const dados = await db.collection('usuarios').findOne({ email: req.query.email })
+        const dados = await db
+          .collection('usuarios')
+          .findOne({ email: req.query.email })
         res.setHeader('Cache-Control', 's-maxage=15, stale-while-revalidate')
         res.status(200).json(dados)
         break
