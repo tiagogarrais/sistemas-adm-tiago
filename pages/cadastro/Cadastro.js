@@ -14,7 +14,7 @@ export default function Cadastro() {
   }, [])
 
   async function buscarCadastro() {
-    const response = await fetch('/api/cadastro/buscarCadastro?'+'email='+emailLogado)
+    const response = await fetch('/api/cadastro/cadastro?'+'email='+emailLogado)
     const data = await response.json()
     
     if(data===null){
@@ -46,7 +46,7 @@ export default function Cadastro() {
       return
     }
 
-    axios.post('/api/cadastro/buscarCadastro', {
+    axios.post('/api/cadastro/cadastro', {
         nomeCompleto: cadastro.nome,
         email: cadastro.email,
         telefone: cadastro.telefone,
@@ -57,6 +57,7 @@ export default function Cadastro() {
       })
       .catch(function (error) {
         console.log(error)
+        buscarCadastro()
       })
   }
 
@@ -74,7 +75,6 @@ export default function Cadastro() {
           Nome completo
           <input
             type="text"
-            placeholder={nomeCadastrado}
             id="nome"
             value={cadastro.nome}
             onChange={onInputChange}
@@ -85,7 +85,6 @@ export default function Cadastro() {
           Telefone
           <input
             type="text"
-            placeholder={telefoneCadastrado}
             id="telefone"
             value={cadastro.telefone}
             onChange={onInputChange}

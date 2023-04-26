@@ -7,7 +7,6 @@ import BarraLogin from '../components/BarraLogin'
 import Cabecalho from '../components/Cabecalho'
 import Rodape from '../components/Rodape'
 import { SessionProvider } from 'next-auth/react'
-import BotaoPadrao from '../components/BotaoPadrao'
 import { Analytics } from '@vercel/analytics/react';
 
 export default function MyApp({
