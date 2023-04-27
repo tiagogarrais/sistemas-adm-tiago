@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import Contador from '../../../components/contador-regressivo/Contador'
 
 export default function Requisitar() {
-  
   React.useEffect(() => {
     buscarCadastro()
   }, [])
@@ -12,12 +11,11 @@ export default function Requisitar() {
   const [nomeCadastrado, setNomeCadastrado] = useState('')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
   const [emailCadastrado, setEmailCadastrado] = useState('')
-  const emailLogado = session.user.email
   
   
   async function buscarCadastro() {
     const response = await fetch(
-      '../../api/cadastro/cadastro?' + 'email=' + emailLogado
+      '../../api/cadastro/cadastro?' + 'email=' + session.user.email
       )
       const data = await response.json()
       
