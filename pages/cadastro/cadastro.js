@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useSession, signIn } from 'next-auth/react'
-import React, { Suspense, useState } from 'react'
-import loading from '../../components/loading/loading.svg'
+import React, { useState } from 'react'
 
 export default function Cadastro() {
   const { data: session } = useSession()

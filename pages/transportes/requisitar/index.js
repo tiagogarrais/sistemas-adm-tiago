@@ -1,16 +1,16 @@
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
-import Contador from '../../../components/contador-regressivo/Contador'
 
 export default function Requisitar() {
+
   React.useEffect(() => {
     buscarCadastro()
   }, [])
 
-  const { data: session } = useSession()
-  const [nomeCadastrado, setNomeCadastrado] = useState('')
-  const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
-  const [emailCadastrado, setEmailCadastrado] = useState('')
+  const { data: session, status } = useSession()
+  const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
+  const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
+  const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
   
   
   async function buscarCadastro() {
@@ -31,14 +31,13 @@ export default function Requisitar() {
       setEmailCadastrado(data.email)
     }
     
-    if (session) {
+    if (status==="authenticated") {
       return (
         <div 
           className="conteudo" 
         >
         <form className="form">
           <div className="form-requisitar-transporte">
-            <h3><Contador /></h3>
             <h2>Requisitar Transporte</h2>
             <p>Seu nome é {nomeCadastrado}</p>
             <p>
