@@ -1,12 +1,15 @@
 import axios from 'axios'
 import { useSession, signIn } from 'next-auth/react'
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
+import Loading from '../../components/loading/Loading'
 
 export default function Cadastro() {
   const { data: session } = useSession()
   const [cadastro, setCadastro] = useState({})
   const [nomeCadastrado, setNomeCadastrado] = useState('')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
+  const [emailCadastrado, setEmailCadastrado] = useState('')
+  const [dataCadastro, setDataCadastro] = useState('')
 
   React.useEffect(() => {
     buscarCadastro()
@@ -26,6 +29,9 @@ export default function Cadastro() {
 
     setNomeCadastrado(data.nomeCompleto)
     setTelefoneCadastrado(data.telefone)
+    setEmailCadastrado(data.email)
+    setDataCadastro(data.dataInformacao)
+
   }
 
   function onInputChange(evt) {
@@ -49,7 +55,6 @@ export default function Cadastro() {
       )
       return
     }
-
     axios
       .post('/api/cadastro/cadastro', {
         nomeCompleto: cadastro.nome,
@@ -58,22 +63,27 @@ export default function Cadastro() {
         dataInformacao: Date()
       })
       .then(function (res) {
+        cadastro.nome =''
+        cadastro.telefone=''
         buscarCadastro()
       })
       .catch(function (error) {
         console.log(error)
-        buscarCadastro()
+        window.alert('Houve um erro no processamento da requisição')
       })
   }
 
   if (session) {
     cadastro.email = session.user.email
-
     return (
       <div className="conteudo">
-        <h2>Mostrar meus dados</h2>
-        <p>Nome: {nomeCadastrado}</p>
-        <p>Telefone: {telefoneCadastrado}</p>
+
+        <h2>Meus dados</h2>        
+          <p>{nomeCadastrado}</p>
+          <p>{emailCadastrado}</p>
+          <p>{telefoneCadastrado}</p>
+          <p>Cadastrado em: {dataCadastro}</p>
+      
 
         <h2>Atualizar dados</h2>
         <label for="nome">
@@ -95,9 +105,8 @@ export default function Cadastro() {
             onChange={onInputChange}
           />
         </label>
-
         <input type="button" value="Salvar" onClick={btnSaveClick} />
-      </div>
+      </div >
     )
   }
   return (

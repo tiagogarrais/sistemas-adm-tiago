@@ -16,8 +16,6 @@ export default function Ambientes() {
           <h1>{tituloPagina}</h1>
           <MostrarAmbiente />
           <hr />
-          <BuscarAmbiente />
-          
           <h2>Listagem de ambientes do campus Brejo Santo</h2>
           <ul >
             <li><Link href={{ pathname: '/ambientes/1' }}> 1 - Entrada principal - Externa</Link></li>
@@ -109,6 +107,9 @@ export default function Ambientes() {
             <li><Link href={{ pathname: '/ambientes/149' }}> 149 - Corredor laboratórios física, biologia, autoclave até casa de gás</Link></li>
 
           </ul>
+          <hr />
+          <BuscarAmbiente />
+          
 
           <hr />
         </main>

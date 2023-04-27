@@ -10,7 +10,7 @@ export default async function buscarCadastro(req, res) {
         const dados = await db
           .collection('usuarios')
           .findOne({ email: req.query.email })
-        res.setHeader('Cache-Control', 's-maxage=15, stale-while-revalidate')
+        res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate')
         res.status(200).json(dados)
         break
       case 'POST':
@@ -25,5 +25,6 @@ export default async function buscarCadastro(req, res) {
     }
   } catch (err) {
     res.status(500).json({ statuscode: 500, message: err.message })
+    buscarCadastro()
   }
 }

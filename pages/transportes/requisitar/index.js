@@ -35,11 +35,10 @@ export default function Requisitar() {
         <form className="form">
           <div className="form-requisitar-transporte">
             <h2>Requisitar Transporte</h2>
-            <p>Seu nome é {nomeCadastrado}.</p>
+            <p>Seu nome é {nomeCadastrado}</p>
             <p>
               Todas as confirmações e respostas referentes a esta solicitação
-              serão enviadas no e-mail
-              {emailCadastrado}
+              serão enviadas no e-mail {emailCadastrado}
             </p>
 
             <label>Telefone para contato {telefoneCadastrado}</label>
