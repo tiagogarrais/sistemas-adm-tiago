@@ -30,15 +30,21 @@ form {
   background-color: rgb(3, 226, 226);
 }
 
-select, option, textarea{
+select,
+option,
+textarea {
   width: 95%;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
 }
 
-table{
+table {
   width: 95%;
   border-collapse: collapse;
 }
@@ -51,7 +57,7 @@ td {
 }
 
 tr:hover {
-  background-color:#f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .sistemas {
@@ -62,29 +68,30 @@ tr:hover {
   text-align: center;
 }
 
-.botao-padrao{
+.botao-padrao {
   color: #fff;
   background-color: #555555;
 }
 
-.botao-padrao:hover{
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+.botao-padrao:hover {
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-#menu-inferior{
+#menu-inferior {
   text-align: center;
 }
 
-#barra-login{
+#barra-login {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.cartoes{
+
+.cartoes {
   display: inline-block;
 }
 
-.cartao{
+.cartao {
   padding: 10px;
   border: 1px solid;
   width: 350px;
@@ -101,23 +108,23 @@ tr:hover {
   text-align: center;
 }
 
-.aviso{
+.aviso {
   background-color: #fff;
 }
 
-.form-requisitar-transporte{
+.form-requisitar-transporte {
   display: grid;
   text-align: justify;
   gap: 10px;
 }
 
 
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
   th {
     display: block;
     border: 1 solid black;
   }
-  
+
   tr {
     border: 1px solid #333;
   }
@@ -126,4 +133,13 @@ tr:hover {
     border: 0;
     display: block;
   }
+
+}
+
+input[type=radio],
+input[type=checkbox] {
+  border: 0px;
+  width: 1.2rem;
+  height: 1.2rem;
+  vertical-align: middle;
 }

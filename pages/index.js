@@ -19,6 +19,11 @@ export default function Home() {
           <BotaoPadrao nome="Ambientes IFE" href="/ambientes/0" />
 
           <BotaoPadrao
+            nome="Transportes IFE"
+            href="/transportes/"
+          />
+
+          <BotaoPadrao
             nome="Processos IFE"
             href="https://processos.ifeadm.16mb.com"
           />
@@ -27,10 +32,6 @@ export default function Home() {
 
           <BotaoPadrao nome="WikiAdm" href="http://raiolaser.16mb.com" />
 
-          <BotaoPadrao
-            nome="Solicitar Transporte"
-            href="/transportes/requisitar"
-          />
 
           <h2>
             Sistemas desenvolvidos para compartilhar conteúdo didático e

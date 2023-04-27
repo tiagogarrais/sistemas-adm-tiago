@@ -3,40 +3,45 @@ import React, { useState } from 'react'
 import Contador from '../../../components/contador-regressivo/Contador'
 
 export default function Requisitar() {
-  const { data: session } = useSession()
-  const [nomeCadastrado, setNomeCadastrado] = useState('')
-  const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
-  const [emailCadastrado, setEmailCadastrado] = useState('')
-
+  
   React.useEffect(() => {
     buscarCadastro()
   }, [])
 
+  const { data: session } = useSession()
+  const [nomeCadastrado, setNomeCadastrado] = useState('')
+  const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
+  const [emailCadastrado, setEmailCadastrado] = useState('')
+  const emailLogado = session.user.email
+  
+  
   async function buscarCadastro() {
     const response = await fetch(
-      '../../api/cadastro/cadastro?' + 'email=' + session.user.email
-    )
-    const data = await response.json()
-
-    if (data === null) {
-      setNomeCadastrado('Não cadastrado')
-      setTelefoneCadastrado('Não cadastrado')
-      setEmailCadastrado('Não cadastrado')
-      return
+      '../../api/cadastro/cadastro?' + 'email=' + emailLogado
+      )
+      const data = await response.json()
+      
+      if (data === null) {
+        setNomeCadastrado('Não cadastrado')
+        setTelefoneCadastrado('Não cadastrado')
+        setEmailCadastrado('Não cadastrado')
+        return
+      }
+      
+      setNomeCadastrado(data.nomeCompleto)
+      setTelefoneCadastrado(data.telefone)
+      setEmailCadastrado(data.email)
     }
-
-    setNomeCadastrado(data.nomeCompleto)
-    setTelefoneCadastrado(data.telefone)
-    setEmailCadastrado(data.email)
-  }
-
-  if (session) {
-    return (
-      <div className="conteudo">
+    
+    if (session) {
+      return (
+        <div 
+          className="conteudo" 
+        >
         <form className="form">
           <div className="form-requisitar-transporte">
+            <h3><Contador /></h3>
             <h2>Requisitar Transporte</h2>
-            <h2><Contador /></h2>
             <p>Seu nome é {nomeCadastrado}</p>
             <p>
               Todas as confirmações e respostas referentes a esta solicitação
@@ -343,440 +348,440 @@ export default function Requisitar() {
                 <tr>
                   <td>1</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>2</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>3</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>4</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>5</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>6</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>7</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>8</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>9</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>10</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>11</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>12</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>13</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>14</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>15</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>16</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>17</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>18</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>19</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>20</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>21</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>22</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>23</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>24</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>25</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>26</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>27</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>28</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>29</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>30</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>31</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>32</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>33</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>34</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>35</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>36</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>37</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>38</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>39</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>40</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>41</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>42</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>43</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
 
                 <tr>
                   <td>44</td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Nome completo' style={{ width: '100%' }}></input>
                   </td>
                   <td>
-                    <input type="text" style={{ width: '100%' }}></input>
+                    <input type="text" placeholder='Documento de identificação' style={{ width: '100%' }}></input>
                   </td>
                 </tr>
               </table>

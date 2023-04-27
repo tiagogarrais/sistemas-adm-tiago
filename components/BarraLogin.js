@@ -8,10 +8,10 @@ export default function BarraLogin() {
     return (
       <>
         <div id="barra-login">
-          Bem vindo(a) {session.user.name}
-          <button onClick={() => signOut()}>Sair</button>
+          Bem vindo(a) {session.user.email}
           <BotaoPadrao nome="Página principal" href="/" />
           <BotaoPadrao nome="Meu cadastro" href="/cadastro/cadastro" />
+          <button onClick={() => signOut()}><BotaoPadrao nome="Desconectar" href="/"/></button>
         </div>
       </>
     )
