@@ -1,5 +1,6 @@
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
+import Contador from '../../../components/contador-regressivo/Contador'
 
 export default function Requisitar() {
   const { data: session } = useSession()
@@ -35,6 +36,7 @@ export default function Requisitar() {
         <form className="form">
           <div className="form-requisitar-transporte">
             <h2>Requisitar Transporte</h2>
+            <h2><Contador /></h2>
             <p>Seu nome é {nomeCadastrado}</p>
             <p>
               Todas as confirmações e respostas referentes a esta solicitação

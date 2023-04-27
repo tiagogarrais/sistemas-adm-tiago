@@ -1,5 +1,6 @@
 import { useSession, signIn } from 'next-auth/react'
 import BotaoPadrao from '../components/BotaoPadrao'
+import Contador from '../components/contador-regressivo/Contador'
 
 export default function Home() {
   const { data: session } = useSession()
@@ -76,6 +77,9 @@ export default function Home() {
   }
   return (
     <div className="conteudo">
+      <div id="timer">
+        <Contador />
+      </div>
       <p>Para acessar este conteúdo é necessário fazer login</p>
       <button onClick={() => signIn()}>Entrar</button>
     </div>
