@@ -2,14 +2,15 @@ import axios from 'axios'
 import { useSession, signIn } from 'next-auth/react'
 import React, { Suspense, useState } from 'react'
 import Loading from '../../components/loading/Loading'
+import loading from '../../components/loading/loading.svg'
 
 export default function Cadastro() {
   const { data: session } = useSession()
   const [cadastro, setCadastro] = useState({})
-  const [nomeCadastrado, setNomeCadastrado] = useState('')
-  const [telefoneCadastrado, setTelefoneCadastrado] = useState('')
-  const [emailCadastrado, setEmailCadastrado] = useState('')
-  const [dataCadastro, setDataCadastro] = useState('')
+  const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
+  const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
+  const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
+  const [dataCadastro, setDataCadastro] = useState('Carregando...')
 
   React.useEffect(() => {
     buscarCadastro()
