@@ -1,5 +1,4 @@
 import { useSession } from 'next-auth/react'
-import button from '../../components/button'
 import Contador from '../../components/contador-regressivo/Contador'
 import SolicitarVeiculo from '../../components/SolicitarVeiculo'
 
