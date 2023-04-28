@@ -8,12 +8,18 @@ export default function Home() {
   if (session) {
     return (
       <div className="conteudo">
-        
+
         {sessionStorage.setItem('email', session.user.email)}
 
         <div className="sistemas">
           <h2>Sistemas desenvolvidos para a UFCA</h2>
-
+          <h3>Limpeza do campus Brejo Santo</h3>
+          <BotaoPadrao
+            nome='Frequência de limpeza'
+            href='https://ifeadm.16mb.com/relatoriosadmufca/ifeadm/relatorios/ambientes-ife-frequencia-limpeza.php'
+          />
+          
+          <h3>Outros sistemas</h3>
           <BotaoPadrao
             nome="Brainstorming"
             href="/brainstorming/brainstorming"
@@ -82,7 +88,7 @@ export default function Home() {
   return (
     <div className="conteudo">
       <div id="timer">
-        <Contador />
+        <h2><Contador /></h2>
       </div>
       <p>Aguarde a contagem regressiva, se acabar é necessário fazer login no site.</p>
     </div>
