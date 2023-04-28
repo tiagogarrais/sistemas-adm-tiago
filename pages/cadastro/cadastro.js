@@ -61,6 +61,12 @@ export default function Cadastro() {
 
     document.getElementById("btnSave").disabled = true
 
+    setNomeCadastrado('Aguarde...')
+    setTelefoneCadastrado('Aguarde...')
+    setEmailCadastrado('Aguarde...')
+    setDataCadastro('Aguarde...')
+
+
     axios
       .post('/api/cadastro/cadastro', {
         nomeCompleto: cadastro.nome,
