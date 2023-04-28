@@ -1,7 +1,7 @@
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 
-export default function Requisitar() {
+export default function SolicitarVeiculo() {
 
   React.useEffect(() => {
     buscarCadastro()
