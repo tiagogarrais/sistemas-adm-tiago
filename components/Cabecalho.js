@@ -1,6 +1,6 @@
 import Link from 'next/dist/client/link'
 import { useSession, signOut } from 'next-auth/react'
-import BotaoPadrao from './BotaoPadrao'
+
 
 
 

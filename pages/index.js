@@ -1,5 +1,5 @@
 import { useSession, signIn } from 'next-auth/react'
-import BotaoPadrao from '../components/BotaoPadrao'
+
 import Contador from '../components/contador-regressivo/Contador'
 
 export default function Home() {
@@ -14,70 +14,73 @@ export default function Home() {
         <div className="sistemas">
           <h2>Sistemas desenvolvidos para a UFCA</h2>
           <h3>Limpeza do campus Brejo Santo</h3>
-          <BotaoPadrao
+          <button
             nome='Frequência de limpeza'
             href='https://ifeadm.16mb.com/relatoriosadmufca/ifeadm/relatorios/ambientes-ife-frequencia-limpeza.php'
           />
-          
+
+<h3>Transportes</h3>
+
+
           <h3>Outros sistemas</h3>
-          <BotaoPadrao
+          <button
             nome="Brainstorming"
             href="/brainstorming/brainstorming"
           />
 
-          <BotaoPadrao nome="Ambientes IFE" href="/ambientes/0" />
+          <button nome="Ambientes IFE" href="/ambientes/0" />
 
-          <BotaoPadrao
+          <button
             nome="Transportes IFE"
             href="/transportes/"
           />
 
-          <BotaoPadrao
+          <button
             nome="Processos IFE"
             href="https://processos.ifeadm.16mb.com"
           />
 
-          <BotaoPadrao nome="Site IFE-ADM" href="https://ifeadm.16mb.com" />
+          <button nome="Site IFE-ADM" href="https://ifeadm.16mb.com" />
 
-          <BotaoPadrao nome="WikiAdm" href="http://raiolaser.16mb.com" />
+          <button nome="WikiAdm" href="http://raiolaser.16mb.com" />
 
 
           <h2>
             Sistemas desenvolvidos para compartilhar conteúdo didático e
             instrucional
           </h2>
-          <BotaoPadrao
+          <button
             nome="Plataforma de cursos"
             href="https://conexaofuturo.com.br"
           />
 
           <h2>Loja virtual</h2>
 
-          <BotaoPadrao
+          <button
             nome="Feira Livre Brejo Santo"
             href="https://feiralivrebrejosanto.com.br"
           />
 
           <h2>Redes Sociais Corporativas</h2>
 
-          <BotaoPadrao
+          <button
             nome="Loja Stella Maris"
             href="https://instagram.com/comprestellamaris"
           />
 
-          <BotaoPadrao
+          <button
             nome="Pão da Stella Maris"
             href="https://instagram.com/paodastellamaris"
           />
 
-          <BotaoPadrao
+          <button
             nome="Site Feira Livre Brejo Santo"
             href="https://facebook.com/feiralivrebrejosanto"
           />
 
           <h2>Redes Sociais Pessoais</h2>
 
-          <BotaoPadrao
+          <button
             nome="TikTok"
             href="https://tiktok.com/@tiagoarraisdeholanda"
           />

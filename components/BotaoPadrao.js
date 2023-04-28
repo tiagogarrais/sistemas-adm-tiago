@@ -1,6 +1,6 @@
 import Link from "next/dist/client/link"
 
-export default function BotaoPadrao(props) {
+export default function button(props) {
     return (
         <>
             <a

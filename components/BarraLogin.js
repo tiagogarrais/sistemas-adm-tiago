@@ -1,5 +1,5 @@
 import { useSession, signIn, signOut } from 'next-auth/react'
-import BotaoPadrao from './BotaoPadrao'
+import Link from 'next/link'
 
 export default function BarraLogin() {
   const { data: session } = useSession()
@@ -9,9 +9,9 @@ export default function BarraLogin() {
       <>
         <div id="barra-login">
           Bem vindo(a) {session.user.email}
-          <BotaoPadrao nome="Página principal" href="/" />
-          <BotaoPadrao nome="Meu cadastro" href="/cadastro/cadastro" />
-          <button onClick={() => signOut()}><BotaoPadrao nome="Desconectar" href="/"/></button>
+          <Link href='./'>Página principal</Link>
+          <button nome="Meu cadastro" href="/cadastro/cadastro" />
+          <button onClick={() => signOut()}><button nome="Desconectar" href="/"/></button>
         </div>
       </>
     )
