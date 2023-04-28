@@ -79,14 +79,12 @@ export default function Home() {
       </div>
     )
   }
-  Home.auth = true
   return (
     <div className="conteudo">
       <div id="timer">
         <Contador />
       </div>
-      <p>Para acessar este conteúdo é necessário fazer login</p>
-      <button onClick={() => signIn()}>Entrar</button>
+      <p>Aguarde a contagem regressiva, se acabar é necessário fazer login no site.</p>
     </div>
   )
 }
