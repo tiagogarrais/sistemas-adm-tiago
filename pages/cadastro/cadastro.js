@@ -3,6 +3,7 @@ import { useSession, signIn } from 'next-auth/react'
 import React, { useState } from 'react'
 
 export default function Cadastro() {
+  
   const { data: session } = useSession()
   const [cadastro, setCadastro] = useState({})
   const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')

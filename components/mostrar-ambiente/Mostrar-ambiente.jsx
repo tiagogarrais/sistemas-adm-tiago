@@ -44,9 +44,9 @@ export function MostrarAmbiente() {
     })
 
   return (
-    <>
+    <div>
       <h2 id="nomeAmbiente">Nome do ambiente</h2>
-      Chave número: {ambiente}
+      <h2>Chave número: {ambiente}</h2>
       <table>
         <h3>LIMPEZA DO AMBIENTE</h3>
         <tr />
@@ -89,6 +89,6 @@ export function MostrarAmbiente() {
         </td>
         <tr />
       </table>
-    </>
+    </div>
   )
 }

@@ -6,16 +6,10 @@ export default function Requisitar() {
   React.useEffect(() => {
     buscarCadastro()
   }, [])
-
-  const { data: session, status } = useSession()
-  const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
-  const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
-  const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
-  
   
   async function buscarCadastro() {
     const response = await fetch(
-      '../../api/cadastro/cadastro?' + 'email=' + session.user.email
+      '../api/cadastro/cadastro?' + 'email=' + session.user.email
       )
       const data = await response.json()
       
@@ -30,12 +24,20 @@ export default function Requisitar() {
       setTelefoneCadastrado(data.telefone)
       setEmailCadastrado(data.email)
     }
+
+  const { data: session } = useSession()
+  const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
+  const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
+  const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
+  
     
-    if (status==="authenticated") {
-      return (
-        <div 
-          className="conteudo" 
-        >
+    if (session) {
+
+      
+    return (
+      <div
+        className="conteudo"
+      >
         <form className="form">
           <div className="form-requisitar-transporte">
             <h2>Requisitar Transporte</h2>

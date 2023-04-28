@@ -8,6 +8,9 @@ export default function Home() {
   if (session) {
     return (
       <div className="conteudo">
+        
+        {sessionStorage.setItem('email', session.user.email)}
+
         <div className="sistemas">
           <h2>Sistemas desenvolvidos para a UFCA</h2>
 
@@ -76,6 +79,7 @@ export default function Home() {
       </div>
     )
   }
+  Home.auth = true
   return (
     <div className="conteudo">
       <div id="timer">
