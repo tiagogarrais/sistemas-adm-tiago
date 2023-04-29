@@ -12,7 +12,9 @@ export default function Home() {
         {sessionStorage.setItem('email', session.user.email)}
 
         <div className="sistemas">
-          <h2>Sistemas desenvolvidos para a UFCA</h2>
+          <h2 className="text-3xl font-bold underline">
+            Sistemas desenvolvidos para a UFCA
+          </h2>
           <h3>Limpeza do campus Brejo Santo</h3>
           <a
             href="https://ifeadm.16mb.com/relatoriosadmufca/ifeadm/relatorios/ambientes-ife-frequencia-limpeza.php"
