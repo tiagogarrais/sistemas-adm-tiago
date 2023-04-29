@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply p-2 m-2 text-xl;
+  @apply p-2 mx-auto text-xl text-center max-w-2xl;
 }
 
 input {
@@ -14,17 +14,27 @@ label {
   @apply ml-2 mr-2 flex;
 }
 
-button,
 Link,
-a {
-  @apply hover:bg-blue-900 hover:text-white
+a,
+button {
+  @apply hover:bg-blue-900 
+  hover:text-white
+  border-gray-400
   pl-3
   pr-3
-  border-spacing-2
+  m-3
   border-solid
   border-2
-  border-gray-400
-  gap-2;
+  h-12
+  flex
+  justify-center
+  flex-col;
+}
+
+button {
+  @apply w-1/3
+  items-center
+  h-8;
 }
 
 h1 {
