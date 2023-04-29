@@ -9,12 +9,8 @@ export default function BarraLogin() {
       <>
         <div id="barra-login">
           Bem vindo(a) {session.user.email}
-          <Link className="link" className="link" href="/">
-            Página principal
-          </Link>
-          <Link className="link" href="/cadastro/cadastro">
-            Meu cadastro
-          </Link>
+          <Link href="/">Página principal</Link>
+          <Link href="/cadastro/cadastro">Meu cadastro</Link>
           <button onClick={() => signOut()}>Desconectar</button>
         </div>
       </>
