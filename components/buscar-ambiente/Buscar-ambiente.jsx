@@ -40,17 +40,14 @@ export function BuscarAmbiente() {
     <table>
       <td>
         Pesquisar outro ambiente
-        <form className="form" onSubmit={buscarSala}>
+        <form onSubmit={buscarSala}>
           <input
             placeholder="Qual o número da sala?"
             onChange={event => setSala(event.target.value)}
             value={sala}
           />
           <button type="submit">Verificar</button>
-          <p
-            id="aviso"
-            style={{ backgroundColor: 'yellow', color: 'black' }}
-          ></p>
+          <p id="aviso"></p>
         </form>
       </td>
     </table>

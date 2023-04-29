@@ -3,7 +3,6 @@ import { useSession, signIn } from 'next-auth/react'
 import React, { useState } from 'react'
 
 export default function Cadastro() {
-
   const { data: session } = useSession()
   const [cadastro, setCadastro] = useState({})
   const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
@@ -34,7 +33,6 @@ export default function Cadastro() {
     setTelefoneCadastrado(data.telefone)
     setEmailCadastrado(data.email)
     setDataCadastro(data.dataInformacao)
-
   }
 
   function onInputChange(evt) {
@@ -59,13 +57,12 @@ export default function Cadastro() {
       return
     }
 
-    document.getElementById("btnSave").disabled = true
+    document.getElementById('btnSave').disabled = true
 
     setNomeCadastrado('Aguarde...')
     setTelefoneCadastrado('Aguarde...')
     setEmailCadastrado('Aguarde...')
     setDataCadastro('Aguarde...')
-
 
     axios
       .post('/api/cadastro/cadastro', {
@@ -88,14 +85,12 @@ export default function Cadastro() {
   if (session) {
     cadastro.email = session.user.email
     return (
-      <div className="conteudo">
-
+      <div>
         <h2>Meus dados</h2>
         <p>{nomeCadastrado}</p>
         <p>{emailCadastrado}</p>
         <p>{telefoneCadastrado}</p>
         <p>Cadastrado em: {dataCadastro}</p>
-
 
         <h2>Atualizar dados</h2>
         <label for="nome">
@@ -117,13 +112,15 @@ export default function Cadastro() {
             onChange={onInputChange}
           />
         </label>
-        <input type="button" id='btnSave' value="Salvar" onClick={btnSaveClick} />
-      </div >
+        <button id="btnSave" value="Salvar" onClick={btnSaveClick}>
+          Salvar
+        </button>
+      </div>
     )
   }
   return (
     <>
-      <div className="conteudo">
+      <div>
         <p>Para acessar este conteúdo é necessário fazer login</p>
         <button onClick={() => signIn()}>Entrar</button>
       </div>

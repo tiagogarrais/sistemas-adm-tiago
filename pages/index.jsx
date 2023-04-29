@@ -1,5 +1,4 @@
 import { useSession, signIn } from 'next-auth/react'
-
 import Contador from '../components/contador-regressivo/Contador'
 import Link from 'next/link'
 
@@ -8,33 +7,28 @@ export default function Home() {
 
   if (session) {
     return (
-      <div className="conteudo">
+      <div>
         {sessionStorage.setItem('email', session.user.email)}
 
-        <div className="sistemas">
-          <h2 className="text-3xl font-bold underline">
-            Sistemas desenvolvidos para a UFCA
-          </h2>
-          <h3>Limpeza do campus Brejo Santo</h3>
+        <div>
+          <h2>Sistemas desenvolvidos para a UFCA</h2>
+          <Link className="link" href="/brainstorming/brainstorming">
+            Brainstorming
+          </Link>
+          <Link className="link" href="/ambientes/0">
+            Ambientes IFE
+          </Link>
+          <Link className="link" href="/transportes/">
+            Transportes IFE
+          </Link>
           <a
             href="https://ifeadm.16mb.com/relatoriosadmufca/ifeadm/relatorios/ambientes-ife-frequencia-limpeza.php"
             target="_blank"
           >
             Frequência de limpeza
           </a>
-
-          <h3>Transportes</h3>
-
-          <h3>Outros sistemas</h3>
-
-          <Link href="/brainstorming/brainstorming">Brainstorming</Link>
-
-          <Link href="/ambientes/0">Ambientes IFE</Link>
-
-          <Link href="/transportes/">Transportes IFE</Link>
-
           <a href="https://processos.ifeadm.16mb.com" target="_blank">
-            Professos IFE
+            Processos Administrativos IFE
           </a>
 
           <a href="https://ifeadm.16mb.com" target="_blank">
@@ -83,7 +77,7 @@ export default function Home() {
     )
   }
   return (
-    <div className="conteudo">
+    <div>
       <div id="timer">
         <h2>
           <Contador />
