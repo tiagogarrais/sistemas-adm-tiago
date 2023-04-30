@@ -1,4 +1,4 @@
-import { useSession, signIn } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import Contador from '../components/contador-regressivo/Contador'
 import Link from 'next/link'
 
