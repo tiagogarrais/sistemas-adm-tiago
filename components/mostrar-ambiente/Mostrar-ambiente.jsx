@@ -44,9 +44,8 @@ export function MostrarAmbiente() {
 
   return (
     <div>
-      <h2 id="nomeAmbiente">Nome do ambiente</h2>
-      <h2>Chave número: {ambiente}</h2>
-      <h3>LIMPEZA DO AMBIENTE</h3>
+      <h2 id="nomeAmbiente"></h2>
+      <p>Chave número: {ambiente}</p>
       <p>
         Servente de limpeza: <span id="responsabilidadeLimpeza"></span>
       </p>
@@ -54,7 +53,6 @@ export function MostrarAmbiente() {
         A limpeza completa deste ambiente é executada{' '}
         <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
       </p>
-      <h3>OUTRAS INFORMAÇÕES</h3>
       <p>
         Tipo de ambiente: <span id="tipo"></span>
       </p>

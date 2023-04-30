@@ -13,7 +13,7 @@ export default function Ambientes() {
         <title>{tituloPagina}</title>
         <meta name="description" content={tituloPagina} />
         <main>
-          <h2>{tituloPagina}</h2>
+          <h1>{tituloPagina}</h1>
           <MostrarAmbiente />
           <hr />
           <h2>Ambientes do campus Brejo Santo</h2>
