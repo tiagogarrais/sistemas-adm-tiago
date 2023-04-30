@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useSession, signIn } from 'next-auth/react'
 import React, { useState } from 'react'
+import BuscarCadastro from '../../components/BuscarCadastro'
 
 export default function Cadastro() {
   const { data: session } = useSession()
@@ -10,30 +11,30 @@ export default function Cadastro() {
   const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
   const [dataCadastro, setDataCadastro] = useState('Carregando...')
 
-  React.useEffect(() => {
-    buscarCadastro()
-  }, [])
+  // React.useEffect(() => {
+  //   buscarCadastro()
+  // }, [])
 
-  async function buscarCadastro() {
-    const response = await fetch(
-      '/api/cadastro/cadastro?' + 'email=' + session.user.email
-    )
-    const data = await response.json()
+  // async function buscarCadastro() {
+  //   const response = await fetch(
+  //     '/api/cadastro/cadastro?' + 'email=' + session.user.email
+  //   )
+  //   const data = await response.json()
 
-    if (data === null) {
-      setNomeCadastrado('Não cadastrado')
-      setTelefoneCadastrado('Não cadastrado')
-      setEmailCadastrado('Não cadastrado')
-      setDataCadastro('Não cadastrado')
+  //   if (data === null) {
+  //     setNomeCadastrado('Não cadastrado')
+  //     setTelefoneCadastrado('Não cadastrado')
+  //     setEmailCadastrado('Não cadastrado')
+  //     setDataCadastro('Não cadastrado')
 
-      return
-    }
+  //     return
+  //   }
 
-    setNomeCadastrado(data.nomeCompleto)
-    setTelefoneCadastrado(data.telefone)
-    setEmailCadastrado(data.email)
-    setDataCadastro(data.dataInformacao)
-  }
+  //   setNomeCadastrado(data.nomeCompleto)
+  //   setTelefoneCadastrado(data.telefone)
+  //   setEmailCadastrado(data.email)
+  //   setDataCadastro(data.dataInformacao)
+  // }
 
   function onInputChange(evt) {
     setCadastro(prevState => ({
@@ -74,11 +75,9 @@ export default function Cadastro() {
       .then(function (res) {
         cadastro.nome = ''
         cadastro.telefone = ''
-        buscarCadastro()
       })
       .catch(function (error) {
         console.log(error)
-        buscarCadastro()
       })
   }
 
@@ -86,12 +85,7 @@ export default function Cadastro() {
     cadastro.email = session.user.email
     return (
       <div>
-        <h2>Meus dados</h2>
-        <p>{nomeCadastrado}</p>
-        <p>{emailCadastrado}</p>
-        <p>{telefoneCadastrado}</p>
-        <p>Cadastrado em: {dataCadastro}</p>
-
+        <BuscarCadastro />
         <h2>Atualizar dados</h2>
         <label for="nome">
           Nome completo
