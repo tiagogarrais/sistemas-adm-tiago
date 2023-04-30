@@ -36,7 +36,8 @@ button {
   items-center
   h-8
   pl-4
-  pr-4;
+  pr-4
+  min-w-fit;
 }
 
 h1 {
