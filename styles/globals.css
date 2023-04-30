@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply p-2 mx-auto text-xl text-center max-w-2xl;
+  @apply p-2 mx-auto text-xl text-center max-w-7xl;
 }
 
 input {
