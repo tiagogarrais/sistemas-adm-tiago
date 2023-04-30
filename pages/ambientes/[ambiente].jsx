@@ -16,7 +16,7 @@ export default function Ambientes() {
           <h2>{tituloPagina}</h2>
           <MostrarAmbiente />
           <hr />
-          <h2>Listagem de ambientes do campus Brejo Santo</h2>
+          <h2>Ambientes do campus Brejo Santo</h2>
           <ul>
             <li>
               <Link className="link" href={{ pathname: '/ambientes/1' }}>

@@ -35,13 +35,14 @@ export default function SolicitarVeiculo() {
         <form>
           <div>
             <h2>Requisitar Transporte</h2>
-            <p>Seu nome é {nomeCadastrado}</p>
             <p>
-              Todas as confirmações e respostas referentes a esta solicitação
-              serão enviadas no e-mail {emailCadastrado}
+              Seu nome é <strong>{nomeCadastrado}</strong>. Todas as
+              confirmações e respostas referentes a esta solicitação serão
+              enviadas no e-mail <strong>{emailCadastrado}</strong>. O Telefone
+              para contato é <strong>{telefoneCadastrado}</strong>.
             </p>
 
-            <label>Telefone para contato {telefoneCadastrado}</label>
+            <label></label>
 
             <h3>Qual o veículo que melhor atende sua demanda??</h3>
 

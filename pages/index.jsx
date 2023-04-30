@@ -15,7 +15,7 @@ export default function Home() {
           <Link className="link" href="/brainstorming/brainstorming">
             Brainstorming
           </Link>
-          <Link className="link" href="/ambientes/0">
+          <Link className="link" href="/ambientes/3">
             Ambientes IFE
           </Link>
           <Link className="link" href="/transportes/">

@@ -24,20 +24,19 @@ export function MostrarAmbiente() {
           dadosJson.frequenciaSemanalLimpeza
       }
       if (dadosJson.tipo != null) {
-        document.getElementById('tipo').innerText =
-          dadosJson.tipo
+        document.getElementById('tipo').innerText = dadosJson.tipo
       }
       if (dadosJson.LarguraLesteOeste != null) {
         document.getElementById('largura').innerText =
           dadosJson.LarguraLesteOeste
       }
       if (dadosJson.comprimento != null) {
-        document.getElementById('comprimento').innerText =
-          dadosJson.comprimento
+        document.getElementById('comprimento').innerText = dadosJson.comprimento
       }
 
-      document.getElementById('areaM2').innerText = (dadosJson.LarguraLesteOeste*dadosJson.comprimento).toFixed(1)
-
+      document.getElementById('areaM2').innerText = (
+        dadosJson.LarguraLesteOeste * dadosJson.comprimento
+      ).toFixed(1)
     })
     .catch(function (e) {
       console.log('Erro capturado, consulte o código para mais informações')
@@ -47,48 +46,30 @@ export function MostrarAmbiente() {
     <div>
       <h2 id="nomeAmbiente">Nome do ambiente</h2>
       <h2>Chave número: {ambiente}</h2>
-      <table>
-        <h3>LIMPEZA DO AMBIENTE</h3>
-        <tr />
-        <td>
-          Servente de limpeza: <span id="responsabilidadeLimpeza"></span>
-        </td>
-        <tr />
-        <td>
-          <label>
-            A limpeza completa deste ambiente é executada{' '}
-            <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
-          </label>
-        </td>
-        <tr />
-      </table>
+      <h3>LIMPEZA DO AMBIENTE</h3>
+      <p>
+        Servente de limpeza: <span id="responsabilidadeLimpeza"></span>
+      </p>
+      <p>
+        A limpeza completa deste ambiente é executada{' '}
+        <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
+      </p>
+      <h3>OUTRAS INFORMAÇÕES</h3>
+      <p>
+        Tipo de ambiente: <span id="tipo"></span>
+      </p>
 
-      <table>
-        <h3>OUTRAS INFORMAÇÕES</h3>
-        <tr />
-        <td>
-          Tipo de ambiente: <span id="tipo"></span>
-        </td>
-        <tr />
-        <td>
-          <label>
-            Largura em metros: <span id="largura"></span>
-          </label>
-        </td>
-        <tr />
-        <td>
-          <label>
-            Comprimento: <span id="comprimento"></span>
-          </label>
-        </td>
-        <tr />
-        <td>
-          <label>
-            Área em metros quadrados: <span id="areaM2"></span>
-          </label>
-        </td>
-        <tr />
-      </table>
+      <p>
+        Largura em metros: <span id="largura"></span>
+      </p>
+
+      <p>
+        Comprimento: <span id="comprimento"></span>
+      </p>
+
+      <p>
+        Área em metros quadrados: <span id="areaM2"></span>
+      </p>
     </div>
   )
 }
