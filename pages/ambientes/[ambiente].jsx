@@ -10,7 +10,7 @@ export default function Ambientes() {
 
   const router = useRouter()
   const ambiente = router.query.ambiente
-  const linkApiFoto = '/public/images/ambientes/' + ambiente + '.jpg'
+  const linkApiFoto = '/images/ambientes/' + ambiente + '.jpg'
 
   if (session) {
     return (
@@ -22,7 +22,7 @@ export default function Ambientes() {
 
           <h5>
             <Image
-              src="/public/images/ambientes/3.jpg"
+              src={linkApiFoto}
               alt="Foto do ambiente"
               width="300"
               height="300"
