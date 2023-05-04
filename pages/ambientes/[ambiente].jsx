@@ -1,11 +1,16 @@
 import { useSession } from 'next-auth/react'
-import { BuscarAmbiente } from '../../components/buscar-ambiente/Buscar-ambiente'
 import { MostrarAmbiente } from '../../components/mostrar-ambiente/Mostrar-ambiente'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 export default function Ambientes() {
   const tituloPagina = 'Ambientes IFE'
   const { data: session } = useSession()
+
+  const router = useRouter()
+  const ambiente = router.query.ambiente
+  const linkApiFoto = '/public/images/ambientes/' + ambiente + '.jpg'
 
   if (session) {
     return (
@@ -14,6 +19,16 @@ export default function Ambientes() {
         <meta name="description" content={tituloPagina} />
         <main>
           <h1>{tituloPagina}</h1>
+
+          <h5>
+            <Image
+              src="/public/images/ambientes/3.jpg"
+              alt="Foto do ambiente"
+              width="300"
+              height="300"
+            />
+          </h5>
+
           <MostrarAmbiente />
           <hr />
           <h2>Ambientes do campus Brejo Santo</h2>
@@ -544,9 +559,6 @@ export default function Ambientes() {
               </Link>
             </li>
           </ul>
-          <hr />
-          <BuscarAmbiente />
-
           <hr />
         </main>
         {/* <Footer /> */}
