@@ -94,8 +94,8 @@ export default function Brainstorming() {
         </h1>
 
         <iframe
-          width="350"
-          height="270"
+          width="100%"
+          height="450"
           src="https://www.youtube.com/embed/ShBleATmuqU"
           title="Brainstorming"
         />
