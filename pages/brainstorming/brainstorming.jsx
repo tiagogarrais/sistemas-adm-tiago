@@ -86,21 +86,21 @@ export default function Brainstorming() {
   if (session) {
     return (
       <div>
-        <h2>
-          Brainstorming IFE - Tema infraestrutura física <br />
-          (reformas, construções e melhorias)
-        </h2>
+        <h1>
+          <strong>
+            Brainstorming IFE - Tema infraestrutura física <br />
+            (reformas, construções e melhorias)
+          </strong>
+        </h1>
 
-        <h3>
-          <iframe
-            width="350"
-            height="270"
-            src="https://www.youtube.com/embed/ShBleATmuqU"
-            title="Brainstorming"
-          />
-        </h3>
+        <iframe
+          width="350"
+          height="270"
+          src="https://www.youtube.com/embed/ShBleATmuqU"
+          title="Brainstorming"
+        />
 
-        <form onSubmit={handleEnviarFormulario}>
+        {/* <form onSubmit={handleEnviarFormulario}>
           <h2>Enviar ideia</h2>
 
           <label>
@@ -165,33 +165,44 @@ export default function Brainstorming() {
 
           <p id="aviso"></p>
 
-          <p>
-            Finalizamos o recebimentos de ideias neste formulário no dia
-            15/10/2021.
-          </p>
-          {/* <button  type="submit" onClickCapture={buscarIdeias}>Enviar</button> */}
-        </form>
+          {/* <button  type="submit" onClickCapture={buscarIdeias}>Enviar</button> 
+                  </form> */}
 
-        <p>Até o momento recebemos {ideias.length} ideias</p>
+        <h2>
+          <strong>
+            Finalizamos este brainstorming no dia 15/10/2021 com {ideias.length}{' '}
+            ideias
+          </strong>
+        </h2>
 
-        <table>
-          <tr>
-            <th>Endereço vinculado </th>
-            <th>Grau de prioridade </th>
-            <th>Setor ou local de aplicação </th>
-            <th>Ideia </th>
-          </tr>
-          {ideias.map(ideiasRecebidas => (
-            <>
-              <tr>
-                <td> {`${ideiasRecebidas.endereco}`} </td>
-                <td> {`${ideiasRecebidas.grauPrioridade}`} </td>
-                <td> {`${ideiasRecebidas.localAplicacao}`} </td>
-                <td> {`${ideiasRecebidas.ideia}`} </td>
-              </tr>
-            </>
-          ))}
-        </table>
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Endereço vinculado{' '}
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Grau de prioridade{' '}
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Setor ou local de aplicação{' '}
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Ideia{' '}
+              </th>
+            </tr>
+            {ideias.map(ideiasRecebidas => (
+              <>
+                <tr>
+                  <td> {`${ideiasRecebidas.endereco}`} </td>
+                  <td> {`${ideiasRecebidas.grauPrioridade}`} </td>
+                  <td> {`${ideiasRecebidas.localAplicacao}`} </td>
+                  <td> {`${ideiasRecebidas.ideia}`} </td>
+                </tr>
+              </>
+            ))}
+          </table>
+        </div>
       </div>
     )
   }
