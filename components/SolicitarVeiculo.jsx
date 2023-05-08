@@ -1,5 +1,6 @@
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 export default function SolicitarVeiculo() {
   React.useEffect(() => {
@@ -29,6 +30,8 @@ export default function SolicitarVeiculo() {
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
   const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
 
+  const raioTransportes = '/images/transportes/raio-transportes-ufca.jpeg'
+
   if (session) {
     return (
       <div>
@@ -42,8 +45,6 @@ export default function SolicitarVeiculo() {
               para contato é <strong>{telefoneCadastrado}</strong>.
             </p>
 
-            <label></label>
-
             <h3>Qual o veículo que melhor atende sua demanda??</h3>
 
             <label htmlFor="veiculo">
@@ -53,7 +54,7 @@ export default function SolicitarVeiculo() {
                 value="SPIN - 6 vagas + motorista"
                 required
               />
-              SPIN - 6 vagas + motoristaa
+              SPIN - 6 vagas + motorista
             </label>
 
             <label htmlFor="tipo">
@@ -68,14 +69,24 @@ export default function SolicitarVeiculo() {
             <h3>Dados da viagem</h3>
 
             <p>
-              <a
-                href="http://raiolaser.16mb.com/index.php/Uso_dos_ve%C3%ADculos_oficiais_da_UFCA_campus_Brejo_Santo#Atua.C3.A7.C3.A3o:_Raio_de_800_km_.C3.A0_partir_da_sede_-_Juazeiro_do_Norte.3B"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Consultar raio de atuação do serviço de transportes do IFE
-              </a>
+              Atenção: Atuação permitida do serviço de transporte terrestre da
+              UFCA: Raio de 800 km à partir da sede - Juazeiro do Norte
             </p>
+            <Image
+              src={raioTransportes}
+              width={500}
+              height={500}
+              alt="http://raiolaser.16mb.com/images/2/2a/Raio-transportes-ufca.jpeg"
+            ></Image>
+
+            <a
+              href="http://raiolaser.16mb.com/index.php/Uso_dos_ve%C3%ADculos_oficiais_da_UFCA_campus_Brejo_Santo#Atua.C3.A7.C3.A3o:_Raio_de_800_km_.C3.A0_partir_da_sede_-_Juazeiro_do_Norte.3B"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Consultar raio de atuação do serviço de transportes do IFE
+            </a>
+
             <label>
               UF destino
               <br />
@@ -325,8 +336,8 @@ export default function SolicitarVeiculo() {
             </label>
 
             <label>
-              <h3>Listagem de passageiros</h3>
               <table>
+                <h3>Listagem de passageiros</h3>
                 <tr>
                   <th>Número</th>
                   <th>Nome</th>
