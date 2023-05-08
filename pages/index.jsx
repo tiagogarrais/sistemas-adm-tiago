@@ -9,9 +9,9 @@ export default function Home() {
     return (
       <div>
         {sessionStorage.setItem('email', session.user.email)}
-
         <div>
-          <h2>Sistemas desenvolvidos para a UFCA</h2>
+          <Link href="/cadastro/cadastro">Meu cadastro</Link>
+          <h2>Sistemas desenvolvidos para a UFCA - neste site</h2>
           <Link className="link" href="/brainstorming/brainstorming">
             Brainstorming
           </Link>
@@ -21,18 +21,18 @@ export default function Home() {
           <Link className="link" href="/transportes/">
             Transportes IFE
           </Link>
+          <h2>Sistemas desenvolvidos para a UFCA - em outros sites</h2>
+          <a href="https://ifeadm.16mb.com" target="_blank">
+            Site IFE-ADM
+          </a>
           <a
             href="https://ifeadm.16mb.com/relatoriosadmufca/ifeadm/relatorios/ambientes-ife-frequencia-limpeza.php"
             target="_blank"
           >
-            Frequência de limpeza
+            Relatório de frequência de limpeza e serventes
           </a>
           <a href="https://processos.ifeadm.16mb.com" target="_blank">
             Processos Administrativos IFE
-          </a>
-
-          <a href="https://ifeadm.16mb.com" target="_blank">
-            Site IFE-ADM
           </a>
 
           <a href="http://raiolaser.16mb.com" target="_blank">

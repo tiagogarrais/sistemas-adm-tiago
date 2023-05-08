@@ -2,6 +2,7 @@ import { useSession, signIn } from 'next-auth/react'
 import React from 'react'
 import BuscarCadastro from '../../components/BuscarCadastro'
 import SalvarNovoCadastro from '../../components/cadastro/SalvarNovoCadastro'
+import Link from 'next/link'
 
 export default function Cadastro() {
   const { data: session } = useSession()
@@ -10,7 +11,9 @@ export default function Cadastro() {
     return (
       <>
         <BuscarCadastro />
+        <Link href="/">Voltar para a página principal</Link>
         <SalvarNovoCadastro />
+        <Link href="/">Voltar para a página principal</Link>
       </>
     )
   }
