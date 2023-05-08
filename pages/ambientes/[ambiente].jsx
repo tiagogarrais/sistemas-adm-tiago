@@ -19,15 +19,14 @@ export default function Ambientes() {
         <meta name="description" content={tituloPagina} />
         <main>
           <h1>{tituloPagina}</h1>
-
-          <h5>
+          <div>
             <Image
               src={linkApiFoto}
               alt="Foto do ambiente"
-              width="300"
-              height="300"
+              width={1500}
+              height={1500}
             />
-          </h5>
+          </div>
 
           <MostrarAmbiente />
           <hr />

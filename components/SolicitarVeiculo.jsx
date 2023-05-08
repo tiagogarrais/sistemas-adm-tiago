@@ -30,7 +30,8 @@ export default function SolicitarVeiculo() {
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
   const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
 
-  const raioTransportes = '/images/transportes/raio-transportes-ufca.jpeg'
+  const raioTransportes =
+    'http://raiolaser.16mb.com/images/2/2a/Raio-transportes-ufca.jpeg'
 
   if (session) {
     return (
@@ -76,7 +77,7 @@ export default function SolicitarVeiculo() {
               src={raioTransportes}
               width={500}
               height={500}
-              alt="http://raiolaser.16mb.com/images/2/2a/Raio-transportes-ufca.jpeg"
+              alt="Atuação permitida do serviço de transportes: raio de 800 km à partir da sede - Juazeiro do Norte"
             ></Image>
 
             <a
