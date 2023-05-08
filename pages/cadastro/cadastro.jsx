@@ -1,6 +1,6 @@
 import { useSession, signIn } from 'next-auth/react'
 import React from 'react'
-import BuscarCadastro from '../../components/BuscarCadastro'
+import BuscarCadastro from '../../components/cadastro/BuscarCadastro'
 import SalvarNovoCadastro from '../../components/cadastro/SalvarNovoCadastro'
 import Link from 'next/link'
 
