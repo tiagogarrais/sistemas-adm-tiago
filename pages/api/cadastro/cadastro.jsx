@@ -1,4 +1,6 @@
 import connect from '../../../src/utils/mongodb'
+import connectMongo from '../../../utils/connectMongo'
+import Usuario from '../../../models/cadastroModel'
 
 export default async function buscarCadastro(req, res) {
   try {
@@ -13,12 +15,18 @@ export default async function buscarCadastro(req, res) {
         res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate')
         res.status(200).json(dados)
         break
+
       case 'POST':
-        const cadastro = req.body
-        const res = await db.collection('usuarios').insertOne(cadastro)
-        res.status(200).json(res.ops[0])
-        buscarCadastro()
+        try {
+          await connectMongo()
+          const usuario = await Usuario.create(req.body)
+          res.json({ usuario })
+        } catch (error) {
+          console.log(error)
+          res.json({ error })
+        }
         break
+
       default:
         res.setHeader('Permitido', ['GET', 'POST'])
         res.status(405).end(`Método ${method} não permitido`)

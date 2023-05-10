@@ -1,5 +1,6 @@
 import { useSession, signIn } from 'next-auth/react'
 import React, { useState } from 'react'
+import axios from 'axios'
 
 export default function SalvarNovoCadastro() {
   const { data: session } = useSession()
@@ -31,7 +32,7 @@ export default function SalvarNovoCadastro() {
       return
     }
 
-    document.getElementById('btnSave').disabled = true
+    //document.getElementById('btnSave').disabled = true
 
     setNomeCadastrado('Aguarde...')
     setTelefoneCadastrado('Aguarde...')
@@ -40,7 +41,7 @@ export default function SalvarNovoCadastro() {
 
     axios
       .post('/api/cadastro/cadastro', {
-        nomeCompleto: cadastro.nome,
+        nome: cadastro.nome,
         email: cadastro.email,
         telefone: cadastro.telefone,
         dataInformacao: Date()
