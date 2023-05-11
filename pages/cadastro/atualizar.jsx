@@ -1,6 +1,6 @@
 import { useSession, signIn } from 'next-auth/react'
 import React from 'react'
-import BuscarCadastro from '../../components/cadastro/BuscarCadastro'
+import SalvarNovoCadastro from '../../components/cadastro/SalvarNovoCadastro'
 import Link from 'next/link'
 
 export default function Cadastro() {
@@ -11,10 +11,9 @@ export default function Cadastro() {
       <>
         <Link href="/">Voltar para a página principal</Link>
         <div id="cadastro">
-          <BuscarCadastro />
+          <SalvarNovoCadastro />
         </div>
 
-        <Link href={'/cadastro/atualizar'}>Atualizar cadastro</Link>
         <Link href="/">Voltar para a página principal</Link>
       </>
     )

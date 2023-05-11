@@ -20,7 +20,7 @@ export default function BuscarCadastro() {
       return
     }
 
-    setNomeCadastrado(data.nomeCompleto)
+    setNomeCadastrado(data.nome)
     setTelefoneCadastrado(data.telefone)
     setEmailCadastrado(data.email)
     setDataCadastro(data.dataInformacao)
@@ -37,9 +37,9 @@ export default function BuscarCadastro() {
     return (
       <div>
         <h2>Meus dados</h2>
-        <p>{nomeCadastrado}</p>
-        <p>{emailCadastrado}</p>
-        <p>{telefoneCadastrado}</p>
+        <p>Nome: {nomeCadastrado}</p>
+        <p>E-mail: {emailCadastrado}</p>
+        <p>Telefone: {telefoneCadastrado}</p>
         <p>Cadastrado em: {dataCadastro}</p>
       </div>
     )

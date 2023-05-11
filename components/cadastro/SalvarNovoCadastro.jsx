@@ -5,10 +5,6 @@ import axios from 'axios'
 export default function SalvarNovoCadastro() {
   const { data: session } = useSession()
   const [cadastro, setCadastro] = useState({})
-  const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
-  const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
-  const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
-  const [dataCadastro, setDataCadastro] = useState('Carregando...')
 
   function onInputChange(evt) {
     setCadastro(prevState => ({
@@ -32,12 +28,8 @@ export default function SalvarNovoCadastro() {
       return
     }
 
-    //document.getElementById('btnSave').disabled = true
-
-    setNomeCadastrado('Aguarde...')
-    setTelefoneCadastrado('Aguarde...')
-    setEmailCadastrado('Aguarde...')
-    setDataCadastro('Aguarde...')
+    document.getElementById('btnSave').disabled = true
+    document.getElementById('btnSave').innerText = 'Aguarde...'
 
     axios
       .post('/api/cadastro/cadastro', {
@@ -47,8 +39,7 @@ export default function SalvarNovoCadastro() {
         dataInformacao: Date()
       })
       .then(function (res) {
-        cadastro.nome = ''
-        cadastro.telefone = ''
+        window.alert('Dados enviados')
       })
       .catch(function (error) {
         console.log(error)
