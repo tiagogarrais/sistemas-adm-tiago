@@ -38,12 +38,14 @@ export default function Ambientes() {
                 1 - Entrada principal - Externa
               </Link>
             </li>
+
             <li>
               <Link className="link" href={{ pathname: '/ambientes/2' }}>
                 {' '}
                 2 - Recepção
               </Link>
             </li>
+
             <li>
               <Link className="link" href={{ pathname: '/ambientes/3' }}>
                 {' '}
@@ -555,6 +557,12 @@ export default function Ambientes() {
                 {' '}
                 149 - Corredor laboratórios física, biologia, autoclave até casa
                 de gás
+              </Link>
+            </li>
+            <li>
+              <Link className="link" href={{ pathname: '/ambientes/150' }}>
+                {' '}
+                150 - Entrada - Estacionamento
               </Link>
             </li>
           </ul>
