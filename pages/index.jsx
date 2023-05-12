@@ -17,14 +17,14 @@ export default function Home() {
           <h2>Sistemas desenvolvidos para a UFCA - neste site</h2>
 
           <div className="button">
-            <Link className="link" href="/brainstorming/brainstorming">
-              Brainstorming
+            <Link className="link" href="/ambientes/1">
+              Ambientes IFE
             </Link>
           </div>
 
           <div className="button">
-            <Link className="link" href="/ambientes/1">
-              Ambientes IFE
+            <Link className="link" href="/brainstorming/brainstorming">
+              Brainstorming
             </Link>
           </div>
 
