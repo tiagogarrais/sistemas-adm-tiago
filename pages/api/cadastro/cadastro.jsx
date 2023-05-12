@@ -33,6 +33,5 @@ export default async function buscarCadastro(req, res) {
     }
   } catch (err) {
     res.status(500).json({ statuscode: 500, message: err.message })
-    buscarCadastro()
   }
 }
