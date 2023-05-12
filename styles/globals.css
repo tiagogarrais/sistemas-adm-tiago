@@ -6,6 +6,23 @@ body {
   @apply p-2 mx-auto text-xl text-center max-w-7xl;
 }
 
+.button {
+  @apply hover:bg-blue-900
+  hover:text-white
+  border-gray-400
+  pl-3
+  pr-3
+  pb-4
+  pt-4
+  m-3
+  border-solid
+  border-2
+  h-14
+  flex
+  justify-center
+  flex-col;
+}
+
 input {
   @apply bg-gray-200 rounded-lg mt-1 mb-1 pl-2 pr-2 focus:bg-gray-300;
 }
@@ -14,8 +31,6 @@ label {
   @apply ml-2 mr-2 flex;
 }
 
-Link,
-a,
 button {
   @apply hover:bg-blue-900 
   hover:text-white

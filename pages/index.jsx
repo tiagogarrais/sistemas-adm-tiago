@@ -10,68 +10,104 @@ export default function Home() {
       <div>
         {sessionStorage.setItem('email', session.user.email)}
         <div>
-          <Link href="/cadastro/cadastro">Meu cadastro</Link>
-          <h2>Sistemas desenvolvidos para a UFCA - neste site</h2>
-          <Link className="link" href="/brainstorming/brainstorming">
-            Brainstorming
-          </Link>
-          <Link className="link" href="/ambientes/1">
-            Ambientes IFE
-          </Link>
-          <Link className="link" href="/transportes/">
-            Transportes IFE
-          </Link>
-          <h2>Sistemas desenvolvidos para a UFCA - em outros sites</h2>
-          <a href="https://ifeadm.16mb.com" target="_blank">
-            Site IFE-ADM
-          </a>
-          <a
-            href="https://ifeadm.16mb.com/relatoriosadmufca/ifeadm/relatorios/ambientes-ife-frequencia-limpeza.php"
-            target="_blank"
-          >
-            Relatório de frequência de limpeza e serventes
-          </a>
-          <a href="https://processos.ifeadm.16mb.com" target="_blank">
-            Processos Administrativos IFE
-          </a>
+          <div className="button">
+            <Link href="/cadastro/cadastro">Meu cadastro</Link>
+          </div>
 
-          <a href="http://raiolaser.16mb.com" target="_blank">
-            WikiAdm
-          </a>
+          <h2>Sistemas desenvolvidos para a UFCA - neste site</h2>
+
+          <div className="button">
+            <Link className="link" href="/brainstorming/brainstorming">
+              Brainstorming
+            </Link>
+          </div>
+
+          <div className="button">
+            <Link className="link" href="/ambientes/1">
+              Ambientes IFE
+            </Link>
+          </div>
+
+          <div className="button">
+            <Link className="link" href="/transportes/">
+              Transportes IFE
+            </Link>
+          </div>
+
+          <h2>Sistemas desenvolvidos para a UFCA - em outros sites</h2>
+
+          <div className="button">
+            <a href="https://ifeadm.16mb.com" target="_blank">
+              Site IFE-ADM
+            </a>
+          </div>
+
+          <div className="button">
+            <a
+              href="https://ifeadm.16mb.com/relatoriosadmufca/ifeadm/relatorios/ambientes-ife-frequencia-limpeza.php"
+              target="_blank"
+            >
+              Relatório de frequência de limpeza e serventes
+            </a>
+          </div>
+
+          <div className="button">
+            <a href="https://processos.ifeadm.16mb.com" target="_blank">
+              Processos Administrativos IFE
+            </a>
+          </div>
+
+          <div className="button">
+            <a href="http://raiolaser.16mb.com" target="_blank">
+              WikiAdm
+            </a>
+          </div>
 
           <h2>
             Sistemas desenvolvidos para compartilhar conteúdo didático e
             instrucional
           </h2>
-          <a href="https://conexaofuturo.com.br" target="_blank">
-            Plataforma de cursos
-          </a>
+
+          <div className="button">
+            <a href="https://conexaofuturo.com.br" target="_blank">
+              Plataforma de cursos
+            </a>
+          </div>
 
           <h2>Loja virtual</h2>
 
-          <a href="https://feiralivrebrejosanto.com.br" target="_blank">
-            Feira Livre Brejo Santo
-          </a>
+          <div className="button">
+            <a href="https://feiralivrebrejosanto.com.br" target="_blank">
+              Feira Livre Brejo Santo
+            </a>
+          </div>
 
           <h2>Redes Sociais Corporativas</h2>
 
-          <a href="https://instagram.com/comprestellamaris" target="_blank">
-            Loja Stella Maris
-          </a>
+          <div className="button">
+            <a href="https://instagram.com/comprestellamaris" target="_blank">
+              Loja Stella Maris
+            </a>
+          </div>
 
-          <a href="https://instagram.com/paodastellamaris" target="_blank">
-            Pão da Stella Maris
-          </a>
+          <div className="button">
+            <a href="https://instagram.com/paodastellamaris" target="_blank">
+              Pão da Stella Maris
+            </a>
+          </div>
 
-          <a href="https://facebook.com/feiralivrebrejosanto" target="_blank">
-            Site Feira Livre Brejo Santo
-          </a>
+          <div className="button">
+            <a href="https://facebook.com/feiralivrebrejosanto" target="_blank">
+              Site Feira Livre Brejo Santo
+            </a>
+          </div>
 
           <h2>Redes Sociais Pessoais</h2>
-
-          <a href="https://tiktok.com/@tiagoarraisdeholanda" target="_blank">
-            TikTok
-          </a>
+          <div className="button">
+            <a href="https://tiktok.com/@tiagoarraisdeholanda" target="_blank">
+              TikTok
+            </a>
+          </div>
         </div>
       </div>
     )

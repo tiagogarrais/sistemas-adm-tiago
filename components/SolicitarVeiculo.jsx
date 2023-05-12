@@ -20,7 +20,7 @@ export default function SolicitarVeiculo() {
       return
     }
 
-    setNomeCadastrado(data.nomeCompleto)
+    setNomeCadastrado(data.nome)
     setTelefoneCadastrado(data.telefone)
     setEmailCadastrado(data.email)
   }
