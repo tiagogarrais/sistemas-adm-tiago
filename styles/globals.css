@@ -23,12 +23,21 @@ body {
   flex-col;
 }
 
+#duas-colunas {
+  @apply columns-2;
+}
+
 input {
   @apply bg-gray-200 rounded-lg mt-1 mb-1 pl-2 pr-2 focus:bg-gray-300;
 }
 
+input[type='radio'],
+input[type='checkbox'] {
+  @apply w-6;
+}
+
 label {
-  @apply ml-2 mr-2 flex;
+  @apply ml-2 mr-2 flex justify-center;
 }
 
 button {
