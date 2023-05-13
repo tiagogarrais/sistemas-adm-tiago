@@ -17,7 +17,7 @@ body {
   m-3
   border-solid
   border-2
-  h-14
+  h-fit
   flex
   justify-center
   flex-col;

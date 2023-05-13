@@ -145,15 +145,32 @@ export default function SolicitarVeiculo() {
             </label>
 
             <label>
-              Data da viagem <input type="date" name="data-ida" required />
-              <br />
-              Hora da saída <input type="time" name="hora-ida" required />
+              Data da viagem
+              <input type="date" name="data-ida" id="data-ida" required />
             </label>
 
             <label>
-              Data do retorno <input type="date" name="data-retorno" required />
-              <br />
-              Hora retorno <input type="time" name="hora-retorno" required />
+              Hora da saída
+              <input type="time" name="hora-ida" id="hora-ida" required />
+            </label>
+
+            <label>
+              Data do retorno
+              <input
+                type="date"
+                name="data-retorno"
+                id="data-retorno"
+                required
+              />
+            </label>
+            <label>
+              Hora retorno
+              <input
+                type="time"
+                name="hora-retorno"
+                id="hora-retorno"
+                required
+              />
             </label>
 
             <h3>Local de saída</h3>
