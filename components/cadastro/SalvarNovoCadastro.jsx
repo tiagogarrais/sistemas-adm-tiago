@@ -2,6 +2,7 @@ import { useSession, signIn } from 'next-auth/react'
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 export default function SalvarNovoCadastro() {
   const { data: session } = useSession()
