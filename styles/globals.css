@@ -6,6 +6,10 @@ body {
   @apply p-2 mx-auto text-xl text-center max-w-7xl;
 }
 
+article {
+  @apply overflow-hidden rounded-lg shadow-lg bg-blue-100;
+}
+
 .button {
   @apply hover:bg-blue-900
   hover:text-white
@@ -25,6 +29,10 @@ body {
 
 #duas-colunas {
   @apply columns-2;
+}
+
+a {
+  @apply no-underline hover:underline text-black;
 }
 
 input {
