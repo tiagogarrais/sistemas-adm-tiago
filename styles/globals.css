@@ -32,7 +32,7 @@ article {
 }
 
 a {
-  @apply no-underline hover:underline text-black;
+  @apply no-underline hover:underline;
 }
 
 input {
