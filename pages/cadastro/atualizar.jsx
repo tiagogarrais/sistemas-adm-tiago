@@ -13,8 +13,9 @@ export default function Cadastro() {
         <div id="cadastro">
           <SalvarNovoCadastro />
         </div>
-
-        <Link href="/">Voltar para a página principal</Link>
+        <div className="button">
+          <Link href="/">Voltar para a página principal</Link>
+        </div>
       </>
     )
   }

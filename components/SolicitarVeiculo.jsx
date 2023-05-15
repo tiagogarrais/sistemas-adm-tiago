@@ -1,6 +1,9 @@
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import minivan from '../public/images/transportes/minivan-spin.jpg'
+import onibus from '../public/images/transportes/onibus-urbano.jpg'
 
 export default function SolicitarVeiculo() {
   React.useEffect(() => {
@@ -20,7 +23,7 @@ export default function SolicitarVeiculo() {
       return
     }
 
-    setNomeCadastrado(data.nomeCompleto)
+    setNomeCadastrado(data.nome)
     setTelefoneCadastrado(data.telefone)
     setEmailCadastrado(data.email)
   }
@@ -45,27 +48,59 @@ export default function SolicitarVeiculo() {
               enviadas no e-mail <strong>{emailCadastrado}</strong>. O Telefone
               para contato é <strong>{telefoneCadastrado}</strong>.
             </p>
+            <div className="button">
+              <Link href="/cadastro/atualizar">
+                Se as informações estiverem incorretas clique aqui para
+                atualizar o seu cadastro
+              </Link>
+            </div>
 
             <h3>Qual o veículo que melhor atende sua demanda??</h3>
+            <div id="duas-colunas">
+              <label htmlFor="veiculo">
+                <input
+                  type="radio"
+                  name="veiculo"
+                  value="SPIN - 6 vagas + motorista"
+                  id="minivan"
+                  required
+                />
+                <Image
+                  alt="Minivan Spin"
+                  src={minivan}
+                  width={500}
+                  height={500}
+                  onClick={() => {
+                    document.getElementById('minivan').checked = true
+                  }}
+                />
+              </label>
+              <p>
+                A minivan Spin pode transportar até 6 passageiros + 1 motorista
+              </p>
 
-            <label htmlFor="veiculo">
-              <input
-                type="radio"
-                name="veiculo"
-                value="SPIN - 6 vagas + motorista"
-                required
-              />
-              SPIN - 6 vagas + motorista
-            </label>
-
-            <label htmlFor="tipo">
-              <input
-                type="radio"
-                name="veiculo"
-                value="Ônibus - 44 vagas + motorista"
-              />
-              Ônibus - 44 vagas + motorista
-            </label>
+              <label htmlFor="tipo">
+                <input
+                  type="radio"
+                  name="veiculo"
+                  value="Ônibus - 44 vagas + motorista"
+                  id="onibus"
+                ></input>
+                <Image
+                  alt="Ônibus urbano"
+                  src={onibus}
+                  width={500}
+                  height={500}
+                  onClick={() => {
+                    document.getElementById('onibus').checked = true
+                  }}
+                />
+              </label>
+              <p>
+                O ônibus urbano pode transportar até 44 passageiros + 1
+                motorista
+              </p>
+            </div>
 
             <h3>Dados da viagem</h3>
 
@@ -79,14 +114,15 @@ export default function SolicitarVeiculo() {
               height={500}
               alt="Atuação permitida do serviço de transportes: raio de 800 km à partir da sede - Juazeiro do Norte"
             ></Image>
-
-            <a
-              href="http://raiolaser.16mb.com/index.php/Uso_dos_ve%C3%ADculos_oficiais_da_UFCA_campus_Brejo_Santo#Atua.C3.A7.C3.A3o:_Raio_de_800_km_.C3.A0_partir_da_sede_-_Juazeiro_do_Norte.3B"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Consultar raio de atuação do serviço de transportes do IFE
-            </a>
+            <div className="button">
+              <a
+                href="http://raiolaser.16mb.com/index.php/Uso_dos_ve%C3%ADculos_oficiais_da_UFCA_campus_Brejo_Santo#Atua.C3.A7.C3.A3o:_Raio_de_800_km_.C3.A0_partir_da_sede_-_Juazeiro_do_Norte.3B"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Consultar raio de atuação do serviço de transportes do IFE
+              </a>
+            </div>
 
             <label>
               UF destino
@@ -109,26 +145,42 @@ export default function SolicitarVeiculo() {
             </label>
 
             <label>
-              Data da viagem <input type="date" name="data-ida" required />
-              <br />
-              Hora da saída <input type="time" name="hora-ida" required />
+              Data da viagem
+              <input type="date" name="data-ida" id="data-ida" required />
             </label>
 
             <label>
-              Data do retorno <input type="date" name="data-retorno" required />
-              <br />
-              Hora retorno <input type="time" name="hora-retorno" required />
+              Hora da saída
+              <input type="time" name="hora-ida" id="hora-ida" required />
             </label>
 
             <label>
-              <h3>Local de saída</h3>
-              <p>Se for necessário pode-se marcar mais de uma opção.</p>
+              Data do retorno
+              <input
+                type="date"
+                name="data-retorno"
+                id="data-retorno"
+                required
+              />
             </label>
+            <label>
+              Hora retorno
+              <input
+                type="time"
+                name="hora-retorno"
+                id="hora-retorno"
+                required
+              />
+            </label>
+
+            <h3>Local de saída</h3>
+            <p>Se for necessário pode-se marcar mais de uma opção.</p>
 
             <label htmlFor="local1">
               <input
                 type="checkbox"
                 name="local1"
+                id="local1"
                 value="Prédio Sede do IFE, Bairro Centro."
                 defaultChecked
               />
@@ -139,6 +191,7 @@ export default function SolicitarVeiculo() {
               <input
                 type="checkbox"
                 name="local2"
+                id="local2"
                 value="Praça Dionísio Rocha de Lucena, Bairro Centro."
               />
               Praça Dionísio Rocha de Lucena, Bairro Centro.
@@ -148,26 +201,24 @@ export default function SolicitarVeiculo() {
               <input
                 type="checkbox"
                 name="local3"
+                id="local3"
                 value="Posto Abaiara (quando não houver desvio de trajeto)"
               />
               Posto Abaiara (quando não houver desvio de trajeto)
             </label>
 
-            <label>
-              <h3>
-                A viagem atenderá algum dos objetivos abaixo relacionados?
-              </h3>
-              <p>
-                Essas solicitações possuem fluxo de aprovação automática pois
-                foram definidas como prioridade pelo Conselho da Unidade
-                Acadêmica.
-              </p>
-            </label>
+            <h3>A viagem atenderá algum dos objetivos abaixo relacionados?</h3>
+            <p>
+              Essas solicitações possuem fluxo de aprovação automática pois
+              foram definidas como prioridade pelo Conselho da Unidade
+              Acadêmica.
+            </p>
 
             <label htmlFor="objetivo1">
               <input
                 type="checkbox"
                 name="objetivo1"
+                id="objetivo1"
                 value="Recebimento de avaliadores do MEC"
               />
               Recebimento de avaliadores do MEC
@@ -177,6 +228,7 @@ export default function SolicitarVeiculo() {
               <input
                 type="checkbox"
                 name="objetivo2"
+                id="objetivo2"
                 value="Reuniões agendadas pelo setor de transportes com os motoristas"
               />
               Reuniões agendadas pelo setor de transportes com os motoristas
@@ -186,6 +238,7 @@ export default function SolicitarVeiculo() {
               <input
                 type="checkbox"
                 name="objetivo3"
+                id="objetivo3"
                 value="Reunião com calendário definido previamente e que envolve representação do IFE"
               />
               Reunião com calendário definido previamente e que envolve
@@ -196,6 +249,7 @@ export default function SolicitarVeiculo() {
               <input
                 type="checkbox"
                 name="objetivo4"
+                id="objetivo4"
                 value="Mudança de prédio"
               />
               Mudança de prédio
@@ -205,6 +259,7 @@ export default function SolicitarVeiculo() {
               <input
                 type="checkbox"
                 name="objetivo5"
+                id="objetivo5"
                 value="Eventos de colação de grau"
               />
               Eventos de colação de grau
@@ -214,6 +269,7 @@ export default function SolicitarVeiculo() {
               <input
                 type="checkbox"
                 name="objetivo6"
+                id="objetivo6"
                 value="Montagem de estande na ExpoBrejo"
               />
               Montagem de estande na ExpoBrejo
@@ -223,6 +279,7 @@ export default function SolicitarVeiculo() {
               <input
                 type="checkbox"
                 name="objetivo7"
+                id="objetivo7"
                 value="Revisões dos veículos, quando estas não puderem ser feitas em datas sem agendamentos"
               />
               Revisões dos veículos, quando estas não puderem ser feitas em
@@ -231,18 +288,24 @@ export default function SolicitarVeiculo() {
 
             <h3>Qual o tipo da solicitação?</h3>
 
-            <label htmlFor="tipo">
+            <label htmlFor="com-motorista">
               <input
                 type="radio"
                 name="tipo"
+                id="com-motorista"
                 value="Veículo com motorista"
                 required
               />
               Veículo com motorista
             </label>
 
-            <label htmlFor="tipo">
-              <input type="radio" name="tipo" value="Veículo sem motorista" />
+            <label htmlFor="sem-motorista">
+              <input
+                type="radio"
+                name="tipo"
+                id="sem-motorista"
+                value="Veículo sem motorista"
+              />
               Veículo sem motorista (É necessário apresentar Portaria
               autorizando a condução para a retirada do veículo)
             </label>
@@ -251,94 +314,114 @@ export default function SolicitarVeiculo() {
               Esta solicitação vai atender a demanda de qual setor ou grupo?
             </h3>
 
-            <label htmlFor="setor">
-              <input type="radio" name="setor" value="Alunos do IFE" required />
-              Alunos do IFE
-            </label>
-
-            <label htmlFor="setor">
+            <label htmlFor="alunos">
               <input
                 type="radio"
                 name="setor"
+                value="Alunos do IFE"
+                id="alunos"
+                required
+              />
+              Alunos do IFE
+            </label>
+
+            <label htmlFor="assistencia">
+              <input
+                type="radio"
+                name="setor"
+                id="assistencia"
                 value="Assistência estudantil do IFE"
               />
               Assistência estudantil do IFE
             </label>
 
-            <label htmlFor="setor">
-              <input type="radio" name="setor" value="Direção do IFE" />
-              Direção do IFE
-            </label>
-
-            <label htmlFor="setor">
+            <label htmlFor="direcao">
               <input
                 type="radio"
                 name="setor"
+                id="direcao"
+                value="Direção do IFE"
+              />
+              Direção do IFE
+            </label>
+
+            <label htmlFor="biologia">
+              <input
+                type="radio"
+                name="setor"
+                id="biologia"
                 value="Licenciatura em Biologia"
               />
               Licenciatura em Biologia
             </label>
 
-            <label htmlFor="setor">
-              <input type="radio" name="setor" value="Licenciatura em Física" />
-              Licenciatura em Física
-            </label>
-
-            <label htmlFor="setor">
+            <label htmlFor="fisica">
               <input
                 type="radio"
                 name="setor"
+                id="fisica"
+                value="Licenciatura em Física"
+              />
+              Licenciatura em Física
+            </label>
+
+            <label htmlFor="matematica">
+              <input
+                type="radio"
+                name="setor"
+                id="matematica"
                 value="Licenciatura em Matemática"
               />
               Licenciatura em Matemática
             </label>
 
-            <label htmlFor="setor">
+            <label htmlFor="pedagogia">
               <input
                 type="radio"
                 name="setor"
+                id="pedagogia"
                 value="Licenciatura em Pedagogia"
               />
               Licenciatura em Pedagogia
             </label>
 
-            <label htmlFor="setor">
+            <label htmlFor="quimica">
               <input
                 type="radio"
                 name="setor"
+                id="quimica"
                 value="Licenciatura em Química"
               />
               Licenciatura em Química
             </label>
 
-            <label htmlFor="setor">
+            <label htmlFor="licnm">
               <input
                 type="radio"
                 name="setor"
+                id="licnm"
                 value="Licenciatura Interdisciplinar em Ciências Naturais e Matemática"
               />
               Licenciatura Interdisciplinar em Ciências Naturais e Matemática
             </label>
 
-            <label>
-              <h3>O solicitante também vai no veículo?</h3>
-              <label htmlFor="solicitante-vai">
-                <input
-                  type="radio"
-                  name="solicitante-vai"
-                  value={true}
-                  required
-                />
-                Sim
-                <br />
-                <input type="radio" name="solicitante-vai" value={false} />
-                Não
-              </label>
+            <h3>O solicitante também vai no veículo?</h3>
+            <label htmlFor="solicitante-vai">
+              <input
+                type="radio"
+                name="solicitante-vai"
+                value={true}
+                required
+              />
+              Sim
+              <br />
+              <input type="radio" name="solicitante-vai" value={false} />
+              Não
             </label>
 
+            <h3>Listagem de passageiros</h3>
             <label>
               <table>
-                <h3>Listagem de passageiros</h3>
                 <tr>
                   <th>Número</th>
                   <th>Nome</th>
@@ -353,7 +436,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -366,7 +449,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -379,7 +462,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -392,7 +475,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -405,7 +488,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -418,7 +501,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -431,7 +514,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -444,7 +527,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -457,7 +540,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -470,7 +553,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -483,7 +566,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -496,7 +579,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -509,7 +592,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -522,7 +605,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -535,7 +618,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -548,7 +631,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -561,7 +644,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -574,7 +657,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -587,7 +670,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -600,7 +683,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -613,7 +696,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -626,7 +709,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -639,7 +722,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -652,7 +735,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -665,7 +748,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -678,7 +761,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -691,7 +774,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -704,7 +787,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -717,7 +800,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -730,7 +813,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -743,7 +826,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -756,7 +839,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -769,7 +852,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -782,7 +865,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -795,7 +878,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -808,7 +891,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -821,7 +904,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -834,7 +917,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -847,7 +930,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -860,7 +943,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -873,7 +956,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -886,7 +969,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -899,7 +982,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>
@@ -912,7 +995,7 @@ export default function SolicitarVeiculo() {
                   <td>
                     <input
                       type="text"
-                      placeholder="Documento de identificação"
+                      placeholder="Doc de identificação ou SIAPE"
                     ></input>
                   </td>
                 </tr>

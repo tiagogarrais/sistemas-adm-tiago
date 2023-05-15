@@ -1,10 +1,12 @@
 import { useSession, signIn } from 'next-auth/react'
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 export default function SalvarNovoCadastro() {
   const { data: session } = useSession()
   const [cadastro, setCadastro] = useState({})
+  const router = useRouter()
 
   function onInputChange(evt) {
     setCadastro(prevState => ({
@@ -39,7 +41,13 @@ export default function SalvarNovoCadastro() {
         dataInformacao: Date()
       })
       .then(function (res) {
-        window.alert('Dados enviados')
+        document.getElementById('nome').value = ''
+        document.getElementById('telefone').value = ''
+        setCadastro({})
+        window.alert('Informações atualizadas')
+        document.getElementById('btnSave').disabled = false
+        document.getElementById('btnSave').innerText = 'Salvar'
+        router.push('/cadastro/cadastro')
       })
       .catch(function (error) {
         console.log(error)
@@ -52,7 +60,7 @@ export default function SalvarNovoCadastro() {
       <div>
         <h2>Atualizar dados</h2>
         <label for="nome">
-          Nome completo
+          Nome
           <input
             type="text"
             id="nome"

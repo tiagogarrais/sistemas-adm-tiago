@@ -9,13 +9,18 @@ export default function Cadastro() {
   if (session) {
     return (
       <>
-        <Link href="/">Voltar para a página principal</Link>
+        <div className="button">
+          <Link href="/">Voltar para a página principal</Link>
+        </div>
         <div id="cadastro">
           <BuscarCadastro />
         </div>
-
-        <Link href={'/cadastro/atualizar'}>Atualizar cadastro</Link>
-        <Link href="/">Voltar para a página principal</Link>
+        <div className="button">
+          <Link href={'/cadastro/atualizar'}>Atualizar cadastro</Link>
+        </div>
+        <div className="button">
+          <Link href="/">Voltar para a página principal</Link>
+        </div>
       </>
     )
   }

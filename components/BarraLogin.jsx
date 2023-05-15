@@ -8,9 +8,11 @@ export default function BarraLogin() {
     return (
       <>
         <div id="barra-login">
-          Bem vindo(a) {session.user.email}
           <button onClick={() => signOut()}>Desconectar</button>
-          <Link href="/">Página principal</Link>
+          Bem vindo(a) {session.user.email}
+          <div className="button">
+            <Link href="/">Página principal</Link>
+          </div>
         </div>
       </>
     )
