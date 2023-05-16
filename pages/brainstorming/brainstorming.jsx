@@ -175,33 +175,28 @@ export default function Brainstorming() {
           </strong>
         </h2>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <tr>
-              <th scope="col" class="px-6 py-3">
-                Endereço vinculado{' '}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Grau de prioridade{' '}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Setor ou local de aplicação{' '}
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Ideia{' '}
-              </th>
-            </tr>
-            {ideias.map(ideiasRecebidas => (
-              <>
-                <tr>
-                  <td> {`${ideiasRecebidas.endereco}`} </td>
-                  <td> {`${ideiasRecebidas.grauPrioridade}`} </td>
-                  <td> {`${ideiasRecebidas.localAplicacao}`} </td>
-                  <td> {`${ideiasRecebidas.ideia}`} </td>
-                </tr>
-              </>
-            ))}
-          </table>
+        <div>
+          {ideias.map(ideiasRecebidas => (
+            <>
+              <tr>
+                <br />
+                <p>
+                  A ideia recebida foi: {`${ideiasRecebidas.ideia}`} Essa ideia
+                  deve ser aplicada no seguinte endereço:{' '}
+                  {`${ideiasRecebidas.endereco}`}
+                  {'. '}
+                  Essa ideia foi classificada como:{' '}
+                  {`${ideiasRecebidas.grauPrioridade}`}. O setor de aplicação
+                  dessa ideia é: {`${ideiasRecebidas.localAplicacao}`}.
+                </p>
+                <strong>
+                  {' '}
+                  <br /> <hr />{' '}
+                </strong>
+              </tr>
+            </>
+          ))}
+          == Fim das ideias recebidas ==
         </div>
       </div>
     )
