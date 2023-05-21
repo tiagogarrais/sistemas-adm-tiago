@@ -1,9 +1,12 @@
 import { useRouter } from 'next/router'
+import { useQRCode } from 'next-qrcode'
 
 export function MostrarAmbiente() {
   const router = useRouter()
   const ambiente = router.query.ambiente
   const linkApiSala = '../api/ambientes/' + ambiente
+  const { Canvas } = useQRCode()
+  const linkDestaPagina = 'https://admtiago.com.br/ambientes/' + ambiente
 
   fetch(linkApiSala)
     .then(function (dadosBrutos) {
@@ -45,29 +48,41 @@ export function MostrarAmbiente() {
   return (
     <div>
       <h2 id="nomeAmbiente"></h2>
-      <p>Chave número: {ambiente}</p>
-      <p>
-        Servente de limpeza: <span id="responsabilidadeLimpeza"></span>
-      </p>
-      <p>
-        A limpeza completa deste ambiente é executada{' '}
-        <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
-      </p>
-      <p>
-        Tipo de ambiente: <span id="tipo"></span>
-      </p>
+      <div className="duas-colunas">
+        <p>Chave número: {ambiente}</p>
+        <p>
+          Servente de limpeza: <span id="responsabilidadeLimpeza"></span>
+        </p>
+        <p>
+          A limpeza completa deste ambiente é executada{' '}
+          <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
+        </p>
+        <p>
+          Tipo de ambiente: <span id="tipo"></span>
+        </p>
 
-      <p>
-        Largura em metros: <span id="largura"></span>
-      </p>
+        <p>
+          Largura em metros: <span id="largura"></span>
+        </p>
 
-      <p>
-        Comprimento: <span id="comprimento"></span>
-      </p>
+        <p>
+          Comprimento: <span id="comprimento"></span>
+        </p>
 
-      <p>
-        Área em metros quadrados: <span id="areaM2"></span>
-      </p>
+        <p>
+          Área em metros quadrados: <span id="areaM2"></span>
+        </p>
+        <p>Link desta página: {linkDestaPagina}</p>
+        <Canvas
+          text={linkDestaPagina}
+          options={{
+            level: 'M',
+            margin: 3,
+            scale: 4,
+            width: 290
+          }}
+        />
+      </div>
     </div>
   )
 }
