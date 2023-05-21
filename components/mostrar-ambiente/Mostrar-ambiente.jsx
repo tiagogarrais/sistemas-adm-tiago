@@ -48,41 +48,39 @@ export function MostrarAmbiente() {
   return (
     <div>
       <h2 id="nomeAmbiente"></h2>
-      <div className="duas-colunas">
-        <p>Chave número: {ambiente}</p>
-        <p>
-          Servente de limpeza: <span id="responsabilidadeLimpeza"></span>
-        </p>
-        <p>
-          A limpeza completa deste ambiente é executada{' '}
-          <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
-        </p>
-        <p>
-          Tipo de ambiente: <span id="tipo"></span>
-        </p>
+      <p>Chave número: {ambiente}</p>
+      <p>
+        Servente de limpeza: <span id="responsabilidadeLimpeza"></span>
+      </p>
+      <p>
+        A limpeza completa deste ambiente é executada{' '}
+        <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
+      </p>
+      <p>
+        Tipo de ambiente: <span id="tipo"></span>
+      </p>
 
-        <p>
-          Largura em metros: <span id="largura"></span>
-        </p>
+      <p>
+        Largura em metros: <span id="largura"></span>
+      </p>
 
-        <p>
-          Comprimento: <span id="comprimento"></span>
-        </p>
+      <p>
+        Comprimento: <span id="comprimento"></span>
+      </p>
 
-        <p>
-          Área em metros quadrados: <span id="areaM2"></span>
-        </p>
-        <p>Link desta página: {linkDestaPagina}</p>
-        <Canvas
-          text={linkDestaPagina}
-          options={{
-            level: 'M',
-            margin: 3,
-            scale: 4,
-            width: 290
-          }}
-        />
-      </div>
+      <p>
+        Área em metros quadrados: <span id="areaM2"></span>
+      </p>
+      <p>Link desta página: {linkDestaPagina}</p>
+      <Canvas
+        text={linkDestaPagina}
+        options={{
+          level: 'M',
+          margin: 3,
+          scale: 4,
+          width: 290
+        }}
+      />
     </div>
   )
 }
