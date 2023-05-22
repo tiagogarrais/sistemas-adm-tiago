@@ -49,9 +49,9 @@ export function MostrarAmbiente() {
     <div>
       <h2 id="nomeAmbiente"></h2>
       <p>Chave número: {ambiente}</p>
-      <p>
+      {/* <p>
         Servente de limpeza: <span id="responsabilidadeLimpeza"></span>
-      </p>
+      </p> */}
       <p>
         A limpeza completa deste ambiente é executada{' '}
         <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
