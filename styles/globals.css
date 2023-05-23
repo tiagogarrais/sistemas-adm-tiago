@@ -10,6 +10,12 @@ article {
   @apply overflow-hidden rounded-lg shadow-lg bg-blue-100;
 }
 
+.center{
+  @apply
+  flex
+  justify-center
+}
+
 .button {
   @apply hover:bg-blue-900
   hover:text-white

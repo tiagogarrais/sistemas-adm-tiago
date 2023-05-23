@@ -72,15 +72,17 @@ export function MostrarAmbiente() {
         Área em metros quadrados: <span id="areaM2"></span>
       </p>
       <p>Link desta página: {linkDestaPagina}</p>
-      <Canvas
-        text={linkDestaPagina}
-        options={{
-          level: 'M',
-          margin: 3,
-          scale: 4,
-          width: 290
-        }}
-      />
+      <div className="center">
+        <Canvas
+          text={linkDestaPagina}
+          options={{
+            level: 'M',
+            margin: 3,
+            scale: 4,
+            width: 280
+          }}
+        />
+      </div>
     </div>
   )
 }
