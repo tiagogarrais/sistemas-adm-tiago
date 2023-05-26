@@ -7,6 +7,11 @@ export default function Cabecalho() {
   return (
     <div>
       <h1 id="titulo">www.admtiago.com.br</h1>
+      <div>
+        <article>
+          Respeito - Responsabilidade - Inovação - Transparência
+        </article>
+      </div>
     </div>
   )
 }
