@@ -79,7 +79,7 @@ export function MostrarAmbiente() {
             level: 'M',
             margin: 3,
             scale: 4,
-            width: 280
+            width: 200
           }}
         />
       </div>
