@@ -6,7 +6,7 @@ export default function Cabecalho() {
 
   return (
     <div>
-      <h1 id="titulo">Portfólio digital - Adm. Tiago Arrais</h1>
+      <h1 id="titulo">www.admtiago.com.br</h1>
     </div>
   )
 }

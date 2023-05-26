@@ -3,8 +3,6 @@ import { MostrarAmbiente } from '../../components/mostrar-ambiente/Mostrar-ambie
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import Link from 'next/link'
-import Listagem from './listagem'
-import { NodeNextRequest } from 'next/dist/server/base-http/node'
 
 export default function Ambientes() {
   const tituloPagina = 'Ambientes IFE'
@@ -15,11 +13,11 @@ export default function Ambientes() {
   const linkApiFoto = '/images/ambientes/' + ambiente + '.jpg'
 
   function imprimir() {
-    document.getElementById('titulo').style.display = 'none'
     document.getElementById('titulo-pagina').style.display = 'none'
     document.getElementById('barra-login').style.display = 'none'
     document.getElementById('listagem').style.display = 'none'
     document.getElementById('imprimir').style.display = 'none'
+    document.getElementById('problema').style.display = 'none'
   }
 
   if (session) {
@@ -47,6 +45,9 @@ export default function Ambientes() {
           <button id="imprimir" onClick={imprimir}>
             Versão para impressão
           </button>
+          <a href="https://atendimento.ufca.edu.br" target="_blank">
+            <button id="problema">Informar problema no ambiente</button>
+          </a>
           <hr />
         </main>
       </div>
