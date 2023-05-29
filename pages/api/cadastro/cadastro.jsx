@@ -27,8 +27,17 @@ export default async function buscarCadastro(req, res) {
         }
         break
 
+      case 'PUT':
+        try {
+          res.json('Em implementação')
+        } catch (error) {
+          console.log(error)
+          res.json({ error })
+        }
+        break
+
       default:
-        res.setHeader('Permitido', ['GET', 'POST'])
+        res.setHeader('Permitido', ['GET', 'POST', 'PUT'])
         res.status(405).end(`Método ${method} não permitido`)
     }
   } catch (err) {

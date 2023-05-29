@@ -10,10 +10,9 @@ article {
   @apply overflow-hidden rounded-lg shadow-lg bg-blue-100;
 }
 
-.center{
-  @apply
-  flex
-  justify-center
+.center {
+  @apply flex
+  justify-center;
 }
 
 .button {
@@ -90,7 +89,7 @@ button {
 }
 
 h1 {
-  @apply text-4xl pt-6 pb-6 pl-3 pr-3 bg-gray-600 text-center font-bold text-white;
+  @apply text-3xl pt-6 pb-6 pl-3 pr-3 bg-gray-600 text-center font-bold text-white;
 }
 
 h2 {
