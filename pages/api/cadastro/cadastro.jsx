@@ -19,7 +19,9 @@ export default async function buscarCadastro(req, res) {
       case 'POST':
         try {
           await connectMongo()
+          await Usuario.deleteMany({ email: req.body.email })
           const usuario = await Usuario.create(req.body)
+          console.log(usuario.email)
           res.json({ usuario })
         } catch (error) {
           console.log(error)
