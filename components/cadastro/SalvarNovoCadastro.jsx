@@ -2,7 +2,7 @@ import { useSession, signIn } from 'next-auth/react'
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import Link from 'next/link'
+import BuscarCadastro from './BuscarCadastro'
 
 export default function SalvarNovoCadastro() {
   const { data: session } = useSession()
@@ -14,6 +14,23 @@ export default function SalvarNovoCadastro() {
       ...prevState,
       [evt.target.id]: evt.target.value
     }))
+  }
+
+  function deletarCadastro() {
+    axios
+      .delete('/api/cadastro/cadastro?' + 'email=' + cadastro.email)
+      .then(function (res) {
+        document.getElementById('nome').value = ''
+        document.getElementById('telefone').value = ''
+        setCadastro({})
+        window.alert('Cadastro deletado')
+        document.getElementById('btnSave').disabled = false
+        document.getElementById('btnSave').innerText = 'Salvar'
+        router.push('/cadastro/cadastro')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   function btnSaveClick() {
@@ -59,6 +76,7 @@ export default function SalvarNovoCadastro() {
     cadastro.email = session.user.email
     return (
       <div>
+        <BuscarCadastro />
         <h2>Atualizar dados</h2>
         <label for="nome">
           Nome
@@ -81,6 +99,10 @@ export default function SalvarNovoCadastro() {
         </label>
         <button id="btnSave" value="Salvar" onClick={btnSaveClick}>
           Salvar
+        </button>
+
+        <button id="deletarCadastro" value="Deletar" onClick={deletarCadastro}>
+          Apagar meu cadastro
         </button>
       </div>
     )

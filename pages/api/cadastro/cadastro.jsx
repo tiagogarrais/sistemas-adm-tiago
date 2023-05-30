@@ -21,7 +21,6 @@ export default async function buscarCadastro(req, res) {
           await connectMongo()
           await Usuario.deleteMany({ email: req.body.email })
           const usuario = await Usuario.create(req.body)
-          console.log(usuario.email)
           res.json({ usuario })
         } catch (error) {
           console.log(error)
@@ -29,9 +28,13 @@ export default async function buscarCadastro(req, res) {
         }
         break
 
-      case 'PUT':
+      case 'DELETE':
         try {
-          res.json('Em implementação')
+          console.log(req.query.email)
+          await connectMongo()
+          await Usuario.deleteMany({ email: req.query.email })
+          console.log(req.body.email)
+          res.status(201).json(dados)
         } catch (error) {
           console.log(error)
           res.json({ error })
@@ -39,7 +42,7 @@ export default async function buscarCadastro(req, res) {
         break
 
       default:
-        res.setHeader('Permitido', ['GET', 'POST', 'PUT'])
+        res.setHeader('Permitido', ['GET', 'POST', 'DELETE'])
         res.status(405).end(`Método ${method} não permitido`)
     }
   } catch (err) {
