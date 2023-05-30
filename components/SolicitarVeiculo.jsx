@@ -7,6 +7,19 @@ import onibus from '../public/images/transportes/onibus-urbano.jpg'
 import ListaPassageiros from './ListaPassageiros'
 
 export default function SolicitarVeiculo() {
+  const [solicita, setSolicita] = useState({})
+  const { data: session } = useSession()
+  const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
+  const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
+  const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
+
+  function onInputChange(evt) {
+    setSolicita(prevState => ({
+      ...prevState,
+      [evt.target.id]: evt.target.value
+    }))
+  }
+
   React.useEffect(() => {
     buscarCadastro()
   }, [])
@@ -29,15 +42,11 @@ export default function SolicitarVeiculo() {
     setEmailCadastrado(data.email)
   }
 
-  const { data: session } = useSession()
-  const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
-  const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
-  const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
-
   const raioTransportes =
     'http://raiolaser.16mb.com/images/2/2a/Raio-transportes-ufca.jpeg'
 
   if (session) {
+    solicita.email = session.user.email
     return (
       <div>
         <form>
@@ -50,10 +59,7 @@ export default function SolicitarVeiculo() {
               para contato é <strong>{telefoneCadastrado}</strong>.
             </p>
             <div className="button">
-              <Link href="/cadastro/atualizar">
-                Se as informações estiverem incorretas clique aqui para
-                atualizar o seu cadastro
-              </Link>
+              <Link href="/cadastro/atualizar">Atualizar cadastro</Link>
             </div>
 
             <h3>Qual o veículo que melhor atende sua demanda??</h3>
@@ -61,9 +67,10 @@ export default function SolicitarVeiculo() {
               <label htmlFor="veiculo">
                 <input
                   type="radio"
+                  value="minivan"
                   name="veiculo"
-                  value="SPIN - 6 vagas + motorista"
                   id="minivan"
+                  checked="true"
                   required
                 />
                 <Image
@@ -81,12 +88,7 @@ export default function SolicitarVeiculo() {
               </p>
 
               <label htmlFor="tipo">
-                <input
-                  type="radio"
-                  name="veiculo"
-                  value="Ônibus - 44 vagas + motorista"
-                  id="onibus"
-                ></input>
+                <input type="radio" name="veiculo" id="onibus"></input>
                 <Image
                   alt="Ônibus urbano"
                   src={onibus}
@@ -142,8 +144,16 @@ export default function SolicitarVeiculo() {
             </label>
 
             <label>
-              Cidade destino <input type="text" required></input>
+              Cidade destino
+              <input
+                type="text"
+                id="cidade"
+                required
+                onChange={onInputChange}
+                value={solicita.cidade}
+              ></input>
             </label>
+            <button onClick={() => console.log(solicita)}>Verificar</button>
 
             <label>
               Data da viagem
