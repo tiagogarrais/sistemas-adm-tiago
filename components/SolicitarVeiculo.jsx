@@ -16,7 +16,7 @@ export default function SolicitarVeiculo() {
   function onInputChange(evt) {
     setSolicita(prevState => ({
       ...prevState,
-      [evt.target.id]: evt.target.value
+      [evt.target.name]: evt.target.value
     }))
   }
 
@@ -64,45 +64,28 @@ export default function SolicitarVeiculo() {
 
             <h3>Qual o veículo que melhor atende sua demanda??</h3>
             <div id="duas-colunas">
-              <label htmlFor="veiculo">
+              <label>
                 <input
                   type="radio"
-                  value="minivan"
                   name="veiculo"
                   id="minivan"
-                  checked="true"
-                  required
-                />
-                <Image
-                  alt="Minivan Spin"
-                  src={minivan}
-                  width={500}
-                  height={500}
-                  onClick={() => {
-                    document.getElementById('minivan').checked = true
-                  }}
-                />
+                  value="minivan"
+                  onChange={onInputChange}
+                ></input>
+                <Image src={minivan} width={300} height={300} alt="Minivan" />A
+                minivan Spin pode transportar até 6 passageiros + 1 motorista
               </label>
-              <p>
-                A minivan Spin pode transportar até 6 passageiros + 1 motorista
-              </p>
-
-              <label htmlFor="tipo">
-                <input type="radio" name="veiculo" id="onibus"></input>
-                <Image
-                  alt="Ônibus urbano"
-                  src={onibus}
-                  width={500}
-                  height={500}
-                  onClick={() => {
-                    document.getElementById('onibus').checked = true
-                  }}
-                />
+              <label>
+                <input
+                  type="radio"
+                  name="veiculo"
+                  id="onibus"
+                  value="onibus"
+                  onChange={onInputChange}
+                ></input>
+                <Image src={onibus} width={300} height={300} alt="Minivan" />O
+                ônibus urbano pode transportar até 44 passageiros + 1 motorista
               </label>
-              <p>
-                O ônibus urbano pode transportar até 44 passageiros + 1
-                motorista
-              </p>
             </div>
 
             <h3>Dados da viagem</h3>
