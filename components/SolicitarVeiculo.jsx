@@ -47,6 +47,9 @@ export default function SolicitarVeiculo() {
 
   if (session) {
     solicita.email = session.user.email
+    nomeCadastrado ? (solicita.nome = nomeCadastrado) : ''
+    telefoneCadastrado ? (solicita.telefone = telefoneCadastrado) : ''
+    solicita.veiculo ? '' : (solicita.veiculo = 'Minivan')
     return (
       <div>
         <form>
@@ -62,98 +65,156 @@ export default function SolicitarVeiculo() {
               <Link href="/cadastro/atualizar">Atualizar cadastro</Link>
             </div>
 
+            <h3>Dados gerais sobre viagem em veículos oficiais</h3>
+
+            <div>
+              Atenção: Atuação permitida do serviço de transporte terrestre da
+              UFCA: Raio de 800 km à partir da sede - Juazeiro do Norte
+              <Image
+                src={raioTransportes}
+                width={500}
+                height={500}
+                alt="Atuação permitida do serviço de transportes: raio de 800 km à partir da sede - Juazeiro do Norte"
+              ></Image>
+              <div className="button">
+                <a
+                  href="http://raiolaser.16mb.com/index.php/Uso_dos_ve%C3%ADculos_oficiais_da_UFCA_campus_Brejo_Santo#Atua.C3.A7.C3.A3o:_Raio_de_800_km_.C3.A0_partir_da_sede_-_Juazeiro_do_Norte.3B"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Consultar raio de atuação do serviço de transportes do IFE
+                </a>
+              </div>
+            </div>
+
             <h3>Qual o veículo que melhor atende sua demanda??</h3>
-            <div id="duas-colunas">
+            <div>
               <label>
                 <input
                   type="radio"
                   name="veiculo"
                   id="minivan"
-                  value="minivan"
+                  value="Minivan"
                   onChange={onInputChange}
+                  selected
                 ></input>
-                <Image src={minivan} width={300} height={300} alt="Minivan" />A
-                minivan Spin pode transportar até 6 passageiros + 1 motorista
+                <Image src={minivan} width={300} height={300} alt="Minivan" />
+                Até 6 passageiros + 1 motorista
               </label>
+
               <label>
                 <input
                   type="radio"
                   name="veiculo"
                   id="onibus"
-                  value="onibus"
+                  value="Ônibus"
                   onChange={onInputChange}
                 ></input>
-                <Image src={onibus} width={300} height={300} alt="Minivan" />O
-                ônibus urbano pode transportar até 44 passageiros + 1 motorista
+                <Image src={onibus} width={300} height={300} alt="Minivan" />
+                Até 44 passageiros + 1 motorista
               </label>
             </div>
 
-            <h3>Dados da viagem</h3>
+            <h3>{solicita.nome}, você também vai no veículo?</h3>
+            <label htmlFor="solicitante-vai">
+              <input
+                type="radio"
+                name="solicitante-vai"
+                value={true}
+                required
+              />
+              Sim
+              <br />
+              <input type="radio" name="solicitante-vai" value={false} />
+              Não
+            </label>
 
-            <p>
-              Atenção: Atuação permitida do serviço de transporte terrestre da
-              UFCA: Raio de 800 km à partir da sede - Juazeiro do Norte
-            </p>
-            <Image
-              src={raioTransportes}
-              width={500}
-              height={500}
-              alt="Atuação permitida do serviço de transportes: raio de 800 km à partir da sede - Juazeiro do Norte"
-            ></Image>
-            <div className="button">
-              <a
-                href="http://raiolaser.16mb.com/index.php/Uso_dos_ve%C3%ADculos_oficiais_da_UFCA_campus_Brejo_Santo#Atua.C3.A7.C3.A3o:_Raio_de_800_km_.C3.A0_partir_da_sede_-_Juazeiro_do_Norte.3B"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Consultar raio de atuação do serviço de transportes do IFE
-              </a>
-            </div>
+            <h3>Sobre a viagem</h3>
 
             <label>
-              UF destino
+              Qual o estado(UF) de destino?
               <br />
-              <select id="estado" name="estado">
-                <option value="CE">Ceará</option>
-                <option value="AL">Alagoas</option>
-                <option value="BA">Bahia</option>
-                <option value="MA">Maranhão</option>
-                <option value="PB">Paraíba</option>
-                <option value="PE">Pernambuco</option>
-                <option value="PI">Piauí</option>
-                <option value="RN">Rio Grande do Norte</option>
-                <option value="SE">Sergipe</option>
+              <select id="estado" onChange={onInputChange} name="uf" required>
+                <option name="estado" value="Ceará" id="ceara" selected>
+                  Ceará
+                </option>
+                <option name="estado" value="Alagoas" id="alagoas">
+                  Alagoas
+                </option>
+                <option name="estado" value="Bahia" id="bahia">
+                  Bahia
+                </option>
+                <option name="estado" value="Maranhão" id="maranhao">
+                  Maranhão
+                </option>
+                <option name="estado" value="Paraíba" id="paraiba">
+                  Paraíba
+                </option>
+                <option name="estado" value="Pernambuco" id="pernambuco">
+                  Pernambuco
+                </option>
+                <option name="estado" value="Piauí" id="piaui">
+                  Piauí
+                </option>
+                <option
+                  name="estado"
+                  value="Rio Grande do Norte"
+                  id="rio-grande-do-norte"
+                >
+                  Rio Grande do Norte
+                </option>
+                <option name="estado" value="Sergipe" id="sergipe">
+                  Sergipe
+                </option>
               </select>
             </label>
 
+            <button onClick={() => console.log(solicita)}>Verificar</button>
+
             <label>
-              Cidade destino
+              Qual a cidade destino?
               <input
                 type="text"
                 id="cidade"
+                name="cidade"
                 required
                 onChange={onInputChange}
                 value={solicita.cidade}
               ></input>
             </label>
-            <button onClick={() => console.log(solicita)}>Verificar</button>
 
             <label>
               Data da viagem
-              <input type="date" name="data-ida" id="data-ida" required />
+              <input
+                type="date"
+                name="Data da ida"
+                id="dataIda"
+                onChange={onInputChange}
+                value={solicita.dataIda}
+                required
+              />
             </label>
 
             <label>
               Hora da saída
-              <input type="time" name="hora-ida" id="hora-ida" required />
+              <input
+                type="time"
+                name="Horário de saída"
+                id="horaIda"
+                onChange={onInputChange}
+                value={solicita.horaIda}
+                required
+              />
             </label>
 
             <label>
               Data do retorno
               <input
                 type="date"
-                name="data-retorno"
-                id="data-retorno"
+                name="Data do retorno"
+                id="dataRetorno"
+                onChange={onInputChange}
+                value={solicita.dataRetorno}
                 required
               />
             </label>
@@ -161,8 +222,10 @@ export default function SolicitarVeiculo() {
               Hora retorno
               <input
                 type="time"
-                name="hora-retorno"
-                id="hora-retorno"
+                name="Hora do retorno"
+                id="horaRetorno"
+                onChange={onInputChange}
+                value={solicita.horaRetorno}
                 required
               />
             </label>
@@ -399,22 +462,12 @@ export default function SolicitarVeiculo() {
               Licenciatura Interdisciplinar em Ciências Naturais e Matemática
             </label>
 
-            <h3>O solicitante também vai no veículo?</h3>
-            <label htmlFor="solicitante-vai">
-              <input
-                type="radio"
-                name="solicitante-vai"
-                value={true}
-                required
-              />
-              Sim
-              <br />
-              <input type="radio" name="solicitante-vai" value={false} />
-              Não
-            </label>
             <ListaPassageiros />
           </div>
         </form>
+        <button type="submit" onClick={() => console.log(solicita)}>
+          Enviar dados
+        </button>
       </div>
     )
   }

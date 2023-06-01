@@ -33,7 +33,7 @@ article {
 }
 
 #duas-colunas {
-  @apply columns-2;
+  @apply columns-2 p-4;
 }
 
 .duas-colunas {
