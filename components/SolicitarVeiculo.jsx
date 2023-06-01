@@ -387,7 +387,7 @@ export default function SolicitarVeiculo() {
                 type="radio"
                 name="setor"
                 id="assistencia"
-                value="Assistência estudantil do IFE"
+                value="Apoio ao discente - IFE"
               />
               Assistência estudantil do IFE
             </label>
