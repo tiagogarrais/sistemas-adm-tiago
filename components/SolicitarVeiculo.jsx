@@ -236,9 +236,9 @@ export default function SolicitarVeiculo() {
             <label htmlFor="local1">
               <input
                 type="checkbox"
-                name="local1"
-                id="local1"
-                value="Prédio Sede do IFE, Bairro Centro."
+                name="Prédio Sede do IFE, Bairro Centro"
+                id="ife"
+                value="Prédio Sede do IFE, Bairro Centro"
                 defaultChecked
               />
               Prédio Sede do IFE, Bairro Centro.
@@ -247,8 +247,8 @@ export default function SolicitarVeiculo() {
             <label htmlFor="local2">
               <input
                 type="checkbox"
-                name="local2"
-                id="local2"
+                name="localSaida"
+                id="centro"
                 value="Praça Dionísio Rocha de Lucena, Bairro Centro."
               />
               Praça Dionísio Rocha de Lucena, Bairro Centro.
@@ -257,8 +257,8 @@ export default function SolicitarVeiculo() {
             <label htmlFor="local3">
               <input
                 type="checkbox"
-                name="local3"
-                id="local3"
+                name="localSaida"
+                id="abaiara"
                 value="Posto Abaiara (quando não houver desvio de trajeto)"
               />
               Posto Abaiara (quando não houver desvio de trajeto)
@@ -389,7 +389,7 @@ export default function SolicitarVeiculo() {
                 id="assistencia"
                 value="Apoio ao discente - IFE"
               />
-              Assistência estudantil do IFE
+              Apoio ao discente - IFE
             </label>
 
             <label htmlFor="direcao">
