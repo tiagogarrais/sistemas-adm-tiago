@@ -7,7 +7,18 @@ import onibus from '../public/images/transportes/onibus-urbano.jpg'
 import ListaPassageiros from './ListaPassageiros'
 
 export default function SolicitarVeiculo() {
-  const [solicita, setSolicita] = useState({})
+  const [solicita, setSolicita] = useState({
+    saidaAbaiara: 'Não',
+    saidaCentro: 'Não',
+    saidaIfe: 'Não',
+    objetivo1: 'Não marcado',
+    objetivo2: 'Não marcado',
+    objetivo3: 'Não marcado',
+    objetivo4: 'Não marcado',
+    objetivo5: 'Não marcado',
+    objetivo6: 'Não marcado',
+    objetivo7: 'Não marcado'
+  })
   const { data: session } = useSession()
   const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
@@ -17,6 +28,21 @@ export default function SolicitarVeiculo() {
     setSolicita(prevState => ({
       ...prevState,
       [evt.target.name]: evt.target.value
+    }))
+  }
+
+  function onCheckboxChange(evt) {
+    setSolicita(prevState => ({
+      ...prevState,
+      [evt.target.id]: evt.target.checked === true ? 'Sim' : 'Não'
+    }))
+  }
+
+  function onObjetivoChange(evt) {
+    setSolicita(prevState => ({
+      ...prevState,
+      [evt.target.id]:
+        evt.target.checked === true ? evt.target.value : 'Não marcado'
     }))
   }
 
@@ -96,7 +122,6 @@ export default function SolicitarVeiculo() {
                   id="minivan"
                   value="Minivan"
                   onChange={onInputChange}
-                  selected
                 ></input>
                 <Image src={minivan} width={300} height={300} alt="Minivan" />
                 Até 6 passageiros + 1 motorista
@@ -116,18 +141,27 @@ export default function SolicitarVeiculo() {
             </div>
 
             <h3>{solicita.nome}, você também vai no veículo?</h3>
-            <label htmlFor="solicitante-vai">
-              <input
-                type="radio"
-                name="solicitante-vai"
-                value={true}
-                required
-              />
-              Sim
-              <br />
-              <input type="radio" name="solicitante-vai" value={false} />
-              Não
-            </label>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  name="solicitanteVai"
+                  value="Sim"
+                  required
+                  onChange={onInputChange}
+                />
+                Sim
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="solicitanteVai"
+                  value="Não"
+                  onChange={onInputChange}
+                />
+                Não
+              </label>
+            </div>
 
             <h3>Sobre a viagem</h3>
 
@@ -168,8 +202,6 @@ export default function SolicitarVeiculo() {
                 </option>
               </select>
             </label>
-
-            <button onClick={() => console.log(solicita)}>Verificar</button>
 
             <label>
               Qual a cidade destino?
@@ -233,33 +265,36 @@ export default function SolicitarVeiculo() {
             <h3>Local de saída</h3>
             <p>Se for necessário pode-se marcar mais de uma opção.</p>
 
-            <label htmlFor="local1">
+            <label>
               <input
                 type="checkbox"
-                name="Prédio Sede do IFE, Bairro Centro"
-                id="ife"
-                value="Prédio Sede do IFE, Bairro Centro"
-                defaultChecked
+                name="localSaida1"
+                id="saidaIfe"
+                value="Prédio Sede do IFE"
+                onChange={onCheckboxChange}
+                autoComplete="off"
               />
               Prédio Sede do IFE, Bairro Centro.
             </label>
 
-            <label htmlFor="local2">
+            <label>
               <input
                 type="checkbox"
-                name="localSaida"
-                id="centro"
+                name="localSaida2"
+                id="saidaCentro"
                 value="Praça Dionísio Rocha de Lucena, Bairro Centro."
+                onChange={onCheckboxChange}
               />
               Praça Dionísio Rocha de Lucena, Bairro Centro.
             </label>
 
-            <label htmlFor="local3">
+            <label>
               <input
                 type="checkbox"
-                name="localSaida"
-                id="abaiara"
+                name="localSaida3"
+                id="saidaAbaiara"
                 value="Posto Abaiara (quando não houver desvio de trajeto)"
+                onChange={onCheckboxChange}
               />
               Posto Abaiara (quando não houver desvio de trajeto)
             </label>
@@ -277,6 +312,7 @@ export default function SolicitarVeiculo() {
                 name="objetivo1"
                 id="objetivo1"
                 value="Recebimento de avaliadores do MEC"
+                onChange={onObjetivoChange}
               />
               Recebimento de avaliadores do MEC
             </label>
@@ -287,6 +323,7 @@ export default function SolicitarVeiculo() {
                 name="objetivo2"
                 id="objetivo2"
                 value="Reuniões agendadas pelo setor de transportes com os motoristas"
+                onChange={onObjetivoChange}
               />
               Reuniões agendadas pelo setor de transportes com os motoristas
             </label>
@@ -297,6 +334,7 @@ export default function SolicitarVeiculo() {
                 name="objetivo3"
                 id="objetivo3"
                 value="Reunião com calendário definido previamente e que envolve representação do IFE"
+                onChange={onObjetivoChange}
               />
               Reunião com calendário definido previamente e que envolve
               representação do IFE
@@ -308,6 +346,7 @@ export default function SolicitarVeiculo() {
                 name="objetivo4"
                 id="objetivo4"
                 value="Mudança de prédio"
+                onChange={onObjetivoChange}
               />
               Mudança de prédio
             </label>
@@ -318,6 +357,7 @@ export default function SolicitarVeiculo() {
                 name="objetivo5"
                 id="objetivo5"
                 value="Eventos de colação de grau"
+                onChange={onObjetivoChange}
               />
               Eventos de colação de grau
             </label>
@@ -328,6 +368,7 @@ export default function SolicitarVeiculo() {
                 name="objetivo6"
                 id="objetivo6"
                 value="Montagem de estande na ExpoBrejo"
+                onChange={onObjetivoChange}
               />
               Montagem de estande na ExpoBrejo
             </label>
@@ -338,10 +379,12 @@ export default function SolicitarVeiculo() {
                 name="objetivo7"
                 id="objetivo7"
                 value="Revisões dos veículos, quando estas não puderem ser feitas em datas sem agendamentos"
+                onChange={onObjetivoChange}
               />
               Revisões dos veículos, quando estas não puderem ser feitas em
               datas sem agendamentos
             </label>
+            <button onClick={() => console.log(solicita)}>Verificar</button>
 
             <h3>Qual o tipo da solicitação?</h3>
 
