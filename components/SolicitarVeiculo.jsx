@@ -50,7 +50,7 @@ export default function SolicitarVeiculo() {
     buscarCadastro()
   }, [])
 
-  function addPassageiro() {
+  function addPassageiro(evt) {
     setPassageiros(prevPassageiros => [
       ...prevPassageiros,
       { nome, documento: identificacao }
@@ -98,7 +98,7 @@ export default function SolicitarVeiculo() {
               <Link href="/cadastro/atualizar">Atualizar cadastro</Link>
             </div>
 
-            <h3>Dados gerais sobre viagem em veículos oficiais</h3>
+            <h4>Dados gerais sobre viagem em veículos oficiais</h4>
 
             <div>
               Atenção: Atuação permitida do serviço de transporte terrestre da
@@ -120,7 +120,7 @@ export default function SolicitarVeiculo() {
               </div>
             </div>
 
-            <h3>Qual o veículo que melhor atende sua demanda??</h3>
+            <h4>Qual o veículo que melhor atende sua demanda??</h4>
             <div>
               <label>
                 <input
@@ -131,7 +131,7 @@ export default function SolicitarVeiculo() {
                   onChange={onInputChange}
                   required
                 ></input>
-                <Image src={minivan} width={300} height={300} alt="Minivan" />
+                <Image src={minivan} width={150} height={150} alt="Minivan" />
                 Até 6 passageiros + 1 motorista
               </label>
 
@@ -144,12 +144,12 @@ export default function SolicitarVeiculo() {
                   onChange={onInputChange}
                   required
                 ></input>
-                <Image src={onibus} width={300} height={300} alt="Minivan" />
+                <Image src={onibus} width={150} height={150} alt="Minivan" />
                 Até 44 passageiros + 1 motorista
               </label>
             </div>
 
-            <h3>{solicita.nome}, você também vai no veículo?</h3>
+            <h4>{solicita.nome}, você também vai no veículo?</h4>
             <div>
               <label>
                 <input
@@ -172,11 +172,10 @@ export default function SolicitarVeiculo() {
               </label>
             </div>
 
-            <h3>Sobre a viagem</h3>
+            <h4>Sobre a viagem</h4>
 
             <label>
-              Qual o estado(UF) de destino?
-              <br />
+              Qual a UF de destino?
               <select id="estado" onChange={onInputChange} name="uf" required>
                 <option name="estado" value="Ceará" id="ceara" selected>
                   Ceará
@@ -271,7 +270,7 @@ export default function SolicitarVeiculo() {
               />
             </label>
 
-            <h3>Local de saída</h3>
+            <h4>Local de saída</h4>
             <p>Se for necessário pode-se marcar mais de uma opção.</p>
 
             <label>
@@ -309,7 +308,7 @@ export default function SolicitarVeiculo() {
               Posto Abaiara (quando não houver desvio de trajeto)
             </label>
 
-            <h3>A viagem atenderá algum dos objetivos abaixo relacionados?</h3>
+            <h4>A viagem atenderá algum dos objetivos abaixo relacionados?</h4>
             <p>
               Essas solicitações possuem fluxo de aprovação automática pois
               foram definidas como prioridade pelo Conselho da Unidade
@@ -394,9 +393,8 @@ export default function SolicitarVeiculo() {
               Revisões dos veículos, quando estas não puderem ser feitas em
               datas sem agendamentos
             </label>
-            <button onClick={() => console.log(solicita)}>Verificar</button>
 
-            <h3>Qual o tipo da solicitação?</h3>
+            <h4>Qual o tipo da solicitação?</h4>
 
             <label htmlFor="com-motorista">
               <input
@@ -405,6 +403,7 @@ export default function SolicitarVeiculo() {
                 id="com-motorista"
                 value="Veículo com motorista"
                 required
+                onChange={onInputChange}
               />
               Veículo com motorista
             </label>
@@ -415,14 +414,17 @@ export default function SolicitarVeiculo() {
                 name="tipo"
                 id="sem-motorista"
                 value="Veículo sem motorista"
+                onChange={onInputChange}
               />
               Veículo sem motorista (É necessário apresentar Portaria
               autorizando a condução para a retirada do veículo)
             </label>
+            <button onClick={() => console.log(solicita)}>Verificar</button>
 
-            <h3>
-              Esta solicitação vai atender a demanda de qual setor ou grupo?
-            </h3>
+            <h4>
+              Esta solicitação vai atender prioritariamente a demanda de qual
+              setor ou grupo?
+            </h4>
 
             <label htmlFor="alunos">
               <input
@@ -431,6 +433,7 @@ export default function SolicitarVeiculo() {
                 value="Alunos do IFE"
                 id="alunos"
                 required
+                onChange={onInputChange}
               />
               Alunos do IFE
             </label>
@@ -441,6 +444,7 @@ export default function SolicitarVeiculo() {
                 name="setor"
                 id="assistencia"
                 value="Apoio ao discente - IFE"
+                onChange={onInputChange}
               />
               Apoio ao discente - IFE
             </label>
@@ -451,6 +455,7 @@ export default function SolicitarVeiculo() {
                 name="setor"
                 id="direcao"
                 value="Direção do IFE"
+                onChange={onInputChange}
               />
               Direção do IFE
             </label>
@@ -461,6 +466,7 @@ export default function SolicitarVeiculo() {
                 name="setor"
                 id="biologia"
                 value="Licenciatura em Biologia"
+                onChange={onInputChange}
               />
               Licenciatura em Biologia
             </label>
@@ -471,6 +477,7 @@ export default function SolicitarVeiculo() {
                 name="setor"
                 id="fisica"
                 value="Licenciatura em Física"
+                onChange={onInputChange}
               />
               Licenciatura em Física
             </label>
@@ -481,6 +488,7 @@ export default function SolicitarVeiculo() {
                 name="setor"
                 id="matematica"
                 value="Licenciatura em Matemática"
+                onChange={onInputChange}
               />
               Licenciatura em Matemática
             </label>
@@ -491,6 +499,7 @@ export default function SolicitarVeiculo() {
                 name="setor"
                 id="pedagogia"
                 value="Licenciatura em Pedagogia"
+                onChange={onInputChange}
               />
               Licenciatura em Pedagogia
             </label>
@@ -501,6 +510,7 @@ export default function SolicitarVeiculo() {
                 name="setor"
                 id="quimica"
                 value="Licenciatura em Química"
+                onChange={onInputChange}
               />
               Licenciatura em Química
             </label>
@@ -511,11 +521,12 @@ export default function SolicitarVeiculo() {
                 name="setor"
                 id="licnm"
                 value="Licenciatura Interdisciplinar em Ciências Naturais e Matemática"
+                onChange={onInputChange}
               />
               Licenciatura Interdisciplinar em Ciências Naturais e Matemática
             </label>
 
-            <h3>Lista de Passageiros</h3>
+            <h4>Lista de Passageiros</h4>
 
             {Array.from(
               { length: solicita.veiculo == 'Minivan' ? 6 : 44 },
@@ -525,14 +536,18 @@ export default function SolicitarVeiculo() {
                   <input
                     required
                     type="text"
-                    id={`nome-${i}`}
+                    id={`nome-${i + 1}`}
+                    name={`passageiro${i + 1}`}
                     placeholder="Nome completo"
+                    onChange={onInputChange}
                   />
                   <input
                     required
                     type="text"
-                    id={`identificacao-${i}`}
+                    id={`identificacao-${i + 1}`}
+                    name={`identificacao${i + 1}`}
                     placeholder="Identidade, matrícula ou SIAPE"
+                    onChange={onInputChange}
                   />
                 </div>
               )
