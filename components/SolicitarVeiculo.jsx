@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import minivan from '../public/images/transportes/minivan-spin.jpg'
 import onibus from '../public/images/transportes/onibus-urbano.jpg'
-import ListaPassageiros from './ListaPassageiros'
 
 export default function SolicitarVeiculo() {
   const [solicita, setSolicita] = useState({
@@ -23,6 +22,7 @@ export default function SolicitarVeiculo() {
   const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
   const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
+  const [passageiros, setPassageiros] = useState({})
 
   function onInputChange(evt) {
     setSolicita(prevState => ({
@@ -49,6 +49,13 @@ export default function SolicitarVeiculo() {
   React.useEffect(() => {
     buscarCadastro()
   }, [])
+
+  function addPassageiro() {
+    setPassageiros(prevPassageiros => [
+      ...prevPassageiros,
+      { nome, documento: identificacao }
+    ])
+  }
 
   async function buscarCadastro() {
     const response = await fetch(
@@ -122,6 +129,7 @@ export default function SolicitarVeiculo() {
                   id="minivan"
                   value="Minivan"
                   onChange={onInputChange}
+                  required
                 ></input>
                 <Image src={minivan} width={300} height={300} alt="Minivan" />
                 Até 6 passageiros + 1 motorista
@@ -134,6 +142,7 @@ export default function SolicitarVeiculo() {
                   id="onibus"
                   value="Ônibus"
                   onChange={onInputChange}
+                  required
                 ></input>
                 <Image src={onibus} width={300} height={300} alt="Minivan" />
                 Até 44 passageiros + 1 motorista
@@ -273,6 +282,7 @@ export default function SolicitarVeiculo() {
                 value="Prédio Sede do IFE"
                 onChange={onCheckboxChange}
                 autoComplete="off"
+                checked
               />
               Prédio Sede do IFE, Bairro Centro.
             </label>
@@ -505,9 +515,31 @@ export default function SolicitarVeiculo() {
               Licenciatura Interdisciplinar em Ciências Naturais e Matemática
             </label>
 
-            <ListaPassageiros />
+            <h3>Lista de Passageiros</h3>
+
+            {Array.from(
+              { length: solicita.veiculo == 'Minivan' ? 6 : 44 },
+              (_, i) => (
+                <div key={i}>
+                  {i + 1}
+                  <input
+                    required
+                    type="text"
+                    id={`nome-${i}`}
+                    placeholder="Nome completo"
+                  />
+                  <input
+                    required
+                    type="text"
+                    id={`identificacao-${i}`}
+                    placeholder="Identidade, matrícula ou SIAPE"
+                  />
+                </div>
+              )
+            )}
           </div>
         </form>
+
         <button type="submit" onClick={() => console.log(solicita)}>
           Enviar dados
         </button>
