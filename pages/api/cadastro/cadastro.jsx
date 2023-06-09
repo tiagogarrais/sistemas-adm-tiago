@@ -12,7 +12,7 @@ export default async function buscarCadastro(req, res) {
         const dados = await db
           .collection('usuarios')
           .findOne({ email: req.query.email })
-        res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate')
+        //res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate')
         res.status(200).json(dados)
         break
 
