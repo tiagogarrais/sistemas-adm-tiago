@@ -666,7 +666,6 @@ export default function SolicitarVeiculo() {
               Veículo sem motorista (É necessário apresentar Portaria
               autorizando a condução para a retirada do veículo)
             </label>
-            <button onClick={() => console.log(solicita)}>Verificar</button>
 
             <h4>
               Esta solicitação vai atender prioritariamente a demanda de qual
