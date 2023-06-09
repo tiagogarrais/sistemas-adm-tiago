@@ -7,7 +7,7 @@ export default async function connect() {
   //  return cachedDb
   //}
 
-  const client = await MongoClient.connect(process.env.MONGODB_URI, {
+  const client = await MongoClient.connect(process.env.MONGODB_URI_UFCA, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
