@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import minivan from '../public/images/transportes/minivan-spin.jpg'
 import onibus from '../public/images/transportes/onibus-urbano.jpg'
+import axios from 'axios'
+import { useRouter } from 'next/router'
 
 export default function SolicitarVeiculo() {
   const [solicita, setSolicita] = useState({
@@ -16,13 +18,15 @@ export default function SolicitarVeiculo() {
     objetivo4: 'Não marcado',
     objetivo5: 'Não marcado',
     objetivo6: 'Não marcado',
-    objetivo7: 'Não marcado'
+    objetivo7: 'Não marcado',
+    uf: 'Ceará'
   })
   const { data: session } = useSession()
   const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
   const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
   const [passageiros, setPassageiros] = useState({})
+  const router = useRouter()
 
   function onInputChange(evt) {
     setSolicita(prevState => ({
@@ -44,6 +48,248 @@ export default function SolicitarVeiculo() {
       [evt.target.id]:
         evt.target.checked === true ? evt.target.value : 'Não marcado'
     }))
+  }
+
+  function btnSaveClick() {
+    document.getElementById('btnSave').disabled = true
+    document.getElementById('btnSave').innerText = 'Aguarde...'
+
+    axios
+      .post('/api/transportes/transportes', {
+        dataSolicitacao: Date(),
+
+        nome: solicita.nome,
+
+        email: solicita.email,
+
+        telefone: solicita.telefone,
+
+        veiculo: solicita.veiculo,
+
+        solicitanteVai: solicita.solicitanteVai,
+
+        uf: solicita.uf,
+
+        cidade: solicita.cidade,
+
+        dataIda: solicita.dataIda,
+
+        horaIda: solicita.horaIda,
+
+        dataRetorno: solicita.dataRetorno,
+
+        horaRetorno: solicita.horaRetorno,
+
+        saidaIfe: solicita.saidaIfe,
+
+        saidaCentro: solicita.saidaCentro,
+
+        saidaAbaiara: solicita.saidaAbaiara,
+
+        objetivo1: solicita.objetivo1,
+
+        objetivo2: solicita.objetivo2,
+
+        objetivo3: solicita.objetivo3,
+
+        objetivo4: solicita.objetivo4,
+
+        objetivo5: solicita.objetivo5,
+
+        objetivo6: solicita.objetivo6,
+
+        objetivo7: solicita.objetivo7,
+
+        tipo: solicita.tipo,
+
+        setor: solicita.setor,
+
+        passageiro1: solicita.passageiro1,
+
+        identificacao1: solicita.identificacao1,
+
+        passageiro2: solicita.passageiro2,
+
+        identificacao2: solicita.identificacao2,
+
+        passageiro3: solicita.passageiro3,
+
+        identificacao3: solicita.identificacao3,
+
+        passageiro4: solicita.passageiro4,
+
+        identificacao4: solicita.identificacao4,
+
+        passageiro5: solicita.passageiro5,
+
+        identificacao5: solicita.identificacao5,
+
+        passageiro6: solicita.passageiro6,
+
+        identificacao6: solicita.identificacao6,
+
+        passageiro7: solicita.passageiro7,
+
+        identificacao7: solicita.identificacao7,
+
+        passageiro8: solicita.passageiro8,
+
+        identificacao8: solicita.identificacao8,
+
+        passageiro9: solicita.passageiro9,
+
+        identificacao9: solicita.identificacao9,
+
+        passageiro10: solicita.passageiro10,
+
+        identificacao10: solicita.identificacao10,
+
+        passageiro11: solicita.passageiro11,
+
+        identificacao11: solicita.identificacao11,
+
+        passageiro12: solicita.passageiro12,
+
+        identificacao12: solicita.identificacao12,
+
+        passageiro13: solicita.passageiro13,
+
+        identificacao13: solicita.identificacao13,
+
+        passageiro14: solicita.passageiro14,
+
+        identificacao14: solicita.identificacao14,
+
+        passageiro15: solicita.passageiro15,
+
+        identificacao15: solicita.identificacao15,
+
+        passageiro16: solicita.passageiro16,
+
+        identificacao16: solicita.identificacao16,
+
+        passageiro17: solicita.passageiro17,
+
+        identificacao17: solicita.identificacao17,
+
+        passageiro18: solicita.passageiro18,
+
+        identificacao18: solicita.identificacao18,
+
+        passageiro19: solicita.passageiro19,
+
+        identificacao19: solicita.identificacao19,
+
+        passageiro20: solicita.passageiro20,
+
+        identificacao20: solicita.identificacao20,
+
+        passageiro21: solicita.passageiro21,
+
+        identificacao21: solicita.identificacao21,
+
+        passageiro22: solicita.passageiro22,
+
+        identificacao22: solicita.identificacao22,
+
+        passageiro23: solicita.passageiro23,
+
+        identificacao23: solicita.identificacao23,
+
+        passageiro24: solicita.passageiro24,
+
+        identificacao24: solicita.identificacao24,
+
+        passageiro25: solicita.passageiro25,
+
+        identificacao25: solicita.identificacao25,
+
+        passageiro26: solicita.passageiro26,
+
+        identificacao26: solicita.identificacao26,
+
+        passageiro27: solicita.passageiro27,
+
+        identificacao27: solicita.identificacao27,
+
+        passageiro28: solicita.passageiro28,
+
+        identificacao28: solicita.identificacao28,
+
+        passageiro29: solicita.passageiro29,
+
+        identificacao29: solicita.identificacao29,
+
+        passageiro30: solicita.passageiro30,
+
+        identificacao30: solicita.identificacao31,
+
+        passageiro31: solicita.passageiro31,
+
+        identificacao31: solicita.identificacao31,
+
+        passageiro32: solicita.passageiro32,
+
+        identificacao32: solicita.identificacao32,
+
+        passageiro33: solicita.passageiro33,
+
+        identificacao33: solicita.identificacao33,
+
+        passageiro34: solicita.passageiro34,
+
+        identificacao34: solicita.identificacao34,
+
+        passageiro35: solicita.passageiro35,
+
+        identificacao35: solicita.identificacao35,
+
+        passageiro36: solicita.passageiro36,
+
+        identificacao36: solicita.identificacao36,
+
+        passageiro37: solicita.passageiro37,
+
+        identificacao37: solicita.identificacao37,
+
+        passageiro38: solicita.passageiro38,
+
+        identificacao38: solicita.identificacao38,
+
+        passageiro39: solicita.passageiro39,
+
+        identificacao39: solicita.identificacao39,
+
+        passageiro40: solicita.passageiro40,
+
+        identificacao40: solicita.identificacao40,
+
+        passageiro41: solicita.passageiro41,
+
+        identificacao41: solicita.identificacao41,
+
+        passageiro42: solicita.passageiro42,
+
+        identificacao42: solicita.identificacao42,
+
+        passageiro43: solicita.passageiro43,
+
+        identificacao43: solicita.identificacao43,
+
+        passageiro44: solicita.passageiro44,
+
+        identificacao44: solicita.identificacao44
+      })
+      .then(function (res) {
+        setSolicita({})
+        window.alert('Solicitação de transporte enviada')
+        document.getElementById('btnSave').disabled = false
+        document.getElementById('btnSave').innerText = 'Salvar'
+        router.push('/transportes/')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   React.useEffect(() => {
@@ -227,7 +473,7 @@ export default function SolicitarVeiculo() {
               Data da viagem
               <input
                 type="date"
-                name="Data da ida"
+                name="dataIda"
                 id="dataIda"
                 onChange={onInputChange}
                 value={solicita.dataIda}
@@ -239,7 +485,7 @@ export default function SolicitarVeiculo() {
               Hora da saída
               <input
                 type="time"
-                name="Horário de saída"
+                name="horaIda"
                 id="horaIda"
                 onChange={onInputChange}
                 value={solicita.horaIda}
@@ -251,7 +497,7 @@ export default function SolicitarVeiculo() {
               Data do retorno
               <input
                 type="date"
-                name="Data do retorno"
+                name="dataRetorno"
                 id="dataRetorno"
                 onChange={onInputChange}
                 value={solicita.dataRetorno}
@@ -262,7 +508,7 @@ export default function SolicitarVeiculo() {
               Hora retorno
               <input
                 type="time"
-                name="Hora do retorno"
+                name="horaRetorno"
                 id="horaRetorno"
                 onChange={onInputChange}
                 value={solicita.horaRetorno}
@@ -281,7 +527,6 @@ export default function SolicitarVeiculo() {
                 value="Prédio Sede do IFE"
                 onChange={onCheckboxChange}
                 autoComplete="off"
-                checked
               />
               Prédio Sede do IFE, Bairro Centro.
             </label>
@@ -293,6 +538,7 @@ export default function SolicitarVeiculo() {
                 id="saidaCentro"
                 value="Praça Dionísio Rocha de Lucena, Bairro Centro."
                 onChange={onCheckboxChange}
+                autoComplete="off"
               />
               Praça Dionísio Rocha de Lucena, Bairro Centro.
             </label>
@@ -304,6 +550,7 @@ export default function SolicitarVeiculo() {
                 id="saidaAbaiara"
                 value="Posto Abaiara (quando não houver desvio de trajeto)"
                 onChange={onCheckboxChange}
+                autoComplete="off"
               />
               Posto Abaiara (quando não houver desvio de trajeto)
             </label>
@@ -555,7 +802,7 @@ export default function SolicitarVeiculo() {
           </div>
         </form>
 
-        <button type="submit" onClick={() => console.log(solicita)}>
+        <button id="btnSave" type="submit" onClick={btnSaveClick}>
           Enviar dados
         </button>
       </div>
