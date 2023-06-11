@@ -1,6 +1,7 @@
 import { useSession } from 'next-auth/react'
 import Contador from '../../components/contador-regressivo/Contador'
-import SolicitarVeiculo from '../../components/SolicitarVeiculo'
+import ProximasViagens from '../../components/transportes/ProximasViagens'
+import SolicitarVeiculo from '../../components/transportes/SolicitarVeiculo'
 
 export default function Transportes() {
   const { data: session } = useSession()
@@ -8,6 +9,7 @@ export default function Transportes() {
     return (
       <div>
         <h1>Transportes do Instituto de Formação de Educadores</h1>
+        <ProximasViagens />
         <SolicitarVeiculo />
       </div>
     )
