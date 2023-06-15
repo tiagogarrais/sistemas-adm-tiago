@@ -1,17 +1,10 @@
 import React, { useState } from 'react'
+import Image from 'next/image'
+import minivan from '/public/images/transportes/minivan-spin.jpg'
+import onibus from '/public/images/transportes/onibus-urbano.jpg'
 
 export default function ProximasViagens() {
   const [proximasViagens, setProximasViagens] = useState([])
-  const [diaIda, setDiaIda] = useState('')
-  const [mesIda, setMesIda] = useState('')
-  const [anoIda, setAnoIda] = useState('')
-  const [horaIda, setHoraIda] = useState('')
-  const [minutoIda, setMinutoIda] = useState('')
-  const [diaVolta, setDiaVolta] = useState('')
-  const [mesVolta, setMesVolta] = useState('')
-  const [anoVolta, setAnoVolta] = useState('')
-  const [horaVolta, setHoraVolta] = useState('')
-  const [minutoVolta, setMinutoVolta] = useState('')
 
   async function buscarViagens() {
     const response = await fetch('/api/transportes/proximas-viagens')
@@ -45,8 +38,26 @@ export default function ProximasViagens() {
               <p>Hora do retorno: {`${proximasViagens.horaRetorno}`}</p>
               <p>A cidade destino é: {`${proximasViagens.cidade}`}</p>
               <p>
-                O veículo confirmado:{' '}
-                {proximasViagens.veiculo == 'Minivan' ? 'É a SPIN' : 'Ônibus'}
+                Veículo confirmado:{' '}
+                {proximasViagens.veiculo == 'Minivan' ? (
+                  <div className="center">
+                    <Image
+                      src={minivan}
+                      alt="Minivan Spin"
+                      height={250}
+                      width={250}
+                    />
+                  </div>
+                ) : (
+                  <div className="center">
+                    <Image
+                      src={onibus}
+                      alt="Ônibus urbano"
+                      height={250}
+                      width={250}
+                    />
+                  </div>
+                )}
               </p>
             </article>
           </>
