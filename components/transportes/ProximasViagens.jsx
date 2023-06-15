@@ -38,7 +38,7 @@ export default function ProximasViagens() {
               <p>Hora do retorno: {`${proximasViagens.horaRetorno}`}</p>
               <p>A cidade destino é: {`${proximasViagens.cidade}`}</p>
               <p>
-                Veículo confirmado:{' '}
+                Veículo:{' '}
                 {proximasViagens.veiculo == 'Minivan' ? (
                   <div className="center">
                     <Image
