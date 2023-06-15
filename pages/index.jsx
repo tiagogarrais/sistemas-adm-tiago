@@ -17,8 +17,8 @@ export default function Home() {
         </div>
         <h2>Sistemas desenvolvidos para a UFCA - neste site</h2>
 
-        <div class="container my-12 mx-auto px-4 md:px-12">
-          <div class="flex flex-wrap -mx-1 lg:-mx-4">
+        <div className="container my-12 mx-auto px-4 md:px-12">
+          <div className="flex flex-wrap -mx-1 lg:-mx-4">
             <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
               <Link className="link" href="/ambientes/1">
                 <article>
@@ -27,7 +27,7 @@ export default function Home() {
                   </header>
                   <Image
                     alt="Placeholder"
-                    class="block h-auto w-full"
+                    className="block h-auto w-full"
                     src={ambientes}
                   />
                 </article>
@@ -42,7 +42,7 @@ export default function Home() {
                   </header>
                   <Image
                     alt="brainstorming campus Brejo Santo"
-                    class="block h-auto w-full"
+                    className="block h-auto w-full"
                     src={brainstorming}
                   />
                 </article>
@@ -57,7 +57,7 @@ export default function Home() {
                   </header>
                   <Image
                     alt="transportes campus Brejo Santo"
-                    class="block h-auto w-full"
+                    className="block h-auto w-full"
                     src={transportes}
                   />
                 </article>
@@ -68,7 +68,7 @@ export default function Home() {
 
         <h2>Sistemas desenvolvidos para a UFCA - em outros sites</h2>
 
-        <div class="container my-12 mx-auto px-4 md:px-12">
+        <div className="container my-12 mx-auto px-4 md:px-12">
           <div className="button">
             <a href="https://ifeadm.16mb.com" target="_blank">
               Site IFE-ADM
