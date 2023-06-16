@@ -20,7 +20,7 @@ export default function ProximasViagens() {
     <>
       <h2>Próximas viagens</h2>
 
-      <div className="tres-colunas">
+      <div>
         {proximasViagens.map(proximasViagens => (
           <>
             <article>
