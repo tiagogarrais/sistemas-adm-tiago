@@ -41,27 +41,12 @@ const solicitaTransporteSchema = new Schema({
   },
 
   dataIda: {
-    type: String,
-    required: true
-  },
-
-  horaIda: {
-    type: String,
+    type: Date,
     required: true
   },
 
   dataRetorno: {
-    type: String,
-    required: true
-  },
-
-  horaRetorno: {
-    type: String,
-    required: true
-  },
-
-  saidaIfe: {
-    type: String,
+    type: Date,
     required: true
   },
 

@@ -5,6 +5,7 @@ import { SessionProvider } from 'next-auth/react'
 import { Analytics } from '@vercel/analytics/react'
 import NextNProgress from 'nextjs-progressbar'
 import '../styles/globals.css'
+import Head from 'next/head'
 
 export default function MyApp({
   Component,
@@ -12,6 +13,15 @@ export default function MyApp({
 }) {
   return (
     <>
+      <Head>
+        <title>Admtiago.com.br</title>
+        <meta
+          name="Tiago das Graças Arrais"
+          content="Serviços digitais"
+          charset="utf-8"
+          lang="pt-BR"
+        />
+      </Head>
       <SessionProvider session={session}>
         <Cabecalho />
         <BarraLogin />

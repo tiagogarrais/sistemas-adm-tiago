@@ -26,7 +26,6 @@ export default function SolicitarVeiculo() {
   const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
   const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
-  const [passageiros, setPassageiros] = useState({})
   const router = useRouter()
 
   function onInputChange(evt) {
@@ -66,17 +65,23 @@ export default function SolicitarVeiculo() {
         uf: solicita.uf,
         cidade: solicita.cidade,
         dataIda: new Date(
-          solicita.dataIda.slice(8, 10), //ano
-          Number(solicita.dataIda.slice(5, 7)) - 1, //mês
-          solicita.dataIda.slice(0, 4), //dia
-          solicita.horaIda.slice(0, 1), //hora
-          solicita.horaIda.slice(3, 4), //minuto
-          0, //segundo
-          0 //milissegundo
+          solicita.anoIda,
+          solicita.mesIda - 1,
+          solicita.diaIda,
+          solicita.horaIda,
+          solicita.minutoIda,
+          0,
+          0
         ),
-        horaIda: solicita.horaIda,
-        dataRetorno: solicita.dataRetorno,
-        horaRetorno: solicita.horaRetorno,
+        dataRetorno: new Date(
+          solicita.anoRetorno,
+          solicita.mesRetorno - 1,
+          solicita.diaRetorno,
+          solicita.horaRetorno,
+          solicita.minutoRetorno,
+          0,
+          0
+        ),
         saidaIfe: solicita.saidaIfe,
         saidaCentro: solicita.saidaCentro,
         saidaAbaiara: solicita.saidaAbaiara,
@@ -194,13 +199,6 @@ export default function SolicitarVeiculo() {
     buscarCadastro()
   }, [])
 
-  function addPassageiro(evt) {
-    setPassageiros(prevPassageiros => [
-      ...prevPassageiros,
-      { nome, documento: identificacao }
-    ])
-  }
-
   async function buscarCadastro() {
     const response = await fetch(
       '../api/cadastro/cadastro?' + 'email=' + session.user.email
@@ -244,9 +242,7 @@ export default function SolicitarVeiculo() {
             <div className="button">
               <Link href="/cadastro/atualizar">Atualizar cadastro</Link>
             </div>
-
             <h4>Dados gerais sobre viagem em veículos oficiais</h4>
-
             <div>
               Atenção: Atuação permitida do serviço de transporte terrestre da
               UFCA: Raio de 800 km à partir da sede - Juazeiro do Norte
@@ -266,7 +262,6 @@ export default function SolicitarVeiculo() {
                 </a>
               </div>
             </div>
-
             <h4>Qual o veículo que melhor atende sua demanda??</h4>
             <div>
               <label>
@@ -295,7 +290,6 @@ export default function SolicitarVeiculo() {
                 Até 44 passageiros + 1 motorista
               </label>
             </div>
-
             <h4>{solicita.nome}, você também vai no veículo?</h4>
             <div>
               <label>
@@ -318,9 +312,7 @@ export default function SolicitarVeiculo() {
                 Não
               </label>
             </div>
-
             <h4>Sobre a viagem</h4>
-
             <label>
               Qual a UF de destino?
               <select id="estado" onChange={onInputChange} name="uf" required>
@@ -357,7 +349,6 @@ export default function SolicitarVeiculo() {
                 </option>
               </select>
             </label>
-
             <label>
               Qual a cidade destino?
               <input
@@ -369,57 +360,139 @@ export default function SolicitarVeiculo() {
                 value={solicita.cidade}
               ></input>
             </label>
-
+            <h5>Data da viagem</h5>
             <label>
-              Data da viagem
               <input
-                type="date"
-                name="dataIda"
-                id="dataIda"
+                type="number"
+                placeholder="DD"
+                min={1}
+                max={31}
+                name="diaIda"
+                id="diaIda"
                 onChange={onInputChange}
-                value={solicita.dataIda}
+                value={solicita.diaIda}
                 required
               />
             </label>
-
             <label>
-              Hora da saída
               <input
-                type="time"
+                type="number"
+                placeholder="MM"
+                min={1}
+                max={12}
+                name="mesIda"
+                id="mesIda"
+                onChange={onInputChange}
+                value={solicita.mesIda}
+                required
+              />
+            </label>
+            <label>
+              <input
+                type="number"
+                min={2023}
+                placeholder="AAAA"
+                name="anoIda"
+                id="anoIda"
+                onChange={onInputChange}
+                value={solicita.anoIda}
+                required
+              />
+            </label>
+            Hora da saída
+            <label>
+              <input
+                type="number"
                 name="horaIda"
+                placeholder="HH"
+                min={0}
+                max={23}
                 id="horaIda"
                 onChange={onInputChange}
                 value={solicita.horaIda}
                 required
               />
             </label>
-
             <label>
-              Data do retorno
               <input
-                type="date"
-                name="dataRetorno"
-                id="dataRetorno"
+                type="number"
+                name="minutoIda"
+                placeholder="MM"
+                id="minutoIda"
+                min={0}
+                max={59}
                 onChange={onInputChange}
-                value={solicita.dataRetorno}
+                value={solicita.minutoIda}
+                required
+              />
+            </label>
+            <h5>Data do retorno</h5>
+            <label>
+              <input
+                type="number"
+                placeholder="DD"
+                min={1}
+                max={31}
+                name="diaRetorno"
+                id="diaRetorno"
+                onChange={onInputChange}
+                value={solicita.diaRetorno}
                 required
               />
             </label>
             <label>
-              Hora retorno
               <input
-                type="time"
+                type="number"
+                min={1}
+                max={12}
+                placeholder="MM"
+                name="mesRetorno"
+                id="mesRetorno"
+                onChange={onInputChange}
+                value={solicita.mesRetorno}
+                required
+              />
+            </label>
+            <label>
+              <input
+                type="number"
+                placeholder="AAAA"
+                min={2023}
+                name="anoRetorno"
+                id="anoRetorno"
+                onChange={onInputChange}
+                value={solicita.anoRetorno}
+                required
+              />
+            </label>
+            Hora do retorno
+            <label>
+              <input
+                type="number"
                 name="horaRetorno"
+                placeholder="HH"
+                min={0}
+                max={23}
                 id="horaRetorno"
                 onChange={onInputChange}
                 value={solicita.horaRetorno}
                 required
               />
             </label>
-
+            <label>
+              <input
+                type="number"
+                name="minutoRetorno"
+                placeholder="MM"
+                id="minutoRetorno"
+                min={0}
+                max={59}
+                onChange={onInputChange}
+                value={solicita.minutoRetorno}
+                required
+              />
+            </label>{' '}
             <h4>Local de saída</h4>
-            <p>Se for necessário pode-se marcar mais de uma opção.</p>
-
             <label>
               <input
                 type="checkbox"
@@ -431,7 +504,6 @@ export default function SolicitarVeiculo() {
               />
               Prédio Sede do IFE, Bairro Centro.
             </label>
-
             <label>
               <input
                 type="checkbox"
@@ -443,7 +515,6 @@ export default function SolicitarVeiculo() {
               />
               Praça Dionísio Rocha de Lucena, Bairro Centro.
             </label>
-
             <label>
               <input
                 type="checkbox"
@@ -455,14 +526,12 @@ export default function SolicitarVeiculo() {
               />
               Posto Abaiara (quando não houver desvio de trajeto)
             </label>
-
             <h4>A viagem atenderá algum dos objetivos abaixo relacionados?</h4>
             <p>
               Essas solicitações possuem fluxo de aprovação automática pois
               foram definidas como prioridade pelo Conselho da Unidade
               Acadêmica.
             </p>
-
             <label htmlFor="objetivo1">
               <input
                 type="checkbox"
@@ -473,7 +542,6 @@ export default function SolicitarVeiculo() {
               />
               Recebimento de avaliadores do MEC
             </label>
-
             <label htmlFor="objetivo2">
               <input
                 type="checkbox"
@@ -484,7 +552,6 @@ export default function SolicitarVeiculo() {
               />
               Reuniões agendadas pelo setor de transportes com os motoristas
             </label>
-
             <label htmlFor="objetivo3">
               <input
                 type="checkbox"
@@ -496,7 +563,6 @@ export default function SolicitarVeiculo() {
               Reunião com calendário definido previamente e que envolve
               representação do IFE
             </label>
-
             <label htmlFor="objetivo4">
               <input
                 type="checkbox"
@@ -507,7 +573,6 @@ export default function SolicitarVeiculo() {
               />
               Mudança de prédio
             </label>
-
             <label htmlFor="objetivo5">
               <input
                 type="checkbox"
@@ -518,7 +583,6 @@ export default function SolicitarVeiculo() {
               />
               Eventos de colação de grau
             </label>
-
             <label htmlFor="objetivo6">
               <input
                 type="checkbox"
@@ -529,7 +593,6 @@ export default function SolicitarVeiculo() {
               />
               Montagem de estande na ExpoBrejo
             </label>
-
             <label htmlFor="objetivo7">
               <input
                 type="checkbox"
@@ -541,9 +604,7 @@ export default function SolicitarVeiculo() {
               Revisões dos veículos, quando estas não puderem ser feitas em
               datas sem agendamentos
             </label>
-
             <h4>Qual o tipo da solicitação?</h4>
-
             <label htmlFor="com-motorista">
               <input
                 type="radio"
@@ -555,7 +616,6 @@ export default function SolicitarVeiculo() {
               />
               Veículo com motorista
             </label>
-
             <label htmlFor="sem-motorista">
               <input
                 type="radio"
@@ -567,12 +627,10 @@ export default function SolicitarVeiculo() {
               Veículo sem motorista (É necessário apresentar Portaria
               autorizando a condução para a retirada do veículo)
             </label>
-
             <h4>
               Esta solicitação vai atender prioritariamente a demanda de qual
               setor ou grupo?
             </h4>
-
             <label htmlFor="alunos">
               <input
                 type="radio"
@@ -584,7 +642,6 @@ export default function SolicitarVeiculo() {
               />
               Alunos do IFE
             </label>
-
             <label htmlFor="assistencia">
               <input
                 type="radio"
@@ -595,7 +652,6 @@ export default function SolicitarVeiculo() {
               />
               Apoio ao discente - IFE
             </label>
-
             <label htmlFor="direcao">
               <input
                 type="radio"
@@ -606,7 +662,6 @@ export default function SolicitarVeiculo() {
               />
               Direção do IFE
             </label>
-
             <label htmlFor="biologia">
               <input
                 type="radio"
@@ -617,7 +672,6 @@ export default function SolicitarVeiculo() {
               />
               Licenciatura em Biologia
             </label>
-
             <label htmlFor="fisica">
               <input
                 type="radio"
@@ -628,7 +682,6 @@ export default function SolicitarVeiculo() {
               />
               Licenciatura em Física
             </label>
-
             <label htmlFor="matematica">
               <input
                 type="radio"
@@ -639,7 +692,6 @@ export default function SolicitarVeiculo() {
               />
               Licenciatura em Matemática
             </label>
-
             <label htmlFor="pedagogia">
               <input
                 type="radio"
@@ -650,7 +702,6 @@ export default function SolicitarVeiculo() {
               />
               Licenciatura em Pedagogia
             </label>
-
             <label htmlFor="quimica">
               <input
                 type="radio"
@@ -661,7 +712,6 @@ export default function SolicitarVeiculo() {
               />
               Licenciatura em Química
             </label>
-
             <label htmlFor="licnm">
               <input
                 type="radio"
@@ -672,9 +722,7 @@ export default function SolicitarVeiculo() {
               />
               Licenciatura Interdisciplinar em Ciências Naturais e Matemática
             </label>
-
             <h4>Lista de Passageiros</h4>
-
             {Array.from(
               { length: solicita.veiculo == 'Minivan' ? 6 : 44 },
               (_, i) => (
