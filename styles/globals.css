@@ -15,6 +15,11 @@ article {
   justify-center;
 }
 
+.bloco {
+  @apply block
+  justify-center;
+}
+
 .button {
   @apply hover:bg-blue-900
   hover:text-white
