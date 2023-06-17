@@ -39,45 +39,51 @@ export default function ProximasViagens() {
       <div className="bloco">
         {proximasViagens.map(proximasViagens => (
           <>
-            <article>
-              <h4>Data da viagem: {converterData(proximasViagens.dataIda)}</h4>
-              <p>Horário da viagem: {converterHora(proximasViagens.dataIda)}</p>
-              <p>
-                Data do retorno: {converterData(proximasViagens.dataRetorno)}
-              </p>
-              <p>
-                Hora do retorno: {converterHora(proximasViagens.dataRetorno)}
-              </p>
-              <p>Cidade destino: {`${proximasViagens.cidade}`}</p>
-              <p>
-                Veículo:{' '}
-                {proximasViagens.veiculo == 'Minivan' ? (
-                  <>
-                    <div className="center">
-                      <Image
-                        src={minivan}
-                        alt="Minivan Spin"
-                        height={250}
-                        width={250}
-                      />
-                    </div>
-                    <p>Minivan Spin (1 a 6 passageiros)</p>
-                  </>
-                ) : (
-                  <>
-                    <div className="center">
-                      <Image
-                        src={onibus}
-                        alt="Ônibus urbano"
-                        height={250}
-                        width={250}
-                      />
-                    </div>
-                    <p>Ônibus urbano (7 a 44 passageiros)</p>
-                  </>
-                )}
-              </p>
-            </article>
+            <div className="container mx-auto px-4 md:px-12">
+              <article>
+                <h4>
+                  Data da viagem: {converterData(proximasViagens.dataIda)}
+                </h4>
+                <p>
+                  Horário da viagem: {converterHora(proximasViagens.dataIda)}
+                </p>
+                <p>
+                  Data do retorno: {converterData(proximasViagens.dataRetorno)}
+                </p>
+                <p>
+                  Hora do retorno: {converterHora(proximasViagens.dataRetorno)}
+                </p>
+                <p>Cidade destino: {`${proximasViagens.cidade}`}</p>
+                <p>
+                  Veículo:{' '}
+                  {proximasViagens.veiculo == 'Minivan' ? (
+                    <>
+                      <div className="center">
+                        <Image
+                          src={minivan}
+                          alt="Minivan Spin"
+                          height={250}
+                          width={250}
+                        />
+                      </div>
+                      <p>Minivan Spin (1 a 6 passageiros)</p>
+                    </>
+                  ) : (
+                    <>
+                      <div className="center">
+                        <Image
+                          src={onibus}
+                          alt="Ônibus urbano"
+                          height={250}
+                          width={250}
+                        />
+                      </div>
+                      <p>Ônibus urbano (7 a 44 passageiros)</p>
+                    </>
+                  )}
+                </p>
+              </article>
+            </div>
           </>
         ))}
       </div>
