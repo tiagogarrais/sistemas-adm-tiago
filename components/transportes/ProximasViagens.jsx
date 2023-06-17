@@ -42,8 +42,10 @@ export default function ProximasViagens() {
             <div className="container mx-auto px-4 md:px-12">
               <article>
                 <h4>
-                  Data da viagem: {converterData(proximasViagens.dataIda)}
+                  Viagem para{' '}
+                  {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
                 </h4>
+                <p>Data da viagem: {converterData(proximasViagens.dataIda)}</p>
                 <p>
                   Horário da viagem: {converterHora(proximasViagens.dataIda)}
                 </p>
@@ -53,7 +55,6 @@ export default function ProximasViagens() {
                 <p>
                   Hora do retorno: {converterHora(proximasViagens.dataRetorno)}
                 </p>
-                <p>Cidade destino: {`${proximasViagens.cidade}`}</p>
                 <p>
                   Veículo:{' '}
                   {proximasViagens.veiculo == 'Minivan' ? (
