@@ -12,6 +12,22 @@ export default function ProximasViagens() {
     setProximasViagens(data)
   }
 
+  function converterData(data) {
+    const dataConvertida = Date.parse(data)
+    const dataLocal = new Intl.DateTimeFormat('pt-BR').format(dataConvertida)
+    return dataLocal
+  }
+
+  function converterHora(data) {
+    const dataConvertida = Date.parse(data)
+    const horaLocal = new Intl.DateTimeFormat('pt-BR', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: false
+    }).format(dataConvertida)
+    return horaLocal
+  }
+
   React.useEffect(() => {
     buscarViagens()
   }, [])
@@ -24,39 +40,41 @@ export default function ProximasViagens() {
         {proximasViagens.map(proximasViagens => (
           <>
             <article>
-              <h4>
-                Data da viagem: {proximasViagens.dataIda.slice(8, 10)}/
-                {proximasViagens.dataIda.slice(5, 7)}/
-                {proximasViagens.dataIda.slice(0, 4)}
-              </h4>
-              <p>Horário da viagem: {`${proximasViagens.horaIda}`}</p>
+              <h4>Data da viagem: {converterData(proximasViagens.dataIda)}</h4>
+              <p>Horário da viagem: {converterHora(proximasViagens.dataIda)}</p>
               <p>
-                Data do retorno: {proximasViagens.dataRetorno.slice(8, 10)}/
-                {proximasViagens.dataRetorno.slice(5, 7)}/
-                {proximasViagens.dataRetorno.slice(0, 4)}
+                Data do retorno: {converterData(proximasViagens.dataRetorno)}
               </p>
-              <p>Hora do retorno: {`${proximasViagens.horaRetorno}`}</p>
-              <p>A cidade destino é: {`${proximasViagens.cidade}`}</p>
+              <p>
+                Hora do retorno: {converterHora(proximasViagens.dataRetorno)}
+              </p>
+              <p>Cidade destino: {`${proximasViagens.cidade}`}</p>
               <p>
                 Veículo:{' '}
                 {proximasViagens.veiculo == 'Minivan' ? (
-                  <div className="center">
-                    <Image
-                      src={minivan}
-                      alt="Minivan Spin"
-                      height={250}
-                      width={250}
-                    />
-                  </div>
+                  <>
+                    <div className="center">
+                      <Image
+                        src={minivan}
+                        alt="Minivan Spin"
+                        height={250}
+                        width={250}
+                      />
+                    </div>
+                    <p>Minivan Spin (1 a 6 passageiros)</p>
+                  </>
                 ) : (
-                  <div className="center">
-                    <Image
-                      src={onibus}
-                      alt="Ônibus urbano"
-                      height={250}
-                      width={250}
-                    />
-                  </div>
+                  <>
+                    <div className="center">
+                      <Image
+                        src={onibus}
+                        alt="Ônibus urbano"
+                        height={250}
+                        width={250}
+                      />
+                    </div>
+                    <p>Ônibus urbano (7 a 44 passageiros)</p>
+                  </>
                 )}
               </p>
             </article>
