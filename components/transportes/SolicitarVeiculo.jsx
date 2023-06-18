@@ -26,6 +26,7 @@ export default function SolicitarVeiculo() {
   const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
   const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
+  const [cpfCadastrado, setCpfCadastrado] = useState('Carregando...')
   const router = useRouter()
 
   function onInputChange(evt) {
@@ -48,6 +49,16 @@ export default function SolicitarVeiculo() {
       [evt.target.id]:
         evt.target.checked === true ? evt.target.value : 'Não marcado'
     }))
+  }
+
+  function addSolicitanteListaPassag(evt) {
+    document.getElementById('nome-1').value = nomeCadastrado
+    document.getElementById('identificacao-1').value = cpfCadastrado
+  }
+
+  function removeSolicitanteListaPassag(evt) {
+    document.getElementById('nome-1').value = ''
+    document.getElementById('identificacao-1').value = ''
   }
 
   function btnSaveClick() {
@@ -209,6 +220,7 @@ export default function SolicitarVeiculo() {
       setNomeCadastrado('Não cadastrado')
       setTelefoneCadastrado('Não cadastrado')
       setEmailCadastrado('Não cadastrado')
+      setCpfCadastrado('Não cadastrado')
       window.alert(
         'Para solicitar transporte é necessário atualizar o seu cadastro.'
       )
@@ -218,6 +230,7 @@ export default function SolicitarVeiculo() {
     setNomeCadastrado(data.nome)
     setTelefoneCadastrado(data.telefone)
     setEmailCadastrado(data.email)
+    setCpfCadastrado(data.cpf)
   }
 
   const raioTransportes =
@@ -299,6 +312,7 @@ export default function SolicitarVeiculo() {
                   value="Sim"
                   required
                   onChange={onInputChange}
+                  onClickCapture={addSolicitanteListaPassag}
                 />
                 Sim
               </label>
@@ -308,6 +322,7 @@ export default function SolicitarVeiculo() {
                   name="solicitanteVai"
                   value="Não"
                   onChange={onInputChange}
+                  onClickCapture={removeSolicitanteListaPassag}
                 />
                 Não
               </label>
@@ -741,7 +756,7 @@ export default function SolicitarVeiculo() {
                     type="text"
                     id={`identificacao-${i + 1}`}
                     name={`identificacao${i + 1}`}
-                    placeholder="Identidade, matrícula ou SIAPE"
+                    placeholder="Doc. Ident, CPF, matrícula, SIAPE"
                     onChange={onInputChange}
                   />
                 </div>

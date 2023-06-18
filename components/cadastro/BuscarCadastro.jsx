@@ -16,6 +16,7 @@ export default function BuscarCadastro() {
       setNomeCadastrado('Não cadastrado')
       setTelefoneCadastrado('Não cadastrado')
       setEmailCadastrado('Não cadastrado')
+      setCpfCadastrado('Não cadastrado')
       setDataCadastro('Não cadastrado')
       return
     }
@@ -23,7 +24,14 @@ export default function BuscarCadastro() {
     setNomeCadastrado(data.nome)
     setTelefoneCadastrado(data.telefone)
     setEmailCadastrado(data.email)
+    setCpfCadastrado(data.cpf)
     setDataCadastro(data.dataInformacao)
+  }
+
+  function converterData(data) {
+    const dataConvertida = Date.parse(data)
+    const dataLocal = new Intl.DateTimeFormat('pt-BR').format(dataConvertida)
+    return dataLocal
   }
 
   const { data: session } = useSession()
@@ -31,6 +39,7 @@ export default function BuscarCadastro() {
   const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
   const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
   const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
+  const [cpfCadastrado, setCpfCadastrado] = useState('Carregando...')
   const [dataCadastro, setDataCadastro] = useState('Carregando...')
 
   if (session)
@@ -40,7 +49,7 @@ export default function BuscarCadastro() {
         <p>Nome: {nomeCadastrado}</p>
         <p>E-mail: {emailCadastrado}</p>
         <p>Telefone: {telefoneCadastrado}</p>
-        <p>Cadastrado em: {dataCadastro}</p>
+        <p>CPF: {cpfCadastrado}</p>
       </div>
     )
   return 'Não permitido'

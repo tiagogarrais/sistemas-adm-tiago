@@ -48,6 +48,11 @@ export default function SalvarNovoCadastro() {
       return
     }
 
+    if (cadastro.cpf === undefined) {
+      window.alert('Para atualizar o cadastro você precisa digitar seu CPF')
+      return
+    }
+
     document.getElementById('btnSave').disabled = true
     document.getElementById('btnSave').innerText = 'Aguarde...'
 
@@ -56,11 +61,14 @@ export default function SalvarNovoCadastro() {
         nome: cadastro.nome,
         email: cadastro.email,
         telefone: cadastro.telefone,
+        cpf: cadastro.cpf,
         dataInformacao: Date()
       })
       .then(function (res) {
         document.getElementById('nome').value = ''
         document.getElementById('telefone').value = ''
+        document.getElementById('cpf').value = ''
+
         setCadastro({})
         window.alert('Informações atualizadas')
         document.getElementById('btnSave').disabled = false
@@ -94,6 +102,15 @@ export default function SalvarNovoCadastro() {
             type="text"
             id="telefone"
             value={cadastro.telefone}
+            onChange={onInputChange}
+          />
+        </label>
+        <label for="cpf">
+          CPF
+          <input
+            type="text"
+            id="cpf"
+            value={cadastro.cpf}
             onChange={onInputChange}
           />
         </label>

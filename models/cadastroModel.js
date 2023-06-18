@@ -15,6 +15,10 @@ const usuarioSchema = new Schema({
     type: String
   },
 
+  cpf: {
+    type: String
+  },
+
   dataInformacao: {
     type: Date,
     required: true
