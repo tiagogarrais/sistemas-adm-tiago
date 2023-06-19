@@ -61,6 +61,24 @@ export default function SolicitarVeiculo() {
     document.getElementById('identificacao-1').value = ''
   }
 
+  function preencherDataRetorno(evt) {
+    if (document.getElementById('retorno').checked === true) {
+      setSolicita(prevState => ({
+        ...prevState,
+        diaRetorno: solicita.diaIda,
+        mesRetorno: solicita.mesIda,
+        anoRetorno: solicita.anoIda
+      }))
+    } else {
+      setSolicita(prevState => ({
+        ...prevState,
+        diaRetorno: '',
+        mesRetorno: '',
+        anoRetorno: ''
+      }))
+    }
+  }
+
   function btnSaveClick() {
     document.getElementById('btnSave').disabled = true
     document.getElementById('btnSave').innerText = 'Aguarde...'
@@ -442,8 +460,13 @@ export default function SolicitarVeiculo() {
               />
             </label>
             <label>
-              <input type="checkbox" name="retorno" id="retorno" />O retorno
-              será no mesmo dia?
+              <input
+                type="checkbox"
+                name="retorno"
+                id="retorno"
+                onChange={preencherDataRetorno}
+              />
+              O retorno será no mesmo dia?
             </label>
             <h5>Data do retorno</h5>
             <label>
@@ -768,8 +791,6 @@ export default function SolicitarVeiculo() {
             )}
           </div>
         </form>
-
-        <button onClick={() => console.log(solicita)}>Verifica</button>
 
         <button id="btnSave" type="submit" onClick={btnSaveClick}>
           Enviar dados
