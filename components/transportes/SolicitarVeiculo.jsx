@@ -214,13 +214,22 @@ export default function SolicitarVeiculo() {
       })
       .then(function (res) {
         setSolicita({})
-        window.alert('Solicitação de transporte enviada')
         document.getElementById('btnSave').disabled = false
         document.getElementById('btnSave').innerText = 'Salvar'
-        router.push('/transportes/')
       })
       .catch(function (error) {
         console.log(error)
+      })
+
+    axios
+      .post('/api/email/enviar', {
+        email: solicita.email,
+        subject: 'Transportes IFE - Recebemos sua solicitação',
+        message: solicita.veiculo
+      })
+      .then(function (res) {
+        window.alert('Enviamos uma cópia desta solicitação no seu email')
+        router.reload()
       })
   }
 
@@ -321,6 +330,29 @@ export default function SolicitarVeiculo() {
                 Até 44 passageiros + 1 motorista
               </label>
             </div>
+            <h4>Qual o tipo da solicitação?</h4>
+            <label htmlFor="com-motorista">
+              <input
+                type="radio"
+                name="tipo"
+                id="com-motorista"
+                value="Veículo com motorista"
+                required
+                onChange={onInputChange}
+              />
+              Veículo com motorista
+            </label>
+            <label htmlFor="sem-motorista">
+              <input
+                type="radio"
+                name="tipo"
+                id="sem-motorista"
+                value="Veículo sem motorista"
+                onChange={onInputChange}
+              />
+              Veículo sem motorista (É necessário apresentar Portaria
+              autorizando a condução para a retirada do veículo)
+            </label>
             <h4>{solicita.nome}, você também vai no veículo?</h4>
             <div>
               <label>
@@ -394,71 +426,80 @@ export default function SolicitarVeiculo() {
               ></input>
             </label>
             <h5>Data da viagem</h5>
-            <label>
-              <input
-                type="number"
-                placeholder="DD"
-                min={1}
-                max={31}
-                name="diaIda"
-                id="diaIda"
-                onChange={onInputChange}
-                value={solicita.diaIda}
-                required
-              />
-            </label>
-            <label>
-              <input
-                type="number"
-                placeholder="MM"
-                min={1}
-                max={12}
-                name="mesIda"
-                id="mesIda"
-                onChange={onInputChange}
-                value={solicita.mesIda}
-                required
-              />
-            </label>
-            <label>
-              <input
-                type="number"
-                min={2023}
-                placeholder="AAAA"
-                name="anoIda"
-                id="anoIda"
-                onChange={onInputChange}
-                value={solicita.anoIda}
-                required
-              />
-            </label>
-            Hora da saída
-            <label>
-              <input
-                type="number"
-                name="horaIda"
-                placeholder="HH"
-                min={0}
-                max={23}
-                id="horaIda"
-                onChange={onInputChange}
-                value={solicita.horaIda}
-                required
-              />
-            </label>
-            <label>
-              <input
-                type="number"
-                name="minutoIda"
-                placeholder="MM"
-                id="minutoIda"
-                min={0}
-                max={59}
-                onChange={onInputChange}
-                value={solicita.minutoIda}
-                required
-              />
-            </label>
+            <div className="datas">
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  placeholder="DD"
+                  min={1}
+                  max={31}
+                  name="diaIda"
+                  id="diaIda"
+                  onChange={onInputChange}
+                  value={solicita.diaIda}
+                  required
+                />
+              </label>
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  placeholder="MM"
+                  min={1}
+                  max={12}
+                  name="mesIda"
+                  id="mesIda"
+                  onChange={onInputChange}
+                  value={solicita.mesIda}
+                  required
+                />
+              </label>
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  min={2023}
+                  placeholder="AAAA"
+                  name="anoIda"
+                  id="anoIda"
+                  onChange={onInputChange}
+                  value={solicita.anoIda}
+                  required
+                />
+              </label>
+            </div>
+            <div className="datas">
+              Hora da saída
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  name="horaIda"
+                  placeholder="HH"
+                  min={0}
+                  max={23}
+                  id="horaIda"
+                  onChange={onInputChange}
+                  value={solicita.horaIda}
+                  required
+                />
+              </label>
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  name="minutoIda"
+                  placeholder="MM"
+                  id="minutoIda"
+                  min={0}
+                  max={59}
+                  onChange={onInputChange}
+                  value={solicita.minutoIda}
+                  required
+                />
+              </label>
+            </div>
             <label>
               <input
                 type="checkbox"
@@ -469,71 +510,80 @@ export default function SolicitarVeiculo() {
               O retorno será no mesmo dia?
             </label>
             <h5>Data do retorno</h5>
-            <label>
-              <input
-                type="number"
-                placeholder="DD"
-                min={1}
-                max={31}
-                name="diaRetorno"
-                id="diaRetorno"
-                onChange={onInputChange}
-                value={solicita.diaRetorno}
-                required
-              />
-            </label>
-            <label>
-              <input
-                type="number"
-                min={1}
-                max={12}
-                placeholder="MM"
-                name="mesRetorno"
-                id="mesRetorno"
-                onChange={onInputChange}
-                value={solicita.mesRetorno}
-                required
-              />
-            </label>
-            <label>
-              <input
-                type="number"
-                placeholder="AAAA"
-                min={2023}
-                name="anoRetorno"
-                id="anoRetorno"
-                onChange={onInputChange}
-                value={solicita.anoRetorno}
-                required
-              />
-            </label>
-            Hora do retorno
-            <label>
-              <input
-                type="number"
-                name="horaRetorno"
-                placeholder="HH"
-                min={0}
-                max={23}
-                id="horaRetorno"
-                onChange={onInputChange}
-                value={solicita.horaRetorno}
-                required
-              />
-            </label>
-            <label>
-              <input
-                type="number"
-                name="minutoRetorno"
-                placeholder="MM"
-                id="minutoRetorno"
-                min={0}
-                max={59}
-                onChange={onInputChange}
-                value={solicita.minutoRetorno}
-                required
-              />
-            </label>{' '}
+            <div className="datas">
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  placeholder="DD"
+                  min={1}
+                  max={31}
+                  name="diaRetorno"
+                  id="diaRetorno"
+                  onChange={onInputChange}
+                  value={solicita.diaRetorno}
+                  required
+                />
+              </label>
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  min={1}
+                  max={12}
+                  placeholder="MM"
+                  name="mesRetorno"
+                  id="mesRetorno"
+                  onChange={onInputChange}
+                  value={solicita.mesRetorno}
+                  required
+                />
+              </label>
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  placeholder="AAAA"
+                  min={2023}
+                  name="anoRetorno"
+                  id="anoRetorno"
+                  onChange={onInputChange}
+                  value={solicita.anoRetorno}
+                  required
+                />
+              </label>
+            </div>
+            <div className="datas">
+              Hora do retorno
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  name="horaRetorno"
+                  placeholder="HH"
+                  min={0}
+                  max={23}
+                  id="horaRetorno"
+                  onChange={onInputChange}
+                  value={solicita.horaRetorno}
+                  required
+                />
+              </label>
+              <label>
+                <input
+                  size={5}
+                  type="number"
+                  name="minutoRetorno"
+                  placeholder="MM"
+                  id="minutoRetorno"
+                  min={0}
+                  max={59}
+                  onChange={onInputChange}
+                  value={solicita.minutoRetorno}
+                  required
+                />
+              </label>
+            </div>
             <h4>Local de saída</h4>
             <label>
               <input
@@ -645,29 +695,6 @@ export default function SolicitarVeiculo() {
               />
               Revisões dos veículos, quando estas não puderem ser feitas em
               datas sem agendamentos
-            </label>
-            <h4>Qual o tipo da solicitação?</h4>
-            <label htmlFor="com-motorista">
-              <input
-                type="radio"
-                name="tipo"
-                id="com-motorista"
-                value="Veículo com motorista"
-                required
-                onChange={onInputChange}
-              />
-              Veículo com motorista
-            </label>
-            <label htmlFor="sem-motorista">
-              <input
-                type="radio"
-                name="tipo"
-                id="sem-motorista"
-                value="Veículo sem motorista"
-                onChange={onInputChange}
-              />
-              Veículo sem motorista (É necessário apresentar Portaria
-              autorizando a condução para a retirada do veículo)
             </label>
             <h4>
               Esta solicitação vai atender prioritariamente a demanda de qual

@@ -51,6 +51,10 @@ article {
   gap-4;
 }
 
+.datas {
+  @apply inline-flex;
+}
+
 .qrcode {
   @apply content-center items-center self-center place-content-center place-items-center place-self-center justify-center justify-items-center;
 }

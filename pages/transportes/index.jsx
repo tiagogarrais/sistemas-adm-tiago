@@ -8,6 +8,16 @@ export default function Transportes() {
   if (session) {
     return (
       <div>
+        <p>
+          Atenção: Este sistema ainda está em fase de desenvolvimento. As
+          solicitações oficiais de transporte do campus Brejo Santo devem ser
+          solicitadas pelo site
+        </p>
+        <p>
+          <a href="https://ifeadm.16mb.com/transportes">
+            https://ifeadm.16mb.com/transportes
+          </a>
+        </p>
         <h1>Transportes do Instituto de Formação de Educadores</h1>
         <ProximasViagens />
         <SolicitarVeiculo />
