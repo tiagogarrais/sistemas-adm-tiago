@@ -441,6 +441,10 @@ export default function SolicitarVeiculo() {
                 required
               />
             </label>
+            <label>
+              <input type="checkbox" name="retorno" id="retorno" />O retorno
+              será no mesmo dia?
+            </label>
             <h5>Data do retorno</h5>
             <label>
               <input
