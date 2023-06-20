@@ -80,6 +80,7 @@ export default function SolicitarVeiculo() {
   }
 
   function btnSaveClick() {
+    event.preventDefault()
     document.getElementById('btnSave').disabled = true
     document.getElementById('btnSave').innerText = 'Aguarde...'
 
@@ -229,7 +230,7 @@ export default function SolicitarVeiculo() {
       })
       .then(function (res) {
         window.alert('Enviamos uma cópia desta solicitação no seu email')
-        router.reload()
+        router.push('/transportes/')
       })
   }
 
@@ -268,7 +269,7 @@ export default function SolicitarVeiculo() {
     solicita.veiculo ? '' : (solicita.veiculo = 'Minivan')
     return (
       <div>
-        <form>
+        <form onSubmit={btnSaveClick}>
           <div>
             <h2>Requisitar Transporte</h2>
             <p>
@@ -776,7 +777,6 @@ export default function SolicitarVeiculo() {
                 <div key={i}>
                   {i + 1}
                   <input
-                    required
                     type="text"
                     id={`nome-${i + 1}`}
                     name={`passageiro${i + 1}`}
@@ -784,7 +784,6 @@ export default function SolicitarVeiculo() {
                     onChange={onInputChange}
                   />
                   <input
-                    required
                     type="text"
                     id={`identificacao-${i + 1}`}
                     name={`identificacao${i + 1}`}
@@ -795,11 +794,10 @@ export default function SolicitarVeiculo() {
               )
             )}
           </div>
+          <button id="btnSave" type="submit">
+            Enviar dados
+          </button>
         </form>
-
-        <button id="btnSave" type="submit" onClick={btnSaveClick}>
-          Enviar dados
-        </button>
       </div>
     )
   }
