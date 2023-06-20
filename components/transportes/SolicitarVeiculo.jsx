@@ -251,6 +251,7 @@ export default function SolicitarVeiculo() {
       window.alert(
         'Para solicitar transporte é necessário atualizar o seu cadastro.'
       )
+      router.push('/cadastro/atualizar')
       return
     }
 
@@ -259,9 +260,6 @@ export default function SolicitarVeiculo() {
     setEmailCadastrado(data.email)
     setCpfCadastrado(data.cpf)
   }
-
-  const raioTransportes =
-    'http://raiolaser.16mb.com/images/2/2a/Raio-transportes-ufca.jpeg'
 
   if (session) {
     solicita.email = session.user.email
@@ -281,26 +279,6 @@ export default function SolicitarVeiculo() {
             </p>
             <div className="button">
               <Link href="/cadastro/atualizar">Atualizar cadastro</Link>
-            </div>
-            <h4>Dados gerais sobre viagem em veículos oficiais</h4>
-            <div>
-              Atenção: Atuação permitida do serviço de transporte terrestre da
-              UFCA: Raio de 800 km à partir da sede - Juazeiro do Norte
-              <Image
-                src={raioTransportes}
-                width={500}
-                height={500}
-                alt="Atuação permitida do serviço de transportes: raio de 800 km à partir da sede - Juazeiro do Norte"
-              ></Image>
-              <div className="button">
-                <a
-                  href="http://raiolaser.16mb.com/index.php/Uso_dos_ve%C3%ADculos_oficiais_da_UFCA_campus_Brejo_Santo#Atua.C3.A7.C3.A3o:_Raio_de_800_km_.C3.A0_partir_da_sede_-_Juazeiro_do_Norte.3B"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Consultar raio de atuação do serviço de transportes do IFE
-                </a>
-              </div>
             </div>
             <h4>Qual o veículo que melhor atende sua demanda??</h4>
             <div>
