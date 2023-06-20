@@ -14,7 +14,7 @@ export default function MyApp({
   return (
     <>
       <Head>
-        <title>Admtiago.com.br</title>
+        <title>admtiago.com.br</title>
         <meta
           name="Tiago das Graças Arrais"
           content="Serviços digitais"

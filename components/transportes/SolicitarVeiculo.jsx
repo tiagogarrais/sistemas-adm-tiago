@@ -29,6 +29,10 @@ export default function SolicitarVeiculo() {
   const [cpfCadastrado, setCpfCadastrado] = useState('Carregando...')
   const router = useRouter()
 
+  React.useEffect(() => {
+    buscarCadastro()
+  }, [])
+
   function onInputChange(evt) {
     setSolicita(prevState => ({
       ...prevState,
@@ -52,13 +56,19 @@ export default function SolicitarVeiculo() {
   }
 
   function addSolicitanteListaPassag(evt) {
-    document.getElementById('nome-1').value = nomeCadastrado
-    document.getElementById('identificacao-1').value = cpfCadastrado
+    setSolicita(prevState => ({
+      ...prevState,
+      passageiro1: nomeCadastrado,
+      identificacao1: cpfCadastrado
+    }))
   }
 
   function removeSolicitanteListaPassag(evt) {
-    document.getElementById('nome-1').value = ''
-    document.getElementById('identificacao-1').value = ''
+    setSolicita(prevState => ({
+      ...prevState,
+      passageiro1: '',
+      identificacao1: ''
+    }))
   }
 
   function preencherDataRetorno(evt) {
@@ -233,10 +243,6 @@ export default function SolicitarVeiculo() {
         router.push('/transportes/')
       })
   }
-
-  React.useEffect(() => {
-    buscarCadastro()
-  }, [])
 
   async function buscarCadastro() {
     const response = await fetch(
