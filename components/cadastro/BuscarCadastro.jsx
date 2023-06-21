@@ -45,7 +45,7 @@ export default function BuscarCadastro() {
   if (session)
     return (
       <div>
-        <h2>Meus dados</h2>
+        <h2>Meus dados pessoais</h2>
         <p>Nome: {nomeCadastrado}</p>
         <p>E-mail: {emailCadastrado}</p>
         <p>Telefone: {telefoneCadastrado}</p>

@@ -239,9 +239,9 @@ export default function SolicitarVeiculo() {
     axios
       .post('/api/email/enviar', {
         email: solicita.email,
-        copia: 'tiago.arrais@ufca.edu.br',
+        copia: ['tiago.arrais@ufca.edu.br', 'alexsandra.tavares@ufca.edu.br'],
         subject: 'Transportes IFE - Recebemos sua solicitação',
-        message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
+        message: `<p><strong>TESTE - Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
         
         <p>Na maioria dos casos enviaremos e-mail com a decisão nos seguintes prazos:</p> 
         <p>Para destinos com distância de até 100km do campus Brejo Santo - 3 dias úteis antes da viagem. Para destinos mais distantes - 5 dias úteis.</p>

@@ -85,7 +85,7 @@ export default function SalvarNovoCadastro() {
     return (
       <div>
         <BuscarCadastro />
-        <h2>Atualizar dados</h2>
+        <h2>Cadastrar ou atualizar dados pessoais</h2>
         <label for="nome">
           Nome
           <input
@@ -114,6 +114,26 @@ export default function SalvarNovoCadastro() {
             onChange={onInputChange}
           />
         </label>
+
+        <p>
+          Os dados pessoais coletados serão utilizados somente para efeitos
+          legais da solicitação de veículos oficiais.
+        </p>
+        <p>
+          {' '}
+          De acordo com o Art. 7º da Lei Geral de Proteção de Dados (LEI Nº
+          13.709, DE 14 DE AGOSTO DE 2018) O tratamento de dados pessoais
+          somente poderá ser realizado nas seguintes hipóteses:
+        </p>
+        <p>
+          {' '}
+          (...) III - pela administração pública, para o tratamento e uso
+          compartilhado de dados necessários à execução de políticas públicas
+          previstas em leis e regulamentos ou respaldadas em contratos,
+          convênios ou instrumentos congêneres, observadas as disposições do
+          Capítulo IV desta Lei (...)
+        </p>
+
         <button id="btnSave" value="Salvar" onClick={btnSaveClick}>
           Salvar
         </button>
