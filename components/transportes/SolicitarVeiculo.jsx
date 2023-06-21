@@ -106,7 +106,6 @@ export default function SolicitarVeiculo() {
         email: solicita.email,
         telefone: solicita.telefone,
         veiculo: solicita.veiculo,
-        solicitanteVai: solicita.solicitanteVai,
         uf: solicita.uf,
         cidade: solicita.cidade,
         dataIda: new Date(
@@ -241,7 +240,7 @@ export default function SolicitarVeiculo() {
       .post('/api/email/enviar', {
         email: solicita.email,
         subject: 'Transportes IFE - Recebemos sua solicitação',
-        message: solicita.veiculo
+        message: `Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}. Na maioria dos casos enviaremos e-mail com a decisão nos seguintes prazos: Para destinos com distância de até 100km do campus Brejo Santo - 3 dias úteis antes da viagem. Para destinos mais distantes - 5 dias úteis.Atenciosamente, Adm. Tiago das Graças Arrais - CRA 11.660`
       })
       .then(function (res) {
         window.alert('Enviamos uma cópia desta solicitação no seu email')
@@ -748,7 +747,8 @@ export default function SolicitarVeiculo() {
               />
               Licenciatura Interdisciplinar em Ciências Naturais e Matemática
             </label>
-            <h4></h4>
+
+            <h4>Lista de Passageiros</h4>
             <label>
               <input
                 type="checkbox"
@@ -756,10 +756,8 @@ export default function SolicitarVeiculo() {
                 id="solicitanteVai"
                 onChange={solicitanteLista}
               />
-              Marque aqui se {solicita.nome} vai no veículo?
+              Deseja incluir seu nome na lista de passageiros?
             </label>
-
-            <h4>Lista de Passageiros</h4>
             {Array.from(
               { length: solicita.veiculo == 'Minivan' ? 6 : 44 },
               (_, i) => (
@@ -784,17 +782,20 @@ export default function SolicitarVeiculo() {
             )}
           </div>
           <p>
-            Seu nome é <strong>{nomeCadastrado}</strong>. Todas as confirmações
-            e respostas referentes a esta solicitação serão enviadas no e-mail{' '}
-            <strong>{emailCadastrado}</strong>. O Telefone para contato é{' '}
-            <strong>{telefoneCadastrado}</strong>.
+            Responsável pela viagem: <strong>{nomeCadastrado}</strong>.
+          </p>
+          <p>
+            O Telefone para contato é <strong>{telefoneCadastrado}</strong>.
+          </p>
+          <p>
+            Todas as confirmações e respostas referentes a esta solicitação
+            serão enviadas no e-mail <strong>{emailCadastrado}</strong>.
           </p>
 
           <button id="btnSave" type="submit">
             Enviar dados
           </button>
         </form>
-        <button onClick={() => console.log(solicita)}>Verificar Objeto</button>
       </div>
     )
   }

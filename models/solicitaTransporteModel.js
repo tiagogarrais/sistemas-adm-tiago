@@ -25,11 +25,6 @@ const solicitaTransporteSchema = new Schema({
     required: true
   },
 
-  solicitanteVai: {
-    type: String,
-    required: true
-  },
-
   uf: {
     type: String,
     required: true
