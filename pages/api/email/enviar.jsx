@@ -4,6 +4,7 @@ export default function handler(req, res) {
   const message = {
     from: process.env.EMAIL_SERVER_USER,
     to: req.body.email,
+    cc: req.body.copia,
     subject: req.body.subject,
     //text: req.body.message,
     html: `<html>${req.body.message}</html>`

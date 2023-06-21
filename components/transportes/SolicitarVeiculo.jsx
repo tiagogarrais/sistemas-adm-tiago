@@ -239,6 +239,7 @@ export default function SolicitarVeiculo() {
     axios
       .post('/api/email/enviar', {
         email: solicita.email,
+        copia: 'tiago.arrais@ufca.edu.br',
         subject: 'Transportes IFE - Recebemos sua solicitação',
         message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
         
