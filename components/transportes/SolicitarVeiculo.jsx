@@ -240,7 +240,24 @@ export default function SolicitarVeiculo() {
       .post('/api/email/enviar', {
         email: solicita.email,
         subject: 'Transportes IFE - Recebemos sua solicitação',
-        message: `Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}. Na maioria dos casos enviaremos e-mail com a decisão nos seguintes prazos: Para destinos com distância de até 100km do campus Brejo Santo - 3 dias úteis antes da viagem. Para destinos mais distantes - 5 dias úteis.Atenciosamente, Adm. Tiago das Graças Arrais - CRA 11.660`
+        message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
+        
+        <p>Na maioria dos casos enviaremos e-mail com a decisão nos seguintes prazos:</p> 
+        <p>Para destinos com distância de até 100km do campus Brejo Santo - 3 dias úteis antes da viagem. Para destinos mais distantes - 5 dias úteis.</p>
+
+        <p><strong>As informações recebidas foram:</strong></p>
+        <ul>
+        <li>Veículo: ${solicita.veiculo}</li>
+        <li>Destino: ${solicita.cidade} - ${solicita.uf}</li>
+        <li>Data: ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</li>
+        <li>Horário: ${solicita.horaIda}:${solicita.minutoIda}</li>
+
+        <li>Retorno: ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</li>
+        <li>Horário do retorno: ${solicita.horaRetorno}:${solicita.minutoRetorno}</li>
+        </ul>
+        <p>Atenciosamente,</p> 
+        
+        <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`
       })
       .then(function (res) {
         window.alert('Enviamos uma cópia desta solicitação no seu email')

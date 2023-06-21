@@ -5,8 +5,8 @@ export default function handler(req, res) {
     from: process.env.EMAIL_SERVER_USER,
     to: req.body.email,
     subject: req.body.subject,
-    text: req.body.message,
-    html: `<p>${req.body.message}</p>`
+    //text: req.body.message,
+    html: `<html>${req.body.message}</html>`
   }
 
   let transporter = nodemailer.createTransport({
