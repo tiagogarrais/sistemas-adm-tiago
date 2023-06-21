@@ -12,6 +12,7 @@ export default function SolicitarVeiculo() {
     saidaAbaiara: 'Não',
     saidaCentro: 'Não',
     saidaIfe: 'Não',
+    veiculo: 'Minivan',
     objetivo1: 'Não marcado',
     objetivo2: 'Não marcado',
     objetivo3: 'Não marcado',
@@ -55,20 +56,24 @@ export default function SolicitarVeiculo() {
     }))
   }
 
-  function addSolicitanteListaPassag(evt) {
-    setSolicita(prevState => ({
-      ...prevState,
-      passageiro1: nomeCadastrado,
-      identificacao1: cpfCadastrado
-    }))
-  }
-
-  function removeSolicitanteListaPassag(evt) {
-    setSolicita(prevState => ({
-      ...prevState,
-      passageiro1: '',
-      identificacao1: ''
-    }))
+  function solicitanteLista(evt) {
+    if (document.getElementById('solicitanteVai').checked === true) {
+      setSolicita(prevState => ({
+        ...prevState,
+        passageiro1: nomeCadastrado,
+        identificacao1: cpfCadastrado
+      }))
+      document.getElementById('nome-1').value = nomeCadastrado
+      document.getElementById('identificacao-1').value = cpfCadastrado
+    } else {
+      setSolicita(prevState => ({
+        ...prevState,
+        passageiro1: '',
+        identificacao1: ''
+      }))
+      document.getElementById('nome-1').value = ''
+      document.getElementById('identificacao-1').value = ''
+    }
   }
 
   function preencherDataRetorno(evt) {
@@ -272,21 +277,12 @@ export default function SolicitarVeiculo() {
     solicita.email = session.user.email
     nomeCadastrado ? (solicita.nome = nomeCadastrado) : ''
     telefoneCadastrado ? (solicita.telefone = telefoneCadastrado) : ''
-    solicita.veiculo ? '' : (solicita.veiculo = 'Minivan')
+    // solicita.veiculo ? '' : (solicita.veiculo = 'Minivan')
     return (
       <div>
         <form onSubmit={btnSaveClick}>
           <div>
             <h2>Requisitar Transporte</h2>
-            <p>
-              Seu nome é <strong>{nomeCadastrado}</strong>. Todas as
-              confirmações e respostas referentes a esta solicitação serão
-              enviadas no e-mail <strong>{emailCadastrado}</strong>. O Telefone
-              para contato é <strong>{telefoneCadastrado}</strong>.
-            </p>
-            <div className="button">
-              <Link href="/cadastro/atualizar">Atualizar cadastro</Link>
-            </div>
             <h4>Qual o veículo que melhor atende sua demanda??</h4>
             <div>
               <label>
@@ -338,30 +334,6 @@ export default function SolicitarVeiculo() {
               Veículo sem motorista (É necessário apresentar Portaria
               autorizando a condução para a retirada do veículo)
             </label>
-            <h4>{solicita.nome}, você também vai no veículo?</h4>
-            <div>
-              <label>
-                <input
-                  type="radio"
-                  name="solicitanteVai"
-                  value="Sim"
-                  required
-                  onChange={onInputChange}
-                  onClickCapture={addSolicitanteListaPassag}
-                />
-                Sim
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="solicitanteVai"
-                  value="Não"
-                  onChange={onInputChange}
-                  onClickCapture={removeSolicitanteListaPassag}
-                />
-                Não
-              </label>
-            </div>
             <h4>Sobre a viagem</h4>
             <label>
               Qual a UF de destino?
@@ -776,6 +748,17 @@ export default function SolicitarVeiculo() {
               />
               Licenciatura Interdisciplinar em Ciências Naturais e Matemática
             </label>
+            <h4></h4>
+            <label>
+              <input
+                type="checkbox"
+                name="solicitanteVai"
+                id="solicitanteVai"
+                onChange={solicitanteLista}
+              />
+              Marque aqui se {solicita.nome} vai no veículo?
+            </label>
+
             <h4>Lista de Passageiros</h4>
             {Array.from(
               { length: solicita.veiculo == 'Minivan' ? 6 : 44 },
@@ -800,10 +783,18 @@ export default function SolicitarVeiculo() {
               )
             )}
           </div>
+          <p>
+            Seu nome é <strong>{nomeCadastrado}</strong>. Todas as confirmações
+            e respostas referentes a esta solicitação serão enviadas no e-mail{' '}
+            <strong>{emailCadastrado}</strong>. O Telefone para contato é{' '}
+            <strong>{telefoneCadastrado}</strong>.
+          </p>
+
           <button id="btnSave" type="submit">
             Enviar dados
           </button>
         </form>
+        <button onClick={() => console.log(solicita)}>Verificar Objeto</button>
       </div>
     )
   }
