@@ -18,10 +18,6 @@ export function MostrarAmbiente() {
           dadosJson.nomeAmbiente
       }
 
-      // if (dadosJson.responsabilidadeLimpeza != null) {
-      //   document.getElementById('responsabilidadeLimpeza').innerText =
-      //     dadosJson.responsabilidadeLimpeza
-      // }
       if (dadosJson.frequenciaSemanalLimpeza != null) {
         document.getElementById('frequenciaSemanalLimpeza').innerText =
           dadosJson.frequenciaSemanalLimpeza
@@ -49,9 +45,6 @@ export function MostrarAmbiente() {
     <div>
       <h2 id="nomeAmbiente"></h2>
       <p>Chave número: {ambiente}</p>
-      {/* <p>
-        Servente de limpeza: <span id="responsabilidadeLimpeza"></span>
-      </p> */}
       <p>
         A limpeza completa deste ambiente é executada{' '}
         <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
