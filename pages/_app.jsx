@@ -35,7 +35,6 @@ export default function MyApp({
         />
         <Component {...pageProps} />
         <Analytics />
-        <hr />
         <Rodape />
       </SessionProvider>
     </>
