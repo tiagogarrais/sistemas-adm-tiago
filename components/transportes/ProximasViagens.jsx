@@ -2,16 +2,34 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import minivan from '/public/images/transportes/minivan-spin.jpg'
 import onibus from '/public/images/transportes/onibus-urbano.jpg'
+import { useSession } from 'next-auth/react'
+import axios from 'axios'
 
 export default function ProximasViagens() {
   const [proximasViagens, setProximasViagens] = useState([])
+  const { data: session } = useSession()
+  const [statusViagem, setStatusViagem] = useState()
+
+  function alterarStatus(evt) {
+    setStatusViagem(prevState => ({
+      ...prevState,
+      [evt.target.name]: evt.target.value
+    }))
+
+    axios.patch('api/transportes/transportes', {
+      status: statusViagem
+    })
+  }
 
   async function buscarViagens() {
     const response = await fetch('/api/transportes/proximas-viagens')
-    const data = await response.json()
-    setProximasViagens(data)
-  }
+    const viagens = await response.json()
+    setProximasViagens(viagens)
 
+    session.user.email === 'tiago.arrais@ufca.edu.br'
+      ? document.getElementById('status').removeAttribute('disabled')
+      : console.log('Usuário não tem permissão para alterar status')
+  }
   function converterData(data) {
     const dataConvertida = Date.parse(data)
     const dataLocal = new Intl.DateTimeFormat('pt-BR').format(dataConvertida)
@@ -41,9 +59,28 @@ export default function ProximasViagens() {
           <>
             <div className="container mx-auto px-4 md:px-12">
               <article>
-                <h4>
+                <h3>
                   Viagem para{' '}
                   {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
+                </h3>
+                <h4>
+                  <select
+                    id="status"
+                    className="status"
+                    disabled
+                    onChange={alterarStatus}
+                  >
+                    <option id="recebida" className="recebida" value="recebida">
+                      Recebida
+                    </option>
+                    <option
+                      id="confirmada"
+                      className="confirmada"
+                      value="confirmada"
+                    >
+                      Confirmada
+                    </option>
+                  </select>
                 </h4>
                 <p>Data da viagem: {converterData(proximasViagens.dataIda)}</p>
                 <p>

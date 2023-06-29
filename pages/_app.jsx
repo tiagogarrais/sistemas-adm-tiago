@@ -16,7 +16,7 @@ export default function MyApp({
       <Head>
         <title>admtiago.com.br</title>
         <meta
-          name="Tiago das Graças Arrais"
+          name="Site de serviços do Adm. Tiago das Graças Arrais CRA 11660"
           content="Serviços digitais"
           charset="utf-8"
           lang="pt-BR"
