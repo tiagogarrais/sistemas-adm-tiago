@@ -13,6 +13,6 @@ const atualizaStatusSchema = new Schema({
 })
 
 const AtualizaStatus =
-  models.atualizaStatus || model('AtualizaStatus', solicitaTransporteSchema)
+  models.atualizaStatus || model('AtualizaStatus', atualizaStatusSchema)
 
 export default AtualizaStatus
