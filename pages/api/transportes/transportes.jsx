@@ -1,6 +1,7 @@
 import connect from '../../../src/utils/mongodb'
 import connectMongo from '../../../utils/connectMongo'
 import SolicitaTransporte from '../../../models/solicitaTransporteModel'
+import AtualizaStatus from '../../../models/atualizaStatusViagem'
 
 export default async function transportes(req, res) {
   try {
@@ -25,6 +26,20 @@ export default async function transportes(req, res) {
 
       case 'DELETE':
         res.status(200).json('Em desenvolvimento')
+        break
+
+      case 'PATCH':
+        try {
+          await connectMongo()
+          const statusViagem = AtualizaStatus.findOneAndUpdate(
+            { _id: req.body._id },
+            { statusViagem: req.body.statusViagem }
+          )
+          res.json({ statusViagem })
+        } catch (error) {
+          console.log(error)
+          res.json({ error })
+        }
         break
 
       default:

@@ -100,6 +100,11 @@ const solicitaTransporteSchema = new Schema({
     required: true
   },
 
+  statusViagem: {
+    type: String,
+    required: false
+  },
+
   passageiro1: {
     type: String,
     required: false

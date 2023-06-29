@@ -1,7 +1,6 @@
 import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
 import minivan from '/public/images/transportes/minivan-spin.jpg'
 import onibus from '/public/images/transportes/onibus-urbano.jpg'
 import axios from 'axios'

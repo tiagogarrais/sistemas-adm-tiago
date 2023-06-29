@@ -13,10 +13,13 @@ export default function ProximasViagens() {
   function alterarStatus(evt) {
     setStatusViagem(prevState => ({
       ...prevState,
-      [evt.target.name]: evt.target.value
+      [evt.target.className]: evt.target.value
     }))
+    console.log(statusViagem)
+    console.log(proximasViagens)
 
     axios.patch('api/transportes/transportes', {
+      _id: proximasViagens._id,
       status: statusViagem
     })
   }
@@ -27,9 +30,10 @@ export default function ProximasViagens() {
     setProximasViagens(viagens)
 
     session.user.email === 'tiago.arrais@ufca.edu.br'
-      ? document.getElementById('status').removeAttribute('disabled')
+      ? document.getElementById('statusViagem').removeAttribute('disabled')
       : console.log('Usuário não tem permissão para alterar status')
   }
+
   function converterData(data) {
     const dataConvertida = Date.parse(data)
     const dataLocal = new Intl.DateTimeFormat('pt-BR').format(dataConvertida)
@@ -65,8 +69,8 @@ export default function ProximasViagens() {
                 </h3>
                 <h4>
                   <select
-                    id="status"
-                    className="status"
+                    id="statusViagem"
+                    className="statusViagem"
                     disabled
                     onChange={alterarStatus}
                   >
