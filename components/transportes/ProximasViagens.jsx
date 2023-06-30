@@ -8,7 +8,7 @@ import axios from 'axios'
 export default function ProximasViagens() {
   const [proximasViagens, setProximasViagens] = useState([])
   const { data: session } = useSession()
-  const [statusViagem, setStatusViagem] = useState()
+  const [statusViagem, setStatusViagem] = useState(proximasViagens.statusViagem)
 
   function alterarStatus(evt) {
     setStatusViagem(prevState => ({
@@ -127,6 +127,16 @@ export default function ProximasViagens() {
                       </div>
                       <p>Ônibus urbano (7 a 44 passageiros)</p>
                     </>
+                  )}
+                  {session.user.email === proximasViagens.email &&
+                  proximasViagens.statusViagem === 'Recebida' ? (
+                    <>
+                      <div className="center">
+                        <button>Alterar Solicitação</button>
+                      </div>
+                    </>
+                  ) : (
+                    ''
                   )}
                 </p>
               </article>
