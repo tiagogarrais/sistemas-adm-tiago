@@ -6,20 +6,29 @@ import { useSession } from 'next-auth/react'
 import axios from 'axios'
 
 export default function ProximasViagens() {
-  const [proximasViagens, setProximasViagens] = useState([])
   const { data: session } = useSession()
-  const [statusViagem, setStatusViagem] = useState(proximasViagens.statusViagem)
+  const [proximasViagens, setProximasViagens] = useState([])
+  const [statusAlterado, setStatusAlterado] = useState([])
 
   function alterarStatus(evt) {
-    setStatusViagem(prevState => ({
+    setStatusAlterado(prevState => ({
       ...prevState,
       [evt.target.className]: evt.target.value
     }))
 
-    axios.patch('api/transportes/transportes', {
-      _id: proximasViagens._id,
-      statusViagem: statusViagem
-    })
+    console.log(statusAlterado)
+
+    axios
+      .patch('/api/transportes/transportes', {
+        _id: proximasViagens._id,
+        statusViagem: statusAlterado
+      })
+      .then(function (res) {
+        window.alert('Informação atualizada')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   async function buscarViagens() {
@@ -28,10 +37,10 @@ export default function ProximasViagens() {
     setProximasViagens(viagens)
 
     if (session.user.email === 'tiago.arrais@ufca.edu.br') {
-      const elements = Array.from(
+      const selects = Array.from(
         document.getElementsByClassName('statusViagem')
       )
-      elements.forEach(elem => {
+      selects.forEach(elem => {
         elem.disabled = false
       })
     } else {
@@ -74,9 +83,9 @@ export default function ProximasViagens() {
                 </h3>
                 <h4>
                   <select
+                    disabled
                     id="statusViagem"
                     className="statusViagem"
-                    disabled
                     onChange={alterarStatus}
                   >
                     <option id="recebida" className="recebida" value="recebida">

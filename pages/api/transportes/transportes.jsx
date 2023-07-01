@@ -31,9 +31,10 @@ export default async function transportes(req, res) {
       case 'PATCH':
         try {
           await connectMongo()
-          const statusViagem = AtualizaStatus.findOneAndUpdate(
+          const statusViagem = await AtualizaStatus.findOneAndUpdate(
             { _id: req.body._id },
-            { statusViagem: req.body.statusViagem }
+            { $set: { statusViagem: req.body.statusViagem } },
+            { new: true }
           )
           res.json({ statusViagem })
         } catch (error) {
@@ -43,7 +44,7 @@ export default async function transportes(req, res) {
         break
 
       default:
-        res.setHeader('Permitido', ['GET', 'POST', 'DELETE'])
+        res.setHeader('Permitido', ['GET', 'PATCH', 'POST', 'DELETE'])
         res.status(405).end(`Método ${method} não permitido`)
     }
   } catch (err) {
