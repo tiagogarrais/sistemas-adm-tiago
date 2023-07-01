@@ -71,11 +71,10 @@ export default function ProximasViagens() {
   return (
     <>
       <h2>Próximas viagens</h2>
-
-      <div className="bloco">
+      <div className="flex flex-wrap">
         {proximasViagens.map(proximasViagens => (
           <>
-            <div className="container mx-auto px-4 md:px-12">
+            <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <article>
                 <h3>
                   Viagem para{' '}

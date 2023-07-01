@@ -10,7 +10,7 @@ export default function Transportes() {
     'http://raiolaser.16mb.com/images/2/2a/Raio-transportes-ufca.jpeg'
   if (session) {
     return (
-      <div>
+      <div className="container my-12 mx-auto px-4 md:px-12">
         <h1>Transportes do Instituto de Formação de Educadores</h1>
         <p>
           Atenção: Este sistema ainda está em fase de desenvolvimento. As
@@ -38,8 +38,9 @@ export default function Transportes() {
           Atenção: Atuação permitida do serviço de transporte terrestre da UFCA:
           Raio de 800 km à partir da sede - Juazeiro do Norte
         </div>
-
-        <ProximasViagens />
+        <div>
+          <ProximasViagens />
+        </div>
       </div>
     )
   }

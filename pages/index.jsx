@@ -17,13 +17,13 @@ export default function Home() {
         </div>
         <h2>Sistemas desenvolvidos para a UFCA - neste site</h2>
 
-        <div className="container my-12 mx-auto px-4 md:px-12">
-          <div className="flex flex-wrap -mx-1 lg:-mx-4">
-            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+        <div className="container my-4 mx-auto md:px-12">
+          <div className="flex flex-wrap">
+            <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <Link className="link" href="/ambientes/1">
                 <article>
-                  <header className="flex items-center justify-between leading-tight p-2 md:p-4">
-                    <p className="text-lg">Ambientes</p>
+                  <header className="flex items-center leading-tight p-2 md:p-4">
+                    <p>Ambientes IFE</p>
                   </header>
                   <Image
                     alt="Placeholder"
@@ -34,10 +34,10 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+            <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <Link className="link" href="/brainstorming/brainstorming">
                 <article>
-                  <header className="flex items-center justify-between leading-tight p-2 md:p-4">
+                  <header className="flex items-center leading-tight p-2 md:p-4">
                     <p className="text-lg">Brainstorming</p>
                   </header>
                   <Image
@@ -49,11 +49,11 @@ export default function Home() {
               </Link>
             </div>
 
-            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+            <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <Link className="link" href="/transportes/">
                 <article>
-                  <header className="flex items-center justify-between leading-tight p-2 md:p-4">
-                    <p className="text-lg">Transportes (Em desenvolvimento)</p>
+                  <header className="flex items-center leading-tight p-2 md:p-4">
+                    <p className="text-lg">Transportes</p>
                   </header>
                   <Image
                     alt="transportes campus Brejo Santo"
