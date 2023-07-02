@@ -9,13 +9,13 @@ export default function Cadastro() {
   if (session) {
     return (
       <>
-        <div id="cadastro">
-          <SalvarNovoCadastro />
-        </div>
         <div className="button">
           <Link href="/cadastro/cadastro">
             Voltar para a página de cadastro
           </Link>
+        </div>
+        <div id="cadastro">
+          <SalvarNovoCadastro />
         </div>
       </>
     )

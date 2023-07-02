@@ -84,10 +84,20 @@ export default function SalvarNovoCadastro() {
     cadastro.email = session.user.email
     return (
       <div>
-        <BuscarCadastro />
         <h2>Cadastrar ou atualizar dados pessoais</h2>
+        <p className="text-sm">
+          {' '}
+          De acordo com o Art. 7º da Lei Geral de Proteção de Dados (LEI Nº
+          13.709, DE 14 DE AGOSTO DE 2018) O tratamento de dados pessoais
+          somente poderá ser realizado nas seguintes hipóteses:
+          <br /> (...) III - pela administração pública, para o tratamento e uso
+          compartilhado de dados necessários à execução de políticas públicas
+          previstas em leis e regulamentos ou respaldadas em contratos,
+          convênios ou instrumentos congêneres, observadas as disposições do
+          Capítulo IV desta Lei (...)
+        </p>
         <label for="nome">
-          Nome
+          Nome completo
           <input
             type="text"
             id="nome"
@@ -97,7 +107,7 @@ export default function SalvarNovoCadastro() {
         </label>
 
         <label for="telefone">
-          Telefone
+          Telefone com DDD
           <input
             type="text"
             id="telefone"
@@ -115,32 +125,20 @@ export default function SalvarNovoCadastro() {
           />
         </label>
 
-        <p>
-          Os dados pessoais coletados serão utilizados somente para efeitos
-          legais da solicitação de veículos oficiais.
-        </p>
-        <p>
-          {' '}
-          De acordo com o Art. 7º da Lei Geral de Proteção de Dados (LEI Nº
-          13.709, DE 14 DE AGOSTO DE 2018) O tratamento de dados pessoais
-          somente poderá ser realizado nas seguintes hipóteses:
-        </p>
-        <p>
-          {' '}
-          (...) III - pela administração pública, para o tratamento e uso
-          compartilhado de dados necessários à execução de políticas públicas
-          previstas em leis e regulamentos ou respaldadas em contratos,
-          convênios ou instrumentos congêneres, observadas as disposições do
-          Capítulo IV desta Lei (...)
-        </p>
-
-        <button id="btnSave" value="Salvar" onClick={btnSaveClick}>
-          Salvar
-        </button>
-
-        <button id="deletarCadastro" value="Deletar" onClick={deletarCadastro}>
-          Apagar meu cadastro
-        </button>
+        <div className="center">
+          <button id="btnSave" value="Salvar" onClick={btnSaveClick}>
+            Salvar
+          </button>
+        </div>
+        <div className="center">
+          <button
+            id="deletarCadastro"
+            value="Deletar"
+            onClick={deletarCadastro}
+          >
+            Apagar meu cadastro
+          </button>
+        </div>
       </div>
     )
   }

@@ -20,6 +20,10 @@ article {
   justify-center;
 }
 
+.aviso {
+  @apply bg-yellow-300;
+}
+
 .button {
   @apply hover:bg-blue-900
   hover:text-white
