@@ -11,6 +11,15 @@ export default function ProximasViagens() {
   const [statusAlterado, setStatusAlterado] = useState([])
 
   function alterarStatus(evt) {
+    if (session.user.email != 'tiago.arrais@ufca.edu.br') {
+      const options = Array.from(
+        document.getElementsByClassName('statusViagem')
+      )
+      options.forEach(option => {
+        option.disabled = true
+      })
+    }
+
     setStatusAlterado(prevState => ({
       ...prevState,
       [evt.target.className]: evt.target.value
@@ -35,17 +44,6 @@ export default function ProximasViagens() {
     const response = await fetch('/api/transportes/proximas-viagens')
     const viagens = await response.json()
     setProximasViagens(viagens)
-
-    if (session.user.email === 'tiago.arrais@ufca.edu.br') {
-      const selects = Array.from(
-        document.getElementsByClassName('statusViagem')
-      )
-      selects.forEach(elem => {
-        elem.disabled = false
-      })
-    } else {
-      console.log('Usuário não tem permissão para alterar status')
-    }
   }
 
   function converterData(data) {
@@ -82,19 +80,15 @@ export default function ProximasViagens() {
                 </h3>
                 <h4>
                   <select
-                    disabled
-                    id="statusViagem"
                     className="statusViagem"
-                    onChange={alterarStatus}
+                    onMouseOver={alterarStatus}
+                    onClick={alterarStatus}
+                    onTouchStart={alterarStatus}
                   >
-                    <option id="recebida" className="recebida" value="recebida">
+                    <option className="recebida" value="recebida">
                       Recebida
                     </option>
-                    <option
-                      id="confirmada"
-                      className="confirmada"
-                      value="confirmada"
-                    >
+                    <option className="confirmada" value="confirmada">
                       Confirmada
                     </option>
                   </select>
