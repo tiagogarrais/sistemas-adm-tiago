@@ -18,6 +18,7 @@ export default function ProximasViagens() {
       options.forEach(option => {
         option.disabled = true
       })
+      return
     }
 
     setStatusAlterado(prevState => ({
@@ -25,25 +26,35 @@ export default function ProximasViagens() {
       [evt.target.className]: evt.target.value
     }))
 
-    console.log(statusAlterado)
+    console.log(evt.target.value)
 
-    axios
-      .patch('/api/transportes/transportes', {
-        _id: proximasViagens._id,
-        statusViagem: statusAlterado
-      })
-      .then(function (res) {
-        window.alert('Informação atualizada')
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
+    // axios
+    //   .patch('/api/transportes/transportes', {
+    //     _id: proximasViagens._id,
+    //     statusViagem: statusAlterado
+    //   })
+    //   .then(function (res) {
+    //     window.alert('Informação atualizada')
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error)
+    //   })
   }
 
   async function buscarViagens() {
     const response = await fetch('/api/transportes/proximas-viagens')
     const viagens = await response.json()
     setProximasViagens(viagens)
+
+    if (session.user.email != 'tiago.arrais@ufca.edu.br') {
+      const options = Array.from(
+        document.getElementsByClassName('statusViagem')
+      )
+      options.forEach(option => {
+        option.disabled = true
+      })
+      return
+    }
   }
 
   function converterData(data) {
@@ -79,16 +90,11 @@ export default function ProximasViagens() {
                   {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
                 </h3>
                 <h4>
-                  <select
-                    className="statusViagem"
-                    onMouseOver={alterarStatus}
-                    onClick={alterarStatus}
-                    onTouchStart={alterarStatus}
-                  >
-                    <option className="recebida" value="recebida">
+                  <select className="statusViagem" onChange={alterarStatus}>
+                    <option className="recebida" value="Recebida">
                       Recebida
                     </option>
-                    <option className="confirmada" value="confirmada">
+                    <option className="confirmada" value="Confirmada">
                       Confirmada
                     </option>
                   </select>
