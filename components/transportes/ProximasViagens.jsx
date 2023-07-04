@@ -27,18 +27,6 @@ export default function ProximasViagens() {
     }))
 
     console.log(evt.target.value)
-
-    // axios
-    //   .patch('/api/transportes/transportes', {
-    //     _id: proximasViagens._id,
-    //     statusViagem: statusAlterado
-    //   })
-    //   .then(function (res) {
-    //     window.alert('Informação atualizada')
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
   }
 
   async function buscarViagens() {
@@ -52,6 +40,13 @@ export default function ProximasViagens() {
       )
       options.forEach(option => {
         option.disabled = true
+      })
+
+      const buttonsSubmit = Array.from(
+        document.getElementsByClassName('enviarAtualizacao')
+      )
+      buttonsSubmit.forEach(button => {
+        button.hidden = true
       })
       return
     }
@@ -73,6 +68,23 @@ export default function ProximasViagens() {
     return horaLocal
   }
 
+  function atualizarInformacoes() {
+    event.preventDefault()
+    console.log('Enviar informações')
+
+    // axios
+    //   .patch('/api/transportes/transportes', {
+    //     _id: evt.hidden.value,
+    //     statusViagem: statusAlterado
+    //   })
+    //   .then(function (res) {
+    //     window.alert('Informação atualizada')
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error)
+    //   })
+  }
+
   React.useEffect(() => {
     buscarViagens()
   }, [])
@@ -85,11 +97,15 @@ export default function ProximasViagens() {
           <>
             <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <article>
-                <h3>
-                  Viagem para{' '}
-                  {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
-                </h3>
-                <h4>
+                <form>
+                  <div className="center">
+                    <input
+                      type="hidden"
+                      className="_id"
+                      value={proximasViagens._id}
+                      id={proximasViagens._id}
+                    ></input>
+                  </div>
                   <select className="statusViagem" onChange={alterarStatus}>
                     <option className="recebida" value="Recebida">
                       Recebida
@@ -98,7 +114,22 @@ export default function ProximasViagens() {
                       Confirmada
                     </option>
                   </select>
-                </h4>
+
+                  <div className="center">
+                    <button
+                      type="submit"
+                      className="enviarAtualizacao"
+                      onClick={() => atualizarInformacoes(input.hidden.id)}
+                    >
+                      Atualizar informações
+                    </button>
+                  </div>
+                </form>
+
+                <h3>
+                  Viagem para{' '}
+                  {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
+                </h3>
                 <p>Data da viagem: {converterData(proximasViagens.dataIda)}</p>
                 <p>
                   Horário da viagem: {converterHora(proximasViagens.dataIda)}
@@ -138,11 +169,9 @@ export default function ProximasViagens() {
                   )}
                   {session.user.email === proximasViagens.email &&
                   proximasViagens.statusViagem === 'Recebida' ? (
-                    <>
-                      <div className="center">
-                        <button>Alterar Solicitação</button>
-                      </div>
-                    </>
+                    <div className="center">
+                      <button>Alterar Solicitação</button>
+                    </div>
                   ) : (
                     ''
                   )}
