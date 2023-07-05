@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import minivan from '/public/images/transportes/minivan-spin.jpg'
 import onibus from '/public/images/transportes/onibus-urbano.jpg'
@@ -98,6 +98,18 @@ export default function ProximasViagens() {
     }
     buscarViagens()
   }, [])
+
+  function useInterval(callback, delay) {
+    useEffect(() => {
+      const intervalId = setInterval(callback, delay)
+
+      return () => {
+        clearInterval(intervalId)
+      }
+    }, [callback, delay])
+  }
+
+  useInterval(desabilitarCampos, 1000)
 
   return (
     <>
