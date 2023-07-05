@@ -29,11 +29,7 @@ export default function ProximasViagens() {
     console.log(evt.target.value)
   }
 
-  async function buscarViagens() {
-    const response = await fetch('/api/transportes/proximas-viagens')
-    const viagens = await response.json()
-    setProximasViagens(viagens)
-
+  function desabilitarCampos() {
     //Desabilitar campos que são privativos dos operadores do sistema.
     if (session.user.email != 'tiago.arrais@ufca.edu.br') {
       const options = Array.from(
@@ -90,6 +86,16 @@ export default function ProximasViagens() {
   }
 
   React.useEffect(() => {
+    async function buscarViagens() {
+      try {
+        const response = await fetch('/api/transportes/proximas-viagens')
+        const viagens = await response.json()
+        setProximasViagens(viagens)
+        desabilitarCampos()
+      } catch (error) {
+        console.error('Erro ao buscar informações do banco de dados:', error)
+      }
+    }
     buscarViagens()
   }, [])
 
