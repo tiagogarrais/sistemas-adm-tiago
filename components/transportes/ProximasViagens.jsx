@@ -48,6 +48,12 @@ export default function ProximasViagens() {
       buttonsSubmit.forEach(button => {
         button.hidden = true
       })
+
+      const selects = Array.from(document.getElementsByTagName('select'))
+      selects.forEach(select => {
+        select.hidden = true
+      })
+
       return
     }
   }
@@ -68,21 +74,20 @@ export default function ProximasViagens() {
     return horaLocal
   }
 
-  function atualizarInformacoes() {
-    event.preventDefault()
-    console.log('Enviar informações')
+  function atualizarStatus(_idStatus) {
+    console.log(_idStatus)
 
-    // axios
-    //   .patch('/api/transportes/transportes', {
-    //     _id: evt.hidden.value,
-    //     statusViagem: statusAlterado
-    //   })
-    //   .then(function (res) {
-    //     window.alert('Informação atualizada')
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   })
+    axios
+      .patch('/api/transportes/transportes', {
+        _id: _idStatus,
+        statusViagem: statusAlterado
+      })
+      .then(function (res) {
+        window.alert('Informação atualizada')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   React.useEffect(() => {
@@ -107,9 +112,7 @@ export default function ProximasViagens() {
                     ></input>
                   </div>
                   <select className="statusViagem" onChange={alterarStatus}>
-                    <option className="recebida" value="Recebida">
-                      Recebida
-                    </option>
+                    <option className="" value=""></option>
                     <option className="confirmada" value="Confirmada">
                       Confirmada
                     </option>
@@ -117,9 +120,13 @@ export default function ProximasViagens() {
 
                   <div className="center">
                     <button
-                      type="submit"
+                      type="button"
                       className="enviarAtualizacao"
-                      onClick={() => atualizarInformacoes(input.hidden.id)}
+                      onClick={() =>
+                        atualizarStatus(
+                          document.getElementById(proximasViagens._id).value
+                        )
+                      }
                     >
                       Atualizar informações
                     </button>
@@ -130,6 +137,7 @@ export default function ProximasViagens() {
                   Viagem para{' '}
                   {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
                 </h3>
+                <p>Status da Viagem: {proximasViagens.statusViagem}</p>
                 <p>Data da viagem: {converterData(proximasViagens.dataIda)}</p>
                 <p>
                   Horário da viagem: {converterHora(proximasViagens.dataIda)}

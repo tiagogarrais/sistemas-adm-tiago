@@ -102,7 +102,7 @@ const solicitaTransporteSchema = new Schema({
 
   statusViagem: {
     type: String,
-    required: false
+    required: true
   },
 
   passageiro1: {

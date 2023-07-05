@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 
 export default function SolicitarVeiculo() {
   const [solicita, setSolicita] = useState({
+    statusViagem: 'Recebida',
     saidaAbaiara: 'Não',
     saidaCentro: 'Não',
     saidaIfe: 'Não',
