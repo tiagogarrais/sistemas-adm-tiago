@@ -13,6 +13,5 @@ export default async function proximasViagens(require, response) {
     .find({ dataIda: { $gte: new Date(stringData) } })
     .sort({ dataIda: 1 })
     .toArray()
-  //response.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate')
   response.status(200).json(proximasViagens)
 }

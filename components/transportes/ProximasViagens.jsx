@@ -34,6 +34,7 @@ export default function ProximasViagens() {
     const viagens = await response.json()
     setProximasViagens(viagens)
 
+    //Desabilitar campos que são privativos dos operadores do sistema.
     if (session.user.email != 'tiago.arrais@ufca.edu.br') {
       const options = Array.from(
         document.getElementsByClassName('statusViagem')
@@ -53,8 +54,6 @@ export default function ProximasViagens() {
       selects.forEach(select => {
         select.hidden = true
       })
-
-      return
     }
   }
 
