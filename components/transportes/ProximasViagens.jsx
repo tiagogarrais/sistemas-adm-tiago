@@ -91,7 +91,6 @@ export default function ProximasViagens() {
         const response = await fetch('/api/transportes/proximas-viagens')
         const viagens = await response.json()
         setProximasViagens(viagens)
-        desabilitarCampos()
       } catch (error) {
         console.error('Erro ao buscar informações do banco de dados:', error)
       }
