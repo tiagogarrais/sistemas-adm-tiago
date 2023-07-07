@@ -24,11 +24,8 @@ export default function Ambientes() {
     return (
       <div>
         <title>{tituloPagina}</title>
-        <meta name="description" content={tituloPagina} />
+        <meta name="Sistema de Listagem de Salas e Ambientes" />
         <main>
-          <Link id="listagem" className="button" href="/ambientes/listagem">
-            Listagem de ambientes - campus Brejo Santo
-          </Link>
           <h1 id="titulo-pagina">{tituloPagina}</h1>
           <div className="center">
             <div>
@@ -41,6 +38,10 @@ export default function Ambientes() {
             </div>
           </div>
           <MostrarAmbiente />
+          <hr />
+          <Link id="listagem" className="button" href="/ambientes/listagem">
+            Listagem de ambientes - campus Brejo Santo
+          </Link>
           <hr />
           <button id="imprimir" onClick={imprimir}>
             Versão para impressão
