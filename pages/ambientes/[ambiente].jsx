@@ -49,6 +49,9 @@ export default function Ambientes() {
           <a href="https://atendimento.ufca.edu.br" target="_blank">
             <button id="problema">Informar problema no ambiente</button>
           </a>
+          <button>
+            <Link href="/ambientes/cadastro">Cadastrar novo ambiente</Link>
+          </button>
           <hr />
         </main>
       </div>
