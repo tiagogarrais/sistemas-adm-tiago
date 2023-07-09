@@ -18,6 +18,7 @@ export default function Ambientes() {
     document.getElementById('listagem').style.display = 'none'
     document.getElementById('imprimir').style.display = 'none'
     document.getElementById('problema').style.display = 'none'
+    document.getElementById('cadastro').style.display = 'none'
   }
 
   if (session) {
@@ -49,7 +50,7 @@ export default function Ambientes() {
           <a href="https://atendimento.ufca.edu.br" target="_blank">
             <button id="problema">Informar problema no ambiente</button>
           </a>
-          <button>
+          <button id="cadastro">
             <Link href="/ambientes/cadastro">Cadastrar novo ambiente</Link>
           </button>
           <hr />
