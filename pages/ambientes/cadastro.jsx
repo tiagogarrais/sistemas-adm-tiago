@@ -67,7 +67,7 @@ export default function Listagem() {
           </label>
 
           <label>
-            Número da chave da porta:
+            Número de identificação / Chave da porta:
             <input
               type="number"
               name="numeroIdentificacao"
