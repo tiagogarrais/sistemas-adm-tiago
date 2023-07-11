@@ -5,6 +5,11 @@ import { useState } from 'react'
 export default function Listagem() {
   const { data: session } = useSession()
   const [cadastroAmbiente, setcadastroAmbiente] = useState({})
+  const [exibirAmbienteEnsino, setExibirAmbienteEnsino] = useState(false)
+
+  const handleCheckboxChange = () => {
+    setExibirAmbienteEnsino(!exibirAmbienteEnsino)
+  }
 
   if (session && session.user.email === 'tiago.arrais@ufca.edu.br') {
     function onInputChange(evt) {
@@ -128,115 +133,163 @@ export default function Listagem() {
           </label>
 
           <label>
-            Quantidade de carteiras:
             <input
-              type="number"
-              name="quantCarteiras"
-              placeholder="Quantidade de carteiras"
-              id="quantCarteiras"
-              onChange={onInputChange}
-            ></input>
+              type="checkbox"
+              checked={exibirAmbienteEnsino}
+              onChange={handleCheckboxChange}
+            />
+            É um ambiente de ensino como sala de aula, laboratório ou outros?
           </label>
 
-          <label>
-            Possui suporte para instalação de projetor?
-            <select
-              type="select"
-              name="possuiSuporteProjetor"
-              placeholder="Possui suporte para instalação de projetor?"
-              id="possuiSuporteProjetor"
-              onChange={onInputChange}
-            >
-              <option
-                name="escolherProjetor"
-                value="Escolher"
-                id="escolherProjetor"
-              >
-                Escolher
-              </option>
-              <option name="simProjetor" value="Sim" id="simProjetor">
-                Sim
-              </option>
-              <option name="naoProjetor" value="Não" id="naoProjetor">
-                Não
-              </option>
-            </select>
-          </label>
+          <div
+            style={{ display: exibirAmbienteEnsino ? 'block' : 'none' }}
+            id="ambienteEnsino"
+            className="ambienteEnsino"
+          >
+            <label>
+              Quantidade de carteiras:
+              <input
+                type="number"
+                name="quantCarteiras"
+                placeholder="Quantidade de carteiras"
+                id="quantCarteiras"
+                onChange={onInputChange}
+              ></input>
+            </label>
 
-          <label>
-            Possui gaiola para instalação de projetor?
-            <select
-              type="select"
-              name="possuiGaiolaProjetor"
-              placeholder="Possui gaiola para instalação de projetor?"
-              id="possuiGaiolaProjetor"
-              onChange={onInputChange}
-            >
-              <option
-                name="escolherGaiola"
-                value="Escolher"
-                id="escolherGaiola"
+            <label>
+              Possui cadeira acessível?
+              <select
+                type="select"
+                name="possuiCadeiraAcessível"
+                placeholder="Possui cadeira acessível?"
+                id="possuiCadeiraAcessível"
+                onChange={onInputChange}
               >
-                Escolher
-              </option>
-              <option name="simGaiola" value="Sim" id="simGaiola">
-                Sim
-              </option>
-              <option name="naoGaiola" value="Não" id="naoGaiola">
-                Não
-              </option>
-            </select>
-          </label>
+                <option
+                  name="escolherCadeiraAcessivel"
+                  value="Escolher"
+                  id="escolherCadeiraAcessivel"
+                >
+                  Escolher
+                </option>
+                <option
+                  name="simCadeiraAcessível"
+                  value="Sim"
+                  id="simCadeiraAcessível"
+                >
+                  Sim
+                </option>
+                <option
+                  name="naoCadeiraAcessível"
+                  value="Não"
+                  id="naoCadeiraAcessível"
+                >
+                  Não
+                </option>
+              </select>
+            </label>
 
-          <label>
-            Possui projetor instalado?
-            <select
-              type="select"
-              name="possuiProjetor"
-              placeholder="Possui projetor instalado?"
-              id="possuiProjetor"
-              onChange={onInputChange}
-            >
-              <option
-                name="escolherPossuiProjetor"
-                value="Escolher"
-                id="escolherPossuiProjetor"
+            <label>
+              Possui suporte para instalação de projetor?
+              <select
+                type="select"
+                name="possuiSuporteProjetor"
+                placeholder="Possui suporte para instalação de projetor?"
+                id="possuiSuporteProjetor"
+                onChange={onInputChange}
               >
-                Escolher
-              </option>
-              <option name="simProjetor" value="Sim" id="simProjetor">
-                Sim
-              </option>
-              <option name="naoProjetor" value="Não" id="naoProjetor">
-                Não
-              </option>
-            </select>
-          </label>
+                <option
+                  name="escolherProjetor"
+                  value="Escolher"
+                  id="escolherProjetor"
+                >
+                  Escolher
+                </option>
+                <option name="simProjetor" value="Sim" id="simProjetor">
+                  Sim
+                </option>
+                <option name="naoProjetor" value="Não" id="naoProjetor">
+                  Não
+                </option>
+              </select>
+            </label>
 
-          <label>
-            Possui quadro / lousa?
-            <select
-              type="select"
-              name="possuiQuadroLousa"
-              placeholder="Possui quadro / lousa?"
-              id="possuiQuadroLousa"
-              onChange={onInputChange}
-            >
-              <option
-                name="escolherPossuiQuadroLousa"
-                value="Escolher"
-                id="escolherPossuiQuadroLousa"
+            <label>
+              Possui gaiola para instalação de projetor?
+              <select
+                type="select"
+                name="possuiGaiolaProjetor"
+                placeholder="Possui gaiola para instalação de projetor?"
+                id="possuiGaiolaProjetor"
+                onChange={onInputChange}
               >
-                Escolher
-              </option>
-              <option name="simQuadroLousa" value="Sim" id="simQuadroLousa">
-                Sim
-              </option>
-              <option name="naoQuadroLousa" value="Não" id="naoQuadroLousa">
-                Não
-              </option>
-            </select>
-          </label>
+                <option
+                  name="escolherGaiola"
+                  value="Escolher"
+                  id="escolherGaiola"
+                >
+                  Escolher
+                </option>
+                <option name="simGaiola" value="Sim" id="simGaiola">
+                  Sim
+                </option>
+                <option name="naoGaiola" value="Não" id="naoGaiola">
+                  Não
+                </option>
+              </select>
+            </label>
+
+            <label>
+              Possui projetor instalado?
+              <select
+                type="select"
+                name="possuiProjetor"
+                placeholder="Possui projetor instalado?"
+                id="possuiProjetor"
+                onChange={onInputChange}
+              >
+                <option
+                  name="escolherPossuiProjetor"
+                  value="Escolher"
+                  id="escolherPossuiProjetor"
+                >
+                  Escolher
+                </option>
+                <option name="simProjetor" value="Sim" id="simProjetor">
+                  Sim
+                </option>
+                <option name="naoProjetor" value="Não" id="naoProjetor">
+                  Não
+                </option>
+              </select>
+            </label>
+
+            <label>
+              Possui quadro / lousa?
+              <select
+                type="select"
+                name="possuiQuadroLousa"
+                placeholder="Possui quadro / lousa?"
+                id="possuiQuadroLousa"
+                onChange={onInputChange}
+              >
+                <option
+                  name="escolherPossuiQuadroLousa"
+                  value="Escolher"
+                  id="escolherPossuiQuadroLousa"
+                >
+                  Escolher
+                </option>
+                <option name="simQuadroLousa" value="Sim" id="simQuadroLousa">
+                  Sim
+                </option>
+                <option name="naoQuadroLousa" value="Não" id="naoQuadroLousa">
+                  Não
+                </option>
+              </select>
+            </label>
+          </div>
 
           <label>
             Possui condicionador de ar?

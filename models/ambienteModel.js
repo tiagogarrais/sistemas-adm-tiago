@@ -3,7 +3,8 @@ import { Schema, model, models } from 'mongoose'
 const AmbienteSchema = new Schema({
   numeroIdentificacao: {
     type: Number,
-    required: true
+    required: true,
+    unique: true
   },
 
   nomeAmbiente: {
@@ -32,7 +33,7 @@ const AmbienteSchema = new Schema({
   },
   possuigaiolaProjetor: {
     type: String,
-    required: true
+    required: false
   },
   possuiCondicionadorAr: {
     type: String,
@@ -40,15 +41,23 @@ const AmbienteSchema = new Schema({
   },
   possuiProjetor: {
     type: String,
-    required: true
+    required: false
   },
   possuiQuadroLousa: {
     type: String,
-    required: true
+    required: false
   },
   possuiSuporteProjetor: {
     type: String,
-    required: true
+    required: false
+  },
+  possuiCadeiraAcessível: {
+    type: String,
+    required: false
+  },
+  possuiMesaAcessível: {
+    type: String,
+    required: false
   },
   potenciaWattsCondicionadorAr: {
     type: String,
@@ -56,7 +65,7 @@ const AmbienteSchema = new Schema({
   },
   quantCarteiras: {
     type: Number,
-    required: true
+    required: false
   },
   quantLampadas: {
     type: Number,
