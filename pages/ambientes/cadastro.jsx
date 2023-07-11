@@ -1,9 +1,56 @@
+import axios from 'axios'
 import { useSession } from 'next-auth/react'
+import { useState } from 'react'
 
 export default function Listagem() {
   const { data: session } = useSession()
+  const [cadastroAmbiente, setcadastroAmbiente] = useState({})
 
   if (session && session.user.email === 'tiago.arrais@ufca.edu.br') {
+    function onInputChange(evt) {
+      console.log([evt.target.name], [evt.target.value])
+      setcadastroAmbiente(prevState => ({
+        ...prevState,
+        [evt.target.name]: evt.target.value
+      }))
+    }
+
+    function btnSaveClick() {
+      event.preventDefault()
+      console.log(cadastroAmbiente)
+
+      axios
+        .post('/api/ambientes/ambientes', {
+          numeroIdentificacao: cadastroAmbiente.numeroIdentificacao,
+          nomeAmbiente: cadastroAmbiente.nomeAmbiente,
+          tipoTeto: cadastroAmbiente.tipoTeto,
+          larguraLesteOeste: cadastroAmbiente.larguraLesteOeste,
+          comprimento: cadastroAmbiente.comprimento,
+          altura: cadastroAmbiente.altura,
+          frequenciaSemanalLimpeza: cadastroAmbiente.frequenciaSemanalLimpeza,
+          possuigaiolaProjetor: cadastroAmbiente.possuiGaiolaProjetor,
+          possuiCondicionadorAr: cadastroAmbiente.possuiCondicionadorAr,
+          possuiProjetor: cadastroAmbiente.possuiProjetor,
+          possuiQuadroLousa: cadastroAmbiente.possuiQuadroLousa,
+          possuiSuporteProjetor: cadastroAmbiente.possuiSuporteProjetor,
+          potenciaWattsCondicionadorAr:
+            cadastroAmbiente.potenciaWattsCondicionadorAr,
+          quantCarteiras: cadastroAmbiente.quantCarteiras,
+          quantLampadas: cadastroAmbiente.quantLampadas,
+          tipoIluminacao: cadastroAmbiente.tipoIluminacao,
+          tipoTeto: cadastroAmbiente.tipoTeto
+        })
+        .then(function (res) {
+          console.log('Dados enviados')
+          // setSolicita({})
+          // document.getElementById('btnSave').disabled = false
+          // document.getElementById('btnSave').innerText = 'Salvar'
+        })
+        .catch(function (error) {
+          console.log(error)
+        })
+    }
+
     return (
       <>
         <h1>Cadastro de ambientes</h1>
@@ -12,9 +59,10 @@ export default function Listagem() {
             Nome do ambiente:
             <input
               type="input"
-              className="nomeAmbiente"
+              name="nomeAmbiente"
               placeholder="Nome do ambiente"
               id="nomeAmbiente"
+              onChange={onInputChange}
             />
           </label>
 
@@ -22,9 +70,10 @@ export default function Listagem() {
             Número da chave da porta:
             <input
               type="number"
-              className="numeroChave"
+              name="numeroIdentificacao"
               placeholder="Número da chave da porta"
-              id="numeroChave"
+              id="numeroIdentificacao"
+              onChange={onInputChange}
             ></input>
           </label>
 
@@ -32,11 +81,12 @@ export default function Listagem() {
             Largura (Leste-Oeste):
             <input
               type="number"
-              className="larguraLesteOeste"
-              placeholder="Use ponto para separar casas decimais"
+              name="larguraLesteOeste"
+              placeholder="Vírgula para separar casas decimais"
               id="larguraLesteOeste"
               step="0.1"
               pattern="[0-9]\.[0-9]"
+              onChange={onInputChange}
             ></input>
           </label>
 
@@ -44,11 +94,25 @@ export default function Listagem() {
             Comprimento:
             <input
               type="number"
-              className="comprimento"
-              placeholder="Use ponto para separar casas decimais"
+              name="comprimento"
+              placeholder="Vírgula para separar casas decimais"
               id="comprimento"
               step="0.1"
               pattern="[0-9]\.[0-9]"
+              onChange={onInputChange}
+            ></input>
+          </label>
+
+          <label>
+            Altura:
+            <input
+              type="number"
+              name="altura"
+              placeholder="Vírgula para separar casas decimais"
+              id="altura"
+              step="0.1"
+              pattern="[0-9]\.[0-9]"
+              onChange={onInputChange}
             ></input>
           </label>
 
@@ -56,9 +120,10 @@ export default function Listagem() {
             Frequência semanal de limpeza completa do ambiente:
             <input
               type="number"
-              className="freqSemanalLimpezaCompleta"
+              name="frequenciaSemanalLimpeza"
               placeholder="Frequência semanal"
-              id="quantCafreqSemanalLimpezaCompletarteiras"
+              id="frequenciaSemanalLimpeza"
+              onChange={onInputChange}
             ></input>
           </label>
 
@@ -66,9 +131,10 @@ export default function Listagem() {
             Quantidade de carteiras:
             <input
               type="number"
-              className="quantCarteiras"
+              name="quantCarteiras"
               placeholder="Quantidade de carteiras"
               id="quantCarteiras"
+              onChange={onInputChange}
             ></input>
           </label>
 
@@ -76,21 +142,22 @@ export default function Listagem() {
             Possui suporte para instalação de projetor?
             <select
               type="select"
-              className="suporteProjetor"
+              name="possuiSuporteProjetor"
               placeholder="Possui suporte para instalação de projetor?"
-              id="suporteProjetor"
+              id="possuiSuporteProjetor"
+              onChange={onInputChange}
             >
               <option
-                className="escolherProjetor"
+                name="escolherProjetor"
                 value="Escolher"
                 id="escolherProjetor"
               >
                 Escolher
               </option>
-              <option className="simProjetor" value="Sim" id="simProjetor">
+              <option name="simProjetor" value="Sim" id="simProjetor">
                 Sim
               </option>
-              <option className="naoProjetor" value="Não" id="naoProjetor">
+              <option name="naoProjetor" value="Não" id="naoProjetor">
                 Não
               </option>
             </select>
@@ -100,21 +167,22 @@ export default function Listagem() {
             Possui gaiola para instalação de projetor?
             <select
               type="select"
-              className="gaiolaProjetor"
+              name="possuiGaiolaProjetor"
               placeholder="Possui gaiola para instalação de projetor?"
-              id="gaiolaProjetor"
+              id="possuiGaiolaProjetor"
+              onChange={onInputChange}
             >
               <option
-                className="escolherGaiola"
+                name="escolherGaiola"
                 value="Escolher"
                 id="escolherGaiola"
               >
                 Escolher
               </option>
-              <option className="simGaiola" value="Sim" id="simGaiola">
+              <option name="simGaiola" value="Sim" id="simGaiola">
                 Sim
               </option>
-              <option className="naoGaiola" value="Não" id="naoGaiola">
+              <option name="naoGaiola" value="Não" id="naoGaiola">
                 Não
               </option>
             </select>
@@ -124,21 +192,22 @@ export default function Listagem() {
             Possui projetor instalado?
             <select
               type="select"
-              className="possuiProjetor"
+              name="possuiProjetor"
               placeholder="Possui projetor instalado?"
               id="possuiProjetor"
+              onChange={onInputChange}
             >
               <option
-                className="escolherPossuiProjetor"
+                name="escolherPossuiProjetor"
                 value="Escolher"
                 id="escolherPossuiProjetor"
               >
                 Escolher
               </option>
-              <option className="simProjetor" value="Sim" id="simProjetor">
+              <option name="simProjetor" value="Sim" id="simProjetor">
                 Sim
               </option>
-              <option className="naoProjetor" value="Não" id="naoProjetor">
+              <option name="naoProjetor" value="Não" id="naoProjetor">
                 Não
               </option>
             </select>
@@ -148,29 +217,22 @@ export default function Listagem() {
             Possui quadro / lousa?
             <select
               type="select"
-              className="possuiQuadroLousa"
+              name="possuiQuadroLousa"
               placeholder="Possui quadro / lousa?"
               id="possuiQuadroLousa"
+              onChange={onInputChange}
             >
               <option
-                className="escolherPossuiQuadroLousa"
+                name="escolherPossuiQuadroLousa"
                 value="Escolher"
                 id="escolherPossuiQuadroLousa"
               >
                 Escolher
               </option>
-              <option
-                className="simQuadroLousa"
-                value="Sim"
-                id="simQuadroLousa"
-              >
+              <option name="simQuadroLousa" value="Sim" id="simQuadroLousa">
                 Sim
               </option>
-              <option
-                className="naoQuadroLousa"
-                value="Não"
-                id="naoQuadroLousa"
-              >
+              <option name="naoQuadroLousa" value="Não" id="naoQuadroLousa">
                 Não
               </option>
             </select>
@@ -180,26 +242,27 @@ export default function Listagem() {
             Possui condicionador de ar?
             <select
               type="select"
-              className="possuiCondicionadorAr"
+              name="possuiCondicionadorAr"
               placeholder="Possui condicionador de ar?"
               id="possuiCondicionadorAr"
+              onChange={onInputChange}
             >
               <option
-                className="escolherPossuiCondicionadorAr"
+                name="escolherPossuiCondicionadorAr"
                 value="Escolher"
                 id="escolherPossuiCondicionadorAr"
               >
                 Escolher
               </option>
               <option
-                className="simCondicionadorAr"
+                name="simCondicionadorAr"
                 value="Sim"
                 id="simCondicionadorAr"
               >
                 Sim
               </option>
               <option
-                className="naoCondicionadorAr"
+                name="naoCondicionadorAr"
                 value="Não"
                 id="naoCondicionadorAr"
               >
@@ -212,9 +275,10 @@ export default function Listagem() {
             Qual a potência em Watts do condicionador de ar?
             <input
               type="number"
-              className="potenciaWattsCondicionadorAr"
+              name="potenciaWattsCondicionadorAr"
               placeholder="potência em Watts"
               id="potenciaWattsCondicionadorAr"
+              onChange={onInputChange}
             ></input>
           </label>
 
@@ -222,44 +286,48 @@ export default function Listagem() {
             Tipo de teto:
             <select
               type="select"
-              className="tipoTeto"
+              name="tipoTeto"
               placeholder="Selecione o tipo de teto"
               id="tipoTeto"
+              onChange={onInputChange}
             >
               <option
-                className="escolherTipoTeto"
+                name="escolherTipoTeto"
                 value="Escolher"
                 id="escolherTipoTeto"
               >
                 Escolher
               </option>
               <option
-                className="lajeConcreto"
+                name="lajeConcreto"
                 value="Laje de concreto"
                 id="lajeConcreto"
               >
                 Laje de concreto
               </option>
               <option
-                className="madeiraTelhasSemForro"
+                name="madeiraTelhasSemForro"
                 value="Madeira e telhas sem forro"
                 id="madeiraTelhasSemForro"
               >
                 Madeira e telhas sem forro
               </option>
               <option
-                className="madeiraTelhasComForroPVC"
+                name="madeiraTelhasComForroPVC"
                 value="Madeira e telhas com forro (PVC)"
                 id="madeiraTelhasComForroPVC"
               >
                 Madeira e telhas com forro (PVC)
               </option>
               <option
-                className="madeiraTelhasComForroGesso"
+                name="madeiraTelhasComForroGesso"
                 value="Madeira e telhas com forro (gesso)"
                 id="madeiraTelhasComForroGesso"
               >
                 Madeira e telhas com forro (gesso)
+              </option>
+              <option name="semTeto" value="Não possui teto" id="semTeto">
+                Área aberta, sem teto.
               </option>
             </select>
           </label>
@@ -267,40 +335,41 @@ export default function Listagem() {
             Tipo de iluminação:
             <select
               type="select"
-              className="tipoIluminacao"
+              name="tipoIluminacao"
               placeholder="Selecione o tipo de iluminação"
               id="tipoIluminacao"
+              onChange={onInputChange}
             >
               <option
-                className="escolherTipoIluminacao"
+                name="escolherTipoIluminacao"
                 value="Escolher"
                 id="escolherTipoIluminacao"
               >
                 Escolher
               </option>
               <option
-                className="lampadaFluorescente"
+                name="lampadaFluorescente"
                 value="Lâmpada tubular (fluorescente)"
                 id="lampadaFluorescente"
               >
                 Lâmpada tubular (fluorescente)
               </option>
               <option
-                className="lampadaLED"
+                name="lampadaLED"
                 value="Lâmpada tubular (LED)"
                 id="lampadaLED"
               >
                 Lâmpada tubular (LED)
               </option>
               <option
-                className="posteLED"
+                name="posteLED"
                 value="Poste maior que 4 metros (LED)"
                 id="posteLED"
               >
                 Poste maior que 4 metros (LED)
               </option>
               <option
-                className="lampadaRosqueavel"
+                name="lampadaRosqueavel"
                 value="Lâmpada rosqueável"
                 id="lampadaRosqueavel"
               >
@@ -313,11 +382,15 @@ export default function Listagem() {
             Quantidade de lâmpadas:
             <input
               type="number"
-              className="quantLampadas"
+              name="quantLampadas"
               placeholder="Quantidade de lâmpadas"
               id="quantLampadas"
+              onChange={onInputChange}
             ></input>
           </label>
+          <button type="submit" onClick={btnSaveClick}>
+            Enviar informações
+          </button>
         </form>
       </>
     )
