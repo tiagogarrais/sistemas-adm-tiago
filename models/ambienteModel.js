@@ -15,21 +15,25 @@ const AmbienteSchema = new Schema({
     type: String,
     required: true
   },
+  telefone: {
+    type: String,
+    required: false
+  },
   larguraLesteOeste: {
     type: Number,
-    required: true
+    required: false
   },
   comprimento: {
     type: Number,
-    required: true
+    required: false
   },
   altura: {
     type: Number,
-    required: true
+    required: false
   },
   frequenciaSemanalLimpeza: {
     type: Number,
-    required: true
+    required: false
   },
   possuigaiolaProjetor: {
     type: String,
@@ -61,7 +65,7 @@ const AmbienteSchema = new Schema({
   },
   potenciaWattsCondicionadorAr: {
     type: String,
-    required: true
+    required: false
   },
   quantCarteiras: {
     type: Number,
