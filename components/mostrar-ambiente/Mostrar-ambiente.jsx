@@ -25,88 +25,111 @@ export function MostrarAmbiente() {
       }
 
       if (dadosJson.telefone != null) {
-        document.getElementById('telefone').innerText = dadosJson.telefone
+        document.getElementById(
+          'telefone'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.larguraLesteOeste != null) {
-        document.getElementById('largura').innerText =
-          dadosJson.larguraLesteOeste
+        document.getElementById(
+          'largura'
+        ).innerHTML = `<p>Largura: ${dadosJson.largura}</p>`
       }
 
       if (dadosJson.comprimento != null) {
-        document.getElementById('comprimento').innerText = dadosJson.comprimento
+        document.getElementById(
+          'comprimento'
+        ).innerHTML = `<p>Comprimento: ${dadosJson.comprimento}</p>`
       }
 
       if (dadosJson.altura != null) {
-        document.getElementById('altura').innerText = dadosJson.altura
+        document.getElementById(
+          'altura'
+        ).innerHTML = `<p>Altura: ${dadosJson.altura}</p>`
       }
 
       if (dadosJson.possuigaiolaProjetor != null) {
-        document.getElementById('possuigaiolaProjetor').innerText =
-          dadosJson.possuigaiolaProjetor
+        document.getElementById(
+          'possuigaiolaProjetor'
+        ).innerHTML = `<p>Possui gaiola para projetor? ${dadosJson.possuigaiolaProjetor}</p>`
       }
 
       if (dadosJson.possuiCondicionadorAr != null) {
-        document.getElementById('possuiCondicionadorAr').innerText =
-          dadosJson.possuiCondicionadorAr
+        document.getElementById(
+          'possuiCondicionadorAr'
+        ).innerHTML = `<p>Possui ar-condicionado? ${dadosJson.possuiCondicionadorAr}</p>`
       }
 
       if (dadosJson.frequenciaSemanalLimpeza != null) {
-        document.getElementById('frequenciaSemanalLimpeza').innerText =
-          dadosJson.frequenciaSemanalLimpeza
+        document.getElementById(
+          'frequenciaSemanalLimpeza'
+        ).innerHTML = `<p>Frequência semanal de limpeza: ${dadosJson.frequenciaSemanalLimpeza}</p>`
       }
 
       if (dadosJson.possuiProjetor != null) {
-        document.getElementById('possuiProjetor').innerText =
-          dadosJson.possuiProjetor
+        document.getElementById(
+          'possuiProjetor'
+        ).innerHTML = `<p>Possui projetor? ${dadosJson.possuiProjetor}</p>`
       }
 
       if (dadosJson.possuiQuadroLousa != null) {
-        document.getElementById('possuiQuadroLousa').innerText =
-          dadosJson.possuiQuadroLousa
+        document.getElementById(
+          'possuiQuadroLousa'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.possuiSuporteProjetor != null) {
-        document.getElementById('possuiSuporteProjetor').innerText =
-          dadosJson.possuiSuporteProjetor
+        document.getElementById(
+          'possuiSuporteProjetor'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.possuiCadeiraAcessível != null) {
-        document.getElementById('possuiCadeiraAcessível').innerText =
-          dadosJson.possuiCadeiraAcessível
+        document.getElementById(
+          'possuiCadeiraAcessível'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.possuiMesaAcessível != null) {
-        document.getElementById('possuiMesaAcessível').innerText =
-          dadosJson.possuiMesaAcessível
+        document.getElementById(
+          'possuiMesaAcessível'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.potenciaWattsCondicionadorAr != null) {
-        document.getElementById('potenciaWattsCondicionadorAr').innerText =
-          dadosJson.potenciaWattsCondicionadorAr
+        document.getElementById(
+          'potenciaWattsCondicionadorAr'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.quantCarteiras != null) {
-        document.getElementById('quantCarteiras').innerText =
-          dadosJson.quantCarteiras
+        document.getElementById(
+          'quantCarteiras'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.quantLampadas != null) {
-        document.getElementById('quantLampadas').innerText =
-          dadosJson.quantLampadas
+        document.getElementById(
+          'quantLampadas'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.tipoIluminacao != null) {
-        document.getElementById('tipoIluminacao').innerText =
-          dadosJson.tipoIluminacao
+        document.getElementById(
+          'tipoIluminacao'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.tipoTeto != null) {
-        document.getElementById('tipoTeto').innerText = dadosJson.tipoTeto
+        document.getElementById(
+          'tipoTeto'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       if (dadosJson.tipo != null) {
-        document.getElementById('tipo').innerText = dadosJson.tipo
+        document.getElementById(
+          'tipo'
+        ).innerHTML = `<p>Número do telefone: ${dadosJson.telefone}</p>`
       }
 
       document.getElementById('areaM2').innerText = (
@@ -121,90 +144,48 @@ export function MostrarAmbiente() {
     <div>
       <h2 id="nomeAmbiente"></h2>
       <p>Chave número: {ambiente}</p>
-      <p>
-        A limpeza completa deste ambiente é executada{' '}
-        <span id="frequenciaSemanalLimpeza"></span> vez(s) por semana.
-      </p>
 
-      <p>
-        Tipo de ambiente: <span id="tipo"></span>
-      </p>
+      <span id="tipo"></span>
+
+      <span id="frequenciaSemanalLimpeza"></span>
 
       <span id="tipoTeto"></span>
 
-      <p>
-        Número do telefone: <span id="telefone"></span>
-      </p>
+      <span id="telefone"></span>
 
-      <p>
-        Largura em metros: <span id="larguraLesteOeste"></span>
-      </p>
+      <span id="larguraLesteOeste"></span>
 
-      <p>
-        Comprimento: <span id="comprimento"></span>
-      </p>
+      <span id="comprimento"></span>
 
-      <p>
-        Altura: <span id="altura"></span>
-      </p>
+      <span id="altura"></span>
 
-      <p>
-        Área em metros quadrados: <span id="areaM2"></span>
-      </p>
+      <span id="areaM2"></span>
 
-      <p>
-        Possui gaiola para projetor? <span id="possuigaiolaProjetor"></span>
-      </p>
+      <span id="possuigaiolaProjetor"></span>
 
-      <p>
-        Possui ar-condicionado? <span id="possuiCondicionadorAr"></span>
-      </p>
+      <span id="possuiCondicionadorAr"></span>
 
-      <p>
-        Possui projetor? <span id="possuiProjetor"></span>
-      </p>
+      <span id="possuiProjetor"></span>
 
-      <p>
-        Possui quadro / lousa? <span id="possuiQuadroLousa"></span>
-      </p>
+      <span id="possuiQuadroLousa"></span>
 
-      <p>
-        Possui suporte para projetor? <span id="possuiSuporteProjetor"></span>
-      </p>
+      <span id="possuiSuporteProjetor"></span>
 
-      <p>
-        Possui cadeira acessível?{' '}
-        <span id="tippossuiCadeiraAcessíveloTeto"></span>
-      </p>
+      <span id="possuiCadeiraAcessível"></span>
 
-      <p>
-        Possui mesa acessível? <span id="possuiMesaAcessível"></span>
-      </p>
+      <span id="possuiMesaAcessível"></span>
 
-      <p>
-        Tipo de teto: <span id="tipoTeto"></span>
-      </p>
+      <span id="tipoTeto"></span>
 
-      <p>
-        Potência em Watts do ar-condicionado:{' '}
-        <span id="potenciaWattsCondicionadorAr"></span>
-      </p>
+      <span id="potenciaWattsCondicionadorAr"></span>
 
-      <p>
-        Quantidade de carteiras: <span id="quantCarteiras"></span>
-      </p>
+      <span id="quantCarteiras"></span>
 
-      <p>
-        Quantidade de lâmpadas: <span id="quantLampadas"></span>
-      </p>
+      <span id="quantLampadas"></span>
 
-      <p>
-        Tipo de Iluminação: <span id="tipoIluminacao"></span>
-      </p>
+      <span id="tipoIluminacao"></span>
 
-      <p>
-        Tipo de teto: <span id="tipoTeto"></span>
-      </p>
+      <span id="tipoTeto"></span>
 
       <p>Link desta página: {linkDestaPagina}</p>
       <div className="center">
