@@ -25,16 +25,16 @@ export function MostrarAmbiente() {
       if (dadosJson.tipo != null) {
         document.getElementById('tipo').innerText = dadosJson.tipo
       }
-      if (dadosJson.LarguraLesteOeste != null) {
+      if (dadosJson.larguraLesteOeste != null) {
         document.getElementById('largura').innerText =
-          dadosJson.LarguraLesteOeste
+          dadosJson.larguraLesteOeste
       }
       if (dadosJson.comprimento != null) {
         document.getElementById('comprimento').innerText = dadosJson.comprimento
       }
 
       document.getElementById('areaM2').innerText = (
-        dadosJson.LarguraLesteOeste * dadosJson.comprimento
+        dadosJson.larguraLesteOeste * dadosJson.comprimento
       ).toFixed(1)
     })
     .catch(function (e) {
