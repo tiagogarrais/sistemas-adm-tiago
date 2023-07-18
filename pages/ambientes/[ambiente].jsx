@@ -53,10 +53,13 @@ export default function Ambientes() {
           <button id="cadastro">
             <Link href="/ambientes/cadastro">Cadastrar novo ambiente</Link>
           </button>
+          <button id="editar">
+            <Link href="/ambientes/editar">Atualizar dados deste ambiente</Link>
+          </button>
           <hr />
         </main>
       </div>
     )
   }
-  return <p>Não</p>
+  return <p>Você precisa fazer login para acessar este conteúdo.</p>
 }
