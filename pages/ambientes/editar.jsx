@@ -4,8 +4,11 @@ import { useState } from 'react'
 
 export default function Listagem() {
   const { data: session } = useSession()
-  const [cadastroAmbiente, setcadastroAmbiente] = useState({})
+  const [cadastroAmbiente, setCadastroAmbiente] = useState({})
   const [exibirAmbienteEnsino, setExibirAmbienteEnsino] = useState(false)
+  const [dadosJson, setDadosJson] = useState({})
+  const [pesquisa, setPesquisa] = useState('')
+  const [nomeAmbiente, setNomeAmbiente] = useState('')
 
   const handleCheckboxChange = () => {
     setExibirAmbienteEnsino(!exibirAmbienteEnsino)
@@ -13,55 +16,35 @@ export default function Listagem() {
 
   if (session && session.user.email === 'tiago.arrais@ufca.edu.br') {
     function onInputChange(evt) {
-      console.log([evt.target.name], [evt.target.value])
-      setcadastroAmbiente(prevState => ({
+      setCadastroAmbiente(prevState => ({
         ...prevState,
         [evt.target.name]: evt.target.value
       }))
     }
 
-    async function btnPesquisaClick(ambiente) {
+    function onChangePesquisa(evt) {
+      setPesquisa(evt.target.value)
+    }
+
+    async function btnPesquisaClick(event) {
       event.preventDefault()
 
-      const linkApiSala = `../api/ambientes/${ambiente}`
+      const linkApiSala = '/api/ambientes/' + pesquisa
       const response = await fetch(linkApiSala)
       const dadosBrutos = await response.json()
       setDadosJson(dadosBrutos)
+
+      setNomeAmbiente(dadosBrutos.nomeAmbiente)
     }
 
-    function btnSaveClick() {
+    function btnSaveClick(event) {
       event.preventDefault()
-      console.log(cadastroAmbiente)
 
       axios
-        .post('/api/ambientes/ambientes', {
-          numeroIdentificacao: cadastroAmbiente.numeroIdentificacao,
-          nomeAmbiente: cadastroAmbiente.nomeAmbiente,
-          telefone: cadastroAmbiente.telefone,
-          tipoTeto: cadastroAmbiente.tipoTeto,
-          larguraLesteOeste: cadastroAmbiente.larguraLesteOeste,
-          comprimento: cadastroAmbiente.comprimento,
-          altura: cadastroAmbiente.altura,
-          frequenciaSemanalLimpeza: cadastroAmbiente.frequenciaSemanalLimpeza,
-          possuigaiolaProjetor: cadastroAmbiente.possuiGaiolaProjetor,
-          possuiCondicionadorAr: cadastroAmbiente.possuiCondicionadorAr,
-          possuiProjetor: cadastroAmbiente.possuiProjetor,
-          possuiQuadroLousa: cadastroAmbiente.possuiQuadroLousa,
-          possuiSuporteProjetor: cadastroAmbiente.possuiSuporteProjetor,
-          possuiCadeiraAcessivel: cadastroAmbiente.possuiCadeiraAcessivel,
-          possuiMesaAcessivel: cadastroAmbiente.possuiMesaAcessivel,
-          potenciaWattsCondicionadorAr:
-            cadastroAmbiente.potenciaWattsCondicionadorAr,
-          quantCarteiras: cadastroAmbiente.quantCarteiras,
-          quantLampadas: cadastroAmbiente.quantLampadas,
-          tipoIluminacao: cadastroAmbiente.tipoIluminacao,
-          tipoTeto: cadastroAmbiente.tipoTeto
-        })
+        .post('/api/ambientes/ambientes', cadastroAmbiente)
         .then(function (res) {
           console.log('Dados enviados')
-          // setSolicita({})
-          // document.getElementById('btnSave').disabled = false
-          // document.getElementById('btnSave').innerText = 'Salvar'
+          // Lógica adicional após o envio dos dados
         })
         .catch(function (error) {
           console.log(error)
@@ -73,20 +56,21 @@ export default function Listagem() {
         <h1>Atualizar dados de ambientes</h1>
         <div>
           <form id="pesquisa">
+            Qual o número do ambiente que você vai atualizar?
             <label>
-              Número de identificação / Chave da porta:
               <input
                 type="number"
                 name="numeroIdentificacao"
                 placeholder="Número da chave da porta"
                 id="numeroIdentificacao"
-                onChange={onInputChange}
+                onChange={onChangePesquisa}
+                value={pesquisa}
                 required
-              ></input>
+              />
+              <button form="pesquisa" type="submit" onClick={btnPesquisaClick}>
+                Enviar informações
+              </button>
             </label>
-            <button form="pesquisa" type="submit" onClick={btnPesquisaClick}>
-              Enviar informações
-            </button>
           </form>
 
           <form id="atualiza">
@@ -97,7 +81,8 @@ export default function Listagem() {
                 name="nomeAmbiente"
                 placeholder="Nome do ambiente"
                 id="nomeAmbiente"
-                onChange={onInputChange}
+                //onChange={onInputChange}
+                value={nomeAmbiente}
                 required
               />
             </label>
