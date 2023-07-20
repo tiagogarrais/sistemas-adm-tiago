@@ -8,7 +8,26 @@ export default function Listagem() {
   const [exibirAmbienteEnsino, setExibirAmbienteEnsino] = useState(false)
   const [dadosJson, setDadosJson] = useState({})
   const [pesquisa, setPesquisa] = useState('')
+
   const [nomeAmbiente, setNomeAmbiente] = useState('')
+  const [telefone, setTelefone] = useState('')
+  const [larguraLesteOeste, setLarguraLesteOeste] = useState('')
+  const [comprimento, setComprimento] = useState('')
+  const [altura, setAltura] = useState('')
+  const [frequenciaSemanalLimpeza, setFrequenciaSemanalLimpeza] = useState('')
+  const [possuigaiolaProjetor, setPossuigaiolaProjetor] = useState('')
+  const [possuiProjetor, setPossuiProjetor] = useState('')
+  const [possuiQuadroLousa, setPossuiQuadroLousa] = useState('')
+  const [possuiSuporteProjetor, setPossuiSuporteProjetor] = useState('')
+  const [possuiCadeiraAcessível, setPossuiCadeiraAcessível] = useState('')
+  const [possuiMesaAcessível, setPossuiMesaAcessível] = useState('')
+  const [possuiCondicionadorAr, setPossuiCondicionadorAr] = useState('')
+  const [potenciaWattsCondicionadorAr, setPotenciaWattsCondicionadorAr] =
+    useState('')
+  const [quantCarteiras, setQuantCarteiras] = useState('')
+  const [quantLampadas, setQuantLampadas] = useState('')
+  const [tipoIluminacao, setTipoIluminacao] = useState('')
+  const [tipoTeto, setTipoTeto] = useState('')
 
   const handleCheckboxChange = () => {
     setExibirAmbienteEnsino(!exibirAmbienteEnsino)
@@ -35,6 +54,23 @@ export default function Listagem() {
       setDadosJson(dadosBrutos)
 
       setNomeAmbiente(dadosBrutos.nomeAmbiente)
+      setTelefone(dadosBrutos.telefone)
+      setLarguraLesteOeste(dadosBrutos.larguraLesteOeste)
+      setComprimento(dadosBrutos.comprimento)
+      setAltura(dadosBrutos.altura)
+      setFrequenciaSemanalLimpeza(dadosBrutos.frequenciaSemanalLimpeza)
+      setPossuigaiolaProjetor(dadosBrutos.possuigaiolaProjetor)
+      setPossuiProjetor(dadosBrutos.possuiProjetor)
+      setPossuiQuadroLousa(dadosBrutos.possuiQuadroLousa)
+      setPossuiSuporteProjetor(dadosBrutos.possuiSuporteProjetor)
+      setPossuiCadeiraAcessível(dadosBrutos.possuiCadeiraAcessível)
+      setPossuiMesaAcessível(dadosBrutos.possuiMesaAcessível)
+      setPossuiCondicionadorAr(dadosBrutos.possuiCondicionadorAr)
+      setPotenciaWattsCondicionadorAr(dadosBrutos.potenciaWattsCondicionadorAr)
+      setQuantCarteiras(dadosBrutos.quantCarteiras)
+      setQuantLampadas(dadosBrutos.quantLampadas)
+      setTipoIluminacao(dadosBrutos.tipoIluminacao)
+      setTipoTeto(dadosBrutos.tipoTeto)
     }
 
     function btnSaveClick(event) {
@@ -43,7 +79,6 @@ export default function Listagem() {
       axios
         .post('/api/ambientes/ambientes', cadastroAmbiente)
         .then(function (res) {
-          console.log('Dados enviados')
           // Lógica adicional após o envio dos dados
         })
         .catch(function (error) {
@@ -95,6 +130,7 @@ export default function Listagem() {
                 placeholder="Somente números com DDD"
                 id="telefone"
                 onChange={onInputChange}
+                value={telefone}
                 required
               ></input>
             </label>
@@ -108,6 +144,7 @@ export default function Listagem() {
                 id="larguraLesteOeste"
                 step="0.1"
                 pattern="[0-9]\.[0-9]"
+                value={telefone}
                 onChange={onInputChange}
               ></input>
             </label>
@@ -121,6 +158,7 @@ export default function Listagem() {
                 id="comprimento"
                 step="0.1"
                 pattern="[0-9]\.[0-9]"
+                value={comprimento}
                 onChange={onInputChange}
               ></input>
             </label>
@@ -134,6 +172,7 @@ export default function Listagem() {
                 id="altura"
                 step="0.1"
                 pattern="[0-9]\.[0-9]"
+                value={altura}
                 onChange={onInputChange}
               ></input>
             </label>
@@ -145,6 +184,7 @@ export default function Listagem() {
                 name="frequenciaSemanalLimpeza"
                 placeholder="Frequência semanal"
                 id="frequenciaSemanalLimpeza"
+                value={frequenciaSemanalLimpeza}
                 onChange={onInputChange}
               ></input>
             </label>
@@ -171,6 +211,7 @@ export default function Listagem() {
                   placeholder="Quantidade de carteiras"
                   id="quantCarteiras"
                   onChange={onInputChange}
+                  value={quantCarteiras}
                 ></input>
               </label>
 
@@ -383,6 +424,7 @@ export default function Listagem() {
                 placeholder="potência em Watts"
                 id="potenciaWattsCondicionadorAr"
                 onChange={onInputChange}
+                value={potenciaWattsCondicionadorAr}
               ></input>
             </label>
 
@@ -493,6 +535,7 @@ export default function Listagem() {
                 id="quantLampadas"
                 onChange={onInputChange}
                 required
+                value={quantLampadas}
               ></input>
             </label>
             <button form="atualiza" type="submit" onClick={btnSaveClick}>

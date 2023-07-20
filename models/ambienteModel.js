@@ -12,11 +12,6 @@ const AmbienteSchema = new Schema({
     required: true
   },
 
-  tipoTeto: {
-    type: String,
-    required: true
-  },
-
   telefone: {
     type: String,
     required: false
