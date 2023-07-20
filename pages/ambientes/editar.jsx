@@ -29,6 +29,22 @@ export default function Listagem() {
   const [tipoIluminacao, setTipoIluminacao] = useState('')
   const [tipoTeto, setTipoTeto] = useState('')
 
+  const tipoIluminacaoOptions = [
+    'Escolher',
+    'Lâmpada tubular (fluorescente)',
+    'Lâmpada tubular (LED)',
+    'Poste maior que 4 metros (LED)',
+    'Lâmpada rosqueável'
+  ]
+
+  const tipoTetoOptions = [
+    'Laje de concreto',
+    'Madeira e telhas sem forro',
+    'Madeira e telhas com forro (PVC)',
+    'Madeira e telhas com forro (gesso)',
+    'Área aberta, sem teto'
+  ]
+
   const handleCheckboxChange = () => {
     setExibirAmbienteEnsino(!exibirAmbienteEnsino)
   }
