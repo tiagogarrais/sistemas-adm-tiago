@@ -108,7 +108,7 @@ export default function ProximasViagens() {
     }, [callback, delay])
   }
 
-  useInterval(desabilitarCampos, 1000)
+  useInterval(desabilitarCampos, 500)
 
   return (
     <>
@@ -150,7 +150,8 @@ export default function ProximasViagens() {
                 </form>
 
                 <h3>
-                  Viagem para{' '}
+                  Destino:
+                  <br />
                   {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
                 </h3>
                 <p>Status da Viagem: {proximasViagens.statusViagem}</p>
