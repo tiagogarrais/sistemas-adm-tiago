@@ -20,7 +20,7 @@ export default function Home() {
         <div className="container my-4 mx-auto md:px-12">
           <div className="flex flex-wrap">
             <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
-              <Link className="link" href="/ambientes/1">
+              <Link className="link" href="/ambientes/listagem">
                 <article>
                   <header className="flex items-center leading-tight p-2 md:p-4">
                     <p>Ambientes IFE</p>

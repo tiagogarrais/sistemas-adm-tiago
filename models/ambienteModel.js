@@ -72,11 +72,6 @@ const AmbienteSchema = new Schema({
     required: true
   },
 
-  potenciaWattsCondicionadorAr: {
-    type: String,
-    required: false
-  },
-
   quantCarteiras: {
     type: Number,
     required: false

@@ -27,6 +27,10 @@ export default function Ambientes() {
         <title>{tituloPagina}</title>
         <meta name="Sistema de Listagem de Salas e Ambientes" />
         <main>
+          <Link id="listagem" className="button" href="/ambientes/listagem">
+            Voltar para listagem de ambientes
+          </Link>
+
           <h1 id="titulo-pagina">{tituloPagina}</h1>
           <div className="center">
             <div>
@@ -40,21 +44,19 @@ export default function Ambientes() {
           </div>
           <MostrarAmbiente />
           <hr />
-          <Link id="listagem" className="button" href="/ambientes/listagem">
-            Listagem de ambientes - campus Brejo Santo
-          </Link>
-          <hr />
           <button id="imprimir" onClick={imprimir}>
             Versão para impressão
           </button>
           <a href="https://atendimento.ufca.edu.br" target="_blank">
             <button id="problema">Informar problema no ambiente</button>
           </a>
-          <button id="cadastro">
-            <Link href="/ambientes/cadastro">Cadastrar novo ambiente</Link>
+          <button id="cadastrar">
+            <Link href="/ambientes/cadastrar">Cadastrar novo ambiente</Link>
           </button>
-          <button id="editar">
-            <Link href="/ambientes/editar">Atualizar dados deste ambiente</Link>
+          <button id="atualizar">
+            <Link href="/ambientes/atualizar">
+              Atualizar dados deste ambiente
+            </Link>
           </button>
           <hr />
         </main>

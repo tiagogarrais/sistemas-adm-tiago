@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
+import Link from 'next/link'
 
-export default function Listagem() {
+export default function Cadastrar() {
   const { data: session } = useSession()
   const [cadastroAmbiente, setcadastroAmbiente] = useState({})
   const [exibirAmbienteEnsino, setExibirAmbienteEnsino] = useState(false)
@@ -61,21 +62,12 @@ export default function Listagem() {
 
     return (
       <>
+        <Link id="listagem" className="button" href="/ambientes/listagem">
+          Voltar para a listagem de ambientes
+        </Link>
         <h1>Cadastro de ambientes</h1>
         <div>
           <form>
-            <label>
-              Nome do ambiente:
-              <input
-                type="input"
-                name="nomeAmbiente"
-                placeholder="Nome do ambiente"
-                id="nomeAmbiente"
-                onChange={onInputChange}
-                required
-              />
-            </label>
-
             <label>
               Número de identificação / Chave da porta:
               <input
@@ -86,6 +78,18 @@ export default function Listagem() {
                 onChange={onInputChange}
                 required
               ></input>
+            </label>
+
+            <label>
+              Nome do ambiente:
+              <input
+                type="input"
+                name="nomeAmbiente"
+                placeholder="Nome do ambiente"
+                id="nomeAmbiente"
+                onChange={onInputChange}
+                required
+              />
             </label>
 
             <label>
@@ -147,17 +151,6 @@ export default function Listagem() {
                 onChange={onInputChange}
               />
               Possui ar-condicionado?
-            </label>
-
-            <label>
-              Qual a potência em Watts do condicionador de ar?
-              <input
-                type="number"
-                name="potenciaWattsCondicionadorAr"
-                placeholder="potência em Watts"
-                id="potenciaWattsCondicionadorAr"
-                onChange={onInputChange}
-              ></input>
             </label>
 
             <label>

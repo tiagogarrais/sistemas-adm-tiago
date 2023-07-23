@@ -7,7 +7,7 @@ export default function ListagemAmbientes() {
   if (session) {
     return (
       <>
-        <h2>Ambientes do campus Brejo Santo</h2>
+        <h2>Listagem de Ambientes</h2>
         <ul>
           <div className="button">
             <li>

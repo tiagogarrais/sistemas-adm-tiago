@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import { useState } from 'react'
+import Link from 'next/link'
 
-export default function Listagem() {
+export default function Atualizar() {
   const { data: session } = useSession()
   const [cadastroAmbiente, setCadastroAmbiente] = useState({})
   const [exibirAmbienteEnsino, setExibirAmbienteEnsino] = useState(false)
@@ -104,6 +105,9 @@ export default function Listagem() {
 
     return (
       <>
+        <Link id="listagem" className="button" href="/ambientes/listagem">
+          Voltar para a listagem de ambientes
+        </Link>
         <h1>Atualizar dados de ambientes</h1>
         <div>
           <form id="pesquisa">
@@ -160,7 +164,7 @@ export default function Listagem() {
                 id="larguraLesteOeste"
                 step="0.1"
                 pattern="[0-9]\.[0-9]"
-                value={telefone}
+                value={larguraLesteOeste}
                 onChange={onInputChange}
               ></input>
             </label>
@@ -194,6 +198,16 @@ export default function Listagem() {
             </label>
 
             <label>
+              <input
+                type="checkbox"
+                name="possuiCondicionadorAr"
+                id="possuiCondicionadorAr"
+                onChange={onInputChange}
+              />
+              Possui ar-condicionado?
+            </label>
+
+            <label>
               Frequência semanal de limpeza completa do ambiente:
               <input
                 type="number"
@@ -205,295 +219,6 @@ export default function Listagem() {
               ></input>
             </label>
 
-            <label>
-              <input
-                type="checkbox"
-                checked={exibirAmbienteEnsino}
-                onChange={handleCheckboxChange}
-              />
-              É um ambiente de ensino como sala de aula, laboratório ou outros?
-            </label>
-
-            <div
-              style={{ display: exibirAmbienteEnsino ? 'block' : 'none' }}
-              id="ambienteEnsino"
-              className="ambienteEnsino"
-            >
-              <label>
-                Quantidade de carteiras:
-                <input
-                  type="number"
-                  name="quantCarteiras"
-                  placeholder="Quantidade de carteiras"
-                  id="quantCarteiras"
-                  onChange={onInputChange}
-                  value={quantCarteiras}
-                ></input>
-              </label>
-
-              <label>
-                Possui cadeira acessível?
-                <select
-                  type="select"
-                  name="possuiCadeiraAcessível"
-                  placeholder="Possui cadeira acessível?"
-                  id="possuiCadeiraAcessível"
-                  onChange={onInputChange}
-                >
-                  <option
-                    name="escolherCadeiraAcessivel"
-                    value="Escolher"
-                    id="escolherCadeiraAcessivel"
-                  >
-                    Escolher
-                  </option>
-                  <option
-                    name="simCadeiraAcessível"
-                    value="Sim"
-                    id="simCadeiraAcessível"
-                  >
-                    Sim
-                  </option>
-                  <option
-                    name="naoCadeiraAcessível"
-                    value="Não"
-                    id="naoCadeiraAcessível"
-                  >
-                    Não
-                  </option>
-                </select>
-              </label>
-
-              <label>
-                Possui mesa acessível?
-                <select
-                  type="select"
-                  name="possuiMesaAcessível"
-                  placeholder="Possui mesa acessível?"
-                  id="possuiMesaAcessível"
-                  onChange={onInputChange}
-                >
-                  <option
-                    name="escolherMesaAcessivel"
-                    value="Escolher"
-                    id="escolherMesaAcessivel"
-                  >
-                    Escolher
-                  </option>
-                  <option
-                    name="simMesaAcessível"
-                    value="Sim"
-                    id="simMesaAcessível"
-                  >
-                    Sim
-                  </option>
-                  <option
-                    name="naoMesaAcessível"
-                    value="Não"
-                    id="naoMesaAcessível"
-                  >
-                    Não
-                  </option>
-                </select>
-              </label>
-
-              <label>
-                Possui suporte para instalação de projetor?
-                <select
-                  type="select"
-                  name="possuiSuporteProjetor"
-                  placeholder="Possui suporte para instalação de projetor?"
-                  id="possuiSuporteProjetor"
-                  onChange={onInputChange}
-                >
-                  <option
-                    name="escolherProjetor"
-                    value="Escolher"
-                    id="escolherProjetor"
-                  >
-                    Escolher
-                  </option>
-                  <option name="simProjetor" value="Sim" id="simProjetor">
-                    Sim
-                  </option>
-                  <option name="naoProjetor" value="Não" id="naoProjetor">
-                    Não
-                  </option>
-                </select>
-              </label>
-
-              <label>
-                Possui gaiola para instalação de projetor?
-                <select
-                  type="select"
-                  name="possuiGaiolaProjetor"
-                  placeholder="Possui gaiola para instalação de projetor?"
-                  id="possuiGaiolaProjetor"
-                  onChange={onInputChange}
-                >
-                  <option
-                    name="escolherGaiola"
-                    value="Escolher"
-                    id="escolherGaiola"
-                  >
-                    Escolher
-                  </option>
-                  <option name="simGaiola" value="Sim" id="simGaiola">
-                    Sim
-                  </option>
-                  <option name="naoGaiola" value="Não" id="naoGaiola">
-                    Não
-                  </option>
-                </select>
-              </label>
-
-              <label>
-                Possui projetor instalado?
-                <select
-                  type="select"
-                  name="possuiProjetor"
-                  placeholder="Possui projetor instalado?"
-                  id="possuiProjetor"
-                  onChange={onInputChange}
-                >
-                  <option
-                    name="escolherPossuiProjetor"
-                    value="Escolher"
-                    id="escolherPossuiProjetor"
-                  >
-                    Escolher
-                  </option>
-                  <option name="simProjetor" value="Sim" id="simProjetor">
-                    Sim
-                  </option>
-                  <option name="naoProjetor" value="Não" id="naoProjetor">
-                    Não
-                  </option>
-                </select>
-              </label>
-
-              <label>
-                Possui quadro / lousa?
-                <select
-                  type="select"
-                  name="possuiQuadroLousa"
-                  placeholder="Possui quadro / lousa?"
-                  id="possuiQuadroLousa"
-                  onChange={onInputChange}
-                >
-                  <option
-                    name="escolherPossuiQuadroLousa"
-                    value="Escolher"
-                    id="escolherPossuiQuadroLousa"
-                  >
-                    Escolher
-                  </option>
-                  <option name="simQuadroLousa" value="Sim" id="simQuadroLousa">
-                    Sim
-                  </option>
-                  <option name="naoQuadroLousa" value="Não" id="naoQuadroLousa">
-                    Não
-                  </option>
-                </select>
-              </label>
-            </div>
-
-            <label>
-              Possui condicionador de ar?
-              <select
-                type="select"
-                name="possuiCondicionadorAr"
-                placeholder="Possui condicionador de ar?"
-                id="possuiCondicionadorAr"
-                onChange={onInputChange}
-                required
-              >
-                <option
-                  name="escolherPossuiCondicionadorAr"
-                  value="Escolher"
-                  id="escolherPossuiCondicionadorAr"
-                >
-                  Escolher
-                </option>
-                <option
-                  name="simCondicionadorAr"
-                  value="Sim"
-                  id="simCondicionadorAr"
-                >
-                  Sim
-                </option>
-                <option
-                  name="naoCondicionadorAr"
-                  value="Não"
-                  id="naoCondicionadorAr"
-                >
-                  Não
-                </option>
-              </select>
-            </label>
-
-            <label>
-              Qual a potência em Watts do condicionador de ar?
-              <input
-                type="number"
-                name="potenciaWattsCondicionadorAr"
-                placeholder="potência em Watts"
-                id="potenciaWattsCondicionadorAr"
-                onChange={onInputChange}
-                value={potenciaWattsCondicionadorAr}
-              ></input>
-            </label>
-
-            <label>
-              Tipo de teto:
-              <select
-                type="select"
-                name="tipoTeto"
-                placeholder="Selecione o tipo de teto"
-                id="tipoTeto"
-                onChange={onInputChange}
-                required
-              >
-                <option
-                  name="escolherTipoTeto"
-                  value="Escolher"
-                  id="escolherTipoTeto"
-                >
-                  Escolher
-                </option>
-                <option
-                  name="lajeConcreto"
-                  value="Laje de concreto"
-                  id="lajeConcreto"
-                >
-                  Laje de concreto
-                </option>
-                <option
-                  name="madeiraTelhasSemForro"
-                  value="Madeira e telhas sem forro"
-                  id="madeiraTelhasSemForro"
-                >
-                  Madeira e telhas sem forro
-                </option>
-                <option
-                  name="madeiraTelhasComForroPVC"
-                  value="Madeira e telhas com forro (PVC)"
-                  id="madeiraTelhasComForroPVC"
-                >
-                  Madeira e telhas com forro (PVC)
-                </option>
-                <option
-                  name="madeiraTelhasComForroGesso"
-                  value="Madeira e telhas com forro (gesso)"
-                  id="madeiraTelhasComForroGesso"
-                >
-                  Madeira e telhas com forro (gesso)
-                </option>
-                <option name="semTeto" value="Não possui teto" id="semTeto">
-                  Área aberta, sem teto.
-                </option>
-              </select>
-            </label>
             <label>
               Tipo de iluminação:
               <select
@@ -554,6 +279,151 @@ export default function Listagem() {
                 value={quantLampadas}
               ></input>
             </label>
+
+            <label>
+              Tipo de teto:
+              <select
+                type="select"
+                name="tipoTeto"
+                placeholder="Selecione o tipo de teto"
+                id="tipoTeto"
+                onChange={onInputChange}
+                required
+              >
+                <option
+                  name="escolherTipoTeto"
+                  value="Escolher"
+                  id="escolherTipoTeto"
+                >
+                  Escolher
+                </option>
+                <option
+                  name="lajeConcreto"
+                  value="Laje de concreto"
+                  id="lajeConcreto"
+                >
+                  Laje de concreto
+                </option>
+                <option
+                  name="madeiraTelhasSemForro"
+                  value="Madeira e telhas sem forro"
+                  id="madeiraTelhasSemForro"
+                >
+                  Madeira e telhas sem forro
+                </option>
+                <option
+                  name="madeiraTelhasComForroPVC"
+                  value="Madeira e telhas com forro (PVC)"
+                  id="madeiraTelhasComForroPVC"
+                >
+                  Madeira e telhas com forro (PVC)
+                </option>
+                <option
+                  name="madeiraTelhasComForroGesso"
+                  value="Madeira e telhas com forro (gesso)"
+                  id="madeiraTelhasComForroGesso"
+                >
+                  Madeira e telhas com forro (gesso)
+                </option>
+                <option name="semTeto" value="Não possui teto" id="semTeto">
+                  Área aberta, sem teto.
+                </option>
+              </select>
+            </label>
+
+            <label>
+              <input
+                type="checkbox"
+                checked={exibirAmbienteEnsino}
+                onChange={handleCheckboxChange}
+              />
+              É um ambiente de ensino?
+            </label>
+
+            <div
+              style={{ display: exibirAmbienteEnsino ? 'block' : 'none' }}
+              id="ambienteEnsino"
+              className="ambienteEnsino"
+            >
+              <label>
+                Quantidade de carteiras:
+                <input
+                  type="number"
+                  name="quantCarteiras"
+                  placeholder="Quantidade de carteiras"
+                  id="quantCarteiras"
+                  onChange={onInputChange}
+                  value={quantCarteiras}
+                ></input>
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="possuiCadeiraAcessível"
+                  id="possuiCadeiraAcessível"
+                  onChange={onInputChange}
+                  value={possuiCadeiraAcessível}
+                />
+                Possui cadeira acessível?
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  name="possuiMesaAcessível"
+                  id="possuiMesaAcessível"
+                  onChange={onInputChange}
+                  value={possuiMesaAcessível}
+                />
+                Possui mesa acessível?
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  id="possuiSuporteProjetor"
+                  name="possuiSuporteProjetor"
+                  onChange={onInputChange}
+                  value={possuiSuporteProjetor}
+                />
+                Possui suporte para instalação de projetor?
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  id="possuiGaiolaProjetor"
+                  name="possuiGaiolaProjetor"
+                  onChange={onInputChange}
+                  value={possuigaiolaProjetor}
+                />
+                Possui gaiola para instalação de projetor?
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  onChange={onInputChange}
+                  name="possuiProjetor"
+                  id="possuiProjetor"
+                  value={possuiProjetor}
+                />
+                Possui projetor instalado?
+              </label>
+
+              <label>
+                <input
+                  type="checkbox"
+                  onChange={onInputChange}
+                  id="possuiQuadroLousa"
+                  name="possuiQuadroLousa"
+                  value={possuiQuadroLousa}
+                />
+                Possui quadro / lousa?
+              </label>
+            </div>
+
             <button form="atualiza" type="submit" onClick={btnSaveClick}>
               Enviar informações
             </button>
