@@ -20,8 +20,8 @@ export default function Atualizar() {
   const [possuiProjetor, setPossuiProjetor] = useState('')
   const [possuiQuadroLousa, setPossuiQuadroLousa] = useState('')
   const [possuiSuporteProjetor, setPossuiSuporteProjetor] = useState('')
-  const [possuiCadeiraAcessível, setPossuiCadeiraAcessível] = useState('')
-  const [possuiMesaAcessível, setPossuiMesaAcessível] = useState('')
+  const [possuiCadeiraAcessivel, setPossuiCadeiraAcessivel] = useState('')
+  const [possuiMesaAcessivel, setPossuiMesaAcessivel] = useState('')
   const [possuiCondicionadorAr, setPossuiCondicionadorAr] = useState('')
   const [potenciaWattsCondicionadorAr, setPotenciaWattsCondicionadorAr] =
     useState('')
@@ -56,6 +56,7 @@ export default function Atualizar() {
         ...prevState,
         [evt.target.name]: evt.target.value
       }))
+      console.log(cadastroAmbiente)
     }
 
     function onChangePesquisa(evt) {
@@ -80,8 +81,8 @@ export default function Atualizar() {
       setPossuiProjetor(dadosBrutos.possuiProjetor)
       setPossuiQuadroLousa(dadosBrutos.possuiQuadroLousa)
       setPossuiSuporteProjetor(dadosBrutos.possuiSuporteProjetor)
-      setPossuiCadeiraAcessível(dadosBrutos.possuiCadeiraAcessível)
-      setPossuiMesaAcessível(dadosBrutos.possuiMesaAcessível)
+      setPossuiCadeiraAcessivel(dadosBrutos.possuiCadeiraAcessível)
+      setPossuiMesaAcessivel(dadosBrutos.possuiMesaAcessível)
       setPossuiCondicionadorAr(dadosBrutos.possuiCondicionadorAr)
       setPotenciaWattsCondicionadorAr(dadosBrutos.potenciaWattsCondicionadorAr)
       setQuantCarteiras(dadosBrutos.quantCarteiras)
@@ -120,10 +121,11 @@ export default function Atualizar() {
                 id="numeroIdentificacao"
                 onChange={onChangePesquisa}
                 value={pesquisa}
+                min="0"
                 required
               />
               <button form="pesquisa" type="submit" onClick={btnPesquisaClick}>
-                Enviar informações
+                Consultar
               </button>
             </label>
           </form>
@@ -203,6 +205,7 @@ export default function Atualizar() {
                 name="possuiCondicionadorAr"
                 id="possuiCondicionadorAr"
                 onChange={onInputChange}
+                checked={possuiCondicionadorAr}
               />
               Possui ar-condicionado?
             </label>
@@ -227,6 +230,7 @@ export default function Atualizar() {
                 placeholder="Selecione o tipo de iluminação"
                 id="tipoIluminacao"
                 onChange={onInputChange}
+                value={tipoIluminacao}
                 required
               >
                 <option
@@ -288,6 +292,7 @@ export default function Atualizar() {
                 placeholder="Selecione o tipo de teto"
                 id="tipoTeto"
                 onChange={onInputChange}
+                value={tipoTeto}
                 required
               >
                 <option
@@ -363,7 +368,7 @@ export default function Atualizar() {
                   name="possuiCadeiraAcessível"
                   id="possuiCadeiraAcessível"
                   onChange={onInputChange}
-                  value={possuiCadeiraAcessível}
+                  checked={possuiCadeiraAcessivel}
                 />
                 Possui cadeira acessível?
               </label>
@@ -374,7 +379,7 @@ export default function Atualizar() {
                   name="possuiMesaAcessível"
                   id="possuiMesaAcessível"
                   onChange={onInputChange}
-                  value={possuiMesaAcessível}
+                  checked={possuiMesaAcessivel}
                 />
                 Possui mesa acessível?
               </label>
@@ -382,10 +387,10 @@ export default function Atualizar() {
               <label>
                 <input
                   type="checkbox"
-                  id="possuiSuporteProjetor"
                   name="possuiSuporteProjetor"
+                  id="possuiSuporteProjetor"
                   onChange={onInputChange}
-                  value={possuiSuporteProjetor}
+                  checked={possuiSuporteProjetor}
                 />
                 Possui suporte para instalação de projetor?
               </label>
@@ -396,7 +401,7 @@ export default function Atualizar() {
                   id="possuiGaiolaProjetor"
                   name="possuiGaiolaProjetor"
                   onChange={onInputChange}
-                  value={possuigaiolaProjetor}
+                  checked={possuigaiolaProjetor}
                 />
                 Possui gaiola para instalação de projetor?
               </label>
@@ -407,7 +412,7 @@ export default function Atualizar() {
                   onChange={onInputChange}
                   name="possuiProjetor"
                   id="possuiProjetor"
-                  value={possuiProjetor}
+                  checked={possuiProjetor}
                 />
                 Possui projetor instalado?
               </label>
@@ -418,7 +423,7 @@ export default function Atualizar() {
                   onChange={onInputChange}
                   id="possuiQuadroLousa"
                   name="possuiQuadroLousa"
-                  value={possuiQuadroLousa}
+                  checked={possuiQuadroLousa}
                 />
                 Possui quadro / lousa?
               </label>
