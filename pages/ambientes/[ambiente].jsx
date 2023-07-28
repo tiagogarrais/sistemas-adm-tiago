@@ -18,7 +18,8 @@ export default function Ambientes() {
     document.getElementById('listagem').style.display = 'none'
     document.getElementById('imprimir').style.display = 'none'
     document.getElementById('problema').style.display = 'none'
-    document.getElementById('cadastro').style.display = 'none'
+    document.getElementById('cadastrar').style.display = 'none'
+    document.getElementById('atualizar').style.display = 'none'
   }
 
   if (session) {
@@ -37,8 +38,9 @@ export default function Ambientes() {
               <Image
                 src={linkApiFoto}
                 alt="Foto do ambiente"
-                width={1500}
-                height={1500}
+                width={800}
+                height={800}
+                priority={true}
               />
             </div>
           </div>
