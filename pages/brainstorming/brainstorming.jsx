@@ -60,7 +60,7 @@ export default function Brainstorming() {
     ).innerHTML = `Aguarde alguns instantes, estamos enviado suas informações.`
 
     axios
-      .post('/api/brainstorming/enviarIdeia', {
+      .post('/api/brainstorming/enviar-ideia', {
         ideia: ideia,
         localAplicacao: localAplicacao,
         endereco: endereco,
@@ -76,7 +76,6 @@ export default function Brainstorming() {
         setLocalAplicacao('')
         setEndereco('')
         setGrauPrioridade('')
-        buscarIdeias()
       })
       .catch(function (error) {
         console.log(error)
@@ -100,11 +99,12 @@ export default function Brainstorming() {
           title="Brainstorming"
         />
 
-        {/* <form onSubmit={handleEnviarFormulario}>
+        <form onSubmit={handleEnviarFormulario}>
           <h2>Enviar ideia</h2>
-
+          Sua ideia:
           <label>
             <textarea
+              style={{ backgroundColor: '#EFEFEF' }}
               type="textarea"
               rows="6"
               cols="55"
@@ -112,9 +112,8 @@ export default function Brainstorming() {
               value={ideia}
             />
           </label>
-
+          Em qual setor essa ideia deve ser aplicada?
           <label>
-            Em qual setor essa ideia deve ser aplicada?
             <br />
             <select
               onChange={event => setLocalAplicacao(event.target.value)}
@@ -133,9 +132,8 @@ export default function Brainstorming() {
               <option>Áreas comuns</option>
             </select>
           </label>
-
+          Em qual endereço essa ideia deve ser implementada?
           <label>
-            Em qual endereço essa ideia deve ser implementada?
             <br />
             <select
               onChange={event => setEndereco(event.target.value)}
@@ -146,9 +144,8 @@ export default function Brainstorming() {
               <option>Terreno em processo de cessão, bairro Renê Lucena</option>
             </select>
           </label>
-
+          Qual o grau de prioridade a UFCA deveria dar para implementar essa
           <label>
-            Qual o grau de prioridade a UFCA deveria dar para implementar essa
             ideia?
             <br />
             <select
@@ -162,17 +159,16 @@ export default function Brainstorming() {
               <option>Prioridade 4 - Baixa</option>
             </select>
           </label>
-
-          <p id="aviso"></p>
-
-          {/* <button  type="submit" onClickCapture={buscarIdeias}>Enviar</button> 
-                  </form> */}
+          <p id="aviso" style={{ backgroundColor: 'yellow' }}></p>
+          <div className="center">
+            <button type="submit" onClickCapture={buscarIdeias}>
+              Enviar
+            </button>
+          </div>
+        </form>
 
         <h2>
-          <strong>
-            Finalizamos este brainstorming no dia 15/10/2021 com {ideias.length}{' '}
-            ideias
-          </strong>
+          <strong>Até o momento, coletamos {ideias.length} ideias</strong>
         </h2>
 
         <div>
