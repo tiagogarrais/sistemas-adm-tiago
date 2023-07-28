@@ -23,6 +23,14 @@ export default function Brainstorming() {
   function handleEnviarFormulario(event) {
     event.preventDefault()
 
+    let regex = /ufca\.edu.br$/
+    let testeEmailUfca = regex.test(session.user.email)
+    if (testeEmailUfca === false) {
+      document.getElementById('aviso').innerHTML =
+        'Você precisa de um e-mail @ufca.edu.br para enviar dados.'
+      return
+    }
+
     if (ideia === '') {
       document.getElementById('aviso').innerHTML =
         'Você precisa escrever alguma coisa no campo ideia.'
@@ -44,14 +52,6 @@ export default function Brainstorming() {
     if (grauPrioridade === '') {
       document.getElementById('aviso').innerHTML =
         'Você precisa escolher "Qual o grau de prioridade a UFCA deveria dar para implementar essa ideia".'
-      return
-    }
-
-    let regex = /ufca\.edu.br$/
-    let testeEmailUfca = regex.test(session.user.email)
-    if (testeEmailUfca === false) {
-      document.getElementById('aviso').innerHTML =
-        'Você precisa de um e-mail @ufca.edu.br para enviar dados.'
       return
     }
 
