@@ -101,6 +101,7 @@ export default function SolicitarVeiculo() {
 
     axios
       .post('/api/transportes/transportes', {
+        statusViagem: solicita.statusViagem,
         dataSolicitacao: Date(),
         nome: solicita.nome,
         email: solicita.email,
@@ -234,14 +235,16 @@ export default function SolicitarVeiculo() {
       })
       .catch(function (error) {
         console.log(error)
+        window.alert('Houve algum erro no envio da solicitação.')
+        return
       })
 
-    axios
-      .post('/api/email/enviar', {
-        email: solicita.email,
-        copia: ['tiago.arrais@ufca.edu.br', 'alexsandra.tavares@ufca.edu.br'],
-        subject: 'Transportes IFE - Recebemos sua solicitação',
-        message: `<p><strong>TESTE - Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
+      .then(function (res) {
+        axios.post('/api/email/enviar', {
+          email: solicita.email,
+          copia: ['tiago.arrais@ufca.edu.br'],
+          subject: 'Transportes IFE - Recebemos sua solicitação',
+          message: `<p><strong>TESTE - Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
         
         <p>Na maioria dos casos enviaremos e-mail com a decisão nos seguintes prazos:</p> 
         <p>Para destinos com distância de até 100km do campus Brejo Santo - 3 dias úteis antes da viagem. Para destinos mais distantes - 5 dias úteis.</p>
@@ -259,8 +262,8 @@ export default function SolicitarVeiculo() {
         <p>Atenciosamente,</p> 
         
         <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`
-      })
-      .then(function (res) {
+        })
+
         window.alert('Enviamos uma cópia desta solicitação no seu email')
         router.push('/transportes/')
       })
@@ -292,9 +295,11 @@ export default function SolicitarVeiculo() {
 
   if (session) {
     solicita.email = session.user.email
-    nomeCadastrado ? (solicita.nome = nomeCadastrado) : ''
-    telefoneCadastrado ? (solicita.telefone = telefoneCadastrado) : ''
-    // solicita.veiculo ? '' : (solicita.veiculo = 'Minivan')
+    nomeCadastrado ? (solicita.nome = nomeCadastrado) : 'Não capturado'
+    telefoneCadastrado
+      ? (solicita.telefone = telefoneCadastrado)
+      : 'Não capturado'
+
     return (
       <div>
         <form onSubmit={btnSaveClick}>
