@@ -154,17 +154,6 @@ export default function ProximasViagens() {
                   <br />
                   {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
                 </h3>
-                <p>Status da Viagem: {proximasViagens.statusViagem}</p>
-                <p>Data da viagem: {converterData(proximasViagens.dataIda)}</p>
-                <p>
-                  Horário da viagem: {converterHora(proximasViagens.dataIda)}
-                </p>
-                <p>
-                  Data do retorno: {converterData(proximasViagens.dataRetorno)}
-                </p>
-                <p>
-                  Hora do retorno: {converterHora(proximasViagens.dataRetorno)}
-                </p>
                 <p>
                   Veículo:{' '}
                   {proximasViagens.veiculo == 'Minivan' ? (
@@ -192,14 +181,25 @@ export default function ProximasViagens() {
                       <p>Ônibus urbano (7 a 44 passageiros)</p>
                     </>
                   )}
-                  {session.user.email === proximasViagens.email &&
-                  proximasViagens.statusViagem === 'Recebida' ? (
-                    <div className="center">
-                      <button>Alterar Solicitação</button>
-                    </div>
-                  ) : (
-                    ''
-                  )}
+                </p>
+                {session.user.email === proximasViagens.email &&
+                proximasViagens.statusViagem === 'Recebida' ? (
+                  <div className="center">
+                    <button>Alterar Solicitação</button>
+                  </div>
+                ) : (
+                  ''
+                )}
+                <p>Status da Viagem: {proximasViagens.statusViagem}</p>
+                <p>Data da viagem: {converterData(proximasViagens.dataIda)}</p>
+                <p>
+                  Horário da viagem: {converterHora(proximasViagens.dataIda)}
+                </p>
+                <p>
+                  Data do retorno: {converterData(proximasViagens.dataRetorno)}
+                </p>
+                <p>
+                  Hora do retorno: {converterHora(proximasViagens.dataRetorno)}
                 </p>
               </article>
             </div>
