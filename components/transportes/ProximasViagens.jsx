@@ -185,7 +185,15 @@ export default function ProximasViagens() {
                 {session.user.email === proximasViagens.email &&
                 proximasViagens.statusViagem === 'Recebida' ? (
                   <div className="center">
-                    <button>Alterar Solicitação</button>
+                    <button
+                      onClick={() => {
+                        window.alert(
+                          'Isto ainda não funciona aqui. Entre em contato pelo e-mail.'
+                        )
+                      }}
+                    >
+                      Alterar Solicitação
+                    </button>
                   </div>
                 ) : (
                   ''
@@ -199,7 +207,8 @@ export default function ProximasViagens() {
                   Data do retorno: {converterData(proximasViagens.dataRetorno)}
                 </p>
                 <p>
-                  Hora do retorno: {converterHora(proximasViagens.dataRetorno)}
+                  Horário do retorno:{' '}
+                  {converterHora(proximasViagens.dataRetorno)}
                 </p>
               </article>
             </div>
