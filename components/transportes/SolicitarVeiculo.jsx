@@ -229,17 +229,6 @@ export default function SolicitarVeiculo() {
         identificacao44: solicita.identificacao44
       })
       .then(function (res) {
-        setSolicita({})
-        document.getElementById('btnSave').disabled = false
-        document.getElementById('btnSave').innerText = 'Salvar'
-      })
-      .catch(function (error) {
-        console.log(error)
-        window.alert('Houve algum erro no envio da solicitação.')
-        return
-      })
-
-      .then(function (res) {
         axios.post('/api/email/enviar', {
           email: solicita.email,
           copia: ['tiago.arrais@ufca.edu.br'],
@@ -264,8 +253,20 @@ export default function SolicitarVeiculo() {
         <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`
         })
 
+        setSolicita({})
+        document.getElementById('btnSave').disabled = false
+        document.getElementById('btnSave').innerText = 'Salvar'
+
         window.alert('Enviamos uma cópia desta solicitação no seu email')
         router.push('/transportes/')
+      })
+      .catch(function (error) {
+        console.log(error)
+        window.alert(
+          'Tente novamente! Houve algum erro no envio da solicitação.'
+        )
+        document.getElementById('btnSave').disabled = false
+        document.getElementById('btnSave').innerText = 'Tente novamente'
       })
   }
 
