@@ -64,9 +64,9 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className="button">
+          {/* <div className="button">
             <Link href="/limpeza/limpeza">Plano de Limpeza IFE</Link>
-          </div>
+          </div> */}
         </div>
 
         <h2>Sistemas desenvolvidos para a UFCA - em outros sites</h2>
