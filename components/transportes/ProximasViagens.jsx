@@ -182,6 +182,9 @@ export default function ProximasViagens() {
                     </>
                   )}
                 </p>
+
+                {/* Este botão ficará oculto até que esteja com sua funcionalidade completa.
+                
                 {session.user.email === proximasViagens.email &&
                 proximasViagens.statusViagem === 'Recebida' ? (
                   <div className="center">
@@ -197,7 +200,8 @@ export default function ProximasViagens() {
                   </div>
                 ) : (
                   ''
-                )}
+                )} */}
+
                 <p>Status da Viagem: {proximasViagens.statusViagem}</p>
                 <p>Data da viagem: {converterData(proximasViagens.dataIda)}</p>
                 <p>
