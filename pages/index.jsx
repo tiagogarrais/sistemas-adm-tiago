@@ -22,14 +22,18 @@ export default function Home() {
             <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <Link className="link" href="/ambientes/listagem">
                 <article>
-                  <header className="flex items-center leading-tight p-2 md:p-4">
-                    <p>Ambientes IFE</p>
+                  <header className="flex items-center justify-center leading-tight p-2 md:p-4">
+                    <b>Ambientes IFE</b>
                   </header>
-                  <Image
+                  <p>
+                    Informações técnicas atualizadas sobre todos os ambientes do
+                    campus Brejo Santo
+                  </p>
+                  {/* <Image
                     alt="Placeholder"
                     className="block h-auto w-full"
                     src={ambientes}
-                  />
+                  /> */}
                 </article>
               </Link>
             </div>
@@ -37,14 +41,19 @@ export default function Home() {
             <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <Link className="link" href="/brainstorming/brainstorming">
                 <article>
-                  <header className="flex items-center leading-tight p-2 md:p-4">
-                    <p className="text-lg">Brainstorming</p>
+                  <header className="flex items-center justify-center leading-tight p-2 md:p-4">
+                    <b>Brainstorming</b>
                   </header>
-                  <Image
+                  <p>
+                    Sistema criado para coletar ideias sobre o tema
+                    Infraestrutura Física do campus Brejo Santo. Participe com
+                    suas ideias ou simplesmente consulte as ideias cadastradas.{' '}
+                  </p>
+                  {/* <Image
                     alt="brainstorming campus Brejo Santo"
                     className="block h-auto w-full"
                     src={brainstorming}
-                  />
+                  /> */}
                 </article>
               </Link>
             </div>
@@ -52,14 +61,19 @@ export default function Home() {
             <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <Link className="link" href="/transportes/">
                 <article>
-                  <header className="flex items-center leading-tight p-2 md:p-4">
-                    <p className="text-lg">Transportes</p>
+                  <header className="flex items-center justify-center leading-tight p-2 md:p-4">
+                    <b>Transportes</b>
                   </header>
-                  <Image
+                  <p>
+                    Sistema criado para solicitar veículos, verificar o
+                    andamento de solicitações e dar transparência ao uso dos
+                    veículos oficiais.
+                  </p>
+                  {/* <Image
                     alt="transportes campus Brejo Santo"
                     className="block h-auto w-full"
                     src={transportes}
-                  />
+                  /> */}
                 </article>
               </Link>
             </div>
