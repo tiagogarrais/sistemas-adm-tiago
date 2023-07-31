@@ -23,11 +23,11 @@ export default function Transportes() {
             Informações sobre o serviço de Transportes
           </Link>
         </div>
-        <div>
-          <ProximasViagens />
-        </div>
         <div className="button">
           <Link href="/transportes/solicita">Solicitar viagem</Link>
+        </div>
+        <div>
+          <ProximasViagens />
         </div>
       </div>
     )
