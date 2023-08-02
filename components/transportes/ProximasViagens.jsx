@@ -128,7 +128,10 @@ export default function ProximasViagens() {
                     ></input>
                   </div>
                   <select className="statusViagem" onChange={alterarStatus}>
-                    <option className="" value=""></option>
+                    <option className="recebida" value="Recebida">
+                      Confirmada
+                    </option>
+
                     <option className="confirmada" value="Confirmada">
                       Confirmada
                     </option>
