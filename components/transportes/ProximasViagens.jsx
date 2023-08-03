@@ -8,7 +8,7 @@ import axios from 'axios'
 export default function ProximasViagens() {
   const { data: session } = useSession()
   const [proximasViagens, setProximasViagens] = useState([])
-  const [statusAlterado, setStatusAlterado] = useState([])
+  const [statusAlterado, setStatusAlterado] = useState('')
 
   function alterarStatus(evt) {
     if (session.user.email != 'tiago.arrais@ufca.edu.br') {
@@ -21,12 +21,24 @@ export default function ProximasViagens() {
       return
     }
 
-    setStatusAlterado(prevState => ({
-      ...prevState,
-      [evt.target.className]: evt.target.value
-    }))
+    setStatusAlterado(evt.target.value)
+    console.log(evt.target.value) //Verificando se é uma string simples
+  }
 
-    console.log(evt.target.value)
+  function atualizarStatus(_idStatus) {
+    console.log(statusAlterado)
+
+    axios
+      .patch('/api/transportes/transportes', {
+        _id: _idStatus,
+        statusViagem: statusAlterado
+      })
+      .then(function (res) {
+        window.alert('Informação atualizada')
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   function desabilitarCampos() {
@@ -67,22 +79,6 @@ export default function ProximasViagens() {
       hour12: false
     }).format(dataConvertida)
     return horaLocal
-  }
-
-  function atualizarStatus(_idStatus) {
-    console.log(_idStatus)
-
-    axios
-      .patch('/api/transportes/transportes', {
-        _id: _idStatus,
-        statusViagem: statusAlterado
-      })
-      .then(function (res) {
-        window.alert('Informação atualizada')
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
   }
 
   React.useEffect(() => {
@@ -129,11 +125,15 @@ export default function ProximasViagens() {
                   </div>
                   <select className="statusViagem" onChange={alterarStatus}>
                     <option className="recebida" value="Recebida">
-                      Confirmada
+                      Recebida
                     </option>
 
                     <option className="confirmada" value="Confirmada">
                       Confirmada
+                    </option>
+
+                    <option className="negada" value="Negada">
+                      Negada
                     </option>
                   </select>
 

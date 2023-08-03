@@ -1,7 +1,6 @@
 import connect from '../../../src/utils/mongodb'
 import connectMongo from '../../../utils/connectMongo'
 import SolicitaTransporte from '../../../models/solicitaTransporteModel'
-import AtualizaStatus from '../../../models/atualizaStatusViagem'
 
 export default async function transportes(req, res) {
   try {
@@ -30,10 +29,13 @@ export default async function transportes(req, res) {
 
       case 'PATCH':
         try {
+          console.log(req.body._id)
+          console.log(req.body.statusViagem)
+
           await connectMongo()
-          const statusViagem = await AtualizaStatus.findOneAndUpdate(
+          const statusViagem = await SolicitaTransporte.findOneAndUpdate(
             { _id: req.body._id },
-            { $set: { statusViagem: req.body.statusViagem } },
+            { $set: { statusViagem: req.body.statusAlterado } },
             { new: true }
           )
           res.json({ statusViagem })
