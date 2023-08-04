@@ -35,9 +35,9 @@ export default async function transportes(req, res) {
           await connectMongo()
           const statusViagem = await SolicitaTransporte.findOneAndUpdate(
             { _id: req.body._id },
-            { $set: { statusViagem: req.body.statusAlterado } },
+            { $set: { statusViagem: req.body.statusViagem } },
             { new: true }
-          )
+          ).lean()
           res.json({ statusViagem })
         } catch (error) {
           console.log(error)
