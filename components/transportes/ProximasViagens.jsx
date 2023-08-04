@@ -4,8 +4,10 @@ import minivan from '/public/images/transportes/minivan-spin.jpg'
 import onibus from '/public/images/transportes/onibus-urbano.jpg'
 import { useSession } from 'next-auth/react'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 export default function ProximasViagens() {
+  const router = useRouter()
   const { data: session } = useSession()
   const [proximasViagens, setProximasViagens] = useState([])
   const [statusAlterado, setStatusAlterado] = useState('')
@@ -22,19 +24,16 @@ export default function ProximasViagens() {
     }
 
     setStatusAlterado(evt.target.value)
-    console.log(evt.target.value) //Verificando se é uma string simples
   }
 
   function atualizarStatus(_idStatus) {
-    console.log(statusAlterado)
-
     axios
       .patch('/api/transportes/transportes', {
         _id: _idStatus,
         statusViagem: statusAlterado
       })
       .then(function (res) {
-        window.alert('Informação atualizada')
+        router.reload()
       })
       .catch(function (error) {
         console.log(error)
@@ -104,7 +103,7 @@ export default function ProximasViagens() {
     }, [callback, delay])
   }
 
-  useInterval(desabilitarCampos, 500)
+  useInterval(desabilitarCampos, 600)
 
   return (
     <>
@@ -124,6 +123,8 @@ export default function ProximasViagens() {
                     ></input>
                   </div>
                   <select className="statusViagem" onChange={alterarStatus}>
+                    <option className="" value=""></option>
+
                     <option className="recebida" value="Recebida">
                       Recebida
                     </option>
@@ -157,8 +158,8 @@ export default function ProximasViagens() {
                   <br />
                   {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
                 </h3>
+                <p>Status: {proximasViagens.statusViagem}</p>
                 <p>
-                  Veículo:{' '}
                   {proximasViagens.veiculo == 'Minivan' ? (
                     <>
                       <div className="center">
@@ -205,7 +206,6 @@ export default function ProximasViagens() {
                   ''
                 )} */}
 
-                <p>Status da Viagem: {proximasViagens.statusViagem}</p>
                 <p>Data da viagem: {converterData(proximasViagens.dataIda)}</p>
                 <p>
                   Horário da viagem: {converterHora(proximasViagens.dataIda)}

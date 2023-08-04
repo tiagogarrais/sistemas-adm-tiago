@@ -29,15 +29,12 @@ export default async function transportes(req, res) {
 
       case 'PATCH':
         try {
-          console.log(req.body._id)
-          console.log(req.body.statusViagem)
-
           await connectMongo()
           const statusViagem = await SolicitaTransporte.findOneAndUpdate(
             { _id: req.body._id },
             { $set: { statusViagem: req.body.statusViagem } },
             { new: true }
-          ).lean()
+          )
           res.json({ statusViagem })
         } catch (error) {
           console.log(error)

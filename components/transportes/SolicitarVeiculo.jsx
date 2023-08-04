@@ -233,21 +233,95 @@ export default function SolicitarVeiculo() {
           email: solicita.email,
           copia: ['tiago.arrais@ufca.edu.br'],
           subject: 'Transportes IFE - Recebemos sua solicitação',
-          message: `<p><strong>TESTE - Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
+          message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
         
         <p>Na maioria dos casos enviaremos e-mail com a decisão nos seguintes prazos:</p> 
         <p>Para destinos com distância de até 100km do campus Brejo Santo - 3 dias úteis antes da viagem. Para destinos mais distantes - 5 dias úteis.</p>
+      
+        <h3><strong>Dados do solicitante</strong></h3>
 
-        <p><strong>As informações recebidas foram:</strong></p>
+        <ul>
+        <li>Responsável pela solicitação: ${solicita.nome}</li>
+        <li>Telefone para contato: ${solicita.telefone}</li>
+        <li>Setor: ${solicita.setor}</li>
+        </ul>
+
+        <h3><strong>Dados da viagem</strong></h3>
         <ul>
         <li>Veículo: ${solicita.veiculo}</li>
+        <li>Tipo de solicitação: ${solicita.tipo}</li>
         <li>Destino: ${solicita.cidade} - ${solicita.uf}</li>
         <li>Data: ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</li>
         <li>Horário: ${solicita.horaIda}:${solicita.minutoIda}</li>
 
-        <li>Retorno: ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</li>
+        <li>Retorno: ${solicita.diaRetorno}/${solicita.mesRetorno}/${solicita.anoRetorno}</li>
         <li>Horário do retorno: ${solicita.horaRetorno}:${solicita.minutoRetorno}</li>
         </ul>
+
+        <ul>
+        <li>Praça Dionísio Rocha de Lucena, Bairro Centro: ${solicita.saidaCentro}</li>
+        <li>Posto Abaiara (quando não houver desvio de trajeto): ${solicita.saidaAbaiara}</li>  
+        </ul>
+
+        <h3><strong>Informações adicionais</strong></h3>
+        <ul>
+        <li>Objetivo 1: ${solicita.objetivo1}</li>
+        <li>Objetivo 2: ${solicita.objetivo2}</li>
+        <li>Objetivo 3: ${solicita.objetivo3}</li>
+        <li>Objetivo 4: ${solicita.objetivo4}</li>
+        <li>Objetivo 5: ${solicita.objetivo5}</li>
+        <li>Objetivo 6: ${solicita.objetivo6}</li>
+        <li>Objetivo 7: ${solicita.objetivo7}</li>
+        </ul>
+
+        <h3><strong>Lista de passageiros</strong></h3>
+        <ul>
+        <li>01 - ${solicita.passageiro1}</li>
+        <li>02 - ${solicita.passageiro2}</li>
+        <li>03 - ${solicita.passageiro3}</li>
+        <li>04 - ${solicita.passageiro4}</li>
+        <li>05 - ${solicita.passageiro5}</li>
+        <li>06 - ${solicita.passageiro6}</li>
+        <li>07 - ${solicita.passageiro7}</li>
+        <li>08 - ${solicita.passageiro8}</li>
+        <li>09 - ${solicita.passageiro9}</li>
+        <li>10 - ${solicita.passageiro10}</li>
+        <li>11 - ${solicita.passageiro11}</li>
+        <li>12 - ${solicita.passageiro12}</li>
+        <li>13 - ${solicita.passageiro13}</li>
+        <li>14 - ${solicita.passageiro14}</li>
+        <li>15 - ${solicita.passageiro15}</li>
+        <li>16 - ${solicita.passageiro16}</li>
+        <li>17 - ${solicita.passageiro17}</li>
+        <li>18 - ${solicita.passageiro18}</li>
+        <li>19 - ${solicita.passageiro19}</li>
+        <li>20 - ${solicita.passageiro20}</li>
+        <li>21 - ${solicita.passageiro21}</li>
+        <li>22 - ${solicita.passageiro22}</li>
+        <li>23 - ${solicita.passageiro23}</li>
+        <li>24 - ${solicita.passageiro24}</li>
+        <li>25 - ${solicita.passageiro25}</li>
+        <li>26 - ${solicita.passageiro26}</li>
+        <li>27 - ${solicita.passageiro27}</li>
+        <li>28 - ${solicita.passageiro28}</li>
+        <li>29 - ${solicita.passageiro29}</li>
+        <li>30 - ${solicita.passageiro30}</li>
+        <li>31 - ${solicita.passageiro31}</li>
+        <li>32 - ${solicita.passageiro32}</li>
+        <li>33 - ${solicita.passageiro33}</li>
+        <li>34 - ${solicita.passageiro34}</li>
+        <li>35 - ${solicita.passageiro35}</li>
+        <li>36 - ${solicita.passageiro36}</li>
+        <li>37 - ${solicita.passageiro37}</li>
+        <li>38 - ${solicita.passageiro38}</li>
+        <li>39 - ${solicita.passageiro39}</li>
+        <li>40 - ${solicita.passageiro40}</li>
+        <li>41 - ${solicita.passageiro41}</li>
+        <li>42 - ${solicita.passageiro42}</li>
+        <li>43 - ${solicita.passageiro43}</li>
+        <li>44 - ${solicita.passageiro44}</li>
+        </ul>
+
         <p>Atenciosamente,</p> 
         
         <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`
