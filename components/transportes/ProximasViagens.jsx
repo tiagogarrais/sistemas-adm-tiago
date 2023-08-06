@@ -129,12 +129,16 @@ export default function ProximasViagens() {
                       Recebida
                     </option>
 
+                    <option className="aprovada" value="Aprovada pela Direção">
+                      Aprovada pela Direção
+                    </option>
+
                     <option className="confirmada" value="Confirmada">
                       Confirmada
                     </option>
 
-                    <option className="negada" value="Negada">
-                      Negada
+                    <option className="não atendida" value="Não atendida">
+                      Não atendida
                     </option>
                   </select>
 
@@ -217,6 +221,19 @@ export default function ProximasViagens() {
                   Horário do retorno:{' '}
                   {converterHora(proximasViagens.dataRetorno)}
                 </p>
+                <p>Saída da praça central? {proximasViagens.saidaCentro}</p>
+                <p>Embarque em Abaiara? {proximasViagens.saidaAbaiara}</p>
+                <b>
+                  <br />
+                  <p>Solicitação com prioridade?</p>
+                </b>
+                <p>1. {proximasViagens.objetivo1}</p>
+                <p>2. {proximasViagens.objetivo2}</p>
+                <p>3. {proximasViagens.objetivo3}</p>
+                <p>4. {proximasViagens.objetivo4}</p>
+                <p>5. {proximasViagens.objetivo5}</p>
+                <p>6. {proximasViagens.objetivo6}</p>
+                <p>7. {proximasViagens.objetivo7}</p>
               </article>
             </div>
           </>
