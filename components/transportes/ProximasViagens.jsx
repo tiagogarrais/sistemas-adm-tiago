@@ -42,7 +42,12 @@ export default function ProximasViagens() {
 
   function desabilitarCampos() {
     //Desabilitar campos que são privativos dos operadores do sistema.
-    if (session.user.email != 'tiago.arrais@ufca.edu.br') {
+    if (
+      session.user.email !== 'tiago.arrais@ufca.edu.br' &&
+      session.user.email !== 'ife@ufca.edu.br' &&
+      session.user.email !== 'alexsandra.tavares@ufca.edu.br' &&
+      session.user.email !== 'clarisse.alves@ufca.edu.br'
+    ) {
       const options = Array.from(
         document.getElementsByClassName('statusViagem')
       )
@@ -221,19 +226,25 @@ export default function ProximasViagens() {
                   Horário do retorno:{' '}
                   {converterHora(proximasViagens.dataRetorno)}
                 </p>
-                <p>Saída da praça central? {proximasViagens.saidaCentro}</p>
-                <p>Embarque em Abaiara? {proximasViagens.saidaAbaiara}</p>
-                <b>
+                <div id="infoAdicionais">
                   <br />
-                  <p>Solicitação com prioridade?</p>
-                </b>
-                <p>1. {proximasViagens.objetivo1}</p>
-                <p>2. {proximasViagens.objetivo2}</p>
-                <p>3. {proximasViagens.objetivo3}</p>
-                <p>4. {proximasViagens.objetivo4}</p>
-                <p>5. {proximasViagens.objetivo5}</p>
-                <p>6. {proximasViagens.objetivo6}</p>
-                <p>7. {proximasViagens.objetivo7}</p>
+                  <b>
+                    <p>Informações adicionais</p>
+                  </b>
+                  <p>Saída da praça central? {proximasViagens.saidaCentro}</p>
+                  <p>Embarque em Abaiara? {proximasViagens.saidaAbaiara}</p>
+                  <br />
+                  <b>
+                    <p>Solicitação com prioridade?</p>
+                  </b>
+                  <p>1. {proximasViagens.objetivo1}</p>
+                  <p>2. {proximasViagens.objetivo2}</p>
+                  <p>3. {proximasViagens.objetivo3}</p>
+                  <p>4. {proximasViagens.objetivo4}</p>
+                  <p>5. {proximasViagens.objetivo5}</p>
+                  <p>6. {proximasViagens.objetivo6}</p>
+                  <p>7. {proximasViagens.objetivo7}</p>
+                </div>
               </article>
             </div>
           </>
