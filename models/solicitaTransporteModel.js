@@ -6,6 +6,11 @@ const solicitaTransporteSchema = new Schema({
     required: true
   },
 
+  objetivo: {
+    type: String,
+    required: true
+  },
+
   nome: {
     type: String,
     required: true
