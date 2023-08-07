@@ -103,6 +103,7 @@ export default function SolicitarVeiculo() {
       .post('/api/transportes/transportes', {
         statusViagem: solicita.statusViagem,
         dataSolicitacao: Date(),
+        objetivo: solicita.objetivo,
         nome: solicita.nome,
         email: solicita.email,
         telefone: solicita.telefone,
@@ -380,6 +381,20 @@ export default function SolicitarVeiculo() {
         <form onSubmit={btnSaveClick}>
           <div>
             <h2>Requisitar Transporte</h2>
+            <h4>Objetivo da viagem</h4>
+            <label>
+              <br />
+              <textarea
+                cols="45"
+                rows="5"
+                type="text"
+                name="objetivo"
+                id="objetivo"
+                value={solicita.objetivo}
+                onChange={onInputChange}
+                required
+              ></textarea>
+            </label>
             <h4>Qual o veículo que melhor atende sua demanda?</h4>
             <div>
               <label>
@@ -845,7 +860,6 @@ export default function SolicitarVeiculo() {
               />
               Licenciatura Interdisciplinar em Ciências Naturais e Matemática
             </label>
-
             <h4>Lista de Passageiros</h4>
             <label>
               <input
