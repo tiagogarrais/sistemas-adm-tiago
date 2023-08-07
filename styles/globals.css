@@ -97,6 +97,10 @@ button {
   flex-col;
 }
 
+textarea {
+  @apply bg-slate-200;
+}
+
 button {
   @apply w-1/3
   items-center
