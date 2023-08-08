@@ -142,7 +142,14 @@ export default function ProximasViagens() {
                       Confirmada
                     </option>
 
-                    <option className="não atendida" value="Não atendida">
+                    <option
+                      className="solicitanteCancelou"
+                      value="Solicitante cancelou"
+                    >
+                      Não atendida
+                    </option>
+
+                    <option className="naoAtendida" value="Não atendida">
                       Não atendida
                     </option>
                   </select>
