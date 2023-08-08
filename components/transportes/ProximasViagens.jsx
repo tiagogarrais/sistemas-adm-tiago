@@ -174,6 +174,7 @@ export default function ProximasViagens() {
                   <br />
                   {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
                 </h3>
+                <p>{proximasViagens.nome}</p>
                 <p>Status: {proximasViagens.statusViagem}</p>
                 <p>
                   {proximasViagens.veiculo == 'Minivan' ? (
