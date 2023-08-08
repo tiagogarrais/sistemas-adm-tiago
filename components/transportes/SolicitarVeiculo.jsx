@@ -237,7 +237,8 @@ export default function SolicitarVeiculo() {
           message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
         
         <p>Na maioria dos casos enviaremos e-mail com a decisão nos seguintes prazos:</p> 
-        <p>Para destinos com distância de até 100km do campus Brejo Santo - 3 dias úteis antes da viagem. Para destinos mais distantes - 5 dias úteis.</p>
+        <p>Para destinos com distância de até 100km do campus Brejo Santo - 3 dias úteis antes da viagem. </p>
+        <p>Para destinos mais distantes - 5 dias úteis.</p>
       
         <h3><strong>Dados do solicitante</strong></h3>
 
