@@ -13,7 +13,12 @@ export default function ProximasViagens() {
   const [statusAlterado, setStatusAlterado] = useState('')
 
   function alterarStatus(evt) {
-    if (session.user.email != 'tiago.arrais@ufca.edu.br') {
+    if (
+      session.user.email !== 'tiago.arrais@ufca.edu.br' &&
+      session.user.email !== 'ife@ufca.edu.br' &&
+      session.user.email !== 'alexsandra.tavares@ufca.edu.br' &&
+      session.user.email !== 'clarisse.alves@ufca.edu.br'
+    ) {
       const options = Array.from(
         document.getElementsByClassName('statusViagem')
       )
