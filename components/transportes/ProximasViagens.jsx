@@ -45,6 +45,42 @@ export default function ProximasViagens() {
       })
   }
 
+  function enviarEmailConfirmacao(_idViagem, emailViagem) {
+    event.preventDefault()
+    console.log(emailViagem)
+    console.log(_idViagem)
+    window.alert('Funcionalidade em desenvolvimento!')
+
+    // axios.post('/api/email/enviar', {
+    //   email: email,
+    //   copia: ['tiago.arrais@ufca.edu.br'],
+    //   subject: 'Transportes IFE - Viagem confirmada',
+    //   message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
+
+    // <ul>
+    // <li>Responsável pela solicitação: ${solicita.nome}</li>
+    // <li>Telefone para contato: ${solicita.telefone}</li>
+    // <li>Setor: ${solicita.setor}</li>
+    // </ul>
+
+    // <h3><strong>Dados da viagem</strong></h3>
+    // <ul>
+    // <li>Veículo: ${solicita.veiculo}</li>
+    // <li>Tipo de solicitação: ${solicita.tipo}</li>
+    // <li>Destino: ${solicita.cidade} - ${solicita.uf}</li>
+    // <li>Data: ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</li>
+    // <li>Horário: ${solicita.horaIda}:${solicita.minutoIda}</li>
+
+    // <li>Retorno: ${solicita.diaRetorno}/${solicita.mesRetorno}/${solicita.anoRetorno}</li>
+    // <li>Horário do retorno: ${solicita.horaRetorno}:${solicita.minutoRetorno}</li>
+    // </ul>
+
+    // <p>Atenciosamente,</p>
+
+    // <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`
+    // })
+  }
+
   function desabilitarCampos() {
     //Desabilitar campos que são privativos dos operadores do sistema.
     if (
@@ -64,6 +100,13 @@ export default function ProximasViagens() {
         document.getElementsByClassName('enviarAtualizacao')
       )
       buttonsSubmit.forEach(button => {
+        button.hidden = true
+      })
+
+      const divsOperadores = Array.from(
+        document.getElementsByClassName('operadores')
+      )
+      divsOperadores.forEach(button => {
         button.hidden = true
       })
 
@@ -132,6 +175,7 @@ export default function ProximasViagens() {
                       id={proximasViagens._id}
                     ></input>
                   </div>
+
                   <select className="statusViagem" onChange={alterarStatus}>
                     <option className="" value=""></option>
 
@@ -170,6 +214,19 @@ export default function ProximasViagens() {
                       }
                     >
                       Atualizar informações
+                    </button>
+                  </div>
+                  <div className="center">
+                    <button
+                      className="operadores"
+                      onClick={() =>
+                        enviarEmailConfirmacao(
+                          proximasViagens._id,
+                          proximasViagens.email
+                        )
+                      }
+                    >
+                      Enviar e-mail de confirmação
                     </button>
                   </div>
                 </form>
