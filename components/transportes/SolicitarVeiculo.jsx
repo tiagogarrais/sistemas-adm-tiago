@@ -232,7 +232,12 @@ export default function SolicitarVeiculo() {
       .then(function (res) {
         axios.post('/api/email/enviar', {
           email: solicita.email,
-          copia: ['tiago.arrais@ufca.edu.br'],
+          copia: [
+            'tiago.arrais@ufca.edu.br',
+            'ife@ufca.edu.br',
+            'alexsandra.tavares@ufca.edu.br',
+            'clarisse.alves@ufca.edu.br'
+          ],
           subject: 'Transportes IFE - Recebemos sua solicitação',
           message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
         
