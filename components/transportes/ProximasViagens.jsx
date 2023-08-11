@@ -284,7 +284,13 @@ export default function ProximasViagens() {
                 ) : (
                   ''
                 )} */}
+                <br />
 
+                <b>
+                  <p>Objetivo da viagem:</p>
+                </b>
+                <p> {proximasViagens.objetivo}</p>
+                <br />
                 <p>Data da viagem: {converterData(proximasViagens.dataIda)}</p>
                 <p>
                   Horário da viagem: {converterHora(proximasViagens.dataIda)}
