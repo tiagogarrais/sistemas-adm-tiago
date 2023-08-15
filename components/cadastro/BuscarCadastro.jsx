@@ -49,7 +49,7 @@ export default function BuscarCadastro() {
         <p>Nome: {nomeCadastrado}</p>
         <p>E-mail: {emailCadastrado}</p>
         <p>Telefone: {telefoneCadastrado}</p>
-        <p>CPF: {cpfCadastrado}</p>
+        <p>CPF ou SIAPE: {cpfCadastrado}</p>
       </div>
     )
   return 'Não permitido'

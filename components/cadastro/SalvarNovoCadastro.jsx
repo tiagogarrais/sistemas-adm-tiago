@@ -49,7 +49,9 @@ export default function SalvarNovoCadastro() {
     }
 
     if (cadastro.cpf === undefined) {
-      window.alert('Para atualizar o cadastro você precisa digitar seu CPF')
+      window.alert(
+        'Para atualizar o cadastro você precisa digitar seu CPF ou Matrícula SIAPE'
+      )
       return
     }
 
@@ -116,7 +118,7 @@ export default function SalvarNovoCadastro() {
           />
         </label>
         <label for="cpf">
-          CPF
+          CPF ou matrícula SIAPE
           <input
             type="text"
             id="cpf"
