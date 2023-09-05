@@ -251,6 +251,7 @@ export default function SolicitarVeiculo() {
         <li>Responsável pela solicitação: ${solicita.nome}</li>
         <li>Telefone para contato: ${solicita.telefone}</li>
         <li>Setor: ${solicita.setor}</li>
+        <li>Objetivo: ${solicita.objetivo}</li>
         </ul>
 
         <h3><strong>Dados da viagem</strong></h3>
