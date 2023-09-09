@@ -1,12 +1,12 @@
-import { useSession } from 'next-auth/react'
-import Link from 'next/link'
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function Home() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   return (
     <div>
-      {session ? sessionStorage.setItem('email', session.user.email) : ''}
+      {session ? sessionStorage.setItem("email", session.user.email) : ""}
       <div>
         <div className="button">
           <Link href="/cadastro/cadastro">Meu cadastro</Link>
@@ -38,7 +38,7 @@ export default function Home() {
                   <p>
                     Sistema criado para coletar ideias sobre o tema
                     Infraestrutura Física do campus Brejo Santo. Participe com
-                    suas ideias ou simplesmente consulte as ideias cadastradas.{' '}
+                    suas ideias ou simplesmente consulte as ideias cadastradas.{" "}
                   </p>
                 </article>
               </Link>
@@ -77,6 +77,10 @@ export default function Home() {
               </Link>
             </div>
           </div>
+        </div>
+
+        <div className="button">
+          <Link href="/compras/compras">Compras</Link>
         </div>
 
         <h2>Sistemas desenvolvidos para a UFCA - em outros sites</h2>
@@ -170,5 +174,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }
