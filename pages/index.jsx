@@ -122,6 +122,8 @@ export default function Home() {
           </a>
         </div>
 
+        <h2>Biblioteca de objetos digitais</h2>
+
         <div className="button">
           <a
             href="https://processos.ifeadm.16mb.com/tiago-processos/como-verificar-se-o-dea-desfiblilador-externo-automatico-esta-funcionando-adequadamente/"
@@ -129,6 +131,69 @@ export default function Home() {
           >
             Como verificar se o Desfibrilador Externo Automático - DEA está
             funcionando adequadamente?
+          </a>
+        </div>
+
+        <div className="button">
+          <a
+            href="https://www.conexaofuturo.com.br/mod/hvp/embed.php?id=63"
+            target="_blank"
+          >
+            Conhecendo os sólidos geométricos 1
+          </a>
+        </div>
+
+        <div className="button">
+          <a
+            href="https://www.conexaofuturo.com.br/mod/hvp/embed.php?id=64"
+            target="_blank"
+          >
+            Conhecendo os sólidos geométricos 2
+          </a>
+        </div>
+
+        <div className="button">
+          <a
+            href="https://www.conexaofuturo.com.br/mod/hvp/view.php?id=57"
+            target="_blank"
+          >
+            Curiosidades sobre a floresta amazônica
+          </a>
+        </div>
+
+        <div className="button">
+          <a
+            href="https://www.conexaofuturo.com.br/mod/hvp/view.php?id=58"
+            target="_blank"
+          >
+            Animais da Amazônia
+          </a>
+        </div>
+
+        <div className="button">
+          <a
+            href="https://www.conexaofuturo.com.br/mod/hvp/view.php?id=59"
+            target="_blank"
+          >
+            Jogo da memória - Tema: Araucárias
+          </a>
+        </div>
+
+        <div className="button">
+          <a
+            href="https://www.conexaofuturo.com.br/mod/hvp/view.php?id=60"
+            target="_blank"
+          >
+            Mata atlântica
+          </a>
+        </div>
+
+        <div className="button">
+          <a
+            href="https://www.conexaofuturo.com.br/mod/hvp/view.php?id=61"
+            target="_blank"
+          >
+            Consciência Negra
           </a>
         </div>
       </div>
