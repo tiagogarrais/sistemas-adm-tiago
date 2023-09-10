@@ -83,15 +83,20 @@ export default function Home() {
           <Link href="/compras/compras">Compras</Link>
         </div>
 
-        <h2>Sistemas desenvolvidos para a UFCA - em outros sites</h2>
+        <div className="button">
+          <Link href="/empresta/empresta">Empréstimos</Link>
+        </div>
+
+        <div className="button">
+          <a
+            href="https://docs.google.com/spreadsheets/d/1SS8IzJZL9aUk9iKRTvBVN7mMRuy-afMtAVqzOJeOI84/edit#gid=0"
+            target="_blank"
+          >
+            Reserva de ambientes
+          </a>
+        </div>
 
         <div className="container my-12 mx-auto px-4 md:px-12">
-          <div className="button">
-            <a href="https://ifeadm.16mb.com" target="_blank">
-              Site IFE-ADM
-            </a>
-          </div>
-
           <div className="button">
             <a
               href="https://ifeadm.16mb.com/relatoriosadmufca/ifeadm/relatorios/ambientes-ife-frequencia-limpeza.php"
