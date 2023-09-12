@@ -87,7 +87,10 @@ export default function Home() {
             </div>
 
             <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
-              <Link className="link" href="/ambientes/listagem">
+              <a
+                target="_blank"
+                href="https://docs.google.com/spreadsheets/d/1SS8IzJZL9aUk9iKRTvBVN7mMRuy-afMtAVqzOJeOI84/edit#gid=0"
+              >
                 <article className="min-h-300 min-h-full">
                   <header className="flex items-center justify-center leading-tight p-2 md:p-4">
                     <b>Reserva de ambientes</b>
@@ -97,7 +100,7 @@ export default function Home() {
                     reserva de ambientes no campus Brejo Santo.
                   </p>
                 </article>
-              </Link>
+              </a>
             </div>
           </div>
         </div>
