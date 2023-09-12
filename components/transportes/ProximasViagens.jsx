@@ -1,55 +1,55 @@
-import React, { useState, useEffect } from 'react'
-import Image from 'next/image'
-import minivan from '/public/images/transportes/minivan-spin.jpg'
-import onibus from '/public/images/transportes/onibus-urbano.jpg'
-import { useSession } from 'next-auth/react'
-import axios from 'axios'
-import { useRouter } from 'next/router'
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import minivan from "/public/images/transportes/minivan-spin.jpg";
+import onibus from "/public/images/transportes/onibus-urbano.jpg";
+import { useSession } from "next-auth/react";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function ProximasViagens() {
-  const router = useRouter()
-  const { data: session } = useSession()
-  const [proximasViagens, setProximasViagens] = useState([])
-  const [statusAlterado, setStatusAlterado] = useState('')
+  const router = useRouter();
+  const { data: session } = useSession();
+  const [proximasViagens, setProximasViagens] = useState([]);
+  const [statusAlterado, setStatusAlterado] = useState("");
 
   function alterarStatus(evt) {
     if (
-      session.user.email !== 'tiago.arrais@ufca.edu.br' &&
-      session.user.email !== 'ife@ufca.edu.br' &&
-      session.user.email !== 'alexsandra.tavares@ufca.edu.br' &&
-      session.user.email !== 'clarisse.alves@ufca.edu.br'
+      session.user.email !== "tiago.arrais@ufca.edu.br" &&
+      session.user.email !== "ife@ufca.edu.br" &&
+      session.user.email !== "alexsandra.tavares@ufca.edu.br" &&
+      session.user.email !== "clarisse.alves@ufca.edu.br"
     ) {
       const options = Array.from(
-        document.getElementsByClassName('statusViagem')
-      )
-      options.forEach(option => {
-        option.disabled = true
-      })
-      return
+        document.getElementsByClassName("statusViagem")
+      );
+      options.forEach((option) => {
+        option.disabled = true;
+      });
+      return;
     }
 
-    setStatusAlterado(evt.target.value)
+    setStatusAlterado(evt.target.value);
   }
 
   function atualizarStatus(_idStatus) {
     axios
-      .patch('/api/transportes/transportes', {
+      .patch("/api/transportes/transportes", {
         _id: _idStatus,
-        statusViagem: statusAlterado
+        statusViagem: statusAlterado,
       })
       .then(function (res) {
-        router.reload()
+        router.reload();
       })
       .catch(function (error) {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
 
   function enviarEmailConfirmacao(_idViagem, emailViagem) {
-    event.preventDefault()
-    console.log(emailViagem)
-    console.log(_idViagem)
-    window.alert('Funcionalidade em desenvolvimento!')
+    event.preventDefault();
+    console.log(emailViagem);
+    console.log(_idViagem);
+    window.alert("Funcionalidade em desenvolvimento!");
 
     // axios.post('/api/email/enviar', {
     //   email: email,
@@ -84,85 +84,85 @@ export default function ProximasViagens() {
   function desabilitarCampos() {
     //Desabilitar campos que são privativos dos operadores do sistema.
     if (
-      session.user.email !== 'tiago.arrais@ufca.edu.br' &&
-      session.user.email !== 'ife@ufca.edu.br' &&
-      session.user.email !== 'alexsandra.tavares@ufca.edu.br' &&
-      session.user.email !== 'clarisse.alves@ufca.edu.br'
+      session.user.email !== "tiago.arrais@ufca.edu.br" &&
+      session.user.email !== "ife@ufca.edu.br" &&
+      session.user.email !== "alexsandra.tavares@ufca.edu.br" &&
+      session.user.email !== "clarisse.alves@ufca.edu.br"
     ) {
       const options = Array.from(
-        document.getElementsByClassName('statusViagem')
-      )
-      options.forEach(option => {
-        option.disabled = true
-      })
+        document.getElementsByClassName("statusViagem")
+      );
+      options.forEach((option) => {
+        option.disabled = true;
+      });
 
       const buttonsSubmit = Array.from(
-        document.getElementsByClassName('enviarAtualizacao')
-      )
-      buttonsSubmit.forEach(button => {
-        button.hidden = true
-      })
+        document.getElementsByClassName("enviarAtualizacao")
+      );
+      buttonsSubmit.forEach((button) => {
+        button.hidden = true;
+      });
 
       const divsOperadores = Array.from(
-        document.getElementsByClassName('operadores')
-      )
-      divsOperadores.forEach(button => {
-        button.hidden = true
-      })
+        document.getElementsByClassName("operadores")
+      );
+      divsOperadores.forEach((button) => {
+        button.hidden = true;
+      });
 
-      const selects = Array.from(document.getElementsByTagName('select'))
-      selects.forEach(select => {
-        select.hidden = true
-      })
+      const selects = Array.from(document.getElementsByTagName("select"));
+      selects.forEach((select) => {
+        select.hidden = true;
+      });
     }
   }
 
   function converterData(data) {
-    const dataConvertida = Date.parse(data)
-    const dataLocal = new Intl.DateTimeFormat('pt-BR').format(dataConvertida)
-    return dataLocal
+    const dataConvertida = Date.parse(data);
+    const dataLocal = new Intl.DateTimeFormat("pt-BR").format(dataConvertida);
+    return dataLocal;
   }
 
   function converterHora(data) {
-    const dataConvertida = Date.parse(data)
-    const horaLocal = new Intl.DateTimeFormat('pt-BR', {
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: false
-    }).format(dataConvertida)
-    return horaLocal
+    const dataConvertida = Date.parse(data);
+    const horaLocal = new Intl.DateTimeFormat("pt-BR", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: false,
+    }).format(dataConvertida);
+    return horaLocal;
   }
 
   React.useEffect(() => {
     async function buscarViagens() {
       try {
-        const response = await fetch('/api/transportes/proximas-viagens')
-        const viagens = await response.json()
-        setProximasViagens(viagens)
+        const response = await fetch("/api/transportes/proximas-viagens");
+        const viagens = await response.json();
+        setProximasViagens(viagens);
       } catch (error) {
-        console.error('Erro ao buscar informações do banco de dados:', error)
+        console.error("Erro ao buscar informações do banco de dados:", error);
       }
     }
-    buscarViagens()
-  }, [])
+    buscarViagens();
+  }, []);
 
   function useInterval(callback, delay) {
     useEffect(() => {
-      const intervalId = setInterval(callback, delay)
+      const intervalId = setInterval(callback, delay);
 
       return () => {
-        clearInterval(intervalId)
-      }
-    }, [callback, delay])
+        clearInterval(intervalId);
+      };
+    }, [callback, delay]);
   }
 
-  useInterval(desabilitarCampos, 600)
+  useInterval(desabilitarCampos, 600);
 
   return (
     <>
       <h2>Próximas viagens</h2>
       <div className="flex flex-wrap">
-        {proximasViagens.map(proximasViagens => (
+        {proximasViagens.map((proximasViagens) => (
           <>
             <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <article>
@@ -231,15 +231,15 @@ export default function ProximasViagens() {
                   </div>
                 </form>
 
-                <h3>
-                  Destino:
-                  <br />
-                  {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
-                </h3>
-                <p>{proximasViagens.nome}</p>
-                <p>Status: {proximasViagens.statusViagem}</p>
+                <h3>{converterData(proximasViagens.dataIda)} </h3>
+                <h4>{proximasViagens.statusViagem}</h4>
+
                 <p>
-                  {proximasViagens.veiculo == 'Minivan' ? (
+                  Destino: {`${proximasViagens.cidade} - ${proximasViagens.uf}`}
+                </p>
+                <p>Solicitante: {proximasViagens.nome}</p>
+                <p>
+                  {proximasViagens.veiculo == "Minivan" ? (
                     <>
                       <div className="center">
                         <Image
@@ -299,7 +299,7 @@ export default function ProximasViagens() {
                   Data do retorno: {converterData(proximasViagens.dataRetorno)}
                 </p>
                 <p>
-                  Horário do retorno:{' '}
+                  Horário do retorno:{" "}
                   {converterHora(proximasViagens.dataRetorno)}
                 </p>
                 <div id="infoAdicionais">
@@ -327,5 +327,5 @@ export default function ProximasViagens() {
         ))}
       </div>
     </>
-  )
+  );
 }
