@@ -28,6 +28,8 @@ article {
   @apply hover:bg-blue-900
   hover:text-white
   border-gray-400
+  bg-blue-100
+  border-none
   pl-3
   pr-3
   pb-4
@@ -71,8 +73,8 @@ input {
   @apply bg-gray-200 rounded-lg mt-1 mb-1 pl-2 pr-2 focus:bg-gray-300;
 }
 
-input[type='radio'],
-input[type='checkbox'] {
+input[type="radio"],
+input[type="checkbox"] {
   @apply w-6;
 }
 
