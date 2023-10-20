@@ -45,47 +45,104 @@ export default function ProximasViagens() {
       });
   }
 
-  function enviarEmailConfirmacao(_idViagem, emailViagem) {
+  function enviarEmailConfirmacao(proximasViagens) {
     event.preventDefault();
-    console.log(emailViagem);
-    console.log(_idViagem);
-    window.alert("Funcionalidade em desenvolvimento!");
 
-    // axios.post('/api/email/enviar', {
-    //   email: email,
-    //   copia: ['tiago.arrais@ufca.edu.br'],
-    //   subject: 'Transportes IFE - Viagem confirmada',
-    //   message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
+    //Capturar e converter a data da ida
+    const dataIdaRecebida = new Date(proximasViagens.dataIda);
+    const diaIda = dataIdaRecebida.getDate();
+    const mesIda = dataIdaRecebida.getMonth();
+    const anoIda = dataIdaRecebida.getFullYear();
+    const horaIda = dataIdaRecebida.getHours();
+    const minutoIda = dataIdaRecebida.getMinutes();
+    const dataIdaConvertida = `${String(diaIda).padStart(2, "0")}/${String(
+      mesIda + 1
+    ).padStart(2, "0")}/${anoIda}`;
+    const horaIdaConvertida = `${String(horaIda).padStart(2, "0")}:${String(
+      minutoIda
+    ).padStart(2, "0")}`;
 
-    // <ul>
-    // <li>Responsável pela solicitação: ${solicita.nome}</li>
-    // <li>Telefone para contato: ${solicita.telefone}</li>
-    // <li>Setor: ${solicita.setor}</li>
-    // </ul>
+    //Capturar e converter a data do retorno
+    const dataRetornoRecebida = new Date(proximasViagens.dataRetorno);
+    const diaRetorno = dataRetornoRecebida.getDate();
+    const mesRetorno = dataRetornoRecebida.getMonth();
+    const anoRetorno = dataRetornoRecebida.getFullYear();
+    const horaRetorno = dataRetornoRecebida.getHours();
+    const minutoRetorno = dataRetornoRecebida.getMinutes();
+    const dataRetornoConvertida = `${String(diaRetorno).padStart(
+      2,
+      "0"
+    )}/${String(mesRetorno + 1).padStart(2, "0")}/${anoRetorno}`;
+    const horaRetornoConvertida = `${String(horaRetorno).padStart(
+      2,
+      "0"
+    )}:${String(minutoRetorno).padStart(2, "0")}`;
 
-    // <h3><strong>Dados da viagem</strong></h3>
-    // <ul>
-    // <li>Veículo: ${solicita.veiculo}</li>
-    // <li>Tipo de solicitação: ${solicita.tipo}</li>
-    // <li>Destino: ${solicita.cidade} - ${solicita.uf}</li>
-    // <li>Data: ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</li>
-    // <li>Horário: ${solicita.horaIda}:${solicita.minutoIda}</li>
+    //Enviar o e-mail de confirmação
+    axios
+      .post("/api/email/enviar", {
+        email: proximasViagens.email,
+        copia: [
+          "tiago.arrais@ufca.edu.br",
+          "alexsandra.tavares@ufca.edu.br",
+          "ife@ufca.edu.br",
+          "clarisse.alves@ufca.edu.br",
+        ],
+        subject: "Transportes IFE - Viagem confirmada",
+        message: `
+        <p>
+        <strong>A viagem para ${proximasViagens.cidade} no dia ${dataIdaConvertida} foi confirmada!</strong>
+        </p>
+        <p>
+        <strong>Solicitante</strong>
+        Responsável pela solicitação: ${proximasViagens.nome}
+        <br>
+        Telefone para contato: ${proximasViagens.telefone}
+        <br>
+        Setor: ${proximasViagens.setor}
+        </p>
 
-    // <li>Retorno: ${solicita.diaRetorno}/${solicita.mesRetorno}/${solicita.anoRetorno}</li>
-    // <li>Horário do retorno: ${solicita.horaRetorno}:${solicita.minutoRetorno}</li>
-    // </ul>
+        <strong>Dados da viagem</strong>
+        <p>
+        Veículo: ${proximasViagens.veiculo}<br>
+        Tipo de solicitação: ${proximasViagens.tipo}<br>
+        Destino: ${proximasViagens.cidade} - ${proximasViagens.uf}<br>
+        Partida: ${dataIdaConvertida} saída às ${horaIdaConvertida}<br>
+        Retorno: ${dataRetornoConvertida} retornando às ${horaRetornoConvertida}</li>
+        </p>
 
-    // <p>Atenciosamente,</p>
+        <p>
+        Atenção: Se você deseja responder a esta mensagem, por favor, selecione a opção "Responder a todos" para que toda a nossa equipe possa recebê-la e agir de maneira mais rápida e eficaz.
+        </p>
+        
+        <p>
+        <strong>Informes gerais</strong><br>
+        O uso do cinto de segurança é obrigatório em todo o trajeto. Os horários devem ser rigorosamente cumpridos para não extrapolar a carga horária permitida pela legislação ou atrasar outras viagens.
+        </p>
 
-    // <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`
-    // })
+        <p>
+        Mais detalhes sobre a viagem podem ser consultados no site <a href="https://admtiago.com.br/transportes">https://admtiago.com.br/transportes</a>
+        </p>
+
+        Atenciosamente,<br>
+
+        Adm. Tiago das Graças Arrais - CRA 11.660`,
+      })
+      .catch(function (error) {
+        console.log(error);
+        window.alert(
+          "Tente novamente! Houve algum erro no envio da solicitação."
+        );
+      })
+      .then(
+        window.alert("Confira se o e-mail chegou na sua caixa de entrada!")
+      );
   }
 
   function desabilitarCampos() {
     //Desabilitar campos que são privativos dos operadores do sistema.
     if (
       session.user.email !== "tiago.arrais@ufca.edu.br" &&
-      session.user.email !== "ife@ufca.edu.br" &&
       session.user.email !== "alexsandra.tavares@ufca.edu.br" &&
       session.user.email !== "clarisse.alves@ufca.edu.br"
     ) {
@@ -216,15 +273,13 @@ export default function ProximasViagens() {
                       Atualizar informações
                     </button>
                   </div>
+                </form>
+
+                <form>
                   <div className="center">
                     <button
                       className="operadores"
-                      onClick={() =>
-                        enviarEmailConfirmacao(
-                          proximasViagens._id,
-                          proximasViagens.email
-                        )
-                      }
+                      onClick={() => enviarEmailConfirmacao(proximasViagens)}
                     >
                       Enviar e-mail de confirmação
                     </button>
