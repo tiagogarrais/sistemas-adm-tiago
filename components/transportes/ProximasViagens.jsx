@@ -91,42 +91,44 @@ export default function ProximasViagens() {
         subject: "Transportes IFE - Viagem confirmada",
         message: `
         <p>
-        <strong>A viagem para ${proximasViagens.cidade} no dia ${dataIdaConvertida} foi confirmada!</strong>
+        <strong>A viagem para ${proximasViagens.cidade} - ${proximasViagens.uf} no dia ${dataIdaConvertida} foi confirmada!</strong>
         </p>
         <p>
-        <strong>Solicitante</strong>
-        Responsável pela solicitação: ${proximasViagens.nome}
+        <strong>Responsável pela solicitação</strong>
+        <br>
+        Viagem solicitada por: ${proximasViagens.nome}
         <br>
         Telefone para contato: ${proximasViagens.telefone}
-        <br>
-        Setor: ${proximasViagens.setor}
         </p>
 
-        <strong>Dados da viagem</strong>
         <p>
+        <strong>Dados da viagem</strong>
+        Objetivo: ${proximasViagens.objetivo}<br>
         Veículo: ${proximasViagens.veiculo}<br>
         Tipo de solicitação: ${proximasViagens.tipo}<br>
         Destino: ${proximasViagens.cidade} - ${proximasViagens.uf}<br>
         Partida: ${dataIdaConvertida} saída às ${horaIdaConvertida}<br>
-        Retorno: ${dataRetornoConvertida} retornando às ${horaRetornoConvertida}</li>
-        </p>
-
-        <p>
-        Atenção: Se você deseja responder a esta mensagem, por favor, selecione a opção "Responder a todos" para que toda a nossa equipe possa recebê-la e agir de maneira mais rápida e eficaz.
-        </p>
-        
-        <p>
-        <strong>Informes gerais</strong><br>
-        O uso do cinto de segurança é obrigatório em todo o trajeto. Os horários devem ser rigorosamente cumpridos para não extrapolar a carga horária permitida pela legislação ou atrasar outras viagens.
-        </p>
-
-        <p>
+        Retorno: ${dataRetornoConvertida} retornando às ${horaRetornoConvertida}<br>
         Mais detalhes sobre a viagem podem ser consultados no site <a href="https://admtiago.com.br/transportes">https://admtiago.com.br/transportes</a>
         </p>
 
+        
+        <p>
+        <strong>Informes gerais</strong><br>
+        O uso do cinto de segurança é obrigatório enquanto o veículo permanecer ligado.<br>
+        Os horários devem ser rigorosamente cumpridos para não extrapolar a carga horária permitida pela legislação ou atrasar outras viagens.
+        </p>
+        
+        
         Atenciosamente,<br>
-
-        Adm. Tiago das Graças Arrais - CRA 11.660`,
+        
+        Adm. Tiago das Graças Arrais - CRA 11.660
+        
+        <p>
+        Atenção: Para responder esta mensagem selecione a opção "Responder para todos", assim , toda a nossa equipe recebe e pode agir de forma rápida e eficaz.
+        </p>
+        ${proximasViagens._id}
+        `,
       })
       .catch(function (error) {
         console.log(error);
