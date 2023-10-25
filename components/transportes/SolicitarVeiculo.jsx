@@ -1,106 +1,105 @@
-import { useSession } from 'next-auth/react'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import minivan from '/public/images/transportes/minivan-spin.jpg'
-import onibus from '/public/images/transportes/onibus-urbano.jpg'
-import axios from 'axios'
-import { useRouter } from 'next/router'
+import { useSession } from "next-auth/react";
+import React, { useState } from "react";
+import Image from "next/image";
+import minivan from "/public/images/transportes/minivan-spin.jpg";
+import onibus from "/public/images/transportes/onibus-urbano.jpg";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function SolicitarVeiculo() {
   const [solicita, setSolicita] = useState({
-    statusViagem: 'Recebida',
-    saidaAbaiara: 'Não',
-    saidaCentro: 'Não',
-    saidaIfe: 'Não',
-    veiculo: 'Minivan',
-    objetivo1: 'Não marcado',
-    objetivo2: 'Não marcado',
-    objetivo3: 'Não marcado',
-    objetivo4: 'Não marcado',
-    objetivo5: 'Não marcado',
-    objetivo6: 'Não marcado',
-    objetivo7: 'Não marcado',
-    uf: 'Ceará'
-  })
+    statusViagem: "Recebida",
+    saidaAbaiara: "Não",
+    saidaCentro: "Não",
+    saidaIfe: "Não",
+    veiculo: "Minivan",
+    objetivo1: "Não marcado",
+    objetivo2: "Não marcado",
+    objetivo3: "Não marcado",
+    objetivo4: "Não marcado",
+    objetivo5: "Não marcado",
+    objetivo6: "Não marcado",
+    uf: "Ceará",
+  });
 
-  const { data: session } = useSession()
-  const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
-  const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
-  const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
-  const [cpfCadastrado, setCpfCadastrado] = useState('Carregando...')
-  const router = useRouter()
+  const { data: session } = useSession();
+  const [nomeCadastrado, setNomeCadastrado] = useState("Carregando...");
+  const [telefoneCadastrado, setTelefoneCadastrado] = useState("Carregando...");
+  const [emailCadastrado, setEmailCadastrado] = useState("Carregando...");
+  const [cpfCadastrado, setCpfCadastrado] = useState("Carregando...");
+  const router = useRouter();
 
   React.useEffect(() => {
-    buscarCadastro()
-  }, [])
+    buscarCadastro();
+  }, []);
 
   function onInputChange(evt) {
-    setSolicita(prevState => ({
+    setSolicita((prevState) => ({
       ...prevState,
-      [evt.target.name]: evt.target.value
-    }))
+      [evt.target.name]: evt.target.value,
+    }));
   }
 
   function onCheckboxChange(evt) {
-    setSolicita(prevState => ({
+    setSolicita((prevState) => ({
       ...prevState,
-      [evt.target.id]: evt.target.checked === true ? 'Sim' : 'Não'
-    }))
+      [evt.target.id]: evt.target.checked === true ? "Sim" : "Não",
+    }));
   }
 
   function onObjetivoChange(evt) {
-    setSolicita(prevState => ({
+    setSolicita((prevState) => ({
       ...prevState,
       [evt.target.id]:
-        evt.target.checked === true ? evt.target.value : 'Não marcado'
-    }))
+        evt.target.checked === true ? evt.target.value : "Não marcado",
+    }));
   }
 
   function solicitanteLista(evt) {
-    if (document.getElementById('solicitanteVai').checked === true) {
-      setSolicita(prevState => ({
+    if (document.getElementById("solicitanteVai").checked === true) {
+      setSolicita((prevState) => ({
         ...prevState,
         passageiro1: nomeCadastrado,
-        identificacao1: cpfCadastrado
-      }))
-      document.getElementById('nome-1').value = nomeCadastrado
-      document.getElementById('identificacao-1').value = cpfCadastrado
+        identificacao1: cpfCadastrado,
+      }));
+      document.getElementById("nome-1").value = nomeCadastrado;
+      document.getElementById("identificacao-1").value = cpfCadastrado;
     } else {
-      setSolicita(prevState => ({
+      setSolicita((prevState) => ({
         ...prevState,
-        passageiro1: '',
-        identificacao1: ''
-      }))
-      document.getElementById('nome-1').value = ''
-      document.getElementById('identificacao-1').value = ''
+        passageiro1: "",
+        identificacao1: "",
+      }));
+      document.getElementById("nome-1").value = "";
+      document.getElementById("identificacao-1").value = "";
     }
   }
 
   function preencherDataRetorno(evt) {
-    if (document.getElementById('retorno').checked === true) {
-      setSolicita(prevState => ({
+    if (document.getElementById("retorno").checked === true) {
+      setSolicita((prevState) => ({
         ...prevState,
         diaRetorno: solicita.diaIda,
         mesRetorno: solicita.mesIda,
-        anoRetorno: solicita.anoIda
-      }))
+        anoRetorno: solicita.anoIda,
+      }));
     } else {
-      setSolicita(prevState => ({
+      setSolicita((prevState) => ({
         ...prevState,
-        diaRetorno: '',
-        mesRetorno: '',
-        anoRetorno: ''
-      }))
+        diaRetorno: "",
+        mesRetorno: "",
+        anoRetorno: "",
+      }));
     }
   }
 
   function btnSaveClick() {
-    event.preventDefault()
-    document.getElementById('btnSave').disabled = true
-    document.getElementById('btnSave').innerText = 'Aguarde...'
+    event.preventDefault();
+    document.getElementById("btnSave").disabled = true;
+    document.getElementById("btnSave").innerText = "Aguarde...";
 
     axios
-      .post('/api/transportes/transportes', {
+      .post("/api/transportes/transportes", {
         statusViagem: solicita.statusViagem,
         dataSolicitacao: Date(),
         objetivo: solicita.objetivo,
@@ -137,7 +136,6 @@ export default function SolicitarVeiculo() {
         objetivo4: solicita.objetivo4,
         objetivo5: solicita.objetivo5,
         objetivo6: solicita.objetivo6,
-        objetivo7: solicita.objetivo7,
         tipo: solicita.tipo,
         setor: solicita.setor,
         passageiro1: solicita.passageiro1,
@@ -227,18 +225,18 @@ export default function SolicitarVeiculo() {
         passageiro43: solicita.passageiro43,
         identificacao43: solicita.identificacao43,
         passageiro44: solicita.passageiro44,
-        identificacao44: solicita.identificacao44
+        identificacao44: solicita.identificacao44,
       })
       .then(function (res) {
-        axios.post('/api/email/enviar', {
+        axios.post("/api/email/enviar", {
           email: solicita.email,
           copia: [
-            'tiago.arrais@ufca.edu.br',
-            'ife@ufca.edu.br',
-            'alexsandra.tavares@ufca.edu.br',
-            'clarisse.alves@ufca.edu.br'
+            "tiago.arrais@ufca.edu.br",
+            "ife@ufca.edu.br",
+            "alexsandra.tavares@ufca.edu.br",
+            "clarisse.alves@ufca.edu.br",
           ],
-          subject: 'Transportes IFE - Recebemos sua solicitação',
+          subject: "Transportes IFE - Recebemos sua solicitação",
           message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
         
         <p>Na maioria dos casos enviaremos e-mail com a decisão nos seguintes prazos:</p> 
@@ -279,7 +277,6 @@ export default function SolicitarVeiculo() {
         <li>Objetivo 4: ${solicita.objetivo4}</li>
         <li>Objetivo 5: ${solicita.objetivo5}</li>
         <li>Objetivo 6: ${solicita.objetivo6}</li>
-        <li>Objetivo 7: ${solicita.objetivo7}</li>
         </ul>
 
         <h3><strong>Lista de passageiros</strong></h3>
@@ -332,56 +329,56 @@ export default function SolicitarVeiculo() {
 
         <p>Atenciosamente,</p> 
         
-        <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`
-        })
+        <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`,
+        });
 
-        setSolicita({})
-        document.getElementById('btnSave').disabled = false
-        document.getElementById('btnSave').innerText = 'Salvar'
+        setSolicita({});
+        document.getElementById("btnSave").disabled = false;
+        document.getElementById("btnSave").innerText = "Salvar";
 
-        window.alert('Enviamos uma cópia desta solicitação no seu email')
-        router.push('/transportes/')
+        window.alert("Enviamos uma cópia desta solicitação no seu email");
+        router.push("/transportes/");
       })
       .catch(function (error) {
-        console.log(error)
+        console.log(error);
         window.alert(
-          'Tente novamente! Houve algum erro no envio da solicitação.'
-        )
-        document.getElementById('btnSave').disabled = false
-        document.getElementById('btnSave').innerText = 'Tente novamente'
-      })
+          "Tente novamente! Houve algum erro no envio da solicitação."
+        );
+        document.getElementById("btnSave").disabled = false;
+        document.getElementById("btnSave").innerText = "Tente novamente";
+      });
   }
 
   async function buscarCadastro() {
     const response = await fetch(
-      '../api/cadastro/cadastro?' + 'email=' + session.user.email
-    )
-    const data = await response.json()
+      "../api/cadastro/cadastro?" + "email=" + session.user.email
+    );
+    const data = await response.json();
 
     if (data === null) {
-      setNomeCadastrado('Não cadastrado')
-      setTelefoneCadastrado('Não cadastrado')
-      setEmailCadastrado('Não cadastrado')
-      setCpfCadastrado('Não cadastrado')
+      setNomeCadastrado("Não cadastrado");
+      setTelefoneCadastrado("Não cadastrado");
+      setEmailCadastrado("Não cadastrado");
+      setCpfCadastrado("Não cadastrado");
       window.alert(
-        'Para solicitar transporte é necessário atualizar o seu cadastro.'
-      )
-      router.push('/cadastro/atualizar')
-      return
+        "Para solicitar transporte é necessário atualizar o seu cadastro."
+      );
+      router.push("/cadastro/atualizar");
+      return;
     }
 
-    setNomeCadastrado(data.nome)
-    setTelefoneCadastrado(data.telefone)
-    setEmailCadastrado(data.email)
-    setCpfCadastrado(data.cpf)
+    setNomeCadastrado(data.nome);
+    setTelefoneCadastrado(data.telefone);
+    setEmailCadastrado(data.email);
+    setCpfCadastrado(data.cpf);
   }
 
   if (session) {
-    solicita.email = session.user.email
-    nomeCadastrado ? (solicita.nome = nomeCadastrado) : 'Não capturado'
+    solicita.email = session.user.email;
+    nomeCadastrado ? (solicita.nome = nomeCadastrado) : "Não capturado";
     telefoneCadastrado
       ? (solicita.telefone = telefoneCadastrado)
-      : 'Não capturado'
+      : "Não capturado";
 
     return (
       <div>
@@ -660,40 +657,7 @@ export default function SolicitarVeiculo() {
                 />
               </label>
             </div>
-            <h4>Local de saída</h4>
-            <label>
-              <input
-                type="checkbox"
-                name="localSaida1"
-                id="saidaIfe"
-                value="Prédio Sede do IFE"
-                onChange={onCheckboxChange}
-                autoComplete="off"
-              />
-              Prédio Sede do IFE, Bairro Centro.
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="localSaida2"
-                id="saidaCentro"
-                value="Praça Dionísio Rocha de Lucena, Bairro Centro."
-                onChange={onCheckboxChange}
-                autoComplete="off"
-              />
-              Praça Dionísio Rocha de Lucena, Bairro Centro.
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                name="localSaida3"
-                id="saidaAbaiara"
-                value="Posto Abaiara (quando não houver desvio de trajeto)"
-                onChange={onCheckboxChange}
-                autoComplete="off"
-              />
-              Posto Abaiara (quando não houver desvio de trajeto)
-            </label>
+
             <h4>A viagem atenderá algum dos objetivos abaixo relacionados?</h4>
             <p>
               Essas solicitações possuem fluxo de aprovação automática pois
@@ -705,73 +669,63 @@ export default function SolicitarVeiculo() {
                 type="checkbox"
                 name="objetivo1"
                 id="objetivo1"
-                value="Recebimento de avaliadores do MEC"
+                value="Ações de extensão com acompanhamento docente"
                 onChange={onObjetivoChange}
               />
-              Recebimento de avaliadores do MEC
+              Ações de extensão com acompanhamento docente
             </label>
             <label htmlFor="objetivo2">
               <input
                 type="checkbox"
                 name="objetivo2"
                 id="objetivo2"
-                value="Reuniões agendadas pelo setor de transportes com os motoristas"
+                value="Acompanhamento de estágio"
                 onChange={onObjetivoChange}
               />
-              Reuniões agendadas pelo setor de transportes com os motoristas
+              Acompanhamento de estágio
             </label>
             <label htmlFor="objetivo3">
               <input
                 type="checkbox"
                 name="objetivo3"
                 id="objetivo3"
-                value="Reunião com calendário definido previamente e que envolve representação do IFE"
+                value="Atividades que envolvam agendamento com órgãos externos"
                 onChange={onObjetivoChange}
               />
-              Reunião com calendário definido previamente e que envolve
-              representação do IFE
+              Atividades que envolvam agendamento com órgãos externos
             </label>
             <label htmlFor="objetivo4">
               <input
                 type="checkbox"
                 name="objetivo4"
                 id="objetivo4"
-                value="Mudança de prédio"
+                value="Atividades que envolvam convocação de representante(s) do IFE"
                 onChange={onObjetivoChange}
               />
-              Mudança de prédio
+              Atividades que envolvam convocação de representante(s) do IFE
             </label>
             <label htmlFor="objetivo5">
               <input
                 type="checkbox"
                 name="objetivo5"
                 id="objetivo5"
-                value="Eventos de colação de grau"
+                value="Aula de campo / prática prevista em Plano de Ensino e aprovada pelo colegiado do curso"
                 onChange={onObjetivoChange}
               />
-              Eventos de colação de grau
+              Aula de campo / prática prevista em Plano de Ensino e aprovada
+              pelo colegiado do curso
             </label>
             <label htmlFor="objetivo6">
               <input
                 type="checkbox"
                 name="objetivo6"
                 id="objetivo6"
-                value="Montagem de estande na ExpoBrejo"
+                value="Eventos promovidos pelo IFE"
                 onChange={onObjetivoChange}
               />
-              Montagem de estande na ExpoBrejo
+              Eventos promovidos pelo IFE
             </label>
-            <label htmlFor="objetivo7">
-              <input
-                type="checkbox"
-                name="objetivo7"
-                id="objetivo7"
-                value="Revisões dos veículos, quando estas não puderem ser feitas em datas sem agendamentos"
-                onChange={onObjetivoChange}
-              />
-              Revisões dos veículos, quando estas não puderem ser feitas em
-              datas sem agendamentos
-            </label>
+
             <h4>
               Esta solicitação vai atender prioritariamente a demanda de qual
               setor ou grupo?
@@ -802,10 +756,10 @@ export default function SolicitarVeiculo() {
                 type="radio"
                 name="setor"
                 id="direcao"
-                value="Direção do IFE"
+                value="Direção, Administração e Secretaria do IFE"
                 onChange={onInputChange}
               />
-              Direção do IFE
+              Direção, Administração e Secretaria do IFE
             </label>
             <label htmlFor="biologia">
               <input
@@ -878,7 +832,7 @@ export default function SolicitarVeiculo() {
               Deseja incluir seu nome na lista de passageiros?
             </label>
             {Array.from(
-              { length: solicita.veiculo == 'Minivan' ? 6 : 44 },
+              { length: solicita.veiculo == "Minivan" ? 6 : 44 },
               (_, i) => (
                 <div key={i}>
                   {i + 1}
@@ -916,12 +870,12 @@ export default function SolicitarVeiculo() {
           </button>
         </form>
       </div>
-    )
+    );
   }
 
   return (
     <div>
       <p>Acesso negado, faça login para ver este conteúdo</p>
     </div>
-  )
+  );
 }
