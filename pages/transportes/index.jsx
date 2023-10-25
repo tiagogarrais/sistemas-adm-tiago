@@ -1,10 +1,10 @@
-import { useSession } from 'next-auth/react'
-import Contador from '../../components/contador-regressivo/Contador'
-import ProximasViagens from '../../components/transportes/ProximasViagens'
-import Link from 'next/link'
+import { useSession } from "next-auth/react";
+import Contador from "../../components/contador-regressivo/Contador";
+import ProximasViagens from "../../components/transportes/ProximasViagens";
+import Link from "next/link";
 
 export default function Transportes() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
   if (session) {
     return (
       <div className="container my-12 mx-auto px-4 md:px-12">
@@ -21,7 +21,7 @@ export default function Transportes() {
           <ProximasViagens />
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -29,5 +29,5 @@ export default function Transportes() {
       <Contador />
       <p>Para acessar este conteúdo é necessário fazer login</p>
     </div>
-  )
+  );
 }

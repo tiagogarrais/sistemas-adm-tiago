@@ -85,6 +85,7 @@ export default function ProximasViagens() {
         copia: [
           "tiago.arrais@ufca.edu.br",
           "alexsandra.tavares@ufca.edu.br",
+          "marcos.francisco@ufca.edu.br",
           "ife@ufca.edu.br",
           "clarisse.alves@ufca.edu.br",
         ],
@@ -219,7 +220,7 @@ export default function ProximasViagens() {
 
   return (
     <>
-      <h2>Próximas viagens</h2>
+      <h2>↓Próximas viagens↓</h2>
       <div className="flex flex-wrap">
         {proximasViagens.map((proximasViagens) => (
           <>
