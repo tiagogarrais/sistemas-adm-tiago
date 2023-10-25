@@ -220,7 +220,7 @@ export default function ProximasViagens() {
 
   return (
     <>
-      <h2>↓Próximas viagens↓</h2>
+      <h2>Próximas viagens</h2>
       <div className="flex flex-wrap">
         {proximasViagens.map((proximasViagens) => (
           <>
