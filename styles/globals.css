@@ -65,8 +65,16 @@ article {
   @apply content-center items-center self-center place-content-center place-items-center place-self-center justify-center justify-items-center;
 }
 
+.texto-justificado {
+  @apply text-justify;
+}
+
 a {
   @apply no-underline hover:underline;
+}
+
+li {
+  @apply list-disc;
 }
 
 input {
