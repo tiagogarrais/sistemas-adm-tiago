@@ -17,7 +17,8 @@ export default function ProximasViagens() {
       session.user.email !== 'tiago.arrais@ufca.edu.br' &&
       session.user.email !== 'ife@ufca.edu.br' &&
       session.user.email !== 'alexsandra.tavares@ufca.edu.br' &&
-      session.user.email !== 'clarisse.alves@ufca.edu.br'
+      session.user.email !== 'clarisse.alves@ufca.edu.br' &&
+      session.user.email !== 'daniel.brandom@ufca.edu.br'
     ) {
       const options = Array.from(
         document.getElementsByClassName('statusViagem')
@@ -87,7 +88,8 @@ export default function ProximasViagens() {
           'alexsandra.tavares@ufca.edu.br',
           'marcos.francisco@ufca.edu.br',
           'ife@ufca.edu.br',
-          'clarisse.alves@ufca.edu.br'
+          'clarisse.alves@ufca.edu.br',
+          'daniel.brandom@ufca.edu.br'
         ],
         subject: 'Transportes IFE - Viagem confirmada',
         message: `
@@ -145,7 +147,8 @@ export default function ProximasViagens() {
     if (
       session.user.email !== 'tiago.arrais@ufca.edu.br' &&
       session.user.email !== 'alexsandra.tavares@ufca.edu.br' &&
-      session.user.email !== 'clarisse.alves@ufca.edu.br'
+      session.user.email !== 'clarisse.alves@ufca.edu.br' &&
+      session.user.email !== 'daniel.brandom@ufca.edu.br'
     ) {
       const options = Array.from(
         document.getElementsByClassName('statusViagem')
