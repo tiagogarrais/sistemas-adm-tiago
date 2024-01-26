@@ -1,34 +1,34 @@
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
-import { useQRCode } from 'next-qrcode'
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { useQRCode } from "next-qrcode";
 
 export function MostrarAmbiente() {
-  const router = useRouter()
-  const ambiente = router.query.ambiente
-  const linkApiSala = `../api/ambientes/${ambiente}`
-  const { Canvas } = useQRCode()
-  const linkDestaPagina = `https://admtiago.com.br/ambientes/${ambiente}`
-  const [dadosJson, setDadosJson] = useState({})
+  const router = useRouter();
+  const ambiente = router.query.ambiente;
+  const linkApiSala = `../api/ambientes/${ambiente}`;
+  const { Canvas } = useQRCode();
+  const linkDestaPagina = `https://admtiago.com.br/ambientes/${ambiente}`;
+  const [dadosJson, setDadosJson] = useState({});
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(linkApiSala)
-        const dadosBrutos = await response.json()
-        setDadosJson(dadosBrutos)
+        const response = await fetch(linkApiSala);
+        const dadosBrutos = await response.json();
+        setDadosJson(dadosBrutos);
       } catch (error) {
         console.log(
-          'Erro capturado, consulte o código para mais informações',
+          "Erro capturado, consulte o código para mais informações",
           error
-        )
+        );
       }
     }
 
-    fetchData()
-  }, [linkApiSala])
+    fetchData();
+  }, [linkApiSala]);
 
   function renderizarDado(id, texto) {
-    return <span id={id}>{texto}</span>
+    return <span id={id}>{texto}</span>;
   }
 
   function renderizarInformacao(id, texto) {
@@ -36,11 +36,11 @@ export function MostrarAmbiente() {
       <div>
         <p>{texto}</p>
       </div>
-    )
+    );
   }
 
   function calcularArea() {
-    return (dadosJson.larguraLesteOeste * dadosJson.comprimento).toFixed(1)
+    return (dadosJson.larguraLesteOeste * dadosJson.comprimento).toFixed(1);
   }
 
   return (
@@ -48,85 +48,80 @@ export function MostrarAmbiente() {
       <h2 id="nomeAmbiente">{dadosJson.nomeAmbiente}</h2>
       <p>Chave número: {ambiente}</p>
 
-      {dadosJson.frequenciaSemanalLimpeza &&
-        renderizarInformacao(
-          'frequenciaSemanalLimpeza',
-          `Frequência semanal de limpeza: ${dadosJson.frequenciaSemanalLimpeza}`
-        )}
       {dadosJson.telefone &&
         renderizarInformacao(
-          'telefone',
+          "telefone",
           `Número do telefone: ${dadosJson.telefone}`
         )}
       {dadosJson.larguraLesteOeste &&
         renderizarInformacao(
-          'largura',
+          "largura",
           `Largura: ${dadosJson.larguraLesteOeste}`
         )}
       {dadosJson.comprimento &&
         renderizarInformacao(
-          'comprimento',
+          "comprimento",
           `Comprimento: ${dadosJson.comprimento}`
         )}
       {dadosJson.altura &&
-        renderizarInformacao('altura', `Altura: ${dadosJson.altura}`)}
+        renderizarInformacao("altura", `Altura: ${dadosJson.altura}`)}
       {dadosJson.possuigaiolaProjetor &&
         renderizarInformacao(
-          'possuigaiolaProjetor',
+          "possuigaiolaProjetor",
           `Possui gaiola para projetor? ${dadosJson.possuigaiolaProjetor}`
         )}
       {dadosJson.possuiCondicionadorAr &&
         renderizarInformacao(
-          'possuiCondicionadorAr',
+          "possuiCondicionadorAr",
           `Possui ar-condicionado? ${dadosJson.possuiCondicionadorAr}`
         )}
       {dadosJson.possuiProjetor &&
         renderizarInformacao(
-          'possuiProjetor',
+          "possuiProjetor",
           `Possui projetor? ${dadosJson.possuiProjetor}`
         )}
       {dadosJson.possuiQuadroLousa &&
         renderizarInformacao(
-          'possuiQuadroLousa',
+          "possuiQuadroLousa",
           `Possui quadro / lousa? ${dadosJson.possuiQuadroLousa}`
         )}
       {dadosJson.possuiSuporteProjetor &&
         renderizarInformacao(
-          'possuiSuporteProjetor',
+          "possuiSuporteProjetor",
           `Possui suporte para projetor? ${dadosJson.possuiSuporteProjetor}`
         )}
       {dadosJson.possuiCadeiraAcessível &&
         renderizarInformacao(
-          'possuiCadeiraAcessível',
+          "possuiCadeiraAcessível",
           `Possui cadeira acessível? ${dadosJson.possuiCadeiraAcessível}`
         )}
       {dadosJson.possuiMesaAcessível &&
         renderizarInformacao(
-          'possuiMesaAcessível',
+          "possuiMesaAcessível",
           `Possui mesa acessível? ${dadosJson.possuiMesaAcessível}`
         )}
       {dadosJson.potenciaWattsCondicionadorAr &&
         renderizarInformacao(
-          'potenciaWattsCondicionadorAr',
+          "potenciaWattsCondicionadorAr",
           `Qual a potência em Watts do ar-condicionado? ${dadosJson.potenciaWattsCondicionadorAr}`
         )}
       {dadosJson.quantCarteiras &&
         renderizarInformacao(
-          'quantCarteiras',
+          "quantCarteiras",
           `Quantidade de carteiras: ${dadosJson.quantCarteiras}`
         )}
       {dadosJson.quantLampadas &&
         renderizarInformacao(
-          'quantLampadas',
+          "quantLampadas",
           `Quantidade de lâmpadas: ${dadosJson.quantLampadas}`
         )}
       {dadosJson.tipoIluminacao &&
         renderizarInformacao(
-          'tipoIluminacao',
+          "tipoIluminacao",
           `Tipo de iluminação: ${dadosJson.tipoIluminacao}`
         )}
       {dadosJson.tipoTeto &&
-        renderizarInformacao('tipoTeto', `Tipo de teto: ${dadosJson.tipoTeto}`)}
+        renderizarInformacao("tipoTeto", `Tipo de teto: ${dadosJson.tipoTeto}`)}
 
       <span id="areaM2">Área em metros quadrados: {calcularArea()}</span>
 
@@ -135,13 +130,13 @@ export function MostrarAmbiente() {
         <Canvas
           text={linkDestaPagina}
           options={{
-            level: 'M',
+            level: "M",
             margin: 3,
             scale: 4,
-            width: 200
+            width: 200,
           }}
         />
       </div>
     </div>
-  )
+  );
 }
