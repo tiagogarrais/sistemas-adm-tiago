@@ -1,12 +1,12 @@
-import { useSession } from "next-auth/react";
-import Link from "next/link";
+import { useSession } from 'next-auth/react'
+import Link from 'next/link'
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session } = useSession()
 
   return (
     <div>
-      {session ? sessionStorage.setItem("email", session.user.email) : ""}
+      {session ? sessionStorage.setItem('email', session.user.email) : ''}
       <div>
         <div className="button">
           <Link href="/cadastro/cadastro">Meu cadastro</Link>
@@ -108,7 +108,7 @@ export default function Home() {
         <h2>Sistemas desenvolvidos para a UFCA - em outros sites</h2>
 
         <div className="button">
-          <a href="https://processos.ifeadm.16mb.com" target="_blank">
+          <a href="http://processos.ifeadm.16mb.com" target="_blank">
             Processos Administrativos IFE
           </a>
         </div>
@@ -129,7 +129,7 @@ export default function Home() {
 
         <div className="button">
           <a
-            href="https://processos.ifeadm.16mb.com/tiago-processos/como-verificar-se-o-dea-desfiblilador-externo-automatico-esta-funcionando-adequadamente/"
+            href="http://processos.ifeadm.16mb.com/tiago-processos/como-verificar-se-o-dea-desfiblilador-externo-automatico-esta-funcionando-adequadamente/"
             target="_blank"
           >
             Como verificar se o Desfibrilador Externo Automático - DEA está
@@ -201,5 +201,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-  );
+  )
 }
