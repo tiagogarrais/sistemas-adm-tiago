@@ -11,7 +11,17 @@ export default function informacoes() {
         <Link href="/transportes">Voltar para a página de transportes</Link>
       </div>
 
+      <div className="button">
+        <a
+          target="_blank"
+          href="https://processos.ifeadm.com.br/tiago-processos/como-processar-as-solicitacoes-de-viagens-recebidas-no-campus-brejo-santo/"
+        >
+          Processamento da viagem
+        </a>
+      </div>
+
       <div className="texto-justificado">
+        <h2>Regulamento do serviço transportes - Campus Brejo Santo</h2>
         <h3>Objetivo</h3>
         <p>
           O objetivo do serviço de transportes do Instituto de Formação de
