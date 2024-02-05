@@ -1,105 +1,105 @@
-import { useSession } from 'next-auth/react'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import minivan from '/public/images/transportes/minivan-spin.jpg'
-import onibus from '/public/images/transportes/onibus-urbano.jpg'
-import axios from 'axios'
-import { useRouter } from 'next/router'
+import { useSession } from "next-auth/react";
+import React, { useState } from "react";
+import Image from "next/image";
+import minivan from "/public/images/transportes/minivan-spin.jpg";
+import onibus from "/public/images/transportes/onibus-urbano.jpg";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 export default function SolicitarVeiculo() {
   const [solicita, setSolicita] = useState({
-    statusViagem: 'Recebida',
-    saidaAbaiara: 'Não',
-    saidaCentro: 'Não',
-    saidaIfe: 'Não',
-    veiculo: 'Minivan',
-    objetivo1: 'Não marcado',
-    objetivo2: 'Não marcado',
-    objetivo3: 'Não marcado',
-    objetivo4: 'Não marcado',
-    objetivo5: 'Não marcado',
-    objetivo6: 'Não marcado',
-    uf: 'Ceará'
-  })
+    statusViagem: "Recebida",
+    saidaAbaiara: "Não",
+    saidaCentro: "Não",
+    saidaIfe: "Não",
+    veiculo: "Minivan",
+    objetivo1: "Não marcado",
+    objetivo2: "Não marcado",
+    objetivo3: "Não marcado",
+    objetivo4: "Não marcado",
+    objetivo5: "Não marcado",
+    objetivo6: "Não marcado",
+    uf: "Ceará",
+  });
 
-  const { data: session } = useSession()
-  const [nomeCadastrado, setNomeCadastrado] = useState('Carregando...')
-  const [telefoneCadastrado, setTelefoneCadastrado] = useState('Carregando...')
-  const [emailCadastrado, setEmailCadastrado] = useState('Carregando...')
-  const [cpfCadastrado, setCpfCadastrado] = useState('Carregando...')
-  const router = useRouter()
+  const { data: session } = useSession();
+  const [nomeCadastrado, setNomeCadastrado] = useState("Carregando...");
+  const [telefoneCadastrado, setTelefoneCadastrado] = useState("Carregando...");
+  const [emailCadastrado, setEmailCadastrado] = useState("Carregando...");
+  const [cpfCadastrado, setCpfCadastrado] = useState("Carregando...");
+  const router = useRouter();
 
   React.useEffect(() => {
-    buscarCadastro()
-  }, [])
+    buscarCadastro();
+  }, []);
 
   function onInputChange(evt) {
-    setSolicita(prevState => ({
+    setSolicita((prevState) => ({
       ...prevState,
-      [evt.target.name]: evt.target.value
-    }))
+      [evt.target.name]: evt.target.value,
+    }));
   }
 
   function onCheckboxChange(evt) {
-    setSolicita(prevState => ({
+    setSolicita((prevState) => ({
       ...prevState,
-      [evt.target.id]: evt.target.checked === true ? 'Sim' : 'Não'
-    }))
+      [evt.target.id]: evt.target.checked === true ? "Sim" : "Não",
+    }));
   }
 
   function onObjetivoChange(evt) {
-    setSolicita(prevState => ({
+    setSolicita((prevState) => ({
       ...prevState,
       [evt.target.id]:
-        evt.target.checked === true ? evt.target.value : 'Não marcado'
-    }))
+        evt.target.checked === true ? evt.target.value : "Não marcado",
+    }));
   }
 
   function solicitanteLista(evt) {
-    if (document.getElementById('solicitanteVai').checked === true) {
-      setSolicita(prevState => ({
+    if (document.getElementById("solicitanteVai").checked === true) {
+      setSolicita((prevState) => ({
         ...prevState,
         passageiro1: nomeCadastrado,
-        identificacao1: cpfCadastrado
-      }))
-      document.getElementById('nome-1').value = nomeCadastrado
-      document.getElementById('identificacao-1').value = cpfCadastrado
+        identificacao1: cpfCadastrado,
+      }));
+      document.getElementById("nome-1").value = nomeCadastrado;
+      document.getElementById("identificacao-1").value = cpfCadastrado;
     } else {
-      setSolicita(prevState => ({
+      setSolicita((prevState) => ({
         ...prevState,
-        passageiro1: '',
-        identificacao1: ''
-      }))
-      document.getElementById('nome-1').value = ''
-      document.getElementById('identificacao-1').value = ''
+        passageiro1: "",
+        identificacao1: "",
+      }));
+      document.getElementById("nome-1").value = "";
+      document.getElementById("identificacao-1").value = "";
     }
   }
 
   function preencherDataRetorno(evt) {
-    if (document.getElementById('retorno').checked === true) {
-      setSolicita(prevState => ({
+    if (document.getElementById("retorno").checked === true) {
+      setSolicita((prevState) => ({
         ...prevState,
         diaRetorno: solicita.diaIda,
         mesRetorno: solicita.mesIda,
-        anoRetorno: solicita.anoIda
-      }))
+        anoRetorno: solicita.anoIda,
+      }));
     } else {
-      setSolicita(prevState => ({
+      setSolicita((prevState) => ({
         ...prevState,
-        diaRetorno: '',
-        mesRetorno: '',
-        anoRetorno: ''
-      }))
+        diaRetorno: "",
+        mesRetorno: "",
+        anoRetorno: "",
+      }));
     }
   }
 
   function btnSaveClick() {
-    event.preventDefault()
-    document.getElementById('btnSave').disabled = true
-    document.getElementById('btnSave').innerText = 'Aguarde...'
+    event.preventDefault();
+    document.getElementById("btnSave").disabled = true;
+    document.getElementById("btnSave").innerText = "Aguarde...";
 
     axios
-      .post('/api/transportes/transportes', {
+      .post("/api/transportes/transportes", {
         statusViagem: solicita.statusViagem,
         dataSolicitacao: Date(),
         objetivo: solicita.objetivo,
@@ -225,24 +225,23 @@ export default function SolicitarVeiculo() {
         passageiro43: solicita.passageiro43,
         identificacao43: solicita.identificacao43,
         passageiro44: solicita.passageiro44,
-        identificacao44: solicita.identificacao44
+        identificacao44: solicita.identificacao44,
       })
       .then(function (res) {
-        axios.post('/api/email/enviar', {
+        axios.post("/api/email/enviar", {
           email: solicita.email,
           copia: [
-            'tiago.arrais@ufca.edu.br',
-            'ife@ufca.edu.br',
-            'alexsandra.tavares@ufca.edu.br',
-            'clarisse.alves@ufca.edu.br',
-            'daniel.brandom@ufca.edu.br'
+            "tiago.arrais@ufca.edu.br",
+            "ife@ufca.edu.br",
+            "alexsandra.tavares@ufca.edu.br",
+            "clarisse.alves@ufca.edu.br",
+            "daniel.brandom@ufca.edu.br",
           ],
-          subject: 'Transportes IFE - Recebemos sua solicitação',
+          subject: "Transportes IFE - Recebemos sua solicitação",
           message: `<p><strong>Recebemos sua solicitação de transporte para ${solicita.cidade} no dia ${solicita.diaIda}/${solicita.mesIda}/${solicita.anoIda}</strong></p>.
         
-        <p>Na maioria dos casos enviaremos e-mail com a decisão nos seguintes prazos:</p> 
-        <p>Para destinos com distância de até 100km do campus Brejo Santo - 3 dias úteis antes da viagem. </p>
-        <p>Para destinos mais distantes - 5 dias úteis.</p>
+        <p>Enviaremos e-mail com a confirmação ou negação cinco dias úteis antes da data da viagem.</p> 
+        <p>Viagens solicitadas sem o devido planejamento serão respondidas até o próximo dia útil.</p>
       
         <h3><strong>Dados do solicitante</strong></h3>
 
@@ -263,11 +262,6 @@ export default function SolicitarVeiculo() {
 
         <li>Retorno: ${solicita.diaRetorno}/${solicita.mesRetorno}/${solicita.anoRetorno}</li>
         <li>Horário do retorno: ${solicita.horaRetorno}:${solicita.minutoRetorno}</li>
-        </ul>
-
-        <ul>
-        <li>Praça Dionísio Rocha de Lucena, Bairro Centro: ${solicita.saidaCentro}</li>
-        <li>Posto Abaiara (quando não houver desvio de trajeto): ${solicita.saidaAbaiara}</li>  
         </ul>
 
         <h3><strong>Informações adicionais</strong></h3>
@@ -330,56 +324,56 @@ export default function SolicitarVeiculo() {
 
         <p>Atenciosamente,</p> 
         
-        <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`
-        })
+        <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`,
+        });
 
-        setSolicita({})
-        document.getElementById('btnSave').disabled = false
-        document.getElementById('btnSave').innerText = 'Salvar'
+        setSolicita({});
+        document.getElementById("btnSave").disabled = false;
+        document.getElementById("btnSave").innerText = "Salvar";
 
-        window.alert('Enviamos uma cópia desta solicitação no seu email')
-        router.push('/transportes/')
+        window.alert("Enviamos uma cópia desta solicitação no seu email");
+        router.push("/transportes/");
       })
       .catch(function (error) {
-        console.log(error)
+        console.log(error);
         window.alert(
-          'Tente novamente! Houve algum erro no envio da solicitação.'
-        )
-        document.getElementById('btnSave').disabled = false
-        document.getElementById('btnSave').innerText = 'Tente novamente'
-      })
+          "Verifique sua conexão e tente novamente! Houve algum erro no envio da solicitação."
+        );
+        document.getElementById("btnSave").disabled = false;
+        document.getElementById("btnSave").innerText = "Tente novamente";
+      });
   }
 
   async function buscarCadastro() {
     const response = await fetch(
-      '../api/cadastro/cadastro?' + 'email=' + session.user.email
-    )
-    const data = await response.json()
+      "../api/cadastro/cadastro?" + "email=" + session.user.email
+    );
+    const data = await response.json();
 
     if (data === null) {
-      setNomeCadastrado('Não cadastrado')
-      setTelefoneCadastrado('Não cadastrado')
-      setEmailCadastrado('Não cadastrado')
-      setCpfCadastrado('Não cadastrado')
+      setNomeCadastrado("Não cadastrado");
+      setTelefoneCadastrado("Não cadastrado");
+      setEmailCadastrado("Não cadastrado");
+      setCpfCadastrado("Não cadastrado");
       window.alert(
-        'Para solicitar transporte é necessário atualizar o seu cadastro.'
-      )
-      router.push('/cadastro/atualizar')
-      return
+        "Para solicitar transporte é necessário atualizar o seu cadastro."
+      );
+      router.push("/cadastro/atualizar");
+      return;
     }
 
-    setNomeCadastrado(data.nome)
-    setTelefoneCadastrado(data.telefone)
-    setEmailCadastrado(data.email)
-    setCpfCadastrado(data.cpf)
+    setNomeCadastrado(data.nome);
+    setTelefoneCadastrado(data.telefone);
+    setEmailCadastrado(data.email);
+    setCpfCadastrado(data.cpf);
   }
 
   if (session) {
-    solicita.email = session.user.email
-    nomeCadastrado ? (solicita.nome = nomeCadastrado) : 'Não capturado'
+    solicita.email = session.user.email;
+    nomeCadastrado ? (solicita.nome = nomeCadastrado) : "Não capturado";
     telefoneCadastrado
       ? (solicita.telefone = telefoneCadastrado)
-      : 'Não capturado'
+      : "Não capturado";
 
     return (
       <div>
@@ -833,7 +827,7 @@ export default function SolicitarVeiculo() {
               Deseja incluir seu nome na lista de passageiros?
             </label>
             {Array.from(
-              { length: solicita.veiculo == 'Minivan' ? 6 : 44 },
+              { length: solicita.veiculo == "Minivan" ? 6 : 44 },
               (_, i) => (
                 <div key={i}>
                   {i + 1}
@@ -871,12 +865,12 @@ export default function SolicitarVeiculo() {
           </button>
         </form>
       </div>
-    )
+    );
   }
 
   return (
     <div>
       <p>Acesso negado, faça login para ver este conteúdo</p>
     </div>
-  )
+  );
 }
