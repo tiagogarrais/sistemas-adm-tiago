@@ -8,7 +8,7 @@ export default async function atualizarControles(request, response) {
 
   const { controleId, email, nome } = request.body
 
-  if (!controleId || !email) {
+  if (!controleId || !email || !nome) {
     return response.status(400).json({ message: 'Missing parameters' })
   }
 

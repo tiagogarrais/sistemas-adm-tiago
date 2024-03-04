@@ -29,7 +29,7 @@ export default function Controles() {
     return diffDays
   }
 
-  const confirmarExecucao = async (controleId, email) => {
+  const confirmarExecucao = async (controleId, email, nome) => {
     const confirmado = window.confirm(
       'Deseja confirmar a execução desta tarefa?'
     )
@@ -41,7 +41,8 @@ export default function Controles() {
         },
         body: JSON.stringify({
           controleId: controleId,
-          email: email
+          email: email,
+          nome: nome
         })
       })
       if (response.ok) {
@@ -54,7 +55,7 @@ export default function Controles() {
           return controle
         })
         setData(newData)
-        alert('Tarefa confirmada com sucesso!')
+        alert('O controle foi atualizado!')
       } else {
         alert(
           'Ocorreu um erro ao confirmar a tarefa. Tente novamente mais tarde.'
@@ -155,6 +156,11 @@ export default function Controles() {
                   </h4>
                 </header>
                 <p>{controle.descricao}</p>
+
+                <p>
+                  Este processo é executado a cada {controle.intervaloEmDias}{' '}
+                  dias
+                </p>
                 <p>
                   <b>
                     Próxima execução em até{' '}
@@ -165,10 +171,6 @@ export default function Controles() {
                     dia(s)
                   </b>{' '}
                 </p>
-                <p>
-                  Este processo é executado a cada {controle.intervaloEmDias}{' '}
-                  dias
-                </p>
                 {session &&
                   (session.user.email === 'administracao.ife@ufca.edu.br' ||
                     session.user.email === 'tiago.arrais@ufca.edu.br' ||
@@ -178,7 +180,11 @@ export default function Controles() {
                       'alexsandra.tavares@ufca.edu.br') && (
                     <button
                       onClick={() =>
-                        confirmarExecucao(controle._id, session.user.email)
+                        confirmarExecucao(
+                          controle._id,
+                          session.user.email,
+                          controle.nome
+                        )
                       }
                     >
                       Confirmar execução
