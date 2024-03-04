@@ -29,6 +29,40 @@ export default function Controles() {
     return diffDays
   }
 
+  const confirmarExecucao = async (controleId, email) => {
+    const confirmado = window.confirm(
+      'Deseja confirmar a execução desta tarefa?'
+    )
+    if (confirmado) {
+      const response = await fetch('/api/v1/atualizar-controles', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          controleId: controleId,
+          email: email
+        })
+      })
+      if (response.ok) {
+        // Atualizar localmente os dados após a confirmação
+        const newData = data.map(controle => {
+          if (controle._id === controleId) {
+            const hoje = new Date()
+            controle.dataUltimaExecucao = hoje.toISOString() // Atualiza a dataUltimaExecucao para a data atual
+          }
+          return controle
+        })
+        setData(newData)
+        alert('Tarefa confirmada com sucesso!')
+      } else {
+        alert(
+          'Ocorreu um erro ao confirmar a tarefa. Tente novamente mais tarde.'
+        )
+      }
+    }
+  }
+
   const handleSubmit = async event => {
     event.preventDefault()
     const response = await fetch('/api/v1/criar-controle', {
