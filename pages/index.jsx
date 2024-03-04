@@ -87,6 +87,20 @@ export default function Home() {
             </div>
 
             <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
+              <Link className="link" href="/controles">
+                <article className="min-h-300 min-h-full">
+                  <header className="flex items-center justify-center leading-tight p-2 md:p-4">
+                    <b>Controles IFE</b>
+                  </header>
+                  <p>
+                    Gerenciamento da atividade de controle e transparência das
+                    ações administrativas do campus Brejo Santo.
+                  </p>
+                </article>
+              </Link>
+            </div>
+
+            <div className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <a
                 target="_blank"
                 href="https://docs.google.com/spreadsheets/d/1SS8IzJZL9aUk9iKRTvBVN7mMRuy-afMtAVqzOJeOI84/edit#gid=0"

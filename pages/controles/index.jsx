@@ -5,6 +5,11 @@ export default function Controles() {
   const { data: session } = useSession();
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const [formData, setFormData] = useState({
+    nome: "",
+    intervaloEmDias: "",
+    descricao: "",
+  });
 
   useEffect(() => {
     fetch("/api/v1/ver-controles")
@@ -24,47 +29,87 @@ export default function Controles() {
     return diffDays;
   }
 
-  const confirmarExecucao = async (controleId, email, nome) => {
-    const confirmado = window.confirm(
-      "Deseja confirmar a execução desta tarefa?"
-    );
-    if (confirmado) {
-      const response = await fetch("/api/v1/atualizar-controles", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          controleId: controleId,
-          email: email,
-          nome: nome,
-        }),
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch("/api/v1/criar-controle", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    if (response.ok) {
+      // Atualizar os dados após a criação do controle
+      const newData = await response.json();
+      setData([...data, newData]);
+      // Limpar o formulário após o envio
+      setFormData({
+        nome: "",
+        intervaloEmDias: "",
+        descricao: "",
       });
-      if (response.ok) {
-        // Atualizar localmente os dados após a confirmação
-        const newData = data.map((controle) => {
-          if (controle._id === controleId) {
-            const hoje = new Date();
-            controle.dataUltimaExecucao = hoje.toISOString(); // Atualiza a dataUltimaExecucao para a data atual
-          }
-          return controle;
-        });
-        setData(newData);
-        alert("Tarefa confirmada com sucesso!");
-      } else {
-        alert(
-          "Ocorreu um erro ao confirmar a tarefa. Tente novamente mais tarde."
-        );
-      }
+    } else {
+      console.error(
+        "Ocorreu um erro ao criar o controle. Tente novamente mais tarde."
+      );
     }
+    // Recarregar a página
+    window.location.reload();
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
   if (isLoading) return <p>Buscando informações...</p>;
   if (!data) return <p>No profile data</p>;
 
+  const isAdmin =
+    session &&
+    (session.user.email === "administracao.ife@ufca.edu.br" ||
+      session.user.email === "tiago.arrais@ufca.edu.br");
+
   return (
     <>
       <h2>Painel de Controle - Administração campus Brejo Santo</h2>
+      {isAdmin && (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="nome">Nome:</label>
+            <input
+              type="text"
+              id="nome"
+              name="nome"
+              value={formData.nome}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="intervaloEmDias">Intervalo em dias:</label>
+            <input
+              type="number"
+              id="intervaloEmDias"
+              name="intervaloEmDias"
+              value={formData.intervaloEmDias}
+              onChange={handleChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="descricao">Descrição:</label>
+            <textarea
+              id="descricao"
+              name="descricao"
+              value={formData.descricao}
+              onChange={handleChange}
+            />
+          </div>
+          <button type="submit">Cadastrar Controle</button>
+        </form>
+      )}
       <div className="container my-4 mx-auto md:px-12">
         <div className="flex flex-wrap">
           {data.map((controle, index) => (
@@ -90,19 +135,21 @@ export default function Controles() {
                   Este processo é executado a cada {controle.intervaloEmDias}{" "}
                   dias
                 </p>
-                {session && (
-                  <button
-                    onClick={() =>
-                      confirmarExecucao(
-                        controle._id,
-                        session.user.email,
-                        controle.nome
-                      )
-                    }
-                  >
-                    Confirmar execução
-                  </button>
-                )}
+                {session &&
+                  (session.user.email === "administracao.ife@ufca.edu.br" ||
+                    session.user.email === "tiago.arrais@ufca.edu.br" ||
+                    session.user.email === "daniel.brandon@ufca.edu.br" ||
+                    session.user.email === "clarisse.alves@ufca.edu.br" ||
+                    session.user.email ===
+                      "alexsandra.tavares@ufca.edu.br") && (
+                    <button
+                      onClick={() =>
+                        confirmarExecucao(controle._id, session.user.email)
+                      }
+                    >
+                      Confirmar execução
+                    </button>
+                  )}
               </article>
             </div>
           ))}
