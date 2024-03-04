@@ -1,77 +1,77 @@
-import React, { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import React, { useState, useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 
 export default function Controles() {
-  const { data: session } = useSession();
-  const [data, setData] = useState(null);
-  const [isLoading, setLoading] = useState(true);
+  const { data: session } = useSession()
+  const [data, setData] = useState(null)
+  const [isLoading, setLoading] = useState(true)
   const [formData, setFormData] = useState({
-    nome: "",
-    intervaloEmDias: "",
-    descricao: "",
-  });
+    nome: '',
+    intervaloEmDias: '',
+    descricao: ''
+  })
 
   useEffect(() => {
-    fetch("/api/v1/ver-controles")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        setLoading(false);
-      });
-  }, []);
+    fetch('/api/v1/ver-controles')
+      .then(res => res.json())
+      .then(data => {
+        setData(data)
+        setLoading(false)
+      })
+  }, [])
 
   function calcularProximaExecucao(dataUltimaExecucao, frequencia) {
-    const hoje = new Date();
-    const ultimaExecucao = new Date(Date.parse(dataUltimaExecucao));
-    ultimaExecucao.setDate(ultimaExecucao.getDate() + frequencia);
-    const diffTime = ultimaExecucao.getTime() - hoje.getTime();
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
+    const hoje = new Date()
+    const ultimaExecucao = new Date(Date.parse(dataUltimaExecucao))
+    ultimaExecucao.setDate(ultimaExecucao.getDate() + frequencia)
+    const diffTime = ultimaExecucao.getTime() - hoje.getTime()
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    return diffDays
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const response = await fetch("/api/v1/criar-controle", {
-      method: "POST",
+  const handleSubmit = async event => {
+    event.preventDefault()
+    const response = await fetch('/api/v1/criar-controle', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formData),
-    });
+      body: JSON.stringify(formData)
+    })
     if (response.ok) {
       // Atualizar os dados após a criação do controle
-      const newData = await response.json();
-      setData([...data, newData]);
+      const newData = await response.json()
+      setData([...data, newData])
       // Limpar o formulário após o envio
       setFormData({
-        nome: "",
-        intervaloEmDias: "",
-        descricao: "",
-      });
+        nome: '',
+        intervaloEmDias: '',
+        descricao: ''
+      })
     } else {
       console.error(
-        "Ocorreu um erro ao criar o controle. Tente novamente mais tarde."
-      );
+        'Ocorreu um erro ao criar o controle. Tente novamente mais tarde.'
+      )
     }
     // Recarregar a página
-    window.location.reload();
-  };
+    window.location.reload()
+  }
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const handleChange = event => {
+    const { name, value } = event.target
     setFormData({
       ...formData,
-      [name]: value,
-    });
-  };
+      [name]: value
+    })
+  }
 
-  if (isLoading) return <p>Buscando informações...</p>;
-  if (!data) return <p>No profile data</p>;
+  if (isLoading) return <p>Buscando informações...</p>
+  if (!data) return <p>No profile data</p>
 
   const isAdmin =
     session &&
-    (session.user.email === "administracao.ife@ufca.edu.br" ||
-      session.user.email === "tiago.arrais@ufca.edu.br");
+    (session.user.email === 'administracao.ife@ufca.edu.br' ||
+      session.user.email === 'tiago.arrais@ufca.edu.br')
 
   return (
     <>
@@ -123,25 +123,25 @@ export default function Controles() {
                 <p>{controle.descricao}</p>
                 <p>
                   <b>
-                    Próxima execução em até{" "}
+                    Próxima execução em até{' '}
                     {calcularProximaExecucao(
                       controle.dataUltimaExecucao,
                       parseInt(controle.intervaloEmDias)
-                    )}{" "}
+                    )}{' '}
                     dia(s)
-                  </b>{" "}
+                  </b>{' '}
                 </p>
                 <p>
-                  Este processo é executado a cada {controle.intervaloEmDias}{" "}
+                  Este processo é executado a cada {controle.intervaloEmDias}{' '}
                   dias
                 </p>
                 {session &&
-                  (session.user.email === "administracao.ife@ufca.edu.br" ||
-                    session.user.email === "tiago.arrais@ufca.edu.br" ||
-                    session.user.email === "daniel.brandon@ufca.edu.br" ||
-                    session.user.email === "clarisse.alves@ufca.edu.br" ||
+                  (session.user.email === 'administracao.ife@ufca.edu.br' ||
+                    session.user.email === 'tiago.arrais@ufca.edu.br' ||
+                    session.user.email === 'daniel.brandom@ufca.edu.br' ||
+                    session.user.email === 'clarisse.alves@ufca.edu.br' ||
                     session.user.email ===
-                      "alexsandra.tavares@ufca.edu.br") && (
+                      'alexsandra.tavares@ufca.edu.br') && (
                     <button
                       onClick={() =>
                         confirmarExecucao(controle._id, session.user.email)
@@ -156,5 +156,5 @@ export default function Controles() {
         </div>
       </div>
     </>
-  );
+  )
 }
