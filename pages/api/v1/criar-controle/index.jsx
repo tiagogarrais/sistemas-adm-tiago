@@ -18,6 +18,8 @@ export default async function criarControle(request, response) {
       nome,
       intervaloEmDias: parseInt(intervaloEmDias),
       descricao,
+      dataUltimaExecucao: "1970-01-01T00:00:00.000Z",
+      assinatura: "Enviado via API pelo site admtiago.com.br",
     };
 
     const result = await db.collection("controles").insertOne(novoControle);
