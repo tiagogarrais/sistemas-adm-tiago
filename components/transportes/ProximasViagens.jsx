@@ -79,7 +79,7 @@ export default function ProximasViagens() {
       "0"
     )}:${String(minutoRetorno).padStart(2, "0")}`;
 
-    //Enviar o e-mail de confirmação
+    //Enviar o e-mail com o status da viagem
     axios
       .post("/api/email/enviar", {
         email: proximasViagens.email,
@@ -91,10 +91,10 @@ export default function ProximasViagens() {
           "clarisse.alves@ufca.edu.br",
           "daniel.brandom@ufca.edu.br",
         ],
-        subject: "Transportes IFE - Viagem confirmada",
+        subject: `Transportes IFE - Status: ${proximasViagens.statusViagem}`,
         message: `
         <p>
-        <strong>A viagem para ${proximasViagens.cidade} - ${proximasViagens.uf} no dia ${dataIdaConvertida} foi confirmada!</strong>
+        <strong>A viagem para ${proximasViagens.cidade} - ${proximasViagens.uf} no dia ${dataIdaConvertida} foi atualizada para a seguinte situação: ${proximasViagens.statusViagem}</strong>
         </p>
         <p>
         <strong>Responsável pela solicitação</strong>
@@ -288,7 +288,7 @@ export default function ProximasViagens() {
                       className="operadores"
                       onClick={() => enviarEmailConfirmacao(proximasViagens)}
                     >
-                      Enviar e-mail de confirmação
+                      Enviar status da viagem
                     </button>
                   </div>
                 </form>
