@@ -150,14 +150,13 @@ export default function Controles() {
           {data.map((controle, index) => (
             <div key={index} className="my-1 px-1 w-full md:w-1/2 lg:w-1/3">
               <article className="min-h-300 min-h-full">
-                <small>Periodicidade: {controle.intervaloEmDias} dias</small>
+                <small>Periodicidade: {controle.intervaloEmDias} dia(s)</small>
                 <header className="flex items-center justify-center leading-tight p-2 md:p-4">
                   <h4>
                     <b>{controle.nome}</b>
                   </h4>
                 </header>
                 <p>{controle.descricao}</p>
-
                 <p>
                   <b>
                     Próxima execução em até{" "}
