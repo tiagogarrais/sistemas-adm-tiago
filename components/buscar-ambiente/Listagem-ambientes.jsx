@@ -1,726 +1,129 @@
-import { useSession } from 'next-auth/react'
-import Link from 'next/link'
+import { useSession } from "next-auth/react";
+import Link from "next/link";
+
+// Array contendo detalhes de cada ambiente
+const ambientes = [
+  { id: 1, nome: "Entrada principal - Externa" },
+  { id: 2, nome: "Recepção" },
+  { id: 3, nome: "Administração" },
+  { id: 4, nome: "Sala de aula 10 e Miniauditório" },
+  { id: 5, nome: "Brinquedoteca" },
+  { id: 6, nome: "Gabinete Docente - chave 6" },
+  { id: 7, nome: "Banheiro infantil" },
+  { id: 8, nome: "Gabinete Docente - chave 8" },
+  { id: 9, nome: "Depósito de material de limpeza" },
+  { id: 10, nome: "Cantina / Cozinha" },
+  { id: 11, nome: "Banheiro acessível Masculino 1" },
+  { id: 12, nome: "Banheiro Acessível Feminino 1" },
+  { id: 13, nome: "Banheiro feminino 1" },
+  { id: 14, nome: "Banheiro masculino 1" },
+  { id: 15, nome: "Laboratório de Química" },
+  { id: 16, nome: "Sala de aula 11" },
+  { id: 17, nome: "Sala de aula 12" },
+  { id: 18, nome: "Depósito de reagentes" },
+  { id: 19, nome: "Apoio acadêmico" },
+  { id: 20, nome: "Rádio" },
+  { id: 21, nome: "Estúdio de gravação" },
+  { id: 22, nome: "Laboratório de Informática 1" },
+  { id: 23, nome: "Laboratório de Informática 2" },
+  { id: 24, nome: "Rack DTI" },
+  { id: 25, nome: "Gabinete Docente - chave 25" },
+  { id: 26, nome: "Sala de aula 09" },
+  { id: 27, nome: "Sala de aula 08" },
+  { id: 28, nome: "Sala de aula 07" },
+  { id: 29, nome: "L@bmatec" },
+  { id: 30, nome: "Biblioteca" },
+  { id: 31, nome: "Sala de estudo 2 - Biblioteca" },
+  { id: 32, nome: "Sala de estudo 1 - Biblioteca" },
+  { id: 33, nome: "Sala de processamento técnico - Biblioteca" },
+  { id: 34, nome: "Acesso Diretoria e reunião" },
+  { id: 35, nome: "Sala de reuniões" },
+  { id: 36, nome: "Secretaria" },
+  { id: 37, nome: "Diretoria e Vice Diretoria" },
+  { id: 38, nome: "Copa" },
+  { id: 39, nome: "Coordenações" },
+  { id: 40, nome: "Palco e refeitório" },
+  { id: 41, nome: "Praça interna" },
+  { id: 100, nome: "Entrada Principal - Interna" },
+  { id: 101, nome: "Sala de aula 01" },
+  { id: 102, nome: "Sala de aula 02" },
+  { id: 103, nome: "Sala de aula 03" },
+  { id: 104, nome: "Sala de aula 04" },
+  { id: 105, nome: "Sala de aula 05" },
+  { id: 106, nome: "Sala de aula 06" },
+  { id: 107, nome: "Gabinete Docente - chave 107" },
+  { id: 108, nome: "Banheiro feminino 2" },
+  { id: 109, nome: "Banheiro masculino 2" },
+  { id: 110, nome: "Banheiro feminino 3" },
+  { id: 111, nome: "Banheiro masculino 3" },
+  { id: 112, nome: "Apoio Horto / Projetos Institucionais" },
+  { id: 113, nome: "Entrada" },
+  { id: 114, nome: "Entrada" },
+  { id: 115, nome: "Gabinete Docente - chave 115" },
+  { id: 116, nome: "Banheiro acessível feminino 2" },
+  { id: 117, nome: "Banheiro acessível masculino 2" },
+  { id: 119, nome: "Laboratório de Física" },
+  { id: 120, nome: "Laboratório de Biologia" },
+  { id: 121, nome: "Fluxo Laminar" },
+  { id: 123, nome: "Autoclave" },
+  { id: 124, nome: "Casa de gás" },
+  { id: 125, nome: "Casa de energia" },
+  { id: 126, nome: "Banheiro masculino servidores" },
+  { id: 127, nome: "Banheiro feminino servidores" },
+  { id: 129, nome: "Guarita" },
+  { id: 130, nome: "Banheiro Guarita" },
+  { id: 131, nome: "Barrilete" },
+  { id: 132, nome: "Depósito de manutenção" },
+  { id: 134, nome: "Sala de apoio ao discente" },
+  { id: 135, nome: "Gabinete Docente - chave 135" },
+  { id: 136, nome: "Gabinete Docente - chave 136" },
+  { id: 137, nome: "Gabinete Docente - chave 137" },
+  { id: 138, nome: "Estacionamento e bicicletário" },
+  { id: 139, nome: "Horto didático" },
+  { id: 140, nome: "Calçada para a rua" },
+  {
+    id: 141,
+    nome: "Vaga deficiente, idosos ate corredor banheiros acessiveis",
+  },
+  { id: 142, nome: "Jardim da recepção" },
+  {
+    id: 143,
+    nome: "Corredor sala de aula 10, acesso direção, copa, até saída para o bicicletário",
+  },
+  { id: 144, nome: "Corredor praça interna até horto didático" },
+  {
+    id: 145,
+    nome: "Corredor sala de aula 1, 2, 3, 4, 5 até cruzamento com o outro corredor",
+  },
+  { id: 146, nome: "Corredor centro acadêmico até laboratório de informática" },
+  { id: 147, nome: "Corredor biblioteca até sala de aula 9" },
+  { id: 148, nome: "Corredor banheiro feminino 1 até sala de reagentes" },
+  {
+    id: 149,
+    nome: "Corredor laboratórios física, biologia, autoclave até casa de gás",
+  },
+  { id: 150, nome: "Entrada - Estacionamento" },
+];
+
+const BotaoAmbiente = ({ id, nome }) => (
+  <div className="button">
+    <Link className="link" href={{ pathname: `/ambientes/${id}` }}>
+      {`${id} - ${nome}`}
+    </Link>
+  </div>
+);
 
 export default function ListagemAmbientes() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   if (session) {
     return (
       <>
         <h2>Listagem de Ambientes</h2>
-        <ul>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/1' }}>
-                {' '}
-                1 - Entrada principal - Externa
-              </Link>
-            </li>
-          </div>
-
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/2' }}>
-                {' '}
-                2 - Recepção
-              </Link>
-            </li>
-          </div>
-
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/3' }}>
-                {' '}
-                3 - Administração
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/4' }}>
-                {' '}
-                4 - Sala de aula 10 e Miniauditório
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/5' }}>
-                {' '}
-                5 - Brinquedoteca
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/6' }}>
-                {' '}
-                6 - Gabinete Docente - chave 6
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/7' }}>
-                {' '}
-                7 - Banheiro infantil
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/8' }}>
-                {' '}
-                8 - Gabinete Docente - chave 8
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/9' }}>
-                {' '}
-                9 - Depósito de material de limpeza
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/10' }}>
-                {' '}
-                10 - Cantina / Cozinha
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/11' }}>
-                {' '}
-                11 - Banheiro acessível Masculino 1
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/12' }}>
-                {' '}
-                12 - Banheiro Acessível Feminino 1
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/13' }}>
-                {' '}
-                13 - Banheiro feminino 1
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/14' }}>
-                {' '}
-                14 - Banheiro masculino 1
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/15' }}>
-                {' '}
-                15 - Laboratório de Química
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/16' }}>
-                {' '}
-                16 - Sala de aula 11
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/17' }}>
-                {' '}
-                17 - Sala de aula 12
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/18' }}>
-                {' '}
-                18 - Depósito de reagentes
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/19' }}>
-                {' '}
-                19 - Apoio acadêmico
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/20' }}>
-                {' '}
-                20 - Rádio
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/21' }}>
-                {' '}
-                21 - Estúdio de gravação
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/22' }}>
-                {' '}
-                22 - Laboratório de Informática 1
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/23' }}>
-                {' '}
-                23 - Laboratório de Informática 2
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/24' }}>
-                {' '}
-                24 - Rack DTI
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/25' }}>
-                {' '}
-                25 - Gabinete Docente - chave 25
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/26' }}>
-                {' '}
-                26 - Sala de aula 09
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/27' }}>
-                {' '}
-                27 - Sala de aula 08
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/28' }}>
-                {' '}
-                28 - Sala de aula 07
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/29' }}>
-                {' '}
-                29 - L@bmatec
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/30' }}>
-                {' '}
-                30 - Biblioteca
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/31' }}>
-                {' '}
-                31 - Sala de estudo 2 - Biblioteca
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/32' }}>
-                {' '}
-                32 - Sala de estudo 1 - Biblioteca
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/33' }}>
-                {' '}
-                33 - Sala de processamento técnico - Biblioteca
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/34' }}>
-                {' '}
-                34 - Acesso Diretoria e reunião
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/35' }}>
-                {' '}
-                35 - Sala de reuniões
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/36' }}>
-                {' '}
-                36 - Secretaria
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/37' }}>
-                {' '}
-                37 - Diretoria e Vice Diretoria
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/38' }}>
-                {' '}
-                38 - Copa
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/39' }}>
-                {' '}
-                39 - Coordenações
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/40' }}>
-                {' '}
-                40 - Palco e refeitório
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/41' }}>
-                {' '}
-                41 - Praça interna
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/100' }}>
-                {' '}
-                100 - Entrada Principal - Interna
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/101' }}>
-                {' '}
-                101 - Sala de aula 01
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/102' }}>
-                {' '}
-                102 - Sala de aula 02
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/103' }}>
-                {' '}
-                103 - Sala de aula 03
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/104' }}>
-                {' '}
-                104 - Sala de aula 04
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/105' }}>
-                {' '}
-                105 - Sala de aula 05
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/106' }}>
-                {' '}
-                106 - Sala de aula 06
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/107' }}>
-                {' '}
-                107 - Gabinete Docente - chave 107
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/108' }}>
-                {' '}
-                108 - Banheiro feminino 2
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/109' }}>
-                {' '}
-                109 - Banheiro masculino 2
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/110' }}>
-                {' '}
-                110 - Banheiro feminino 3
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/111' }}>
-                {' '}
-                111 - Banheiro masculino 3
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/112' }}>
-                {' '}
-                112 - Apoio Horto / Projetos Institucionais
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/113' }}>
-                {' '}
-                113 - Entrada
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/114' }}>
-                {' '}
-                114 - Entrada
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/115' }}>
-                {' '}
-                115 - Gabinete Docente - chave 115
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/116' }}>
-                {' '}
-                116 - Banheiro acessível feminino 2
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/117' }}>
-                {' '}
-                117 - Banheiro acessível masculino 2
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/119' }}>
-                {' '}
-                119 - Laboratório de Física
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/120' }}>
-                {' '}
-                120 - Laboratório de Biologia
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/121' }}>
-                {' '}
-                121 - Fluxo Laminar
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/123' }}>
-                {' '}
-                123 - Autoclave
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/124' }}>
-                {' '}
-                124 - Casa de gás
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/125' }}>
-                {' '}
-                125 - Casa de energia
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/126' }}>
-                {' '}
-                126 - Banheiro masculino servidores
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/127' }}>
-                {' '}
-                127 - Banheiro feminino servidores
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/129' }}>
-                {' '}
-                129 - Guarita
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/130' }}>
-                {' '}
-                130 - Banheiro Guarita
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/131' }}>
-                {' '}
-                131 - Barrilete
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/132' }}>
-                {' '}
-                132 - Depósito de manutenção
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/134' }}>
-                {' '}
-                134 - Sala de apoio ao discente
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/135' }}>
-                {' '}
-                135 - Gabinete Docente - chave 135
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/136' }}>
-                {' '}
-                136 - Gabinete Docente - chave 136
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/137' }}>
-                {' '}
-                137 - Gabinete Docente - chave 137
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/138' }}>
-                {' '}
-                138 - Estacionamento e bicicletário
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/139' }}>
-                {' '}
-                139 - Horto didático
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/140' }}>
-                {' '}
-                140 - Calçada para a rua
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/141' }}>
-                {' '}
-                141 - Vaga deficiente, idosos ate corredor banheiros acessiveis
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/142' }}>
-                {' '}
-                142 - Jardim da recepção
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/143' }}>
-                {' '}
-                143 - Corredor sala de aula 10, acesso direção, copa, até saída
-                para o bicicletário
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/144' }}>
-                {' '}
-                144 - Corredor praça interna até horto didático
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/145' }}>
-                {' '}
-                145 - Corredor sala de aula 1, 2, 3, 4, 5 até cruzamento com o
-                outro corredor
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/146' }}>
-                {' '}
-                146 - Corredor centro acadêmico até laboratório de informática
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/147' }}>
-                {' '}
-                147 - Corredor biblioteca até sala de aula 9
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/148' }}>
-                {' '}
-                148 - Corredor banheiro feminino 1 até sala de reagentes
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/149' }}>
-                {' '}
-                149 - Corredor laboratórios física, biologia, autoclave até casa
-                de gás
-              </Link>
-            </li>
-          </div>
-          <div className="button">
-            <li>
-              <Link className="link" href={{ pathname: '/ambientes/150' }}>
-                {' '}
-                150 - Entrada - Estacionamento
-              </Link>
-            </li>
-          </div>
-        </ul>
+        {ambientes.map((ambiente) => (
+          <BotaoAmbiente key={ambiente.id} {...ambiente} />
+        ))}
       </>
-    )
+    );
   }
-  return <p>Não</p>
 }
