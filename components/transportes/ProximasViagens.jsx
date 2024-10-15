@@ -14,7 +14,7 @@ export default function ProximasViagens() {
 
   function alterarStatus(evt) {
     if (
-      session.user.email !== "tiago.arrais@ufca.edu.br" &&
+      session.user.email !== "natacha.pinho@ufca.edu.br" &&
       session.user.email !== "ife@ufca.edu.br" &&
       session.user.email !== "alexsandra.tavares@ufca.edu.br" &&
       session.user.email !== "clarisse.alves@ufca.edu.br" &&
@@ -84,7 +84,7 @@ export default function ProximasViagens() {
       .post("/api/email/enviar", {
         email: proximasViagens.email,
         copia: [
-          "tiago.arrais@ufca.edu.br",
+          "natacha.pinho@ufca.edu.br",
           "alexsandra.tavares@ufca.edu.br",
           "marcos.francisco@ufca.edu.br",
           "ife@ufca.edu.br",
@@ -124,8 +124,11 @@ export default function ProximasViagens() {
         
         
         Atenciosamente,<br>
+
+        <p>Administração do Instituto de Formação de Educadores<br>   
+        Campus Brejo Santo</p>
         
-        Adm. Tiago das Graças Arrais - CRA 11.660
+        <p>Sistema desenvolvido por Adm. Tiago das Graças Arrais - CRA 11.660</p>
         
         <p>
         Atenção: Para responder esta mensagem selecione a opção "Responder para todos", assim , toda a nossa equipe recebe e pode agir de forma rápida e eficaz.
@@ -147,7 +150,7 @@ export default function ProximasViagens() {
   function desabilitarCampos() {
     //Desabilitar campos que são privativos dos operadores do sistema.
     if (
-      session.user.email !== "tiago.arrais@ufca.edu.br" &&
+      session.user.email !== "natacha.pinho@ufca.edu.br" &&
       session.user.email !== "alexsandra.tavares@ufca.edu.br" &&
       session.user.email !== "clarisse.alves@ufca.edu.br" &&
       session.user.email !== "daniel.brandom@ufca.edu.br"

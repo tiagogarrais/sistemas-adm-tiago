@@ -231,7 +231,7 @@ export default function SolicitarVeiculo() {
         axios.post("/api/email/enviar", {
           email: solicita.email,
           copia: [
-            "tiago.arrais@ufca.edu.br",
+            "natacha.pinho@ufca.edu.br",
             "ife@ufca.edu.br",
             "alexsandra.tavares@ufca.edu.br",
             "clarisse.alves@ufca.edu.br",
@@ -323,8 +323,12 @@ export default function SolicitarVeiculo() {
         </ul>
 
         <p>Atenciosamente,</p> 
+
+        <p>Administração do Instituto de Formação de Educadores</p>    
+        <p>Campus Brejo Santo</p>
         
-        <p>Adm. Tiago das Graças Arrais - CRA 11.660</p>`,
+        
+        <p>Sistema desenvolvido por Adm. Tiago das Graças Arrais - CRA 11.660</p>`,
         });
 
         setSolicita({});
@@ -407,6 +411,19 @@ export default function SolicitarVeiculo() {
                 ></input>
                 <Image src={minivan} width={150} height={150} alt="Minivan" />
                 Até 6 passageiros + 1 motorista
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="veiculo"
+                  id="pickup"
+                  value="Pickup"
+                  onChange={onInputChange}
+                  required
+                ></input>
+                <Image src={pickup} width={150} height={150} alt="Pickup" />
+                Até 4 passageiros + 1 motorista + carga
               </label>
 
               <label>
