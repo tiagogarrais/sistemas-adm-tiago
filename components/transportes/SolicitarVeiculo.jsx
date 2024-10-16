@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import minivan from "/public/images/transportes/minivan-spin.jpg";
 import onibus from "/public/images/transportes/onibus-urbano.jpg";
+import pickup from "/public/images/transportes/pickup.jpg";
 import axios from "axios";
 import { useRouter } from "next/router";
 
